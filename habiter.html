@@ -131,10 +131,12 @@ h1{max-width:16ch}
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
-    <label class="case"><input type="checkbox" name="affiche"> Mon prénom peut apparaître sur une fenêtre de la façade, pour montrer que la liste avance.</label>
+    <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
+    <img class="apercu" alt="" hidden>
+    <label class="case"><input type="checkbox" name="affiche"> Mon prénom et ma photo peuvent apparaître sur une fenêtre de la façade, pour montrer que la liste avance.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Je m'inscris</button></div>
-    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à fhzegert@gmail.com. Ton prénom n'apparaît sur la façade que si tu coches la case.</p>
+    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à fhzegert@gmail.com. Ton prénom et ta photo n'apparaissent sur la façade que si tu coches la case. Pour les retirer, écris-nous.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Viens nous voir, ou écris à <a href="mailto:fhzegert@gmail.com" style="color:#fff">fhzegert@gmail.com</a></p>
   </form>
@@ -177,24 +179,30 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   var f=document.getElementById('fHabitant'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
   var libelle=btn.textContent, koHTML=ko.innerHTML;
   function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
+  // aperçu de la photo choisie
+  var apercu=f.querySelector('.apercu');
+  f.photo.addEventListener('change',function(){ var fi=f.photo.files&&f.photo.files[0]; if(fi&&/^image\//.test(fi.type)){apercu.src=URL.createObjectURL(fi);apercu.hidden=false;} else {apercu.hidden=true;apercu.removeAttribute('src');} });
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
-    B.inscrire({type:'habitant',nom:nom,contact:contact,note:f.note.value.trim()||null,affiche:affiche})
+    var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
+    (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
+    .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
       var n=d?(d.brut.habitants||0):null, texte;
       if(n===null) texte="C'est noté, "+nom+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
-      else if(n<=50) texte="C'est noté, "+nom+". Ta fenêtre est la n°"+n+" sur 50"+(affiche?", avec ton prénom dessus":"")+". On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      else if(n<=50) texte="C'est noté, "+nom+". Ta fenêtre est la n°"+n+" sur 50"+(affiche?(photo?", avec ton prénom et ta photo dessus":", avec ton prénom dessus"):"")+". On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant."+(photoRatee?" La photo n'est pas passée : tu peux nous l'envoyer par e-mail.":"");
       else texte="C'est noté, "+nom+". Les 50 fenêtres sont prises, tu es sur la liste d'attente (n°"+n+"). On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
       ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='fenetre-msg'; glyphe.setAttribute('aria-hidden','true');
       ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
-      if(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',Math.max(0,d.habitants-1),d.noms.habitant,false); if(n<=50) B.eclairer(fac.fens,n); }
-      f.nom.value='';f.contact.value='';f.note.value='';f.affiche.checked=false;btn.disabled=false;btn.textContent=libelle;
+      if(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',Math.max(0,d.habitants-1),d.noms.habitant,false); if(n<=50) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''}); }
+      f.nom.value='';f.contact.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
