@@ -263,9 +263,39 @@ h1 mark{border:0;background:linear-gradient(transparent 62%,rgba(227,195,98,.28)
 .immeuble svg{display:block;width:100%;height:auto;overflow:visible}
 .immeuble figcaption{margin-top:14px;font-size:.92rem;color:var(--sur-vert-mut);max-width:42ch;line-height:1.45}
 .immeuble figcaption strong{color:#fff;font-family:var(--disp)}
-.fen{fill:#0E1B13;stroke:#3C5646;stroke-width:1;transition:fill .6s}
-.fen.on{fill:var(--or);stroke:var(--or-pale);filter:drop-shadow(0 0 6px rgba(227,195,98,.65))}
-@media(prefers-reduced-motion:reduce){.fen{transition:none}}
+.fen{cursor:pointer;outline:none}
+.fen .base{fill:#0E1B13;stroke:#3C5646;stroke-width:1;transition:fill .6s,stroke .6s}
+.fen.on .base{fill:var(--or);stroke:var(--or-pale);filter:drop-shadow(0 0 6px rgba(227,195,98,.65))}
+/* la vie derrière les fenêtres encore libres : une lueur faible, dispersée, jamais la même seconde */
+.fen .veille{fill:var(--or-pale);opacity:0;pointer-events:none}
+.fen:focus-visible .base{stroke:var(--or);stroke-width:3}
+.fen[aria-expanded="true"] .base{stroke:#fff;stroke-width:2}
+/* briques dessinées dans le SVG (bâtiment de l'entrée) */
+.brique{cursor:pointer;outline:none}
+.brique .base{fill:transparent;stroke:rgba(227,195,98,.45);stroke-width:1.5;stroke-dasharray:3 3;transition:fill .5s,stroke .5s}
+.brique.on .base{fill:var(--or);stroke:var(--or);stroke-dasharray:none}
+.brique:focus-visible .base{stroke:#fff;stroke-width:2.5;stroke-dasharray:none}
+.brique[aria-expanded="true"] .base{stroke:#fff;stroke-width:2;stroke-dasharray:none}
+@media(prefers-reduced-motion:no-preference){
+  .fen:not(.on) .veille{animation:veille 7s ease-in-out infinite;animation-delay:var(--d,0ms)}
+  @keyframes veille{0%,72%,100%{opacity:0}86%{opacity:.16}}
+  .fen.neuve .base,.brique.neuve .base{transform-box:fill-box;transform-origin:center;animation:naitre .6s cubic-bezier(.2,.7,.2,1) both}
+}
+@media(prefers-reduced-motion:reduce){.fen .base,.brique .base{transition:none}}
+/* ---- Bulle sur une place cliquée ---- */
+.bulle{position:fixed;z-index:30;pointer-events:none;max-width:min(300px,calc(100vw - 16px));background:var(--creme);color:var(--encre);border-radius:4px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:.92rem;line-height:1.45;display:grid;gap:4px}
+.bulle b{font-family:var(--disp);font-size:1rem;color:var(--vert-nuit)}
+.bulle a{pointer-events:auto;color:var(--vert);font-weight:700;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.bulle:after{content:"";position:absolute;left:var(--fleche,50%);top:100%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--creme)}
+.bulle.dessous:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--creme)}
+@media(prefers-reduced-motion:no-preference){.bulle{animation:glisser .15s cubic-bezier(.2,.7,.2,1) both}}
+/* ---- Chiffres à rouleaux ---- */
+.rouleau{display:inline-flex;align-items:flex-end;font-variant-numeric:tabular-nums;line-height:1;vertical-align:-.02em}
+.rouleau .col{display:block;height:1em;overflow:hidden}
+.rouleau .pile{display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.rouleau .pile span{display:block;height:1em;line-height:1}
+.rouleau .sep{display:block;line-height:1}
+@media(prefers-reduced-motion:reduce){.rouleau .pile{transition:none}}
 .bandeau{background:var(--or);color:var(--vert-nuit);overflow:hidden;border-block:2px solid var(--vert-nuit)}
 .bandeau .piste{display:flex;width:max-content;gap:0;padding-block:14px;font-family:var(--disp);font-weight:800;font-size:clamp(1.05rem,2.2vw,1.5rem);letter-spacing:-.01em;white-space:nowrap}
 .bandeau span{display:inline-flex;align-items:center;gap:28px;padding-right:28px}
@@ -343,11 +373,15 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form .ok.visible,.form .ko.visible{display:block}
 /* le message de confirmation glisse de 8 px ; la petite brique du message se pose juste après */
 .form .ok .brique-msg{display:inline-block;width:22px;height:11px;background:var(--or);border-radius:1px;vertical-align:-1px;margin-right:8px}
+.form .ok .fenetre-msg{display:inline-block;width:12px;height:18px;background:var(--or);border:1.5px solid var(--or-pale);border-radius:1px;vertical-align:-3px;margin-right:8px;box-shadow:0 0 8px rgba(227,195,98,.6)}
 @media(prefers-reduced-motion:no-preference){
   .form .ok.visible,.form .ko.visible{animation:glisser .2s cubic-bezier(.2,.7,.2,1) both}
-  .form .ok .brique-msg{animation:naitre .5s cubic-bezier(.2,.7,.2,1) .2s both}
+  .form .ok .brique-msg,.form .ok .fenetre-msg{animation:naitre .5s cubic-bezier(.2,.7,.2,1) .2s both}
   @keyframes glisser{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 }
+/* accord pour afficher son nom sur la façade ou le mur */
+.form label.case{display:flex;align-items:flex-start;gap:10px;font-weight:500;font-size:.92rem;color:var(--sur-vert);cursor:pointer}
+.form .case input{width:20px;height:20px;min-height:0;margin:2px 0 0;padding:0;flex:none;accent-color:var(--or);cursor:pointer}
 /* mention sur les données, sous le bouton */
 .form .confidentialite{font-size:.85rem;line-height:1.5;color:var(--sur-vert-mut);max-width:none}
 /* honeypot : hors écran, jamais rempli par une personne */

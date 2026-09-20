@@ -62,7 +62,7 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>Ou passe nous voir :</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="img" aria-label="Façade d'un immeuble de cinq étages, cinquante fenêtres qui s'allument une à une"></svg><figcaption><strong>50 fenêtres, 50 chambres.</strong> Chacune s'allume le jour où quelqu'un pose ses valises.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> fenêtres allumées sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption></figure>
 </div>
 </div>
 </section>
@@ -131,9 +131,10 @@ h1{max-width:16ch}
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
+    <label class="case"><input type="checkbox" name="affiche"> Mon prénom peut apparaître sur une fenêtre de la façade, pour montrer que la liste avance.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Je m'inscris</button></div>
-    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à fhzegert@gmail.com.</p>
+    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à fhzegert@gmail.com. Ton prénom n'apparaît sur la façade que si tu coches la case.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Viens nous voir, ou écris à <a href="mailto:fhzegert@gmail.com" style="color:#fff">fhzegert@gmail.com</a></p>
   </form>
@@ -156,50 +157,48 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
 </div>
 </footer>
 
+<script src="batiment.js"></script>
 <script>
-/* Immeuble : 5 étages x 10 fenêtres = 50 chambres, qui s'allument une à une */
 (function(){
-  var f=document.getElementById('facade');if(!f)return;
-  var NS='http://www.w3.org/2000/svg',W=500,x0=40,y0=58,cw=42,ch=58;
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
-  f.setAttribute('viewBox','0 0 '+W+' 420');
-  f.appendChild(el('rect',{x:24,y:40,width:452,height:356,fill:'#172E21',stroke:'#3C5646','stroke-width':1.5}));
-  f.appendChild(el('rect',{x:14,y:28,width:472,height:14,fill:'#E3C362'}));
-  for(var r=0;r<5;r++)f.appendChild(el('line',{x1:24,x2:476,y1:y0+r*62+ch+2,y2:y0+r*62+ch+2,stroke:'#2A4535','stroke-width':1}));
-  var fens=[];
-  for(var r=0;r<5;r++)for(var c=0;c<10;c++){var w=el('rect',{x:x0+c*cw+(c>4?8:0),y:y0+r*62,width:26,height:ch-18,rx:1,'class':'fen'});f.appendChild(w);fens.push(w)}
-  f.appendChild(el('rect',{x:222,y:340,width:56,height:56,fill:'#E3C362'}));
-  f.appendChild(el('rect',{x:0,y:396,width:W,height:3,fill:'#3C5646'}));
-  // Le bâtiment se remplit du rez-de-chaussée vers le haut, de gauche à droite : 50 fenêtres en 2 s.
-  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduit){fens.forEach(function(w){w.classList.add('on')});return}
-  var ordre=[];for(var r=4;r>=0;r--)for(var c=0;c<10;c++)ordre.push(r*10+c);
-  var k=0;(function suite(){if(k>=50)return;fens[ordre[k++]].classList.add('on');setTimeout(suite,40)})();
-})();
+  var B=window.Batiment;
+  // La façade : 50 fenêtres, une par personne inscrite pour y vivre, numérotées du rez-de-chaussée vers le haut.
+  var fac=B.facade(document.getElementById('facade'));
+  B.brancher(fac.fens,'fenetre',{fenetre:'#inscrire'});
+  var etat={habitants:0,noms:{habitant:{}}};
+  function afficher(){
+    B.rouleau(document.getElementById('r-hab'),etat.habitants);
+    B.rouleau(document.getElementById('r-loyer'),etat.habitants*300);
+  }
+  B.charger().then(function(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',d.habitants,d.noms.habitant,true); })
+    .catch(function(){ afficher(); });
 
-/* Inscription habitant */
-var SB='https://gjvxwijhowbyhfwlybvt.supabase.co';
-var SBK='sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y';
-var fH=document.getElementById('fHabitant'), okH=fH.querySelector('.ok'), koH=fH.querySelector('.ko'), btnH=fH.querySelector('button');
-var libelleH=btnH.textContent, koHTML=koH.innerHTML;
-function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
-fH.addEventListener('submit',function(e){
-  e.preventDefault();
-  var f=fH, ok=okH, ko=koH, btn=btnH;
-  if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
-  if(!f.nom.value.trim()||!f.contact.value.trim()){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
-  btn.disabled=true; btn.textContent='Envoi…';
-  fetch(SB+'/rest/v1/inscriptions',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
-    body:JSON.stringify({type:'habitant',nom:f.nom.value.trim(),contact:f.contact.value.trim(),note:f.note.value.trim()||null})})
-  .then(function(r){if(!r.ok)throw 0;})
-  .then(function(){
-    ko.classList.remove('visible');
-    ok.textContent="C'est noté, "+f.nom.value.trim()+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
-    montrer(ok);
-    f.nom.value='';f.contact.value='';f.note.value='';btn.disabled=false;btn.textContent=libelleH;
-  })
-  .catch(function(){btn.disabled=false;btn.textContent=libelleH;ko.innerHTML=koHTML;montrer(ko)});
-});
+  /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */
+  var f=document.getElementById('fHabitant'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
+  var libelle=btn.textContent, koHTML=ko.innerHTML;
+  function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=!!f.affiche.checked;
+    if(!nom||!contact){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
+    btn.disabled=true; btn.textContent='Envoi…';
+    B.inscrire({type:'habitant',nom:nom,contact:contact,note:f.note.value.trim()||null,affiche:affiche})
+    .then(function(){return B.charger().catch(function(){return null})})
+    .then(function(d){
+      ko.classList.remove('visible');
+      var n=d?(d.brut.habitants||0):null, texte;
+      if(n===null) texte="C'est noté, "+nom+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      else if(n<=50) texte="C'est noté, "+nom+". Ta fenêtre est la n°"+n+" sur 50"+(affiche?", avec ton prénom dessus":"")+". On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      else texte="C'est noté, "+nom+". Les 50 fenêtres sont prises, tu es sur la liste d'attente (n°"+n+"). On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='fenetre-msg'; glyphe.setAttribute('aria-hidden','true');
+      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
+      if(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',Math.max(0,d.habitants-1),d.noms.habitant,false); if(n<=50) B.eclairer(fac.fens,n); }
+      f.nom.value='';f.contact.value='';f.note.value='';f.affiche.checked=false;btn.disabled=false;btn.textContent=libelle;
+      ok.scrollIntoView({block:'nearest'});
+    })
+    .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
+  });
+})();
 </script>
 
 </body>

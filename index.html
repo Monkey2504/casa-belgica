@@ -31,9 +31,16 @@ footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-
 footer b,footer a{color:var(--sur-vert)}
 /* où en est le projet — visible dès l'arrivée */
 .etat{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:24px}
-.etat .w{display:grid;gap:14px}
-.etat .ligne{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
-.etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.15rem,2.6vw,1.6rem);color:#fff}
+.etat .w{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+@media(max-width:760px){.etat .w{grid-template-columns:minmax(0,1fr)}}
+.batiment{margin:0}
+.batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible}
+.batiment figcaption{margin-top:12px;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
+.chiffres{display:grid;gap:10px}
+.chiffres p{max-width:none}
+.chiffres .gros+.fixe{margin-top:-6px}
+.chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
+.etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2.8vw,1.9rem);color:#fff}
 .etat .gros b{color:var(--or)}
 .etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
 .jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
@@ -64,14 +71,17 @@ footer b,footer a{color:var(--sur-vert)}
   </a>
 </main>
 
-<div class="etat" aria-live="polite">
+<div class="etat">
 <div class="w">
-  <div class="ligne">
-    <span class="gros"><b id="nb">…</b> promesses sur 120 · <b id="somme">…</b> promis sur 120 000 €</span>
-    <span class="fixe">Étape actuelle : réunir les 120 promesses. Ensuite : le bâtiment, la banque, les travaux, les clés.</span>
+  <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Clique dessus.</figcaption></figure>
+  <div class="chiffres" aria-live="polite">
+    <p class="gros"><b class="rouleau" id="r-hab">0</b> futurs habitants inscrits</p>
+    <p class="fixe"><b class="rouleau" id="r-loyer">0</b> € de loyers par mois, à 300 € la chambre</p>
+    <p class="gros"><b class="rouleau" id="r-pret">0</b> promesses de prêt sur 120</p>
+    <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
+    <p class="fixe"><b class="rouleau" id="r-somme">0</b> € promis sur 120 000 €, à 1 000 € la brique</p>
+    <p class="fixe etape">Étape actuelle : réunir les 120 promesses. Ensuite : le bâtiment, la banque, les travaux, les clés.</p>
   </div>
-  <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
-  <div class="ligne"><span class="fixe">50 chambres · 300 €/mois tout compris · prêt remboursé entre l'an 6 et l'an 10</span><span class="fixe">≈ 8 500 € de travaux débloqués par promesse</span></div>
 </div>
 </div>
 
@@ -82,22 +92,30 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:fhz
 </div>
 </footer>
 
+<script src="batiment.js"></script>
 <script>
-// Le chiffre et la jauge avancent ensemble, en 600 ms, sortie franche. Instantané si le mouvement est réduit.
-var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-function afficher(v){document.getElementById('nb').textContent=v;document.getElementById('somme').textContent=(v*1000).toLocaleString('fr-BE')+' €';}
-function compter(b){
-  if(reduit||b===0){afficher(b);return;}
-  var t0=null;
-  function pas(t){ if(t0===null)t0=t; var p=Math.min(1,(t-t0)/600); afficher(Math.round(b*(1-Math.pow(1-p,3)))); if(p<1)requestAnimationFrame(pas); }
-  requestAnimationFrame(pas);
-}
-fetch('https://gjvxwijhowbyhfwlybvt.supabase.co/rest/v1/rpc/compteur',{method:'POST',headers:{apikey:'sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y','Content-Type':'application/json'},body:'{}'})
-.then(function(r){if(!r.ok)throw 0;return r.json()})
-.then(function(c){var n=Math.min(120,c.preteurs||0);
-  document.getElementById('jauge').style.transform='scaleX('+Math.max(n/120,n>0?.02:0)+')';
-  compter(n);})
-.catch(function(){afficher(0);});
+(function(){
+  var B=window.Batiment;
+  // Le bâtiment de l'entrée : 50 fenêtres (futurs habitants) sur un mur de 120 briques (prêteurs). Chaque place se clique.
+  var b=B.facade(document.getElementById('batiment'),{mur:true});
+  B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
+  B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
+  function afficher(d){
+    B.rouleau(document.getElementById('r-hab'),d.habitants);
+    B.rouleau(document.getElementById('r-loyer'),d.habitants*300);
+    B.rouleau(document.getElementById('r-pret'),d.preteurs);
+    B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
+    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,d.preteurs>0?.02:0)+')';
+  }
+  B.charger().then(function(d){
+    // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
+    B.observer(document.querySelector('.etat'),function(){
+      afficher(d);
+      B.allumer(b.fens,'fenetre',d.habitants,d.noms.habitant,true);
+      B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
+    },.15);
+  }).catch(function(){ afficher({habitants:0,preteurs:0}); });
+})();
 </script>
 </body>
 </html>

@@ -54,7 +54,7 @@
       <a class="btn ghost" href="#argent">Vérifier les chiffres</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="img" aria-label="Façade d'un immeuble de cinq étages, cinquante fenêtres qui s'allument une à une"></svg><figcaption><strong>50 fenêtres, 50 chambres.</strong> Chacune s'allume le jour où quelqu'un pose ses valises.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong>50 fenêtres, 50 chambres.</strong> Chacune s'allume le jour où quelqu'un pose ses valises.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120 000 €</b><span>de prêts citoyens, à 0 %</span></div>
@@ -279,9 +279,9 @@
 <p class="kick">L'appel</p>
 <h2>Ce qu'on vous demande.</h2>
   <figure class="wall">
-    <div class="courses" id="mur" role="img" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser"></div>
-    <figcaption><span><strong class="num" id="compte">…</strong> briques sur 120</span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
-    <p class="compteur-ligne" aria-live="polite"><strong class="num" id="rapporte">…</strong> <span>promis sur 120 000 €, en promesses réelles — le mur se met à jour à chaque inscription.</span></p>
+    <div class="courses" id="mur" role="group" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser. Chaque brique se clique."></div>
+    <figcaption><span><strong class="num rouleau" id="compte">0</strong> briques sur 120</span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
+    <p class="compteur-ligne" aria-live="polite"><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles. Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
   </figure>
 <ol class="asks">
   <li><strong>Partagez le diagnostic</strong><p>Pour quelqu'un qui sort d'un squat, il n'existe vraiment aucun sas entre le squat et le studio à 775 € ? Dites-nous si on se trompe.</p></li>
@@ -292,9 +292,10 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Votre nom<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
+    <label class="case"><input type="checkbox" name="affiche"> Mon nom peut apparaître sur une brique du mur, pour montrer que les promesses avancent.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Comptez-moi parmi les 120</button></div>
-    <p class="confidentialite">Votre nom et votre contact sont gardés par Ballal ASBL, uniquement pour revenir vers vous au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à fhzegert@gmail.com.</p>
+    <p class="confidentialite">Votre nom et votre contact sont gardés par Ballal ASBL, uniquement pour revenir vers vous au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à fhzegert@gmail.com. Votre nom n'apparaît sur le mur que si vous cochez la case.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:fhzegert@gmail.com" style="color:#fff">fhzegert@gmail.com</a> — on pose la brique à la main.</p>
   </form>
@@ -333,15 +334,14 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
 </div>
 </footer>
 
+<script src="batiment.js"></script>
 <script>
 (function(){
-  // Le mur : 8 rangées de 15 briques en appareil à joints décalés, 120 briques.
-  // Sur les rangées décalées, les deux demi-briques des extrémités sont la même brique coupée en deux.
-  // Briques dorées = promesses réelles (RPC compteur → preteurs). Le reste est en pointillé.
-  var SB='https://gjvxwijhowbyhfwlybvt.supabase.co';
-  var SBK='sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y';
+  var B=window.Batiment;
+  /* Le mur : 8 rangées de 15 briques en appareil à joints décalés, 120 briques.
+     Sur les rangées décalées, les deux demi-briques des extrémités sont la même brique coupée en deux.
+     Briques dorées = promesses réelles. Le reste est en pointillé. Chaque brique se clique. */
   var mur=document.getElementById('mur'), compte=document.getElementById('compte'), rapporte=document.getElementById('rapporte');
-  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var html='', n=0;
   for(var r=0;r<8;r++){
     var dec=r%2===1, moitie=0; html+='<div class="course">';
@@ -352,77 +352,45 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     html+='</div>';
   }
   function tint(n){ return (0.94+((n*37)%9)/100).toFixed(2); }
-  function brique(n){ return '<b class="reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
-  function demi(n){ return '<b class="half reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
+  function brique(n){ return '<b data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'"></b>'; }
+  function demi(n){ return '<b class="half" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'"></b>'; }
   mur.innerHTML=html;
+  // Les deux moitiés d'une brique coupée forment une seule place : on branche la première, la seconde suit son état.
+  var places=[], jumelles={};
+  Array.prototype.forEach.call(mur.querySelectorAll('b'),function(b){ var k=+b.getAttribute('data-n'); if(places[k]) jumelles[k]=b; else places[k]=b; });
+  B.brancher(places,'brique',{brique:'#appel'});
+  function synchroniser(){ for(var k in jumelles){ jumelles[k].className=places[k].className.replace('half','').trim()+' half'; } }
 
-  // Décompte de a vers b en 600 ms, sortie franche (la même courbe que le CSS). Instantané si le mouvement est réduit.
-  function compter(a,b,fin){
-    if(reduit||a===b){fin(b);return;}
-    var t0=null;
-    function pas(t){ if(t0===null)t0=t; var p=Math.min(1,(t-t0)/600); fin(Math.round(a+(b-a)*(1-Math.pow(1-p,3)))); if(p<1)requestAnimationFrame(pas); }
-    requestAnimationFrame(pas);
-  }
-  var affiche=0, total=null, visible=false;
-  function afficher(v){ affiche=v; compte.textContent=v; if(rapporte) rapporte.textContent=(v*1000).toLocaleString('fr-BE')+' €'; }
-
-  // Pose les briques jusqu'au nombre réel de promesses ; le compteur suit dès que le mur est à l'écran.
-  function poser(t){
-    total=Math.max(0,Math.min(120,t|0));
-    var bs=mur.querySelectorAll('b');
-    for(var i=0;i<bs.length;i++){
-      if(+bs[i].getAttribute('data-n')<=total) bs[i].classList.remove('reste-brique');
-      else bs[i].classList.add('reste-brique');
-    }
-    if(visible) compter(affiche,total,afficher);
-  }
+  var etat={preteurs:0,noms:{preteur:{}}}, visible=false;
+  function afficher(){ B.rouleau(compte,etat.preteurs); B.rouleau(rapporte,etat.preteurs*1000); }
+  function poser(anime){ B.allumer(places,'brique',etat.preteurs,etat.noms.preteur,anime); synchroniser(); if(visible) afficher(); }
   // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
-  function entrer(){ visible=true; mur.classList.add('vu'); if(total!==null) compter(affiche,total,afficher); }
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ entrer(); io.disconnect(); } },{threshold:.2}).observe(mur);
-  } else { entrer(); }
-  function compteur(){
-    return fetch(SB+'/rest/v1/rpc/compteur',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:'{}'})
-      .then(function(r){if(!r.ok)throw 0;return r.json()})
-      .then(function(c){return c.preteurs||0});
-  }
-  compteur().then(poser).catch(function(){poser(0)});
+  B.observer(mur,function(){ visible=true; mur.classList.add('vu'); afficher(); },.2);
+  B.charger().then(function(d){ etat=d; poser(false); }).catch(function(){ poser(false); });
 
-  // Met en lumière la brique n au moment où elle passe à l'écran, une seule fois.
-  function eclairer(n){
-    var bs=mur.querySelectorAll('b[data-n="'+n+'"]'); if(!bs.length)return;
-    function allumer(){ for(var i=0;i<bs.length;i++) bs[i].classList.add('neuve'); }
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ allumer(); io.disconnect(); } },{threshold:.5}).observe(bs[0]);
-    } else { allumer(); }
-  }
-
-  // Promesse de prêt : une ligne type 'preteur' dans public.inscriptions, puis le mur se remet à jour.
-  var f=document.getElementById('fPromesse');
-  var ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
+  /* Promesse de prêt : une ligne type 'preteur' dans public.inscriptions, puis le mur se remet à jour. */
+  var f=document.getElementById('fPromesse'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
   var libelle=btn.textContent, koHTML=ko.innerHTML;
   function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim();
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Il manque votre nom ou un moyen de vous joindre.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
-    fetch(SB+'/rest/v1/inscriptions',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
-      body:JSON.stringify({type:'preteur',nom:nom,contact:contact,note:null})})
-    .then(function(r){if(!r.ok)throw 0;})
-    .then(function(){return compteur().catch(function(){return null})})
-    .then(function(t){
+    B.inscrire({type:'preteur',nom:nom,contact:contact,note:null,affiche:affiche})
+    .then(function(){return B.charger().catch(function(){return null})})
+    .then(function(d){
       ko.classList.remove('visible');
-      var texte=(t===null)
-        ? "Merci, "+nom+". Ta brique est posée. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient."
-        : "Merci, "+nom+". Ta brique est la n°"+t+" sur 120. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient.";
-      ok.textContent='';
-      var glyphe=document.createElement('i'); glyphe.className='brique-msg'; glyphe.setAttribute('aria-hidden','true');
-      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte));
-      montrer(ok);
-      if(t!==null){ poser(t); eclairer(Math.min(120,t)); }
-      f.nom.value='';f.contact.value='';btn.disabled=false;btn.textContent=libelle;
+      var t=d?(d.brut.preteurs||0):null, texte;
+      if(t===null) texte="Merci, "+nom+". Ta brique est posée. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient.";
+      else if(t<=120) texte="Merci, "+nom+". Ta brique est la n°"+t+" sur 120"+(affiche?", avec ton nom dessus":"")+". On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient.";
+      else texte="Merci, "+nom+". Les 120 briques sont promises, tu es la "+t+"e promesse. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient.";
+      ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='brique-msg'; glyphe.setAttribute('aria-hidden','true');
+      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
+      if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
+        if(t<=120){ B.eclairer(places,t); if(jumelles[t]) B.observer(jumelles[t],function(){jumelles[t].classList.add('on');jumelles[t].classList.add('neuve')},.5); } }
+      f.nom.value='';f.contact.value='';f.affiche.checked=false;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
@@ -431,24 +399,12 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
 </script>
 
 <script>
-/* Immeuble : 5 étages x 10 fenêtres = 50 chambres, qui s'allument une à une */
+/* La façade du haut : 50 fenêtres, une par personne inscrite pour y vivre. */
 (function(){
-  var f=document.getElementById('facade');if(!f)return;
-  var NS='http://www.w3.org/2000/svg',W=500,H=420,x0=40,y0=58,cw=42,ch=58,g=0;
-  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
-  f.setAttribute('viewBox','0 0 '+W+' '+H);
-  f.appendChild(el('rect',{x:24,y:40,width:452,height:356,fill:'#172E21',stroke:'#3C5646','stroke-width':1.5}));
-  f.appendChild(el('rect',{x:14,y:28,width:472,height:14,fill:'#E3C362'}));
-  for(var r=0;r<5;r++)f.appendChild(el('line',{x1:24,x2:476,y1:y0+r*62+ch+2,y2:y0+r*62+ch+2,stroke:'#2A4535','stroke-width':1}));
-  var fens=[];
-  for(var r=0;r<5;r++)for(var c=0;c<10;c++){var w=el('rect',{x:x0+c*cw+(c>4?8:0),y:y0+r*62,width:26,height:ch-18,rx:1,'class':'fen'});f.appendChild(w);fens.push(w)}
-  f.appendChild(el('rect',{x:222,y:340,width:56,height:56,fill:'#E3C362'}));
-  f.appendChild(el('rect',{x:0,y:396,width:W,height:3,fill:'#3C5646'}));
-  // Le bâtiment se remplit du rez-de-chaussée vers le haut, de gauche à droite : 50 fenêtres en 2 s.
-  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduit){fens.forEach(function(w){w.classList.add('on')});return}
-  var ordre=[];for(var r=4;r>=0;r--)for(var c=0;c<10;c++)ordre.push(r*10+c);
-  var k=0;(function suite(){if(k>=50)return;fens[ordre[k++]].classList.add('on');setTimeout(suite,40)})();
+  var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
+  var fac=B.facade(svg);
+  B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.allumer(fac.fens,'fenetre',d.habitants,d.noms.habitant,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>
