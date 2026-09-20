@@ -30,13 +30,6 @@ h1 em{font-style:normal;color:var(--rouge)}
 .fait p{font-size:.95rem}
 .fait .epingle{position:absolute;top:-9px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--rouge);border:2.5px solid var(--encre)}
 
-.avert{background:var(--encre);color:var(--papier);padding-block:clamp(40px,6vw,64px)}
-.avert .w{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start}
-@media(max-width:700px){.avert .w{grid-template-columns:minmax(0,1fr)}}
-.avert .tampon{color:#F0A08E;transform:rotate(-4deg);font-size:.95rem;box-shadow:inset 0 0 0 1.5px var(--encre),inset 0 0 0 2.5px currentColor}
-.avert p{max-width:56ch}
-.avert .big{font-size:1.25rem;font-weight:600}
-.avert .suite{margin-top:14px;color:#CFC8B8;font-size:1rem}
 
 .chiffre-en-face .lbl span{max-width:22ch}
 .mieux{font-family:var(--aff);text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1;margin-top:22px}
@@ -67,32 +60,26 @@ h1 em{font-style:normal;color:var(--rouge)}
 
 <section class="hero">
 <div class="w">
-  <div class="etat"><span class="tampon rouge">En création — pas encore ouvert</span></div>
+  <div class="etat"><span class="tampon rouge">Pas encore ouvert — première clé dans ± 3 ans</span></div>
   <h1>Une chambre à toi.<br><em>300 € par mois,</em> tout compris.</h1>
-  <span class="en" lang="en">Your own room with shower and toilet, €300 a month all included. Not open yet — sign up to be first in line.</span>
-  <p class="lead">Casa Belgica prépare un bâtiment de 50 chambres à Bruxelles, pour les personnes qui viennent d'avoir leurs papiers et qui sortent d'un squat. Pas un centre, pas un dortoir : ta chambre, ta clé, ton contrat à ton nom.</p>
+  <span class="en" lang="en">Not open yet — the building doesn't exist. First key in about three years. Your own room with shower and toilet, €300 a month all included. Sign up now to be first in line.</span>
+  <p class="lead"><strong>Le bâtiment n'existe pas encore</strong> — on le construit, et ça prendra environ trois ans. Ce que tu peux faire aujourd'hui : t'inscrire. Tu seras prévenu·e en premier quand ça ouvre, et d'ici là on avance avec toi.</p>
+  <p class="lead">Casa Belgica prépare un bâtiment de 50 chambres à Bruxelles, pour les personnes qui viennent d'avoir leurs papiers et qui sortent d'un squat. Ta chambre, ta clé, ton contrat à ton nom.</p>
+  <p class="adr-hero mono" style="margin-top:20px;font-size:.95rem"><strong>Pour t'inscrire, passe nous voir :</strong> Ballal, 645 chaussée de Gand, 1080 Molenbeek — ou écris à fhzegert@gmail.com</p>
 
   <div class="faits">
     <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Ta chambre, <span class="r">ta clé</span></b><p>Au moins 18 m², avec ta propre douche et ton propre WC. Un contrat individuel, à ton nom. Personne ne rentre chez toi.</p></div>
-    <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Une <span class="r">adresse</span></b><p>Une vraie adresse, donc une domiciliation, donc le CPAS, la mutuelle, le boulot. Et le statut d'isolé : 1 340 € de RIS, pas 893 €.</p></div>
+    <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Une <span class="r">adresse</span></b><p>Une vraie adresse à ton nom — la « domiciliation ». C'est elle qui ouvre l'aide du CPAS (le RIS), la mutuelle, le boulot. Et comme tu vis seul·e dans ta chambre, tu touches le taux plein : 1 340 € par mois, pas 894 €.</p></div>
     <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Le temps de <span class="r">souffler</span></b><p>Trois à quatre ans pour épargner, te former, trouver un vrai logement. Tu pars quand tu es prêt·e — pas quand on t'expulse.</p></div>
   </div>
 </div>
 </section>
 
-<div class="avert">
-<div class="w">
-  <span class="tampon" aria-hidden="true">Important<br>lis d'abord ça</span>
-  <div>
-    <p class="big">Le bâtiment n'existe pas encore. On ne te promet pas une chambre pour demain — la première clé arrive dans environ trois ans.</p>
-    <p class="suite">On te le dit en face plutôt que de te faire courir. Ce qu'on te propose aujourd'hui : t'inscrire, pour qu'on te connaisse, qu'on avance avec toi, et que tu sois prévenu·e en premier quand ça ouvre.</p>
-  </div>
-</div>
 </div>
 
 <section class="regle chiffre-en-face">
 <div class="w">
-<div class="tete"><span class="no">Fiche 01</span><h2>Compte avec nous</h2></div>
+<div class="tete"><h2>Compte avec nous</h2></div>
 <div class="two">
   <div class="stack">
     <p class="big">Avec tes papiers et le RIS au taux isolé, tu touches 1 340 € par mois. Un studio bruxellois coûte 700 à 850 € de loyer, plus la garantie. Il te reste à peine de quoi vivre — et rien à mettre de côté.</p>
@@ -102,11 +89,11 @@ h1 em{font-style:normal;color:var(--rouge)}
   <div class="barres">
     <div>
       <div class="lbl"><span>Studio privé — 775 € de loyer</span><b class="num">reste 565 €</b></div>
-      <div class="bar"><i class="loyer" style="flex:775">775 €</i><i class="vie" style="flex:565;background:var(--encre)">565 €</i></div>
+      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:775"></i><i class="vie" style="flex:565;background:var(--encre)"></i></div>
     </div>
     <div>
       <div class="lbl"><span>Casa Belgica — 300 € tout compris</span><b class="num">reste 1 040 €</b></div>
-      <div class="bar"><i class="loyer" style="flex:300">300 €</i><i class="vie" style="flex:1040;background:var(--rouge)">reste 1 040 €</i></div>
+      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:300"></i><i class="vie" style="flex:1040;background:var(--rouge)"></i></div>
     </div>
     <div class="scale"><span>0 €</span><span>1 340 € / mois (RIS isolé)</span></div>
   </div>
@@ -116,7 +103,7 @@ h1 em{font-style:normal;color:var(--rouge)}
 
 <section class="regle">
 <div class="w">
-<div class="tete"><span class="no">Fiche 02</span><h2>C'est pour qui ?</h2></div>
+<div class="tete"><h2>C'est pour qui ?</h2></div>
 <div class="two">
   <div class="stack">
     <p class="big">Pour les personnes qui viennent d'être régularisées, qui sortent d'un squat ou d'une occupation, et qui ont un revenu — le RIS ou un salaire.</p>
@@ -132,7 +119,7 @@ h1 em{font-style:normal;color:var(--rouge)}
 
 <section class="regle inscrire">
 <div class="w">
-<div class="tete"><span class="no">Fiche 03</span><h2>S'inscrire</h2></div>
+<div class="tete"><h2>S'inscrire</h2></div>
 <div class="two">
   <div class="fiche">
     <span class="coin">Fiche d'inscription</span>
@@ -149,6 +136,7 @@ h1 em{font-style:normal;color:var(--rouge)}
     <p class="langues">Français, anglais — et si tu ne parles ni l'un ni l'autre, viens quand même, on trouvera quelqu'un.</p>
     <div class="actions" style="margin-top:18px">
       <a class="btn" href="mailto:fhzegert@gmail.com?subject=Casa%20Belgica%20%E2%80%94%20je%20veux%20m%27inscrire">S'inscrire par e-mail</a>
+      <span class="mono" style="font-size:.85rem">fhzegert@gmail.com</span>
     </div>
   </div>
 </div>

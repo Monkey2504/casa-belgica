@@ -101,7 +101,7 @@
 
 /* le bulletin de promesse à découper */
 .bulletin{margin-top:clamp(30px,5vw,48px);border:2.5px dashed var(--encre);background:var(--blanc);padding:clamp(22px,4vw,40px);position:relative}
-.bulletin:before{content:"✂  découper selon les pointillés";position:absolute;top:-.8em;left:24px;background:var(--papier);padding-inline:8px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.bulletin:before{content:"la promesse — pas un versement";position:absolute;top:-.8em;left:24px;background:var(--papier);padding-inline:8px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .bulletin h3{font-family:var(--aff);font-weight:400;text-transform:uppercase;font-size:clamp(1.4rem,3.4vw,2rem);margin-bottom:8px}
 .bulletin .txt{max-width:58ch;margin-bottom:8px}
 .bulletin .champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin-block:10px 22px}
@@ -138,7 +138,7 @@
   <h1><span class="sur">Il ne manque que</span><span class="cent20 num">120</span><span class="pers">personnes.</span></h1>
   <div class="expl">
     <p class="big">Pour financer un bâtiment qui loge 50 personnes sortant des squats bruxellois, il faut un crédit bancaire de 900 000 €. Pour que la banque suive, il faut des fonds propres : 120 000 €. Toute la question est là — 120 personnes qui prêtent chacune 1 000 € à 0 %, et les fonds propres sont là.</p>
-    <p class="note">Ce n'est pas un don. C'est un prêt. L'argent revient entre l'année 6 et l'année 10 — et repart dans un deuxième bâtiment. Casa Belgica est une coopérative en création, portée par Ballal ASBL à Molenbeek depuis 2023.</p>
+    <p class="note">Ce n'est pas un don. C'est un prêt : l'argent revient entre l'année 6 et l'année 10, puis repart dans un deuxième bâtiment. Et aujourd'hui, on ne demande pas un versement — seulement une promesse. La collecte n'ouvrira que dans 18 à 21 mois, quand le dossier tiendra. Casa Belgica est une coopérative en création, portée par Ballal ASBL à Molenbeek depuis 2023.</p>
   </div>
   <div class="actions">
     <a class="btn b" href="#promesse">Devenir l'un des 120</a>
@@ -149,18 +149,18 @@
 
 <nav class="sommaire" aria-label="Sommaire du dossier">
 <ol>
-  <li><a href="#probleme"><i>01</i>Le problème</a></li>
-  <li><a href="#batiment"><i>02</i>Ce qu'on construit</a></li>
-  <li><a href="#argent"><i>03</i>Les chiffres</a></li>
-  <li><a href="#remboursement"><i>04</i>Le remboursement</a></li>
-  <li><a href="#risque"><i>05</i>Les risques</a></li>
-  <li><a href="#objections"><i>06</i>Les objections</a></li>
+  <li><a href="#probleme">Le problème</a></li>
+  <li><a href="#batiment">Ce qu'on construit</a></li>
+  <li><a href="#argent">Les chiffres</a></li>
+  <li><a href="#remboursement">Le remboursement</a></li>
+  <li><a href="#risque">Les risques</a></li>
+  <li><a href="#objections">Les objections</a></li>
 </ol>
 </nav>
 
 <section id="probleme">
 <div class="w">
-<div class="tete"><span class="no">Pièce 01</span><h2>Sortir du squat — et après ?</h2></div>
+<div class="tete"><h2>Sortir du squat — et après ?</h2></div>
 <div class="two">
   <div class="stack">
     <p class="big">Qui vient d'obtenir ses papiers touche un revenu d'intégration (RIS) au taux isolé : 1 340 €/mois. Un studio bruxellois coûte 700 à 850 € de loyer, plus la garantie locative. Il reste 565 € pour tout le reste. Pas d'épargne, jamais de garantie, et le premier pépin ramène à la rue.</p>
@@ -173,18 +173,18 @@
     <div class="barres" aria-label="Comparaison du reste à vivre">
       <div>
         <div class="lbl"><span>Studio privé · 775 € de loyer</span><b class="num">565 €</b></div>
-        <div class="bar"><i class="loyer" style="flex:775">loyer 775 €</i><i class="vie" style="flex:565;background:var(--encre)">reste 565 €</i></div>
+        <div class="bar" aria-hidden="true"><i class="loyer" style="flex:775"></i><i class="vie" style="flex:565;background:var(--encre)"></i></div>
       </div>
       <div>
         <div class="lbl"><span>Casa Belgica · 300 € tout compris</span><b class="num">1 040 €</b></div>
-        <div class="bar"><i class="loyer" style="flex:300">300 €</i><i class="vie" style="flex:1040;background:var(--bleu)">reste 1 040 €</i></div>
+        <div class="bar" aria-hidden="true"><i class="loyer" style="flex:300"></i><i class="vie" style="flex:1040;background:var(--bleu)"></i></div>
       </div>
       <div class="scale"><span>0 €</span><span>1 340 € / mois</span></div>
     </div>
     <div class="stats">
       <div><b>400 à 550 €</b><span>épargnés chaque mois</span></div>
       <div><b>7 à 10 k€</b><span>mis de côté en trois ans, en n'épargnant que la moitié</span></div>
-      <div><b>447 €</b><span>d'écart mensuel entre le RIS isolé (1 340 €) et le RIS cohabitant (893,65 €)</span></div>
+      <div><b>447 €</b><span>d'écart mensuel entre le RIS isolé (1 340 €) et le RIS cohabitant (± 894 €)</span></div>
     </div>
   </div>
 </div>
@@ -193,7 +193,7 @@
 
 <section id="batiment" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 02</span><h2>50 chambres, 300 € par mois, tout compris.</h2></div>
+<div class="tete"><h2>50 chambres, 300 € par mois, tout compris.</h2></div>
 <div class="two">
   <div class="stack">
     <p class="big">50 chambres individuelles d'au moins 18 m² nets, chacune avec sa douche et son WC. Un immeuble bruxellois ancien d'environ 1 200 m², en emphytéose de longue durée (jusqu'à 99 ans) auprès d'un propriétaire public ou institutionnel.</p>
@@ -202,7 +202,7 @@
       <p><span class="accent">La douche et le WC individuels ne sont pas un confort.</span> Ils sécurisent le statut d'isolé au CPAS — 447 €/mois de revenus en plus par habitant·e — donc la capacité de payer 300 €. On n'économise jamais sur ce poste.</p>
       <div class="duo">
         <div><b>300 à 600 k€</b><span>coût des 50 unités sanitaires — 6 000 à 12 000 € par chambre</span></div>
-        <div><b>22 350 €/mois</b><span>perdus par le groupe d'habitants si on rogne dessus</span></div>
+        <div><b>≈ 22 000 €/mois</b><span>perdus par le groupe d'habitants si on rogne dessus</span></div>
       </div>
     </div>
   </div>
@@ -221,7 +221,7 @@
 
 <section id="argent" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 03</span><h2>Comment ça se porte tout seul.</h2></div>
+<div class="tete"><h2>Comment ça se porte tout seul.</h2></div>
 <p class="big">Recettes mensuelles : 50 places × 300 €, à 95 % d'occupation → 14 250 €/mois, 171 000 €/an.</p>
 <div class="split" role="img" aria-label="Répartition des 14 250 € mensuels : charges 57 %, dette 38 %, excédent 5 %">
   <div class="a" style="flex:57"></div>
@@ -264,7 +264,7 @@
       <div class="m2" role="img" aria-label="Budget disponible 850 €/m² ; une rénovation lourde coûte de 1 100 à 1 800 €/m²">
         <div class="track"><div class="range" style="left:61.1%;right:0"></div><div class="pin" style="left:47.2%"></div></div>
         <div class="ticks"><span style="left:0;transform:none">0</span><span class="k" style="left:47.2%">850 €/m²</span><span style="left:61.1%">1 100</span><span style="left:100%;transform:translateX(-100%)">1 800 €/m²</span></div>
-        <div class="cap"><span>▪ Budget disponible : 1 020 000 € sur 1 200 m²</span><span>▨ Rénovation lourde</span></div>
+        <div class="cap"><span>Le repère bleu : notre budget, 1 020 000 € pour 1 200 m², soit 850 €/m².</span><span>La zone hachurée : une rénovation lourde, de 1 100 à 1 800 €/m².</span></div>
       </div>
       <p style="margin-top:16px">L'écart de 200 000 à 480 000 € se comble par trois leviers : la TVA à 6 % au lieu de 21 % (≈ 150 000 €), un chantier participatif sur les lots non techniques, et les subsides (Contrat de quartier durable, appels à projets régionaux, fonds européens). <strong>C'est le risque principal du projet. L'étude de faisabilité tranche — avant tout engagement.</strong></p>
     </div>
@@ -275,13 +275,13 @@
 
 <section id="remboursement" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 04</span><h2>Pourquoi ce n'est pas un don.</h2></div>
+<div class="tete"><h2>Pourquoi ce n'est pas un don.</h2></div>
 <p class="big">Forme juridique : prêt subordonné à 0 %, sans remboursement les cinq premières années, remboursement en une fois entre l'année 6 et l'année 10. Subordonné veut dire : en cas de crise, la banque passe avant les citoyens. C'est exactement ce qui permet à la banque de traiter les 120 000 € comme des quasi-fonds propres et de maintenir le levier à 900 000 €.</p>
 <div class="frise" aria-label="Frise sur vingt ans">
   <div><b>Années 1–5</b><strong>Accumulation</strong><span>L'excédent de 680 €/mois s'accumule.</span></div>
   <div><b>Années 6–10</b><strong>Remboursement</strong><span>Les 120 000 € reviennent aux prêteurs.</span></div>
   <div><b>Années 11–20</b><strong>Fin du crédit</strong><span>La banque est remboursée à son tour.</span></div>
-  <div><b>An 21 +</b><strong>Libéré</strong><span>65 400 €/an disponibles.</span></div>
+  <div><b>An 21 +</b><strong>Libéré</strong><span>≈ 65 000 €/an disponibles.</span></div>
 </div>
 <div class="two" style="margin-top:44px">
   <div>
@@ -293,7 +293,7 @@
     </div>
   </div>
   <div class="stack">
-    <p class="big"><strong>Le cycle dure 6 à 10 ans, pas 5.</strong> On préfère le dire avant que de le découvrir ensemble.</p>
+    <p class="big"><strong>Le cycle dure 6 à 10 ans, pas 5.</strong></p>
     <p class="note">Si la banque refuse la subordination, les 120 000 € deviennent des parts de coopérative — des fonds propres sans sortie. Le levier et le budget restent identiques, mais l'argent ne revient pas.</p>
   </div>
 </div>
@@ -302,7 +302,7 @@
 
 <section id="risque" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 05</span><h2>Le risque est plafonné.</h2></div>
+<div class="tete"><h2>Le risque est plafonné.</h2></div>
 <div class="two">
   <div>
     <h3>Argent engagé avant le point de non-retour</h3>
@@ -335,22 +335,22 @@
 
 <section id="objections" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 06</span><h2>Quatre objections, réponses franches.</h2></div>
+<div class="tete"><h2>Quatre objections, réponses franches.</h2></div>
 <div class="faq">
   <details open>
-    <summary><span class="n">Obj. 01</span>Qui décide — les prêteurs ?<i aria-hidden="true">+</i></summary>
+    <summary>Qui décide — les prêteurs ?<i aria-hidden="true">+</i></summary>
     <div class="rep"><p>Les habitant·es décident. Les prêteurs apportent le capital ; les habitant·es détiennent la majorité des voix en assemblée générale et la moitié des sièges au conseil d'administration. Une personne, une voix.</p></div>
   </details>
-  <details>
-    <summary><span class="n">Obj. 02</span>Pourquoi pas une AIS, du logement social, ou un projet CLTB ?<i aria-hidden="true">+</i></summary>
+  <details open>
+    <summary>Pourquoi pas une AIS, du logement social, ou un projet CLTB ?<i aria-hidden="true">+</i></summary>
     <div class="rep"><p>Le logement social compte 62 234 candidats fin 2025, avec 9 à 13 ans d'attente. Le CLTB fait de l'acquisition pour des ménages, avec plus de 1 300 personnes en liste d'attente. D'autres acteurs créent de l'habitat groupé avec portage de bâtiment — Fair Ground Brussels, L'Îlot, Renovassistance.</p><p>Ce que personne n'offre aujourd'hui : un sas de trois à quatre ans, à 300 € tout compris, en chambre individuelle avec statut d'isolé, pour des personnes sortant de squats. C'est cette combinaison qui manque — pas le logement social.</p></div>
   </details>
-  <details>
-    <summary><span class="n">Obj. 03</span>50 places, c'est peu, et la première clé arrive dans trois ans.<i aria-hidden="true">+</i></summary>
+  <details open>
+    <summary>50 places, c'est peu, et la première clé arrive dans trois ans.<i aria-hidden="true">+</i></summary>
     <div class="rep"><p>50 places avec des séjours de trois à quatre ans, c'est 250 à 350 personnes en vingt ans — à partir d'un seul bâtiment, et le capital citoyen repart vers un deuxième. Rien n'est suspendu entre-temps : les occupations continuent, l'accompagnement continue.</p></div>
   </details>
-  <details>
-    <summary><span class="n">Obj. 04</span>Et si ça échoue ?<i aria-hidden="true">+</i></summary>
+  <details open>
+    <summary>Et si ça échoue ?<i aria-hidden="true">+</i></summary>
     <div class="rep"><p>Les coûts d'entrée sont plafonnés à 30 000 €, en grande partie subsidiables, et le projet s'arrête proprement à quatre points définis, avant qu'un seul euro citoyen ne bouge.</p></div>
   </details>
 </div>
@@ -359,7 +359,7 @@
 
 <section id="promesse" class="regle">
 <div class="w">
-<div class="tete"><span class="no">Pièce 07</span><h2>Ce qu'on vous demande.</h2></div>
+<div class="tete"><h2>Ce qu'on vous demande.</h2></div>
 <ol class="asks">
   <li><strong>Partagez le diagnostic</strong><p>Pour quelqu'un qui sort d'un squat, il n'existe vraiment aucun sas entre le squat et le studio à 775 € ? Dites-nous si on se trompe.</p></li>
   <li><strong>Ouvrez vos réseaux</strong><p>Vous connaissez un CPAS à convaincre, un bâtiment public vide, une communauté religieuse, un bureau d'architecture ? Les étapes 1 et 2 ne coûtent rien et dépendent de vos réseaux.</p></li>
@@ -367,18 +367,24 @@
 </ol>
 
 <div class="bulletin">
-  <h3>Bulletin de promesse — <span style="color:var(--bleu)">n° ____ / 120</span></h3>
+  <h3>La promesse</h3>
   <p class="txt">Je m'engage à prêter <strong>1 000 € à 0 %</strong> à la coopérative Casa Belgica, le jour où le bâtiment est trouvé et le crédit bancaire accordé. Avant ce jour, pas un euro ne bouge. Remboursement entre l'année 6 et l'année 10.</p>
-  <div class="champs">
-    <div class="champ"><label>Nom</label><i></i></div>
     <div class="champ"><label>E-mail ou téléphone</label><i></i></div>
   </div>
   <div class="actions">
     <a class="btn b" href="mailto:fhzegert@gmail.com?subject=Casa%20Belgica%20%E2%80%94%20comptez-moi%20parmi%20les%20120">Comptez-moi parmi les 120</a>
     <a class="btn b creux" href="mailto:fhzegert@gmail.com?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Je connais un CPAS, un bâtiment, un architecte</a>
+    <span class="mono" style="font-size:.85rem">fhzegert@gmail.com</span>
   </div>
 </div>
 <p class="note" style="margin-top:22px">La campagne démarre après les quatre étapes, donc dans 18 à 21 mois. On ne collecte pas avant que le dossier tienne. <strong style="color:var(--encre)">120 personnes convaincues, ce sont 50 personnes logées. Le capital citoyen revient, et le bâtiment reste.</strong></p>
+</div>
+</section>
+
+<section class="regle" style="padding-block:40px">
+<div class="w">
+<h3>Les sources des chiffres publics</h3>
+<p class="note">Candidats au logement social et délais d'attente : chiffres SLRB / IBSA, fin 2025. Normes d'habitation (18 m², sanitaires privés) : arrêté du Gouvernement bruxellois du 30 novembre 2023, Moniteur belge. Emphytéose gratuite à but non lucratif : réforme du livre 3 du Code civil, 2021. Permis pour changement d'affectation : arrêté du 16 mai 2024. Outils juridiques pour bâtiments publics vides : Fondation Roi Baudouin ; inventaire des bâtiments vides : perspective.brussels. Le reste — budget, charges, remboursement — sort de notre propre modèle : demandez le tableur, on l'envoie.</p>
 </div>
 </section>
 
