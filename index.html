@@ -28,14 +28,15 @@ header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
 header nav{position:absolute;right:var(--gut)}
 @media(max-width:760px){html,body{height:auto}}
 footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
+footer .w{text-align:center}
 footer b,footer a{color:var(--sur-vert)}
 /* où en est le projet — visible dès l'arrivée */
 .etat{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:24px}
 .etat .w{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
 @media(max-width:760px){.etat .w{grid-template-columns:minmax(0,1fr)}}
-.batiment{margin:0}
-.batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible}
-.batiment figcaption{margin-top:12px;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
+.batiment{margin:0;justify-self:center;text-align:center}
+.batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible;margin-inline:auto}
+.batiment figcaption{margin:12px auto 0;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
 .chiffres{display:grid;gap:10px}
 .chiffres p{max-width:none}
 .chiffres .gros+.fixe{margin-top:-6px}
