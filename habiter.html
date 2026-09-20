@@ -170,31 +170,35 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   for(var r=0;r<5;r++)for(var c=0;c<10;c++){var w=el('rect',{x:x0+c*cw+(c>4?8:0),y:y0+r*62,width:26,height:ch-18,rx:1,'class':'fen'});f.appendChild(w);fens.push(w)}
   f.appendChild(el('rect',{x:222,y:340,width:56,height:56,fill:'#E3C362'}));
   f.appendChild(el('rect',{x:0,y:396,width:W,height:3,fill:'#3C5646'}));
-  var ordre=fens.map(function(_,i){return i}).sort(function(){return Math.random()-.5});
+  // Le bâtiment se remplit du rez-de-chaussée vers le haut, de gauche à droite : 50 fenêtres en 2 s.
   var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduit){ordre.slice(0,32).forEach(function(i){fens[i].classList.add('on')});return}
-  ordre.slice(0,18).forEach(function(i){fens[i].classList.add('on')});
-  var n=18;(function suite(){if(n>=50)return;fens[ordre[n++]].classList.add('on');setTimeout(suite,260)})();
+  if(reduit){fens.forEach(function(w){w.classList.add('on')});return}
+  var ordre=[];for(var r=4;r>=0;r--)for(var c=0;c<10;c++)ordre.push(r*10+c);
+  var k=0;(function suite(){if(k>=50)return;fens[ordre[k++]].classList.add('on');setTimeout(suite,40)})();
 })();
 
 /* Inscription habitant */
 var SB='https://gjvxwijhowbyhfwlybvt.supabase.co';
 var SBK='sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y';
-document.getElementById('fHabitant').addEventListener('submit',function(e){
+var fH=document.getElementById('fHabitant'), okH=fH.querySelector('.ok'), koH=fH.querySelector('.ko'), btnH=fH.querySelector('button');
+var libelleH=btnH.textContent, koHTML=koH.innerHTML;
+function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
+fH.addEventListener('submit',function(e){
   e.preventDefault();
-  var f=e.target, ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
-  if(f.site.value){ok.style.display='block';ok.textContent='Merci.';return;}
-  if(!f.nom.value.trim()||!f.contact.value.trim()){ko.style.display='block';ko.textContent='Il manque ton prénom ou un moyen de te joindre.';return;}
-  btn.disabled=true;
+  var f=fH, ok=okH, ko=koH, btn=btnH;
+  if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
+  if(!f.nom.value.trim()||!f.contact.value.trim()){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
+  btn.disabled=true; btn.textContent='Envoi…';
   fetch(SB+'/rest/v1/inscriptions',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
     body:JSON.stringify({type:'habitant',nom:f.nom.value.trim(),contact:f.contact.value.trim(),note:f.note.value.trim()||null})})
   .then(function(r){if(!r.ok)throw 0;})
   .then(function(){
-    ko.style.display='none'; ok.style.display='block';
-    ok.innerHTML="C'est noté, "+f.nom.value.trim()+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
-    f.nom.value='';f.contact.value='';f.note.value='';btn.disabled=false;
+    ko.classList.remove('visible');
+    ok.textContent="C'est noté, "+f.nom.value.trim()+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+    montrer(ok);
+    f.nom.value='';f.contact.value='';f.note.value='';btn.disabled=false;btn.textContent=libelleH;
   })
-  .catch(function(){btn.disabled=false;ko.style.display='block'});
+  .catch(function(){btn.disabled=false;btn.textContent=libelleH;ko.innerHTML=koHTML;montrer(ko)});
 });
 </script>
 

@@ -341,6 +341,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   var SB='https://gjvxwijhowbyhfwlybvt.supabase.co';
   var SBK='sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y';
   var mur=document.getElementById('mur'), compte=document.getElementById('compte'), rapporte=document.getElementById('rapporte');
+  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var html='', n=0;
   for(var r=0;r<8;r++){
     var dec=r%2===1, moitie=0; html+='<div class="course">';
@@ -354,22 +355,32 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   function brique(n){ return '<b class="reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
   function demi(n){ return '<b class="half reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
   mur.innerHTML=html;
-  // La pose des briques ne se joue que quand le mur entre dans l'écran.
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ mur.classList.add('vu'); io.disconnect(); } },{threshold:.2}).observe(mur);
-  } else { mur.classList.add('vu'); }
 
-  // Pose les briques jusqu'au nombre réel de promesses et met les compteurs à jour.
-  function poser(total){
-    total=Math.max(0,Math.min(120,total|0));
+  // Décompte de a vers b en 600 ms, sortie franche (la même courbe que le CSS). Instantané si le mouvement est réduit.
+  function compter(a,b,fin){
+    if(reduit||a===b){fin(b);return;}
+    var t0=null;
+    function pas(t){ if(t0===null)t0=t; var p=Math.min(1,(t-t0)/600); fin(Math.round(a+(b-a)*(1-Math.pow(1-p,3)))); if(p<1)requestAnimationFrame(pas); }
+    requestAnimationFrame(pas);
+  }
+  var affiche=0, total=null, visible=false;
+  function afficher(v){ affiche=v; compte.textContent=v; if(rapporte) rapporte.textContent=(v*1000).toLocaleString('fr-BE')+' €'; }
+
+  // Pose les briques jusqu'au nombre réel de promesses ; le compteur suit dès que le mur est à l'écran.
+  function poser(t){
+    total=Math.max(0,Math.min(120,t|0));
     var bs=mur.querySelectorAll('b');
     for(var i=0;i<bs.length;i++){
       if(+bs[i].getAttribute('data-n')<=total) bs[i].classList.remove('reste-brique');
       else bs[i].classList.add('reste-brique');
     }
-    compte.textContent=total;
-    if(rapporte) rapporte.textContent=(total*1000).toLocaleString('fr-BE')+' €';
+    if(visible) compter(affiche,total,afficher);
   }
+  // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
+  function entrer(){ visible=true; mur.classList.add('vu'); if(total!==null) compter(affiche,total,afficher); }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ entrer(); io.disconnect(); } },{threshold:.2}).observe(mur);
+  } else { entrer(); }
   function compteur(){
     return fetch(SB+'/rest/v1/rpc/compteur',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:'{}'})
       .then(function(r){if(!r.ok)throw 0;return r.json()})
@@ -377,27 +388,44 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   }
   compteur().then(poser).catch(function(){poser(0)});
 
+  // Met en lumière la brique n au moment où elle passe à l'écran, une seule fois.
+  function eclairer(n){
+    var bs=mur.querySelectorAll('b[data-n="'+n+'"]'); if(!bs.length)return;
+    function allumer(){ for(var i=0;i<bs.length;i++) bs[i].classList.add('neuve'); }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ allumer(); io.disconnect(); } },{threshold:.5}).observe(bs[0]);
+    } else { allumer(); }
+  }
+
   // Promesse de prêt : une ligne type 'preteur' dans public.inscriptions, puis le mur se remet à jour.
   var f=document.getElementById('fPromesse');
+  var ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
+  var libelle=btn.textContent, koHTML=ko.innerHTML;
+  function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
-    if(f.site.value){ok.style.display='block';ok.textContent='Merci.';return;}
+    if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim();
-    if(!nom||!contact){ko.style.display='block';ko.textContent='Il manque votre nom ou un moyen de vous joindre.';return;}
-    btn.disabled=true;
+    if(!nom||!contact){ko.textContent='Il manque votre nom ou un moyen de vous joindre.';montrer(ko);return;}
+    btn.disabled=true; btn.textContent='Envoi…';
     fetch(SB+'/rest/v1/inscriptions',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
       body:JSON.stringify({type:'preteur',nom:nom,contact:contact,note:null})})
     .then(function(r){if(!r.ok)throw 0;})
     .then(function(){return compteur().catch(function(){return null})})
-    .then(function(total){
-      ko.style.display='none'; ok.style.display='block';
-      if(total===null){ ok.textContent="Merci, "+nom+". Ta brique est posée. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient."; }
-      else { poser(total); ok.textContent="Merci, "+nom+". Ta brique est la n°"+total+" sur 120. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient."; }
-      f.nom.value='';f.contact.value='';btn.disabled=false;
+    .then(function(t){
+      ko.classList.remove('visible');
+      var texte=(t===null)
+        ? "Merci, "+nom+". Ta brique est posée. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient."
+        : "Merci, "+nom+". Ta brique est la n°"+t+" sur 120. On ne collecte rien avant 18 à 21 mois : on te recontacte quand le dossier tient.";
+      ok.textContent='';
+      var glyphe=document.createElement('i'); glyphe.className='brique-msg'; glyphe.setAttribute('aria-hidden','true');
+      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte));
+      montrer(ok);
+      if(t!==null){ poser(t); eclairer(Math.min(120,t)); }
+      f.nom.value='';f.contact.value='';btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
-    .catch(function(){btn.disabled=false;ko.style.display='block'});
+    .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
   });
 })();
 </script>
@@ -416,11 +444,11 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   for(var r=0;r<5;r++)for(var c=0;c<10;c++){var w=el('rect',{x:x0+c*cw+(c>4?8:0),y:y0+r*62,width:26,height:ch-18,rx:1,'class':'fen'});f.appendChild(w);fens.push(w)}
   f.appendChild(el('rect',{x:222,y:340,width:56,height:56,fill:'#E3C362'}));
   f.appendChild(el('rect',{x:0,y:396,width:W,height:3,fill:'#3C5646'}));
-  var ordre=fens.map(function(_,i){return i}).sort(function(){return Math.random()-.5});
+  // Le bâtiment se remplit du rez-de-chaussée vers le haut, de gauche à droite : 50 fenêtres en 2 s.
   var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduit){ordre.slice(0,32).forEach(function(i){fens[i].classList.add('on')});return}
-  ordre.slice(0,18).forEach(function(i){fens[i].classList.add('on')});
-  var n=18;(function suite(){if(n>=50)return;fens[ordre[n++]].classList.add('on');setTimeout(suite,260)})();
+  if(reduit){fens.forEach(function(w){w.classList.add('on')});return}
+  var ordre=[];for(var r=4;r>=0;r--)for(var c=0;c<10;c++)ordre.push(r*10+c);
+  var k=0;(function suite(){if(k>=50)return;fens[ordre[k++]].classList.add('on');setTimeout(suite,40)})();
 })();
 </script>
 </body>

@@ -37,7 +37,8 @@ footer b,footer a{color:var(--sur-vert)}
 .etat .gros b{color:var(--or)}
 .etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
 .jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
-.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
 </style>
 </head>
 <body>
@@ -82,13 +83,21 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:fhz
 </footer>
 
 <script>
+// Le chiffre et la jauge avancent ensemble, en 600 ms, sortie franche. Instantané si le mouvement est réduit.
+var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function afficher(v){document.getElementById('nb').textContent=v;document.getElementById('somme').textContent=(v*1000).toLocaleString('fr-BE')+' €';}
+function compter(b){
+  if(reduit||b===0){afficher(b);return;}
+  var t0=null;
+  function pas(t){ if(t0===null)t0=t; var p=Math.min(1,(t-t0)/600); afficher(Math.round(b*(1-Math.pow(1-p,3)))); if(p<1)requestAnimationFrame(pas); }
+  requestAnimationFrame(pas);
+}
 fetch('https://gjvxwijhowbyhfwlybvt.supabase.co/rest/v1/rpc/compteur',{method:'POST',headers:{apikey:'sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y','Content-Type':'application/json'},body:'{}'})
 .then(function(r){if(!r.ok)throw 0;return r.json()})
 .then(function(c){var n=Math.min(120,c.preteurs||0);
-  document.getElementById('nb').textContent=n;
-  document.getElementById('somme').textContent=(n*1000).toLocaleString('fr-BE')+' €';
-  document.getElementById('jauge').style.transform='scaleX('+Math.max(n/120,n>0?.02:0)+')';})
-.catch(function(){document.getElementById('nb').textContent='0';document.getElementById('somme').textContent='0 €';});
+  document.getElementById('jauge').style.transform='scaleX('+Math.max(n/120,n>0?.02:0)+')';
+  compter(n);})
+.catch(function(){afficher(0);});
 </script>
 </body>
 </html>

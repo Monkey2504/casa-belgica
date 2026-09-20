@@ -303,6 +303,16 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .porte .fleche{font-size:1.6rem;line-height:1;color:var(--or);transition:transform .2s}
 .porte:focus-visible{outline-offset:-6px}
 .sep-portes{width:1px;background:#3B4F43}
+/* arrivée sur l'entrée : une seule séquence, les deux portes à 80 ms d'écart */
+@media(prefers-reduced-motion:no-preference){
+  .porte .qui,.porte .grand,.porte .bas{animation:arriver .4s cubic-bezier(.2,.7,.2,1) both}
+  .porte .grand{animation-delay:60ms}
+  .porte .bas{animation-delay:120ms}
+  .porte.construire .qui{animation-delay:80ms}
+  .porte.construire .grand{animation-delay:140ms}
+  .porte.construire .bas{animation-delay:200ms}
+  @keyframes arriver{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
 /* survol réservé aux pointeurs fins : pas d'état collé au toucher */
 @media(hover:hover) and (pointer:fine){
   .porte.habiter:hover{background:var(--vert-clair)}
@@ -325,11 +335,19 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form textarea{min-height:110px;resize:vertical}
 .form input:focus-visible,.form textarea:focus-visible{outline:3px solid var(--or);outline-offset:2px;border-color:var(--or)}
 .form .actions{margin-top:4px}
-.form button{font:inherit;cursor:pointer}
+.form button{font:inherit;cursor:pointer;transition:background .15s,opacity .15s,transform .1s}
 .form button:disabled{opacity:.6;cursor:wait}
 .form .ok,.form .ko{display:none;margin:0;padding:14px 16px;border-radius:3px;font-size:.98rem;max-width:none}
 .form .ok{background:rgba(227,195,98,.14);border:1.5px solid var(--or);color:#fff}
 .form .ko{background:rgba(255,255,255,.06);border:1.5px solid #B85C4A;color:var(--sur-vert)}
+.form .ok.visible,.form .ko.visible{display:block}
+/* le message de confirmation glisse de 8 px ; la petite brique du message se pose juste après */
+.form .ok .brique-msg{display:inline-block;width:22px;height:11px;background:var(--or);border-radius:1px;vertical-align:-1px;margin-right:8px}
+@media(prefers-reduced-motion:no-preference){
+  .form .ok.visible,.form .ko.visible{animation:glisser .2s cubic-bezier(.2,.7,.2,1) both}
+  .form .ok .brique-msg{animation:naitre .5s cubic-bezier(.2,.7,.2,1) .2s both}
+  @keyframes glisser{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
 /* mention sur les données, sous le bouton */
 .form .confidentialite{font-size:.85rem;line-height:1.5;color:var(--sur-vert-mut);max-width:none}
 /* honeypot : hors écran, jamais rempli par une personne */
@@ -338,6 +356,14 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 /* ---- Le mur des 120 : briques encore à poser (pointillé) et ligne de compteur ---- */
 .wall .reste-brique{background:transparent;border:1.5px dashed rgba(227,195,98,.45);filter:none}
 .wall .reste-brique:hover{filter:none;transform:none}
+/* la brique qui vient d'être promise : elle se pose et s'éclaire une fois, quand elle passe à l'écran */
+.course b.neuve:after{content:"";position:absolute;inset:-3px;border-radius:2px;box-shadow:0 0 16px 4px rgba(227,195,98,.75);opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:no-preference){
+  .courses .course b.neuve,.courses.vu .course b.neuve{animation:naitre .6s cubic-bezier(.2,.7,.2,1) both;animation-delay:0s}
+  .course b.neuve:after{animation:lueur 1.2s ease-out .1s both}
+  @keyframes naitre{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+  @keyframes lueur{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+}
 .compteur-ligne{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin:12px 0 0;font-size:.95rem;color:var(--sur-vert-mut);max-width:none}
 .compteur-ligne strong{color:#fff;font-family:var(--disp);font-size:1.25rem;font-variant-numeric:tabular-nums}
 
