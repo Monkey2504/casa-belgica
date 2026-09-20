@@ -400,8 +400,7 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form .hp{position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none}
 
 /* ---- Le mur des 120 : briques encore à poser (pointillé) et ligne de compteur ---- */
-.wall .reste-brique{background:transparent;border:1.5px dashed rgba(227,195,98,.45);filter:none}
-.wall .reste-brique:hover{filter:none;transform:none}
+.wall .course b:not(.on){background:transparent;border:1.5px dashed rgba(227,195,98,.45);filter:none}
 .course b.photo{background-size:cover;background-position:center;filter:none}
 /* la brique qui vient d'être promise : elle se pose et s'éclaire une fois, quand elle passe à l'écran */
 .course b.neuve:after{content:"";position:absolute;inset:-3px;border-radius:2px;box-shadow:0 0 16px 4px rgba(227,195,98,.75);opacity:0;pointer-events:none}
