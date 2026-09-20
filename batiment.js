@@ -11,9 +11,14 @@
   function el(n,a,parent){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(parent)parent.appendChild(e);return e}
   function hel(n,cls,txt){var e=document.createElement(n);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
   function fmt(v){return Math.max(0,v|0).toLocaleString('fr-BE')}
+  // Joue fn une seule fois quand la cible entre dans l'écran, ou si elle a déjà été dépassée (arrivée par une ancre plus bas).
   function observer(cible,fn,seuil){
     if(!('IntersectionObserver' in window)){fn();return}
-    new IntersectionObserver(function(es,io){if(es[0].isIntersecting){io.disconnect();fn()}},{threshold:seuil||.3}).observe(cible);
+    var fait=false, io;
+    function go(){ if(fait)return; fait=true; io.disconnect(); removeEventListener('scroll',verif); fn(); }
+    function verif(){ if(cible.getBoundingClientRect().bottom<0) go(); }
+    io=new IntersectionObserver(function(es){ if(es[0].isIntersecting) go(); },{threshold:seuil||.3});
+    io.observe(cible); addEventListener('scroll',verif,{passive:true}); setTimeout(verif,400);
   }
   function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
 
