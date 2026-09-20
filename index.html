@@ -3,72 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Casa Belgica — deux chemins, un même bâtiment</title>
-<meta name="description" content="Casa Belgica, coopérative de logement de transition en création à Molenbeek. Tu cherches un toit, ou tu veux aider à le construire ? Deux chemins, un même bâtiment.">
-<meta property="og:title" content="Casa Belgica — deux chemins, un même bâtiment">
-<meta property="og:description" content="J'ai besoin d'un toit / Je veux le construire. Coopérative de logement de transition en création, Molenbeek.">
-<meta name="theme-color" content="#F5F1E6">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><rect width='5' height='10' fill='%23C0331B'/><rect x='5' width='5' height='10' fill='%2320369E'/></svg>">
+<title>Sortir du squat — deux chemins, un même bâtiment</title>
+<meta name="description" content="Sortir du squat (Casa Belgica), coopérative de logement de transition en création à Molenbeek. Tu cherches un toit, ou tu veux aider à le construire ? Deux chemins, un même bâtiment.">
+<meta property="og:title" content="Sortir du squat — deux chemins, un même bâtiment">
+<meta property="og:description" content="J'ai besoin d'un toit / Je veux le construire. 50 chambres, 300 €/mois tout compris, portées par 120 prêteurs citoyens.">
+<meta name="theme-color" content="#13251A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600;700&family=Public+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ---- l'entrée : une feuille, deux moitiés, une ligne de découpe ---- */
 html,body{height:100%}
-body{display:flex;flex-direction:column}
-.portes{flex:1;display:flex;min-height:0}
-.porte{
-  position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:space-between;
-  gap:32px;padding:clamp(24px,4vw,56px);text-decoration:none;
-  transition:flex-grow .35s cubic-bezier(.2,.7,.2,1);
-}
-@media(prefers-reduced-motion:no-preference){.porte:hover,.porte:focus-visible{flex-grow:1.28}}
-.porte.habiter{background:var(--rouge);color:var(--papier)}
-.porte.construire{background:var(--bleu);color:var(--papier)}
-.porte .qui{font-family:var(--mono);font-weight:600;font-size:clamp(.72rem,1.4vw,.85rem);letter-spacing:.13em;text-transform:uppercase;line-height:1.8;opacity:.85;max-width:30ch}
-.porte .grand{font-family:var(--aff);text-transform:uppercase;font-size:clamp(2rem,4.6vw,4.6rem);line-height:.93;letter-spacing:.005em;margin:0;overflow-wrap:anywhere}
-.porte .en{display:block;font-family:var(--mono);font-size:clamp(.72rem,1.3vw,.85rem);letter-spacing:.1em;text-transform:none;margin-top:14px;opacity:.75}
-.porte .bas{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.porte .faux-btn{
-  display:inline-block;font-family:var(--mono);font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;
-  border:2.5px solid var(--papier);padding:14px 22px;background:transparent;color:var(--papier);
-  transition:background .15s,color .15s;
-}
-.porte:hover .faux-btn,.porte:focus-visible .faux-btn{background:var(--papier)}
-.porte.habiter:hover .faux-btn,.porte.habiter:focus-visible .faux-btn{color:var(--rouge)}
-.porte.construire:hover .faux-btn,.porte.construire:focus-visible .faux-btn{color:var(--bleu)}
-.porte .fleche{font-family:var(--mono);font-size:1.6rem;transition:transform .25s}
-.porte:hover .fleche{transform:translateX(8px)}
-.porte .tampon{position:absolute;top:clamp(14px,3vw,30px);right:clamp(14px,3vw,30px);color:var(--papier);opacity:.9;
-  box-shadow:inset 0 0 0 1.5px transparent,inset 0 0 0 2.5px currentColor}
-.porte:focus-visible{outline:4px solid var(--encre);outline-offset:-8px}
-
-/* la découpe verticale entre les deux */
-.ciseaux{flex:0 0 0;position:relative;border-left:2.5px dashed var(--papier);z-index:2}
-.ciseaux span{position:absolute;top:12%;left:50%;transform:translateX(-50%) rotate(90deg);font-size:1.5rem;color:var(--papier);
-  background:transparent;line-height:1}
-
-.mention{border-top:3px solid var(--encre);background:var(--papier)}
-.mention .w{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-block:12px;
-  font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
-.mention a{color:var(--encre)}
-
-@media(max-width:760px){
-  html,body{height:auto}
-  .portes{flex-direction:column}
-  .porte{min-height:min(44svh,420px);gap:18px}
-  .ciseaux{border-left:none;border-top:2.5px dashed var(--papier)}
-  .ciseaux span{top:50%;left:24px;transform:translate(0,-50%) rotate(0)}
-  .porte .grand{font-size:clamp(2.3rem,11vw,3.4rem)}
-}
+body{display:flex;flex-direction:column;background:var(--vert-nuit)}
+header{position:static}
+/* le nom du projet, centré en haut */
+header .w{justify-content:center;position:relative}
+header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
+header nav{position:absolute;right:var(--gut)}
+@media(max-width:760px){html,body{height:auto}}
+footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
+footer b,footer a{color:var(--sur-vert)}
+/* où en est le projet — visible dès l'arrivée */
+.etat{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:24px}
+.etat .w{display:grid;gap:14px}
+.etat .ligne{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
+.etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.15rem,2.6vw,1.6rem);color:#fff}
+.etat .gros b{color:var(--or)}
+.etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
+.jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
+.jauge i{display:block;height:100%;width:0%;background:var(--or);border-radius:999px;transition:width .9s ease}
 </style>
 </head>
 <body>
 
-<header class="barre">
+<header>
 <div class="w">
-  <a class="marque" href="/">Casa Belgica<small>Molenbeek — coopérative en création</small></a>
-  <nav aria-label="Langue"><a href="en.html" lang="en" hreflang="en">English</a></nav>
+  <a class="logo" href="/"><i aria-hidden="true"></i><span>SORTIR DU SQUAT</span></a>
+  <nav aria-label="Langue"><a class="lang" href="en.html" lang="en" hreflang="en">EN</a></nav>
 </div>
 </header>
 
@@ -78,20 +49,40 @@ body{display:flex;flex-direction:column}
     <h1 class="grand">J'ai besoin<br>d'un toit.<span class="en" lang="en">I need a roof — English spoken, come as you are.</span></h1>
     <span class="bas"><span class="faux-btn">C'est par ici</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
-  <div class="ciseaux" aria-hidden="true"></div>
+  <div class="sep-portes" aria-hidden="true"></div>
   <a class="porte construire" href="preter.html">
     <span class="qui">Tu peux prêter 1 000 € ?<br>Ouvrir ton réseau ?<br>Vérifier nos chiffres ?</span>
-    <h1 class="grand">Je veux le<br>construire.<span class="en" lang="en">I want to build it — lend €1,000 at 0%, get it back.</span></h1>
+    <h1 class="grand">Soutenir<br>le projet.<span class="en" lang="en">Support the project — lend €1,000 at 0%, get it back.</span></h1>
     <span class="bas"><span class="faux-btn">Voir le dossier</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
 </main>
 
-<footer class="mention">
+<div class="etat" aria-live="polite">
 <div class="w">
-  <span>Un même bâtiment : 50 chambres, 300 €/mois tout compris</span>
-  <span>Ballal ASBL · 645 ch. de Gand, 1080 Bruxelles · <a href="mailto:fhzegert@gmail.com">écrire</a></span>
+  <div class="ligne">
+    <span class="gros"><b id="nb">…</b> promesses sur 120 · <b id="somme">…</b> promis sur 120 000 €</span>
+    <span class="fixe">Étape actuelle : réunir les 120 promesses. Ensuite : le bâtiment, la banque, les travaux, les clés.</span>
+  </div>
+  <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
+  <div class="ligne"><span class="fixe">50 chambres · 300 €/mois tout compris · prêt remboursé entre l'an 6 et l'an 10</span><span class="fixe">≈ 8 500 € de travaux débloqués par promesse</span></div>
+</div>
+</div>
+
+<footer>
+<div class="w">
+<b>Sortir du squat — Casa Belgica</b> · un même bâtiment : 50 chambres, 300 €/mois tout compris, portées par 120 prêteurs<br>
+Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:fhzegert@gmail.com">écrire</a>
 </div>
 </footer>
 
+<script>
+fetch('https://gjvxwijhowbyhfwlybvt.supabase.co/rest/v1/rpc/compteur',{method:'POST',headers:{apikey:'sb_publishable_MApC_iB8eu_2nHWhnE3iaA_PzRLqS2y','Content-Type':'application/json'},body:'{}'})
+.then(function(r){if(!r.ok)throw 0;return r.json()})
+.then(function(c){var n=Math.min(120,c.preteurs||0);
+  document.getElementById('nb').textContent=n;
+  document.getElementById('somme').textContent=(n*1000).toLocaleString('fr-BE')+' €';
+  document.getElementById('jauge').style.width=Math.max(n/120*100,n>0?2:0)+'%';})
+.catch(function(){document.getElementById('nb').textContent='0';document.getElementById('somme').textContent='0 €';});
+</script>
 </body>
 </html>
