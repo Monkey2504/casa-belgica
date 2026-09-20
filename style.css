@@ -1,0 +1,140 @@
+/* ============================================================
+   CASA BELGICA — identité « l'affiche et le dossier »
+   Papier, encre, bleu Bic, rouge tampon.
+   Anton (affiche) · IBM Plex Mono (registre) · Public Sans (texte)
+   ============================================================ */
+
+:root{
+  --papier:#F5F1E6; --papier-2:#ECE6D6; --blanc:#FDFBF4;
+  --encre:#1B1813; --mut:#6E6656;
+  --rouge:#C0331B; --rouge-f:#8E230E; --rouge-pale:#F3D9D2;
+  --bleu:#20369E; --bleu-f:#141F62; --bleu-pale:#D8DCF0;
+  --aff:"Anton",Impact,"Arial Narrow",sans-serif;
+  --mono:"IBM Plex Mono","Courier New",monospace;
+  --texte:"Public Sans",system-ui,sans-serif;
+  --w:1140px; --gut:clamp(18px,4vw,44px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;font-family:var(--texte);font-size:17px;line-height:1.6;
+  color:var(--encre);background:var(--papier);text-wrap:pretty;
+}
+/* grain de papier, très discret */
+body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.w{max-width:var(--w);margin:0 auto;padding-inline:var(--gut)}
+p{margin:0;max-width:60ch}
+a{color:inherit;touch-action:manipulation}
+img,svg{max-width:100%}
+::selection{background:var(--encre);color:var(--papier)}
+:focus-visible{outline:3px solid var(--rouge);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+strong{font-weight:700}
+h1,h2,h3{margin:0;text-wrap:balance}
+
+/* ---- typographie affiche ---- */
+.aff{font-family:var(--aff);font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:.92}
+.mono{font-family:var(--mono)}
+.etq{font-family:var(--mono);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em}
+
+/* ---- barre haute ---- */
+.barre{border-bottom:3px solid var(--encre);background:var(--papier)}
+.barre .w{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;flex-wrap:wrap;padding-block:8px}
+.barre .marque{font-family:var(--aff);text-transform:uppercase;font-size:1.15rem;text-decoration:none;letter-spacing:.02em}
+.barre .marque small{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;margin-left:10px;color:var(--mut)}
+.barre nav{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.barre nav a{text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.barre nav a:hover{border-bottom-color:currentColor}
+
+/* ---- tampon encreur ---- */
+.tampon{
+  display:inline-block;font-family:var(--mono);font-weight:600;text-transform:uppercase;
+  font-size:.8rem;letter-spacing:.1em;line-height:1.25;text-align:center;
+  padding:.5em .9em;border:2.5px solid currentColor;border-radius:3px;
+  box-shadow:inset 0 0 0 1.5px var(--papier),inset 0 0 0 2.5px currentColor;
+  transform:rotate(-2.5deg);opacity:.92;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='r'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 .35'/%3E%3C/filter%3E%3Crect width='120' height='120' fill='%23fff' filter='url(%23r)'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='r'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 .35'/%3E%3C/filter%3E%3Crect width='120' height='120' fill='%23fff' filter='url(%23r)'/%3E%3C/svg%3E");
+}
+.tampon.rouge{color:var(--rouge)}
+.tampon.bleu{color:var(--bleu)}
+.tampon.pos{transform:rotate(2deg)}
+
+/* ---- boutons ---- */
+.btn{
+  display:inline-block;font-family:var(--mono);font-weight:700;text-transform:uppercase;
+  letter-spacing:.08em;font-size:.92rem;text-decoration:none;text-align:center;
+  padding:16px 26px;border:2.5px solid var(--encre);background:var(--encre);color:var(--papier);
+  box-shadow:5px 5px 0 0 var(--ombre,var(--rouge));
+  transition:transform .12s,box-shadow .12s;
+}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 0 var(--ombre,var(--rouge))}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 0 var(--ombre,var(--rouge))}
+.btn.creux{background:var(--papier);color:var(--encre)}
+.btn.b{--ombre:var(--bleu)}
+.actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+
+/* ---- fiche à champs pointillés ---- */
+.fiche{border:2.5px solid var(--encre);background:var(--blanc);padding:26px 26px 30px;position:relative}
+.fiche .coin{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--mut);text-transform:uppercase}
+.champ{display:grid;gap:4px;padding-block:13px}
+.champ label{font-family:var(--mono);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+.champ i{display:block;font-style:normal;border-bottom:2px dotted var(--encre);min-height:1.6em;font-family:var(--mono)}
+
+/* ---- ligne de découpe ---- */
+.decoupe{position:relative;border:none;border-top:2.5px dashed var(--encre);margin:0;overflow:visible}
+.decoupe:after{content:"✂";position:absolute;left:28px;top:-.72em;font-size:1.35rem;background:var(--papier);padding-inline:6px;color:var(--encre)}
+
+/* ---- tables registre ---- */
+table{border-collapse:collapse;width:100%;font-size:.95rem;border-top:3px solid var(--encre)}
+th,td{padding:11px 12px 11px 0;border-bottom:1.5px solid var(--papier-2);text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:600}
+td.n{text-align:right;font-family:var(--mono);font-weight:600;white-space:nowrap;padding-right:0;font-variant-numeric:tabular-nums}
+td.c{color:var(--mut);font-size:.86rem}
+tr.tot td{border-top:3px double var(--encre);border-bottom:none;font-weight:700;padding-top:14px}
+tr.tot td.n{font-size:1.25rem}
+.tablewrap{overflow-x:auto;max-width:100%}
+
+/* ---- sections numérotées ---- */
+section{padding-block:clamp(52px,8vw,104px);scroll-margin-top:70px}
+section.regle{border-top:3px solid var(--encre)}
+.tete{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(24px,4vw,40px);flex-wrap:wrap}
+.tete .no{font-family:var(--mono);font-weight:600;font-size:.95rem;letter-spacing:.1em;color:var(--mut);white-space:nowrap}
+h2{font-family:var(--aff);text-transform:uppercase;font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:.95;letter-spacing:.005em;max-width:24ch}
+h3{font-size:1.12rem;font-weight:700;margin-bottom:12px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media(max-width:860px){.two{grid-template-columns:minmax(0,1fr)}}
+.two>*,.stack>*{min-width:0}
+.stack{display:grid;gap:16px}
+.big{font-size:1.2rem;line-height:1.55}
+.note{font-size:.9rem;color:var(--mut);max-width:72ch}
+
+/* ---- stats en registre ---- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:0;border-top:3px solid var(--encre)}
+.stats>div{padding:16px 18px 18px 0;border-bottom:1.5px solid var(--papier-2)}
+.stats b{display:block;font-family:var(--aff);font-weight:400;font-size:1.8rem;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{display:block;margin-top:7px;font-size:.88rem;color:var(--mut);line-height:1.45}
+
+/* ---- barres comparatives ---- */
+.barres{display:grid;gap:20px}
+.barres .lbl{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;margin-bottom:7px}
+.barres .lbl b{font-family:var(--mono);font-size:1.05rem}
+.barres .bar{display:flex;height:38px;border:2px solid var(--encre)}
+.barres .bar i{display:flex;align-items:center;padding-inline:10px;font-style:normal;font-family:var(--mono);font-size:.74rem;font-weight:600;white-space:nowrap;overflow:hidden;min-width:0}
+.barres .loyer{background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(27,24,19,.24) 5px 10px);color:var(--encre);border-right:2px solid var(--encre)}
+.barres .vie{color:var(--papier)}
+.barres .scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:var(--mut);margin-top:6px}
+
+/* ---- pied ---- */
+footer{border-top:3px solid var(--encre);padding-block:30px 44px;font-size:.88rem;color:var(--mut)}
+footer b{color:var(--encre)}
+footer a{color:var(--encre)}
+
+@media(max-width:400px){
+  body{font-size:16px}
+  .btn{padding:14px 18px;font-size:.84rem;box-shadow:4px 4px 0 0 var(--ombre,var(--rouge))}
+  .stats b{font-size:1.5rem}
+}

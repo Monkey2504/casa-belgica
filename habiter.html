@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Casa Belgica — j'ai besoin d'un toit</title>
+<meta name="description" content="Une chambre à toi, avec douche et WC, 300 € par mois tout compris, à Bruxelles. Pas encore ouvert : le projet se construit. Inscris-toi pour être prévenu·e en premier.">
+<meta name="theme-color" content="#C0331B">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><rect width='10' height='10' fill='%23C0331B'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600;700&family=Public+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{--ombre:var(--rouge)}
+.hero{padding-block:clamp(48px,8vw,96px)}
+.hero .etat{margin-bottom:26px}
+h1{font-family:var(--aff);text-transform:uppercase;font-size:clamp(2.6rem,8.4vw,6rem);line-height:.92;max-width:12ch}
+h1 em{font-style:normal;color:var(--rouge)}
+.hero .en{display:block;font-family:var(--mono);font-size:.85rem;color:var(--mut);margin-top:18px}
+.hero .lead{font-size:1.25rem;line-height:1.55;margin-top:26px;max-width:44ch}
+
+/* trois faits, comme trois fiches épinglées */
+.faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(30px,5vw,48px)}
+@media(max-width:760px){.faits{grid-template-columns:minmax(0,1fr)}}
+.fait{border:2.5px solid var(--encre);background:var(--blanc);padding:20px 20px 24px;position:relative}
+.fait:nth-child(2){transform:rotate(.6deg)}
+.fait:nth-child(3){transform:rotate(-.5deg)}
+.fait b{display:block;font-family:var(--aff);font-weight:400;text-transform:uppercase;font-size:1.6rem;line-height:1;margin-bottom:10px}
+.fait b .r{color:var(--rouge)}
+.fait p{font-size:.95rem}
+.fait .epingle{position:absolute;top:-9px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--rouge);border:2.5px solid var(--encre)}
+
+.avert{background:var(--encre);color:var(--papier);padding-block:clamp(40px,6vw,64px)}
+.avert .w{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start}
+@media(max-width:700px){.avert .w{grid-template-columns:minmax(0,1fr)}}
+.avert .tampon{color:#F0A08E;transform:rotate(-4deg);font-size:.95rem;box-shadow:inset 0 0 0 1.5px var(--encre),inset 0 0 0 2.5px currentColor}
+.avert p{max-width:56ch}
+.avert .big{font-size:1.25rem;font-weight:600}
+.avert .suite{margin-top:14px;color:#CFC8B8;font-size:1rem}
+
+.chiffre-en-face .lbl span{max-width:22ch}
+.mieux{font-family:var(--aff);text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1;margin-top:22px}
+.mieux i{font-style:normal;color:var(--rouge)}
+
+.inscrire .fiche{max-width:640px}
+.inscrire .fiche h3{font-family:var(--aff);font-weight:400;text-transform:uppercase;font-size:1.5rem;margin-bottom:4px}
+.inscrire .fiche .sous{font-size:.9rem;color:var(--mut);margin-bottom:10px}
+.venir{display:grid;gap:6px;align-content:start}
+.venir .ou{font-family:var(--aff);text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1}
+.venir .adr{font-family:var(--mono);font-size:1rem;line-height:1.7}
+.venir .langues{font-size:.9rem;color:var(--mut);max-width:40ch}
+.autre{border-top:3px solid var(--encre);padding-block:34px}
+.autre .w{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.autre a{font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="barre">
+<div class="w">
+  <a class="marque" href="/">Casa Belgica<small>Entrée n°1 — habiter</small></a>
+  <nav><a href="/">← Changer de chemin</a><a href="preter.html">Je veux aider</a></nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="w">
+  <div class="etat"><span class="tampon rouge">En création — pas encore ouvert</span></div>
+  <h1>Une chambre à toi.<br><em>300 € par mois,</em> tout compris.</h1>
+  <span class="en" lang="en">Your own room with shower and toilet, €300 a month all included. Not open yet — sign up to be first in line.</span>
+  <p class="lead">Casa Belgica prépare un bâtiment de 50 chambres à Bruxelles, pour les personnes qui viennent d'avoir leurs papiers et qui sortent d'un squat. Pas un centre, pas un dortoir : ta chambre, ta clé, ton contrat à ton nom.</p>
+
+  <div class="faits">
+    <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Ta chambre, <span class="r">ta clé</span></b><p>Au moins 18 m², avec ta propre douche et ton propre WC. Un contrat individuel, à ton nom. Personne ne rentre chez toi.</p></div>
+    <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Une <span class="r">adresse</span></b><p>Une vraie adresse, donc une domiciliation, donc le CPAS, la mutuelle, le boulot. Et le statut d'isolé : 1 340 € de RIS, pas 893 €.</p></div>
+    <div class="fait"><span class="epingle" aria-hidden="true"></span><b>Le temps de <span class="r">souffler</span></b><p>Trois à quatre ans pour épargner, te former, trouver un vrai logement. Tu pars quand tu es prêt·e — pas quand on t'expulse.</p></div>
+  </div>
+</div>
+</section>
+
+<div class="avert">
+<div class="w">
+  <span class="tampon" aria-hidden="true">Important<br>lis d'abord ça</span>
+  <div>
+    <p class="big">Le bâtiment n'existe pas encore. On ne te promet pas une chambre pour demain — la première clé arrive dans environ trois ans.</p>
+    <p class="suite">On te le dit en face plutôt que de te faire courir. Ce qu'on te propose aujourd'hui : t'inscrire, pour qu'on te connaisse, qu'on avance avec toi, et que tu sois prévenu·e en premier quand ça ouvre.</p>
+  </div>
+</div>
+</div>
+
+<section class="regle chiffre-en-face">
+<div class="w">
+<div class="tete"><span class="no">Fiche 01</span><h2>Compte avec nous</h2></div>
+<div class="two">
+  <div class="stack">
+    <p class="big">Avec tes papiers et le RIS au taux isolé, tu touches 1 340 € par mois. Un studio bruxellois coûte 700 à 850 € de loyer, plus la garantie. Il te reste à peine de quoi vivre — et rien à mettre de côté.</p>
+    <p>À Casa Belgica, tu payes <strong>300 € tout compris</strong> : chauffage, eau, électricité, internet. Le reste est à toi.</p>
+    <p class="mieux">475 € de plus <i>chaque mois.</i></p>
+  </div>
+  <div class="barres">
+    <div>
+      <div class="lbl"><span>Studio privé — 775 € de loyer</span><b class="num">reste 565 €</b></div>
+      <div class="bar"><i class="loyer" style="flex:775">775 €</i><i class="vie" style="flex:565;background:var(--encre)">565 €</i></div>
+    </div>
+    <div>
+      <div class="lbl"><span>Casa Belgica — 300 € tout compris</span><b class="num">reste 1 040 €</b></div>
+      <div class="bar"><i class="loyer" style="flex:300">300 €</i><i class="vie" style="flex:1040;background:var(--rouge)">reste 1 040 €</i></div>
+    </div>
+    <div class="scale"><span>0 €</span><span>1 340 € / mois (RIS isolé)</span></div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="regle">
+<div class="w">
+<div class="tete"><span class="no">Fiche 02</span><h2>C'est pour qui ?</h2></div>
+<div class="two">
+  <div class="stack">
+    <p class="big">Pour les personnes qui viennent d'être régularisées, qui sortent d'un squat ou d'une occupation, et qui ont un revenu — le RIS ou un salaire.</p>
+    <p>Le projet est porté par Ballal ASBL, à Molenbeek, qui accompagne plus de 150 personnes depuis les occupations. Si tu es passé·e par la chaussée de Gand, tu nous connais déjà.</p>
+  </div>
+  <div class="stack">
+    <p><strong>Tu n'as pas encore tes papiers ?</strong> Casa Belgica ne pourra pas te loger — le modèle repose sur le RIS. Mais viens quand même : l'accompagnement de Ballal, lui, est là pour toi dès maintenant.</p>
+    <p class="note">Personne ne te demandera de payer quoi que ce soit pour t'inscrire. L'inscription est gratuite, sans condition, et ne t'engage à rien.</p>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="regle inscrire">
+<div class="w">
+<div class="tete"><span class="no">Fiche 03</span><h2>S'inscrire</h2></div>
+<div class="two">
+  <div class="fiche">
+    <span class="coin">Fiche d'inscription</span>
+    <h3>Ce qu'on te demandera</h3>
+    <p class="sous">Rien d'autre que ça. Pas de dossier, pas de preuve, pas de file en ligne : on se parle.</p>
+    <div class="champ"><label>Ton prénom</label><i></i></div>
+    <div class="champ"><label>Où tu dors en ce moment</label><i></i></div>
+    <div class="champ"><label>Où en sont tes papiers</label><i></i></div>
+    <div class="champ"><label>Comment te joindre</label><i></i></div>
+  </div>
+  <div class="venir">
+    <span class="ou">Passe nous voir.</span>
+    <p class="adr">Ballal ASBL<br>645 chaussée de Gand<br>1080 Molenbeek — Bruxelles</p>
+    <p class="langues">Français, anglais — et si tu ne parles ni l'un ni l'autre, viens quand même, on trouvera quelqu'un.</p>
+    <div class="actions" style="margin-top:18px">
+      <a class="btn" href="mailto:fhzegert@gmail.com?subject=Casa%20Belgica%20%E2%80%94%20je%20veux%20m%27inscrire">S'inscrire par e-mail</a>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+</main>
+
+<div class="autre">
+<div class="w">
+  <span class="etq">L'autre chemin</span>
+  <a href="preter.html">Je veux aider à le construire →</a>
+</div>
+</div>
+
+<footer>
+<div class="w">
+<b>Casa Belgica</b> · coopérative de logement de transition en création · portée par Ballal ASBL, 645 chaussée de Gand, 1080 Molenbeek · <a href="mailto:fhzegert@gmail.com">fhzegert@gmail.com</a> · <a href="/">l'entrée</a>
+</div>
+</footer>
+
+</body>
+</html>
