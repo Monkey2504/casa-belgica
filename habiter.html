@@ -62,7 +62,7 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>Ou passe nous voir :</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> fenêtres allumées sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">fenêtres allumées</span> sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption></figure>
 </div>
 </div>
 </section>
@@ -168,6 +168,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   function afficher(){
     B.rouleau(document.getElementById('r-hab'),etat.habitants);
     B.rouleau(document.getElementById('r-loyer'),etat.habitants*300);
+    document.getElementById('l-hab').textContent=etat.habitants===1?'fenêtre allumée':'fenêtres allumées';
   }
   B.charger().then(function(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',d.habitants,d.noms.habitant,true); })
     .catch(function(){ afficher(); });

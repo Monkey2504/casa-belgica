@@ -280,7 +280,7 @@
 <h2>Ce qu'on vous demande.</h2>
   <figure class="wall">
     <div class="courses" id="mur" role="group" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser. Chaque brique se clique."></div>
-    <figcaption><span><strong class="num rouleau" id="compte">0</strong> briques sur 120</span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
+    <figcaption><span><strong class="num rouleau" id="compte">0</strong> <span id="l-compte">briques</span> sur 120</span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
     <p class="compteur-ligne" aria-live="polite"><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles. Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
   </figure>
 <ol class="asks">
@@ -362,7 +362,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   function synchroniser(){ for(var k in jumelles){ jumelles[k].className=places[k].className.replace('half','').trim()+' half'; } }
 
   var etat={preteurs:0,noms:{preteur:{}}}, visible=false;
-  function afficher(){ B.rouleau(compte,etat.preteurs); B.rouleau(rapporte,etat.preteurs*1000); }
+  function afficher(){ B.rouleau(compte,etat.preteurs); B.rouleau(rapporte,etat.preteurs*1000); document.getElementById('l-compte').textContent=etat.preteurs===1?'brique':'briques'; }
   function poser(anime){ B.allumer(places,'brique',etat.preteurs,etat.noms.preteur,anime); synchroniser(); if(visible) afficher(); }
   // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
   B.observer(mur,function(){ visible=true; mur.classList.add('vu'); afficher(); },.2);

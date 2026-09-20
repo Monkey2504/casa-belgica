@@ -75,9 +75,9 @@ footer b,footer a{color:var(--sur-vert)}
 <div class="w">
   <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Clique dessus.</figcaption></figure>
   <div class="chiffres" aria-live="polite">
-    <p class="gros"><b class="rouleau" id="r-hab">0</b> futurs habitants inscrits</p>
+    <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">futurs habitants inscrits</span></p>
     <p class="fixe"><b class="rouleau" id="r-loyer">0</b> € de loyers par mois, à 300 € la chambre</p>
-    <p class="gros"><b class="rouleau" id="r-pret">0</b> promesses de prêt sur 120</p>
+    <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">promesses de prêt</span> sur 120</p>
     <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
     <p class="fixe"><b class="rouleau" id="r-somme">0</b> € promis sur 120 000 €, à 1 000 € la brique</p>
     <p class="fixe etape">Étape actuelle : réunir les 120 promesses. Ensuite : le bâtiment, la banque, les travaux, les clés.</p>
@@ -105,6 +105,8 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:fhz
     B.rouleau(document.getElementById('r-loyer'),d.habitants*300);
     B.rouleau(document.getElementById('r-pret'),d.preteurs);
     B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
+    document.getElementById('l-hab').textContent=d.habitants===1?'futur habitant inscrit':'futurs habitants inscrits';
+    document.getElementById('l-pret').textContent=d.preteurs===1?'promesse de prêt':'promesses de prêt';
     document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,d.preteurs>0?.02:0)+')';
   }
   B.charger().then(function(d){
