@@ -188,7 +188,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
-    if(!referent){ko.textContent='Il manque le prénom de ta personne référente.';montrer(ko);return;}
+    if(referent.length<2){ko.textContent='Il manque le prénom de ta personne référente : sans elle, l\'inscription ne part pas.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
