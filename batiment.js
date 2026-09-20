@@ -21,18 +21,28 @@
     io.observe(cible); addEventListener('scroll',verif,{passive:true}); setTimeout(verif,400);
   }
   function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
+  // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
+  var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Cissé',etage:3},{nom:'Delya',etage:4},{nom:'Ibrahim',etage:5}];
+  var PAR_ETAGE=9;
+  function normaliser(t){ return (t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function referentDe(nom){ var n=normaliser(nom); for(var i=0;i<REFERENTS.length;i++) if(normaliser(REFERENTS[i].nom)===n) return REFERENTS[i]; return null; }
 
   /* ---------- Données ---------- */
   function rpc(nom){
     return fetch(SB+'/rest/v1/rpc/'+nom,{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:'{}'})
       .then(function(r){if(!r.ok)throw 0;return r.json()});
   }
-  // → {habitants, preteurs, brut, noms:{habitant:{n:{nom,photo}}, preteur:{n:{nom,photo}}}}
+  // → {habitants, preteurs, brut, noms:{preteur:{n:{nom,photo}}}, etages:[{ref, personnes:[…]}], sansEtage}
   function charger(){
     return Promise.all([rpc('compteur'),rpc('facade').catch(function(){return []})]).then(function(r){
-      var c=r[0]||{}, noms={habitant:{},preteur:{}};
-      (r[1]||[]).forEach(function(g){ if(noms[g.type]) noms[g.type][g.i]={nom:g.nom||'',photo:g.photo||''}; });
-      return {habitants:Math.min(50,c.habitants||0), preteurs:Math.min(120,c.preteurs||0), brut:c, noms:noms};
+      var c=r[0]||{}, noms={habitant:{},preteur:{}}, hab=[];
+      (r[1]||[]).forEach(function(g){
+        var pers={i:g.i,nom:g.nom||'',photo:g.photo||'',referent:g.referent||''};
+        if(g.type==='habitant') hab.push(pers); else if(noms[g.type]) noms[g.type][g.i]=pers;
+      });
+      var etages=REFERENTS.map(function(R){ return {ref:R, personnes:hab.filter(function(h){return referentDe(h.referent)===R})}; });
+      var sansEtage=hab.filter(function(h){return !referentDe(h.referent)}).length;
+      return {habitants:Math.min(50,c.habitants||0), preteurs:Math.min(120,c.preteurs||0), brut:c, noms:noms, etages:etages, sansEtage:sansEtage};
     });
   }
   function inscrire(donnees){
@@ -114,16 +124,21 @@
     b.hidden=false; placer();
   }
   // Texte de la bulle pour une place donnée.
-  function texteDe(genre,n,occupe,personne,liens){
+  function texteDe(genre,n,occupe,personne,liens,etage){
     var nom=personne&&personne.nom||'', photo=personne&&personne.photo||'';
+    if(genre==='referent'){
+      return {titre:'Étage '+etage.ref.etage+' : '+etage.ref.nom,texte:(etage.ref.etage===1?'Référent·e du rez-de-chaussée. ':'Référent·e de l\'étage. ')+etage.compte+' personne'+(etage.compte>1?'s':'')+' sur '+PAR_ETAGE+' réunie'+(etage.compte>1?'s':'')+' sur cet étage.'};
+    }
     if(genre==='fenetre'){
-      if(!occupe) return {titre:'Fenêtre '+n,texte:'Encore libre.',lien:liens&&liens.fenetre?{href:liens.fenetre,texte:'Tu pourrais être là'}:null};
-      return {titre:'Fenêtre '+n,texte:nom?nom+', y vivra':'Quelqu’un y vivra (prénom non affiché)',photo:photo};
+      var ou=etage?', étage '+etage.ref.etage+' ('+etage.ref.nom+')':'';
+      if(!occupe) return {titre:'Fenêtre '+n+ou,texte:'Encore libre.',lien:liens&&liens.fenetre?{href:liens.fenetre,texte:'Tu pourrais être là'}:null};
+      return {titre:'Fenêtre '+n+ou,texte:nom?nom+', y vivra':'Quelqu’un y vivra (prénom non affiché)',photo:photo};
     }
     if(!occupe) return {titre:'Brique '+n,texte:'À poser : 1 000 € prêtés à 0 %, remboursés.',lien:liens&&liens.brique?{href:liens.brique,texte:'Comptez-vous parmi les 120'}:null};
     return {titre:'Brique '+n,texte:nom?nom+', a promis 1 000 €':'Une promesse de 1 000 € (nom non affiché)',photo:photo};
   }
   function personneDe(p){ return {nom:p.getAttribute('data-nom')||'',photo:p.getAttribute('data-photo')||''}; }
+  function etageDe(p){ var e=+p.getAttribute('data-etage'); if(!e)return null; return {ref:REFERENTS[e-1],compte:+(p.getAttribute('data-compte')||0)}; }
   // Rend une liste de places cliquables. places : tableau indexé par n (1..N) d'éléments.
   function brancher(places,genre,liens){
     places.forEach(function(p,n){
@@ -131,16 +146,18 @@
       p.setAttribute('tabindex','0'); p.setAttribute('role','button'); p.setAttribute('aria-expanded','false');
       function clic(e){ e.preventDefault(); e.stopPropagation();
         if(ancre===p){fermer();return}
-        ouvrir(p,texteDe(genre,n,p.classList.contains('on'),personneDe(p),liens)); }
+        var g=p.classList.contains('referent')?'referent':genre;
+        ouvrir(p,texteDe(g,n,p.classList.contains('on'),personneDe(p),liens,etageDe(p))); }
       p.addEventListener('click',clic);
       p.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' ')clic(e); });
     });
   }
   // Pose (ou retire) la photo sur une place : <image> dans le SVG, fond d'image sur une brique HTML.
-  function garnir(p,genre,n,occupe,personne){
+  function garnir(p,genre,n,occupe,personne,etage){
     var nom=personne&&personne.nom||'', photo=occupe&&personne&&personne.photo||'';
     p.setAttribute('data-nom',nom); p.setAttribute('data-photo',photo);
-    var t=texteDe(genre,n,occupe,{nom:nom,photo:photo}); p.setAttribute('aria-label',t.titre+', '+t.texte);
+    if(etage){ p.setAttribute('data-etage',etage.ref.etage); p.setAttribute('data-compte',etage.compte); }
+    var t=texteDe(genre,n,occupe,{nom:nom,photo:photo},null,etage); p.setAttribute('aria-label',t.titre+', '+t.texte);
     if(p.namespaceURI===NS){
       var im=p.querySelector('image');
       if(photo){ if(!im){ var r=p.querySelector('rect.base'); im=el('image',{x:r.getAttribute('x'),y:r.getAttribute('y'),width:r.getAttribute('width'),height:r.getAttribute('height'),preserveAspectRatio:'xMidYMid slice','class':'portrait'},p); }
@@ -162,9 +179,42 @@
     ordre.forEach(function(p,k){ setTimeout(function(){p.classList.add('on')},k*60); });
   }
   // La place n vient d'être prise : elle s'éclaire une fois, quand elle passe à l'écran.
-  function eclairer(places,n,genre,personne){
+  function eclairer(places,n,genre,personne,etage){
     var p=places[n]; if(!p)return;
-    observer(p,function(){ if(genre)garnir(p,genre,n,true,personne); p.classList.add('on'); p.classList.add('neuve'); },.5);
+    observer(p,function(){ if(genre)garnir(p,genre,n,true,personne,etage); p.classList.add('on'); p.classList.add('neuve'); },.5);
+  }
+  // Place les futurs habitants sur la façade : un étage par personne référente (sa fenêtre en premier), puis les personnes qu'elle a réunies.
+  function placerEtages(fens,d,anime){
+    var ordre=[];
+    d.etages.forEach(function(E){
+      var base=(E.ref.etage-1)*10, info={ref:E.ref,compte:E.personnes.length};
+      var pRef=fens[base+1];
+      if(pRef){ pRef.classList.add('referent'); garnir(pRef,'referent',base+1,true,{nom:E.ref.nom},info);
+        if(!pRef.querySelector('rect.marque')){ var r=pRef.querySelector('rect.base'); el('rect',{'class':'marque',x:+r.getAttribute('x')+4,y:+r.getAttribute('y')+4,width:+r.getAttribute('width')-8,height:5,rx:1},pRef); }
+        if(!pRef.classList.contains('on')) ordre.push(pRef); }
+      for(var k=1;k<=PAR_ETAGE;k++){
+        var p=fens[base+1+k], pers=E.personnes[k-1], occ=!!pers; if(!p)continue;
+        garnir(p,'fenetre',base+1+k,occ,pers,info);
+        if(!occ){p.classList.remove('on');continue}
+        if(!p.classList.contains('on')) ordre.push(p);
+      }
+    });
+    if(!anime||reduit){ordre.forEach(function(p){p.classList.add('on')});return}
+    ordre.sort(function(a,b){return ((+a.getAttribute('data-n'))*37)%101-((+b.getAttribute('data-n'))*37)%101});
+    ordre.forEach(function(p,k){ setTimeout(function(){p.classList.add('on')},k*60); });
+  }
+  // Numéro de fenêtre d'une personne : k-ième (1..9) réunie par R → fenêtre (étage-1)*10+1+k ; 0 si l'étage est complet.
+  function fenetreDe(R,k){ return (R&&k>=1&&k<=PAR_ETAGE)?(R.etage-1)*10+1+k:0; }
+  // Remplit une liste <ul class="etages"> : un item par étage, avec la progression.
+  function etages(ul,d){
+    if(!ul)return; ul.innerHTML='';
+    d.etages.forEach(function(E){
+      var li=hel('li'); var n=E.personnes.length;
+      li.appendChild(hel('b',null,E.ref.nom)); var barre=hel('i'); barre.style.setProperty('--p',Math.min(100,n/PAR_ETAGE*100)+'%'); li.appendChild(barre);
+      li.appendChild(hel('span',null,n+'/'+PAR_ETAGE)); li.setAttribute('aria-label','Étage '+E.ref.etage+', '+E.ref.nom+' : '+n+' sur '+PAR_ETAGE);
+      if(n>=PAR_ETAGE) li.classList.add('complet');
+      ul.appendChild(li);
+    });
   }
 
   /* ---------- Façade SVG : 5 étages × 10 fenêtres, numérotées du bas vers le haut ; mur de 120 briques en option ---------- */
@@ -205,5 +255,5 @@
     return {fens:fens,briques:briques};
   }
 
-  window.Batiment={charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,eclairer:eclairer,fermer:fermer,observer:observer,reduit:reduit};
+  window.Batiment={charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,placer:placerEtages,eclairer:eclairer,etages:etages,fenetreDe:fenetreDe,referentDe:referentDe,REFERENTS:REFERENTS,PAR_ETAGE:PAR_ETAGE,fermer:fermer,observer:observer,reduit:reduit};
 })();

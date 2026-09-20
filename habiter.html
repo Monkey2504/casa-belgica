@@ -62,7 +62,8 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>Ou passe nous voir :</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">fenêtres allumées</span> sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">fenêtres allumées</span> sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption>
+  <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
 </div>
 </div>
 </section>
@@ -130,7 +131,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
-    <label>Ta personne référente : le prénom de qui t'a parlé du projet et te suit<input name="referent" required maxlength="120" autocomplete="off"></label>
+    <label>Ta personne référente, celle qui t'a parlé du projet et qui te suit<select name="referent" required><option value="">Choisis son prénom</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
@@ -173,7 +174,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     B.rouleau(document.getElementById('r-loyer'),etat.habitants*300);
     document.getElementById('l-hab').textContent=etat.habitants===1?'fenêtre allumée':'fenêtres allumées';
   }
-  B.charger().then(function(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',d.habitants,d.noms.habitant,true); })
+  B.charger().then(function(d){ etat=d; afficher(); B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); })
     .catch(function(){ afficher(); });
 
   /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */
@@ -197,13 +198,18 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
-      var n=d?(d.brut.habitants||0):null, texte;
-      if(n===null) texte="C'est noté, "+nom+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
-      else if(n<=50) texte="C'est noté, "+nom+". Ta fenêtre est la n°"+n+" sur 50"+(affiche?(photo?", avec ton prénom et ta photo dessus":", avec ton prénom dessus"):"")+". On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant."+(photoRatee?" La photo n'est pas passée : tu peux nous l'envoyer par e-mail.":"");
-      else texte="C'est noté, "+nom+". Les 50 fenêtres sont prises, tu es sur la liste d'attente (n°"+n+"). On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      // Où la personne atterrit : sur l'étage de sa personne référente, à la k-ième place réunie.
+      var R=B.referentDe(referent), E=d&&R?d.etages.filter(function(e){return e.ref===R})[0]:null, k=E?E.personnes.length:0, n=E?B.fenetreDe(R,k):0, texte;
+      var suite=(affiche?(photo?", avec ton prénom et ta photo dessus":", avec ton prénom dessus"):"")+". On te recontacte, et tu restes bienvenu·e au 645 chaussée de Gand dès maintenant."+(photoRatee?" La photo n'est pas passée : tu peux nous l'envoyer par e-mail.":"");
+      if(!d) texte="C'est noté, "+nom+". On garde ta place dans la liste et on te recontacte. Tu restes bienvenu·e au 645 chaussée de Gand dès maintenant.";
+      else if(n) texte="C'est noté, "+nom+". Tu es sur l'étage "+R.etage+", celui de "+R.nom+" : fenêtre "+n+suite;
+      else texte="C'est noté, "+nom+". L'étage de "+R.nom+" est complet, tu es sur sa liste d'attente ("+k+"e personne)"+suite;
       ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='fenetre-msg'; glyphe.setAttribute('aria-hidden','true');
       ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
-      if(d){ etat=d; afficher(); B.allumer(fac.fens,'fenetre',Math.max(0,d.habitants-1),d.noms.habitant,false); if(n<=50) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''}); }
+      if(d){ etat=d; afficher(); B.etages(document.getElementById('etages'),d);
+        // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
+        var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
+        if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
       f.nom.value='';f.contact.value='';f.referent.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })

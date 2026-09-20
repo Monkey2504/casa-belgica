@@ -270,6 +270,18 @@ h1 mark{border:0;background:linear-gradient(transparent 62%,rgba(227,195,98,.28)
 .fen .veille{fill:var(--or-pale);opacity:0;pointer-events:none}
 .fen:focus-visible .base{stroke:var(--or);stroke-width:3}
 .fen[aria-expanded="true"] .base{stroke:#fff;stroke-width:2}
+/* la fenêtre de la personne référente : cadre blanc et barre sombre en haut */
+.fen.referent.on .base{stroke:#fff;stroke-width:2}
+.fen .marque{fill:var(--vert-nuit);opacity:0;pointer-events:none;transition:opacity .6s}
+.fen.referent.on .marque{opacity:1}
+/* remplissage par étage : cinq pastilles avec une barre */
+.etages{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.85rem;color:var(--sur-vert-mut)}
+.etages li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;min-width:120px}
+.etages b{color:#fff;font-weight:600}
+.etages i{display:block;height:6px;background:#22382B;border-radius:999px;overflow:hidden}
+.etages i:before{content:"";display:block;height:100%;width:var(--p,0%);background:var(--or);border-radius:999px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.etages li.complet b{color:var(--or)}
+.etages span{font-variant-numeric:tabular-nums}
 /* portrait dans une fenêtre ou sur une brique : la place garde son cadre doré */
 .fen .portrait,.brique .portrait{pointer-events:none}
 .fen.on.photo .base{fill:#0E1B13}
@@ -371,7 +383,10 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 /* ---- Formulaires d'inscription (sur fond vert nuit, sections .ask) ---- */
 .form{position:relative;display:grid;gap:16px;max-width:520px;min-width:0}
 .form label{display:grid;gap:8px;font-weight:600;font-size:.95rem;color:var(--sur-vert)}
-.form input,.form textarea{width:100%;min-width:0;font:inherit;font-size:1rem;color:#fff;background:#0E1D14;border:1.5px solid #3B4F43;border-radius:3px;padding:12px 14px;min-height:48px}
+.form input,.form textarea,.form select{width:100%;min-width:0;font:inherit;font-size:1rem;color:#fff;background:#0E1D14;border:1.5px solid #3B4F43;border-radius:3px;padding:12px 14px;min-height:48px}
+.form select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--or) 50%),linear-gradient(135deg,var(--or) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px;cursor:pointer}
+.form select:focus-visible{outline:3px solid var(--or);outline-offset:2px;border-color:var(--or)}
+.form select option{color:#fff;background:#0E1D14}
 .form textarea{min-height:110px;resize:vertical}
 .form input:focus-visible,.form textarea:focus-visible{outline:3px solid var(--or);outline-offset:2px;border-color:var(--or)}
 .form .actions{margin-top:4px}

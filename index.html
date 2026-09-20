@@ -37,6 +37,7 @@ footer b,footer a{color:var(--sur-vert)}
 .batiment{margin:0;justify-self:center;text-align:center}
 .batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible;margin-inline:auto}
 .batiment figcaption{margin:12px auto 0;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
+.batiment .etages{justify-content:center}
 .chiffres{display:grid;gap:10px}
 .chiffres p{max-width:none}
 .chiffres .gros+.fixe{margin-top:-6px}
@@ -74,7 +75,8 @@ footer b,footer a{color:var(--sur-vert)}
 
 <div class="etat">
 <div class="w">
-  <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Clique dessus.</figcaption></figure>
+  <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Un étage par personne référente. Clique dessus.</figcaption>
+  <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">futurs habitants inscrits</span></p>
     <p class="fixe"><b class="rouleau" id="r-loyer">0</b> € de loyers par mois, à 300 € la chambre</p>
@@ -114,7 +116,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:fhz
     // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
     B.observer(document.querySelector('.etat'),function(){
       afficher(d);
-      B.allumer(b.fens,'fenetre',d.habitants,d.noms.habitant,true);
+      B.placer(b.fens,d,true); B.etages(document.getElementById('etages'),d);
       B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
     },.15);
   }).catch(function(){ afficher({habitants:0,preteurs:0}); });
