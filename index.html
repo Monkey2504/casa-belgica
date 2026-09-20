@@ -7,6 +7,12 @@
 <meta name="description" content="Sortir du squat (Casa Belgica), coopérative de logement de transition en création à Molenbeek. Tu cherches un toit, ou tu veux aider à le construire ? Deux chemins, un même bâtiment.">
 <meta property="og:title" content="Sortir du squat — deux chemins, un même bâtiment">
 <meta property="og:description" content="J'ai besoin d'un toit / Je veux le construire. 50 chambres, 300 €/mois tout compris, portées par 120 prêteurs citoyens.">
+<meta property="og:url" content="https://casa-belgica.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://casa-belgica.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#13251A">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +37,7 @@ footer b,footer a{color:var(--sur-vert)}
 .etat .gros b{color:var(--or)}
 .etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
 .jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
-.jauge i{display:block;height:100%;width:0%;background:var(--or);border-radius:999px;transition:width .9s ease}
+.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 </style>
 </head>
 <body>
@@ -81,7 +87,7 @@ fetch('https://gjvxwijhowbyhfwlybvt.supabase.co/rest/v1/rpc/compteur',{method:'P
 .then(function(c){var n=Math.min(120,c.preteurs||0);
   document.getElementById('nb').textContent=n;
   document.getElementById('somme').textContent=(n*1000).toLocaleString('fr-BE')+' €';
-  document.getElementById('jauge').style.width=Math.max(n/120*100,n>0?2:0)+'%';})
+  document.getElementById('jauge').style.transform='scaleX('+Math.max(n/120,n>0?.02:0)+')';})
 .catch(function(){document.getElementById('nb').textContent='0';document.getElementById('somme').textContent='0 €';});
 </script>
 </body>

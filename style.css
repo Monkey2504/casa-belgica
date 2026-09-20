@@ -3,7 +3,7 @@
 /* ---- Jetons : palette du dossier imprimé (vert profond, or, crème) ---- */
 :root{
   --vert-nuit:#13251A; --vert:#1F4A35; --vert-clair:#2A5E45;
-  --or:#E3C362; --or-sombre:#B8963E; --or-pale:#F1DFA4;
+  --or:#E3C362; --or-sombre:#7C6326; --or-pale:#F1DFA4;
   --creme:#F3F1EA; --creme-2:#EAE7DD; --blanc:#FBFAF6;
   --encre:#17211B; --mut:#5E6B62; --ligne:#CFCBBD; --ligne-forte:#17211B;
   --sur-vert:#EFEADB; --sur-vert-mut:#A9B5AC;
@@ -58,25 +58,26 @@ h1 mark{background:none;color:var(--or);box-shadow:inset 0 -.14em transparent;bo
 .lead{font-size:1.15rem;color:var(--sur-vert);max-width:40em}
 .lead+.lead{margin-top:14px;color:var(--sur-vert-mut)}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;padding:15px 24px;text-decoration:none;border-radius:3px;border:1.5px solid transparent;transition:background .15s,color .15s,border-color .15s;min-height:48px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;padding:15px 24px;text-decoration:none;border-radius:3px;border:1.5px solid transparent;transition:background .15s,color .15s,border-color .15s,transform .1s;min-height:48px}
 .btn.or{background:var(--or);color:var(--vert-nuit)}
 .btn.or:hover{background:var(--or-pale)}
 .btn.ghost{background:transparent;color:var(--sur-vert);border-color:var(--sur-vert-mut)}
 .btn.ghost:hover{border-color:#fff;color:#fff}
 .btn.vert{background:var(--vert);color:#fff}
 .btn.vert:hover{background:var(--vert-clair)}
+.btn:active,.porte:active .faux-btn{transform:scale(.97)}
 
 .wall{margin:0;width:100%;max-width:520px;justify-self:end}
 @media(max-width:900px){.wall{justify-self:start}}
 .courses{display:flex;flex-direction:column;gap:4px;background:#0B1710;padding:6px;border:1px solid #2A3B30;border-radius:2px}
 .course{display:flex;gap:4px}
-.course b{flex:2 1 0;aspect-ratio:2/1;background:var(--or);border-radius:1px;position:relative;filter:brightness(var(--tint,1));transition:filter .15s, transform .15s}
+.course b{flex:2 1 0;aspect-ratio:2/1;background:var(--or);border-radius:1px;position:relative;filter:brightness(var(--tint,1))}
 .course b.half{flex:1 1 0;aspect-ratio:1/1}
-.course b:hover{filter:brightness(1.15);transform:translateY(-1px)}
 .wall figcaption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.88rem;color:var(--sur-vert-mut)}
 .wall figcaption strong{color:#fff;font-family:var(--disp);font-size:1.1rem}
 @media(prefers-reduced-motion:no-preference){
-  .course b{animation:poser .32s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 11ms)}
+  /* la pose ne se joue que quand le mur entre dans l'écran (classe .vu posée par le script) */
+  .courses.vu .course b{animation:poser .32s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i) * 11ms)}
   @keyframes poser{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 }
 
@@ -217,7 +218,7 @@ tr.tot td.n{color:var(--vert);font-size:1.4rem}
 .faq .rep{padding:0 0 26px;max-width:70ch;color:#33403A;font-size:1.02rem}
 .faq .rep p+p{margin-top:12px}
 @media(prefers-reduced-motion:no-preference){
-  .faq details[open] .rep{animation:ouvrir .3s ease both}
+  .faq details[open] .rep{animation:ouvrir .2s cubic-bezier(.23,1,.32,1) both}
   @keyframes ouvrir{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 }
 
@@ -256,7 +257,7 @@ footer a{color:var(--encre)}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero .w{position:relative;z-index:1}
 h1{font-size:clamp(2.9rem,7vw,5.6rem);line-height:.9;letter-spacing:-.035em;max-width:11ch}
-h1 mark{border:0;background:linear-gradient(transparent 62%,rgba(227,195,98,.28) 62% 92%,transparent 92%);color:var(--or)}
+h1 mark{border:0;background:linear-gradient(transparent 62%,rgba(227,195,98,.28) 62% 92%,transparent 92%);color:var(--or);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .immeuble{margin:0;width:100%;max-width:500px;justify-self:end}
 @media(max-width:900px){.immeuble{justify-self:start;max-width:420px}}
 .immeuble svg{display:block;width:100%;height:auto;overflow:visible}
@@ -291,21 +292,24 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .portes{flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);min-height:0}
 .porte{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(28px,5vw,64px) var(--gut) clamp(28px,4vw,48px);text-decoration:none;min-height:min(72vh,660px);transition:background .2s}
 .porte.habiter{background:var(--vert);color:var(--sur-vert)}
-.porte.habiter:hover{background:var(--vert-clair)}
 .porte.construire{background:var(--vert-nuit);color:var(--sur-vert)}
-.porte.construire:hover{background:#0E1D14}
 .porte .qui{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.5;color:var(--sur-vert-mut);max-width:30ch}
 .porte.habiter .qui{color:var(--or-pale)}
 .porte .grand{font-size:clamp(2.6rem,7vw,5.6rem);line-height:.92;letter-spacing:-.035em;font-weight:800;color:#fff;margin:0;max-width:none}
 .porte.construire .grand{color:var(--or)}
 .porte .grand .en{display:block;margin-top:18px;font-family:var(--body);font-weight:500;font-size:1rem;line-height:1.45;letter-spacing:0;color:var(--sur-vert-mut);max-width:34ch;text-wrap:pretty}
 .porte .bas{display:flex;align-items:center;gap:14px}
-.faux-btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border-radius:3px;font-weight:700;background:var(--or);color:var(--vert-nuit)}
-.porte:hover .faux-btn{background:var(--or-pale)}
+.faux-btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border-radius:3px;font-weight:700;background:var(--or);color:var(--vert-nuit);transition:background .15s,transform .1s}
 .porte .fleche{font-size:1.6rem;line-height:1;color:var(--or);transition:transform .2s}
-.porte:hover .fleche{transform:translateX(6px)}
 .porte:focus-visible{outline-offset:-6px}
 .sep-portes{width:1px;background:#3B4F43}
+/* survol réservé aux pointeurs fins : pas d'état collé au toucher */
+@media(hover:hover) and (pointer:fine){
+  .porte.habiter:hover{background:var(--vert-clair)}
+  .porte.construire:hover{background:#0E1D14}
+  .porte:hover .faux-btn{background:var(--or-pale)}
+  .porte:hover .fleche{transform:translateX(6px)}
+}
 @media(prefers-reduced-motion:reduce){.porte,.porte .fleche{transition:none}.porte:hover .fleche{transform:none}}
 @media(max-width:760px){
   .portes{grid-template-columns:minmax(0,1fr)}
@@ -326,6 +330,8 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form .ok,.form .ko{display:none;margin:0;padding:14px 16px;border-radius:3px;font-size:.98rem;max-width:none}
 .form .ok{background:rgba(227,195,98,.14);border:1.5px solid var(--or);color:#fff}
 .form .ko{background:rgba(255,255,255,.06);border:1.5px solid #B85C4A;color:var(--sur-vert)}
+/* mention sur les données, sous le bouton */
+.form .confidentialite{font-size:.85rem;line-height:1.5;color:var(--sur-vert-mut);max-width:none}
 /* honeypot : hors écran, jamais rempli par une personne */
 .form .hp{position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none}
 

@@ -7,6 +7,12 @@
 <meta name="description" content="Casa Belgica : 120 citoyens prêtent 1 000 € à 0 % pour débloquer un crédit bancaire de 900 000 € et loger 50 personnes sortant des squats bruxellois. 300 €/mois tout compris.">
 <meta property="og:title" content="Sortir du squat — Casa Belgica">
 <meta property="og:description" content="Il ne manque que 120 personnes. 1 brique = 1 000 €. 50 chambres à 300 €/mois pour sortir du squat à Bruxelles.">
+<meta property="og:url" content="https://casa-belgica.vercel.app/preter">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://casa-belgica.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#13251A">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -288,6 +294,7 @@
     <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Comptez-moi parmi les 120</button></div>
+    <p class="confidentialite">Votre nom et votre contact sont gardés par Ballal ASBL, uniquement pour revenir vers vous au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à fhzegert@gmail.com.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:fhzegert@gmail.com" style="color:#fff">fhzegert@gmail.com</a> — on pose la brique à la main.</p>
   </form>
@@ -347,6 +354,10 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   function brique(n){ return '<b class="reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
   function demi(n){ return '<b class="half reste-brique" data-n="'+n+'" style="--i:'+n+';--tint:'+tint(n)+'" title="Brique '+n+' · 1 000 €"></b>'; }
   mur.innerHTML=html;
+  // La pose des briques ne se joue que quand le mur entre dans l'écran.
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,io){ if(es[0].isIntersecting){ mur.classList.add('vu'); io.disconnect(); } },{threshold:.2}).observe(mur);
+  } else { mur.classList.add('vu'); }
 
   // Pose les briques jusqu'au nombre réel de promesses et met les compteurs à jour.
   function poser(total){
