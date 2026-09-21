@@ -418,6 +418,9 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form .apercu{width:72px;height:72px;object-fit:cover;border-radius:4px;border:2px solid var(--or);background:#0E1D14;margin-top:-6px}
 /* mention sur les données, sous le bouton */
 .form .confidentialite{font-size:.85rem;line-height:1.5;color:var(--sur-vert-mut);max-width:none}
+/* avant la case photo : la façade est publique, on le dit clairement */
+.form .avertissement{font-size:.9rem;line-height:1.5;color:var(--sur-vert);max-width:none;padding:12px 14px;border:1px solid var(--or-sombre);border-radius:10px;background:rgba(227,195,98,.08)}
+.form .avertissement strong{color:var(--or)}
 /* honeypot : hors écran, jamais rempli par une personne */
 .form .hp{position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none}
 
@@ -440,6 +443,8 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 @media(min-width:861px){.sources ol{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 48px}}
 .sources li::marker{color:var(--or-sombre);font-weight:700}
 .sources li strong{color:var(--encre)}
+.sources a{color:var(--or-sombre);text-decoration-thickness:1px;text-underline-offset:3px}
+.sources a:hover{color:var(--encre)}
 
 /* ---- En-tête sous 600 px : le logo et le bouton tiennent sur une ligne ---- */
 @media(max-width:600px){

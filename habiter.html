@@ -62,7 +62,7 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>Ou passe nous voir :</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">fenêtres allumées</span> sur 50</strong>, une par personne inscrite pour y vivre, soit <strong><span class="rouleau" id="r-loyer">0</span> €</strong> de loyers par mois à 300 € la chambre. Clique sur une fenêtre.</figcaption>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">fenêtres allumées</span> sur 50</strong>, une par personne inscrite pour y vivre. Un étage par personne référente. Clique sur une fenêtre.</figcaption>
   <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
 </div>
 </div>
@@ -135,12 +135,13 @@ h1{max-width:16ch}
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
+    <p class="avertissement"><strong>Avant de cocher :</strong> la façade est publique, tout le monde peut voir ton prénom et ta photo. Si tu as une raison de ne pas être visible, ne coche pas : ton inscription compte exactement pareil, ta fenêtre s'allume sans nom. Tu peux changer d'avis quand tu veux, on retire tout sur simple demande.</p>
     <label class="case"><input type="checkbox" name="affiche"> Mon prénom et ma photo peuvent apparaître sur une fenêtre de la façade, pour montrer que la liste avance.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Je m'inscris</button></div>
-    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à fhzegert@gmail.com. Ton prénom et ta photo n'apparaissent sur la façade que si tu coches la case. Pour les retirer, écris-nous.</p>
+    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à admin@ballal.be. Ton prénom et ta photo n'apparaissent sur la façade que si tu coches la case. Pour les retirer, écris-nous.</p>
     <p class="ok" role="status"></p>
-    <p class="ko">L'envoi n'a pas marché. Viens nous voir, ou écris à <a href="mailto:fhzegert@gmail.com" style="color:#fff">fhzegert@gmail.com</a></p>
+    <p class="ko">L'envoi n'a pas marché. Viens nous voir, ou écris à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">Ou passe nous voir.</h3>
@@ -157,7 +158,7 @@ h1{max-width:16ch}
 <div class="w">
 <b>Sortir du squat — Casa Belgica</b> · coopérative de logement de transition en création · Bruxelles<br>
 Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
-<a href="mailto:fhzegert@gmail.com">fhzegert@gmail.com</a> · <a href="preter.html">Je veux aider à le construire →</a> · <a href="/">l'entrée</a>
+<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Je veux aider à le construire →</a> · <a href="/">l'entrée</a>
 </div>
 </footer>
 
@@ -171,7 +172,6 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   var etat={habitants:0,noms:{habitant:{}}};
   function afficher(){
     B.rouleau(document.getElementById('r-hab'),etat.habitants);
-    B.rouleau(document.getElementById('r-loyer'),etat.habitants*300);
     document.getElementById('l-hab').textContent=etat.habitants===1?'fenêtre allumée':'fenêtres allumées';
   }
   B.charger().then(function(d){ etat=d; afficher(); B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); })
