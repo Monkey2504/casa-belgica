@@ -510,3 +510,7 @@ html[lang="ar"] .tag{font-family:inherit;transform:none}
 [dir="rtl"] .lead[lang="fr"]{text-align:right}
 /* en-tête étroit : le nom du projet cède la place à la navigation au lieu de la pousser hors écran */
 @media(max-width:600px){.logo{min-width:0;flex:1 1 auto}.logo span{display:block;overflow:hidden;text-overflow:ellipsis}nav{flex-shrink:0}}
+/* le programme d'abord, le bâtiment dessous */
+.logo span{display:grid;gap:3px;line-height:1}
+.logo small{font-family:var(--body);font-weight:500;text-transform:none;letter-spacing:.02em;font-size:.66rem;color:var(--sur-vert-mut);white-space:nowrap}
+@media(max-width:600px){.logo small{font-size:.6rem;overflow:hidden;text-overflow:ellipsis}}
