@@ -14,6 +14,12 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#13251A">
+<link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter">
+<link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/preter">
+<link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter">
+<link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter">
+<link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/preter">
+<link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/preter">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -30,6 +36,7 @@
     <a class="link" href="#argent">Les chiffres</a>
     <a class="link" href="#risque">Les risques</a>
     <a class="link" href="#faq">Objections</a>
+    <select class="langues" aria-label="Langue" onchange="location.href=this.value"><option value="/preter.html" lang="fr" selected>Français</option><option value="/en/preter.html" lang="en">English</option><option value="/de/preter.html" lang="de">Deutsch</option><option value="/nl/preter.html" lang="nl">Nederlands</option><option value="/ar/preter.html" lang="ar">العربية</option></select>
     <a class="lang" href="/">↩ Entrée</a>
     <a class="cta" href="#appel">Prêter 1 000 €</a>
   </nav>
@@ -280,8 +287,8 @@
 <h2>Ce qu'on vous demande.</h2>
   <figure class="wall">
     <div class="courses" id="mur" role="group" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser. Chaque brique se clique."></div>
-    <figcaption><span><strong class="num rouleau" id="compte">0</strong> <span id="l-compte">briques</span> sur 120</span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
-    <p class="compteur-ligne" aria-live="polite"><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles. Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
+    <figcaption><span id="mur-compte" hidden><strong class="num rouleau" id="compte">0</strong> <span id="l-compte">briques</span> sur 120</span><span id="mur-amorce"><strong class="num">Les premières briques se posent</strong></span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
+    <p class="compteur-ligne" aria-live="polite"><span id="rapporte-compte" hidden><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles.</span></span><span id="rapporte-amorce"><strong class="num">120</strong> <span>promesses à réunir, 1 000 € chacune, à 0 %.</span></span> <span>Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
   </figure>
 <ol class="asks">
   <li><strong>Partagez le diagnostic</strong><p>Pour quelqu'un qui sort d'un squat, il n'existe vraiment aucun sas entre le squat et le studio à 775 € ? Dites-nous si on se trompe.</p></li>
@@ -332,7 +339,8 @@
 <div class="w">
 <b>Sortir du squat — Casa Belgica</b> · coopérative de logement de transition en création · Bruxelles<br>
 Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="en.html" lang="en" hreflang="en">English version</a> · <a href="/">l'entrée</a>
+<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/">l'entrée</a>
+<p class="langues-pied" aria-label="Autres langues"><a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
 </div>
 </footer>
 
@@ -364,7 +372,15 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
   function synchroniser(){ for(var k in jumelles){ jumelles[k].className=places[k].className.replace('half','').trim()+' half'; } }
 
   var etat={preteurs:0,noms:{preteur:{}}}, visible=false;
-  function afficher(){ B.rouleau(compte,etat.preteurs); B.rouleau(rapporte,etat.preteurs*1000); document.getElementById('l-compte').textContent=etat.preteurs===1?'brique':'briques'; }
+  // Les chiffres ne s'affichent qu'à partir de 3 promesses réelles ; avant, le mur en pointillé parle seul.
+  var SEUIL=3;
+  function afficher(){
+    var assez=etat.preteurs>=SEUIL;
+    document.getElementById('mur-compte').hidden=!assez; document.getElementById('rapporte-compte').hidden=!assez;
+    document.getElementById('mur-amorce').hidden=assez; document.getElementById('rapporte-amorce').hidden=assez;
+    if(!assez)return;
+    B.rouleau(compte,etat.preteurs); B.rouleau(rapporte,etat.preteurs*1000); document.getElementById('l-compte').textContent=etat.preteurs===1?'brique':'briques';
+  }
   function poser(anime){ B.allumer(places,'brique',etat.preteurs,etat.noms.preteur,anime); synchroniser(); if(visible) afficher(); }
   // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
   B.observer(mur,function(){ visible=true; mur.classList.add('vu'); afficher(); },.2);

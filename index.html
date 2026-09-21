@@ -14,6 +14,12 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#13251A">
+<link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/">
+<link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/">
+<link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/">
+<link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/">
+<link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -41,6 +47,8 @@ footer b,footer a{color:var(--sur-vert)}
 .chiffres{display:grid;gap:10px}
 .chiffres p{max-width:none}
 .chiffres .gros+.fixe{margin-top:-6px}
+.chiffres .pret{display:grid;gap:10px}
+.chiffres [hidden]{display:none}
 .chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
 .etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2.8vw,1.9rem);color:#fff}
 .etat .gros b{color:var(--or)}
@@ -55,7 +63,7 @@ footer b,footer a{color:var(--sur-vert)}
 <header>
 <div class="w">
   <a class="logo" href="/"><i aria-hidden="true"></i><span>SORTIR DU SQUAT</span></a>
-  <nav aria-label="Langue"><a class="lang" href="en.html" lang="en" hreflang="en">EN</a></nav>
+  <nav aria-label="Langue"><select class="langues" aria-label="Langue" onchange="location.href=this.value"><option value="/" lang="fr" selected>Français</option><option value="/en/index.html" lang="en">English</option><option value="/de/index.html" lang="de">Deutsch</option><option value="/nl/index.html" lang="nl">Nederlands</option><option value="/ar/index.html" lang="ar">العربية</option></select></nav>
 </div>
 </header>
 
@@ -78,11 +86,17 @@ footer b,footer a{color:var(--sur-vert)}
   <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Un étage par personne référente. Clique dessus.</figcaption>
   <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
   <div class="chiffres" aria-live="polite">
-    <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">futurs habitants inscrits</span></p>
-    <p class="fixe"><b class="rouleau" id="r-loyer">0</b> € de loyers par mois, à 300 € la chambre</p>
-    <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">promesses de prêt</span> sur 120</p>
-    <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
-    <p class="fixe"><b class="rouleau" id="r-somme">0</b> € promis sur 120 000 €, à 1 000 € la brique</p>
+    <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">fenêtres allumées</span> sur 50</p>
+    <p class="fixe">Les 5 personnes référentes, une par étage, et <b class="rouleau" id="r-ins">0</b> <span id="l-ins">personne inscrite</span>. <b class="rouleau" id="r-loyer">1 500</b>&nbsp;€ de loyers par mois, à 300 € la chambre.</p>
+    <div class="pret" id="pret-chiffres" hidden>
+      <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">promesses de prêt</span> sur 120</p>
+      <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
+      <p class="fixe"><b class="rouleau" id="r-somme">0</b> € promis sur 120 000 €, à 1 000 € la brique</p>
+    </div>
+    <div class="pret" id="pret-amorce">
+      <p class="gros">Les premières briques se posent.</p>
+      <p class="fixe"><b>120</b> promesses de prêt à réunir, 1 000&nbsp;€ chacune, à 0&nbsp;%.</p>
+    </div>
     <p class="fixe etape">Étape actuelle : réunir les 120 promesses. Ensuite : le bâtiment, la banque, les travaux, les clés.</p>
   </div>
 </div>
@@ -92,6 +106,7 @@ footer b,footer a{color:var(--sur-vert)}
 <div class="w">
 <b>Sortir du squat — Casa Belgica</b> · un même bâtiment : 50 chambres, 300 €/mois tout compris, portées par 120 prêteurs<br>
 Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:admin@ballal.be">écrire</a>
+<p class="langues-pied" aria-label="Autres langues"><a href="/en/index.html" lang="en" hreflang="en">English</a> · <a href="/de/index.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/index.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
 </div>
 </footer>
 
@@ -103,14 +118,22 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · <a href="mailto:adm
   var b=B.facade(document.getElementById('batiment'),{mur:true});
   B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
   B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
+  // Les 5 personnes référentes vivront là : le compteur part d'elles. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
+  var SEUIL=3;
   function afficher(d){
-    B.rouleau(document.getElementById('r-hab'),d.habitants);
-    B.rouleau(document.getElementById('r-loyer'),d.habitants*300);
+    var total=Math.min(50,B.EQUIPE+d.habitants);
+    B.rouleau(document.getElementById('r-hab'),total);
+    B.rouleau(document.getElementById('r-ins'),d.habitants);
+    B.rouleau(document.getElementById('r-loyer'),total*300);
+    document.getElementById('l-hab').textContent=total===1?'fenêtre allumée':'fenêtres allumées';
+    document.getElementById('l-ins').textContent=d.habitants===1?'personne inscrite':'personnes inscrites';
+    var assez=d.preteurs>=SEUIL;
+    document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
+    if(!assez)return;
     B.rouleau(document.getElementById('r-pret'),d.preteurs);
     B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
-    document.getElementById('l-hab').textContent=d.habitants===1?'futur habitant inscrit':'futurs habitants inscrits';
     document.getElementById('l-pret').textContent=d.preteurs===1?'promesse de prêt':'promesses de prêt';
-    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,d.preteurs>0?.02:0)+')';
+    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,.02)+')';
   }
   B.charger().then(function(d){
     // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran

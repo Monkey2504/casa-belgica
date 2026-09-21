@@ -10,7 +10,48 @@
 
   function el(n,a,parent){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(parent)parent.appendChild(e);return e}
   function hel(n,cls,txt){var e=document.createElement(n);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
-  function fmt(v){return Math.max(0,v|0).toLocaleString('fr-BE')}
+  // Langue de la page : les textes des bulles et le format des nombres suivent l'attribut lang du document.
+  var LANG=((document.documentElement.getAttribute('lang')||'fr').slice(0,2)).toLowerCase();
+  var LOCALE={fr:'fr-BE',en:'en-GB',de:'de-DE',nl:'nl-BE',ar:'fr-BE'}[LANG]||'fr-BE';
+  function fmt(v){return Math.max(0,v|0).toLocaleString(LOCALE)}
+  var TEXTES={
+    fr:{etage:function(n,nom){return 'Étage '+n+' : '+nom},refRdc:'Référent·e du rez-de-chaussée. ',refEtage:'Référent·e de l\'étage. ',
+        reunies:function(c,t){return c+' personne'+(c>1?'s':'')+' sur '+t+' réunie'+(c>1?'s':'')+' sur cet étage.'},
+        fenetre:function(n){return 'Fenêtre '+n},ou:function(e,nom){return ', étage '+e+' ('+nom+')'},libre:'Encore libre.',lienFenetre:'Tu pourrais être là',
+        yVivra:function(nom){return nom+', y vivra'},anonymeHab:'Quelqu’un y vivra (prénom non affiché)',
+        brique:function(n){return 'Brique '+n},aPoser:'À poser : 1 000 € prêtés à 0 %, remboursés.',lienBrique:'Comptez-vous parmi les 120',
+        aPromis:function(nom){return nom+', a promis 1 000 €'},anonymePret:'Une promesse de 1 000 € (nom non affiché)',
+        etagesAria:function(e,nom,n,t){return 'Étage '+e+', '+nom+' : '+n+' sur '+t}},
+    en:{etage:function(n,nom){return 'Floor '+n+': '+nom},refRdc:'Ground-floor referent. ',refEtage:'Floor referent. ',
+        reunies:function(c,t){return c+(c>1?' people':' person')+' out of '+t+' gathered on this floor.'},
+        fenetre:function(n){return 'Window '+n},ou:function(e,nom){return ', floor '+e+' ('+nom+')'},libre:'Still free.',lienFenetre:'You could be here',
+        yVivra:function(nom){return nom+', will live here'},anonymeHab:'Someone will live here (name not shown)',
+        brique:function(n){return 'Brick '+n},aPoser:'To be laid: €1,000 lent at 0%, paid back.',lienBrique:'Count yourself among the 120',
+        aPromis:function(nom){return nom+', pledged €1,000'},anonymePret:'A €1,000 pledge (name not shown)',
+        etagesAria:function(e,nom,n,t){return 'Floor '+e+', '+nom+': '+n+' of '+t}},
+    de:{etage:function(n,nom){return 'Etage '+n+': '+nom},refRdc:'Bezugsperson im Erdgeschoss. ',refEtage:'Bezugsperson der Etage. ',
+        reunies:function(c,t){return c+(c>1?' Personen':' Person')+' von '+t+' auf dieser Etage versammelt.'},
+        fenetre:function(n){return 'Fenster '+n},ou:function(e,nom){return ', Etage '+e+' ('+nom+')'},libre:'Noch frei.',lienFenetre:'Du könntest hier sein',
+        yVivra:function(nom){return nom+', wird hier wohnen'},anonymeHab:'Jemand wird hier wohnen (Name nicht angezeigt)',
+        brique:function(n){return 'Stein '+n},aPoser:'Noch zu setzen: 1.000 € zu 0 % geliehen, zurückgezahlt.',lienBrique:'Zählen Sie sich zu den 120',
+        aPromis:function(nom){return nom+', hat 1.000 € zugesagt'},anonymePret:'Eine Zusage über 1.000 € (Name nicht angezeigt)',
+        etagesAria:function(e,nom,n,t){return 'Etage '+e+', '+nom+': '+n+' von '+t}},
+    nl:{etage:function(n,nom){return 'Verdieping '+n+': '+nom},refRdc:'Referentiepersoon gelijkvloers. ',refEtage:'Referentiepersoon van de verdieping. ',
+        reunies:function(c,t){return c+(c>1?' mensen':' persoon')+' van '+t+' verzameld op deze verdieping.'},
+        fenetre:function(n){return 'Raam '+n},ou:function(e,nom){return ', verdieping '+e+' ('+nom+')'},libre:'Nog vrij.',lienFenetre:'Jij zou hier kunnen zijn',
+        yVivra:function(nom){return nom+', zal hier wonen'},anonymeHab:'Iemand zal hier wonen (naam niet getoond)',
+        brique:function(n){return 'Steen '+n},aPoser:'Nog te leggen: € 1.000 geleend aan 0 %, terugbetaald.',lienBrique:'Reken jezelf bij de 120',
+        aPromis:function(nom){return nom+', beloofde € 1.000'},anonymePret:'Een belofte van € 1.000 (naam niet getoond)',
+        etagesAria:function(e,nom,n,t){return 'Verdieping '+e+', '+nom+': '+n+' van '+t}},
+    ar:{etage:function(n,nom){return 'الطابق '+n+' : '+nom},refRdc:'الشخص المرجعي للطابق الأرضي. ',refEtage:'الشخص المرجعي للطابق. ',
+        reunies:function(c,t){return c+' من '+t+' أشخاص اجتمعوا في هذا الطابق.'},
+        fenetre:function(n){return 'النافذة '+n},ou:function(e,nom){return '، الطابق '+e+' ('+nom+')'},libre:'ما زالت شاغرة.',lienFenetre:'يمكن أن تكون هنا',
+        yVivra:function(nom){return nom+'، سيسكن هنا'},anonymeHab:'شخص سيسكن هنا (الاسم غير معروض)',
+        brique:function(n){return 'الطوبة '+n},aPoser:'لم توضع بعد: 1 000 € قرض بدون فائدة، يُرَدّ.',lienBrique:'كن من بين الـ 120',
+        aPromis:function(nom){return nom+'، وعد بـ 1 000 €'},anonymePret:'وعد بـ 1 000 € (الاسم غير معروض)',
+        etagesAria:function(e,nom,n,t){return 'الطابق '+e+'، '+nom+' : '+n+' من '+t}}
+  };
+  var T=TEXTES[LANG]||TEXTES.fr;
   // Joue fn une seule fois quand la cible entre dans l'écran, ou si elle a déjà été dépassée (arrivée par une ancre plus bas).
   function observer(cible,fn,seuil){
     if(!('IntersectionObserver' in window)){fn();return}
@@ -22,6 +63,7 @@
   }
   function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
   // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
+  // Les cinq personnes référentes vivront dans le bâtiment : elles comptent parmi les 50, une par étage.
   var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Cissé',etage:3},{nom:'Delya',etage:4},{nom:'Ibrahim',etage:5}];
   var PAR_ETAGE=9;
   function normaliser(t){ return (t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
@@ -127,15 +169,15 @@
   function texteDe(genre,n,occupe,personne,liens,etage){
     var nom=personne&&personne.nom||'', photo=personne&&personne.photo||'';
     if(genre==='referent'){
-      return {titre:'Étage '+etage.ref.etage+' : '+etage.ref.nom,texte:(etage.ref.etage===1?'Référent·e du rez-de-chaussée. ':'Référent·e de l\'étage. ')+etage.compte+' personne'+(etage.compte>1?'s':'')+' sur '+PAR_ETAGE+' réunie'+(etage.compte>1?'s':'')+' sur cet étage.'};
+      return {titre:T.etage(etage.ref.etage,etage.ref.nom),texte:(etage.ref.etage===1?T.refRdc:T.refEtage)+T.reunies(etage.compte,PAR_ETAGE)};
     }
     if(genre==='fenetre'){
-      var ou=etage?', étage '+etage.ref.etage+' ('+etage.ref.nom+')':'';
-      if(!occupe) return {titre:'Fenêtre '+n+ou,texte:'Encore libre.',lien:liens&&liens.fenetre?{href:liens.fenetre,texte:'Tu pourrais être là'}:null};
-      return {titre:'Fenêtre '+n+ou,texte:nom?nom+', y vivra':'Quelqu’un y vivra (prénom non affiché)',photo:photo};
+      var ou=etage?T.ou(etage.ref.etage,etage.ref.nom):'';
+      if(!occupe) return {titre:T.fenetre(n)+ou,texte:T.libre,lien:liens&&liens.fenetre?{href:liens.fenetre,texte:T.lienFenetre}:null};
+      return {titre:T.fenetre(n)+ou,texte:nom?T.yVivra(nom):T.anonymeHab,photo:photo};
     }
-    if(!occupe) return {titre:'Brique '+n,texte:'À poser : 1 000 € prêtés à 0 %, remboursés.',lien:liens&&liens.brique?{href:liens.brique,texte:'Comptez-vous parmi les 120'}:null};
-    return {titre:'Brique '+n,texte:nom?nom+', a promis 1 000 €':'Une promesse de 1 000 € (nom non affiché)',photo:photo};
+    if(!occupe) return {titre:T.brique(n),texte:T.aPoser,lien:liens&&liens.brique?{href:liens.brique,texte:T.lienBrique}:null};
+    return {titre:T.brique(n),texte:nom?T.aPromis(nom):T.anonymePret,photo:photo};
   }
   function personneDe(p){ return {nom:p.getAttribute('data-nom')||'',photo:p.getAttribute('data-photo')||''}; }
   function etageDe(p){ var e=+p.getAttribute('data-etage'); if(!e)return null; return {ref:REFERENTS[e-1],compte:+(p.getAttribute('data-compte')||0)}; }
@@ -211,7 +253,7 @@
     d.etages.forEach(function(E){
       var li=hel('li'); var n=E.personnes.length;
       li.appendChild(hel('b',null,E.ref.nom)); var barre=hel('i'); barre.style.setProperty('--p',Math.min(100,n/PAR_ETAGE*100)+'%'); li.appendChild(barre);
-      li.appendChild(hel('span',null,n+'/'+PAR_ETAGE)); li.setAttribute('aria-label','Étage '+E.ref.etage+', '+E.ref.nom+' : '+n+' sur '+PAR_ETAGE);
+      li.appendChild(hel('span',null,n+'/'+PAR_ETAGE)); li.setAttribute('aria-label',T.etagesAria(E.ref.etage,E.ref.nom,n,PAR_ETAGE));
       if(n>=PAR_ETAGE) li.classList.add('complet');
       ul.appendChild(li);
     });
@@ -255,5 +297,5 @@
     return {fens:fens,briques:briques};
   }
 
-  window.Batiment={charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,placer:placerEtages,eclairer:eclairer,etages:etages,fenetreDe:fenetreDe,referentDe:referentDe,REFERENTS:REFERENTS,PAR_ETAGE:PAR_ETAGE,fermer:fermer,observer:observer,reduit:reduit};
+  window.Batiment={EQUIPE:REFERENTS.length,charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,placer:placerEtages,eclairer:eclairer,etages:etages,fenetreDe:fenetreDe,referentDe:referentDe,REFERENTS:REFERENTS,PAR_ETAGE:PAR_ETAGE,fermer:fermer,observer:observer,reduit:reduit};
 })();
