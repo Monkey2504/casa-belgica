@@ -495,9 +495,18 @@ nav a.cta{font-size:.85rem}
 th{letter-spacing:.08em;text-transform:uppercase}
 .porte .grand{font-size:clamp(3.2rem,8.6vw,7.2rem);line-height:.9;color:#fff}
 .porte.construire .grand{color:#fff}
-@media(max-width:760px){.porte .grand{font-size:clamp(2.8rem,13vw,4.4rem)}}
+@media(max-width:760px){.porte .grand{font-size:clamp(2.6rem,10.4vw,4.4rem)}}
 /* le mot tagué */
 .tag{font-family:var(--tag);font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;color:var(--or);display:inline-block;transform:rotate(-4deg) translateY(.04em);font-size:1.02em}
 html[lang="ar"] .tag{font-family:inherit;transform:none}
 .porte .grand .en{font-family:var(--body);font-weight:400;text-transform:none;letter-spacing:0}
 @media(max-width:600px){.logo{font-size:.85rem;letter-spacing:.14em}}
+/* arabe : Cairo a de vraies graisses, l'écriture demande plus d'interligne ; le français cité se lit de gauche à droite */
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] .porte .grand,[dir="rtl"] .manifeste .grand,[dir="rtl"] .logo,[dir="rtl"] .kick,[dir="rtl"] .btn,[dir="rtl"] nav a.cta,[dir="rtl"] .faux-btn,[dir="rtl"] .keys b,[dir="rtl"] .stats b,[dir="rtl"] .etat .gros,[dir="rtl"] .wall figcaption strong,[dir="rtl"] .bulle b,[dir="rtl"] .faq summary,[dir="rtl"] .bandeau .piste{font-weight:800}
+[dir="rtl"] h1{font-size:clamp(2.3rem,5.6vw,4.4rem);line-height:1.15}
+[dir="rtl"] .porte .grand{font-size:clamp(2.6rem,6.4vw,5.4rem);line-height:1.1}
+[dir="rtl"] h2{line-height:1.2}
+[dir="rtl"] [lang="fr"],[dir="rtl"] [lang="en"]{direction:ltr;unicode-bidi:isolate}
+[dir="rtl"] .lead[lang="fr"]{text-align:right}
+/* en-tête étroit : le nom du projet cède la place à la navigation au lieu de la pousser hors écran */
+@media(max-width:600px){.logo{min-width:0;flex:1 1 auto}.logo span{display:block;overflow:hidden;text-overflow:ellipsis}nav{flex-shrink:0}}

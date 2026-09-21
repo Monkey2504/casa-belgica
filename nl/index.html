@@ -33,6 +33,7 @@ header .w{justify-content:center;position:relative}
 header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
 header nav{position:absolute;right:var(--gut)}
 @media(max-width:760px){html,body{height:auto}}
+@media(max-width:600px){header .w{justify-content:space-between}header nav{position:static}}
 footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
 footer .w{text-align:center}
 footer b,footer a{color:var(--sur-vert)}
@@ -70,13 +71,13 @@ footer b,footer a{color:var(--sur-vert)}
 <main class="portes">
   <a class="porte habiter" href="habiter.html">
     <span class="qui">Heb je net je papieren gekregen?<br>Kom je uit een kraakpand?<br>Slaap je slecht, betaal je te veel?</span>
-    <h1 class="grand">Ik heb<br>een dak nodig.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+    <h1 class="grand">Ik heb<br>een <em class="tag">dak</em> nodig.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
     <span class="bas"><span class="faux-btn">Hierlangs</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
   <div class="sep-portes" aria-hidden="true"></div>
   <a class="porte construire" href="preter.html">
     <span class="qui">Kan je € 1.000 uitlenen?<br>Je netwerk openstellen?<br>Onze cijfers nakijken?</span>
-    <h1 class="grand">Steun<br>het project.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
+    <h1 class="grand">Steun<br>het <em class="tag">project</em>.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
     <span class="bas"><span class="faux-btn">Bekijk het dossier</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
 </main>

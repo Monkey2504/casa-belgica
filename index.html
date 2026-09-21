@@ -33,6 +33,7 @@ header .w{justify-content:center;position:relative}
 header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
 header nav{position:absolute;right:var(--gut)}
 @media(max-width:760px){html,body{height:auto}}
+@media(max-width:600px){header .w{justify-content:space-between}header nav{position:static}}
 footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
 footer .w{text-align:center}
 footer b,footer a{color:var(--sur-vert)}
@@ -70,13 +71,13 @@ footer b,footer a{color:var(--sur-vert)}
 <main class="portes">
   <a class="porte habiter" href="habiter.html">
     <span class="qui">Tu viens d'avoir tes papiers ?<br>Tu sors d'un squat ?<br>Tu dors mal, tu payes trop ?</span>
-    <h1 class="grand">J'ai besoin<br>d'un toit.<span class="en" lang="en">I need a roof — English spoken, come as you are.</span></h1>
+    <h1 class="grand">J'ai besoin<br>d'un <em class="tag">toit</em>.<span class="en" lang="en">I need a roof — English spoken, come as you are.</span></h1>
     <span class="bas"><span class="faux-btn">C'est par ici</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
   <div class="sep-portes" aria-hidden="true"></div>
   <a class="porte construire" href="preter.html">
     <span class="qui">Tu peux prêter 1 000 € ?<br>Ouvrir ton réseau ?<br>Vérifier nos chiffres ?</span>
-    <h1 class="grand">Soutenir<br>le projet.<span class="en" lang="en">Support the project — lend €1,000 at 0%, get it back.</span></h1>
+    <h1 class="grand">Soutenir<br>le <em class="tag">projet</em>.<span class="en" lang="en">Support the project — lend €1,000 at 0%, get it back.</span></h1>
     <span class="bas"><span class="faux-btn">Voir le dossier</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
 </main>
