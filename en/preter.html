@@ -299,12 +299,13 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Your name<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>How to reach you (e-mail or phone)<input name="contact" required maxlength="200" autocomplete="email"></label>
+    <label>Your national ID number, from your home country<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">Your photo, if you would like to be seen on your brick (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <label class="case"><input type="checkbox" name="affiche"> My name and my photo may appear on a brick in the wall, to show that the pledges are moving forward.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Become one of the 120</button></div>
-    <p class="confidentialite">Your name and your contact details are kept by Ballal ASBL, solely to get back to you about Casa Belgica. They are not passed on to anyone and are deleted on request at admin@ballal.be. Your name and your photo only appear on the wall if you tick the box. To have them removed, write to us.</p>
+    <p class="confidentialite">Your name, your contact details and your national ID number are kept by Ballal ASBL, solely to get back to you and identify you about Casa Belgica. They are not passed on to anyone and are deleted on request at admin@ballal.be. Your national ID number is never shown publicly. Your name and your photo only appear on the wall if you tick the box. To have them removed, write to us.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Sending did not work. Write to us at <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> and we will lay the brick by hand.</p>
   </form>
@@ -396,13 +397,14 @@ A project by Ballal ASBL · company no. 1016.925.333 · registered office: place
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Thanks.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Your name or a way to reach you is missing.';montrer(ko);return;}
+    if(!numeroNational){ko.textContent='Your national ID number is missing: without it, the pledge won\'t go through.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Sending…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -415,7 +417,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · registered office: place
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

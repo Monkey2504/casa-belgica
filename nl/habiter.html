@@ -138,7 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Je voornaam<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Hoe we je kunnen bereiken (telefoon, WhatsApp of e-mail)<input name="contact" required maxlength="200"></label>
-    <label>Je nationaal identiteitsnummer, uit je land van herkomst (indien je er een hebt, facultatief)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
+    <label>Je nationaal identiteitsnummer, uit je land van herkomst<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label>Je referentiepersoon, wie je over het project vertelde en je opvolgt<select name="referent" required><option value="">Kies zijn of haar voornaam</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Waar je nu slaapt, hoe het staat met je papieren (als je wil)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Je foto, als je wil dat we je aan het raam zien (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -147,7 +147,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> Mijn voornaam en mijn foto mogen op een raam van de gevel verschijnen, om te tonen dat de lijst groeit.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Ik schrijf me in</button></div>
-    <p class="confidentialite">Je voornaam en je contactgegevens worden bewaard door Ballal ASBL, alleen om je opnieuw te contacteren over Casa Belgica. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
+    <p class="confidentialite">Je voornaam, je contactgegevens en je nationaal identiteitsnummer worden bewaard door Ballal ASBL, alleen om je te contacteren en te identificeren over Casa Belgica. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je nationaal identiteitsnummer wordt nooit publiek getoond. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Het verzenden is mislukt. Kom langs, of schrijf naar <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -203,6 +203,7 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · zetel: place M
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Je voornaam ontbreekt, of een manier om je te bereiken.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='De voornaam van je referentiepersoon ontbreekt: zonder die vertrekt de inschrijving niet.';montrer(ko);return;}
+    if(!f.numeroNational.value.trim()){ko.textContent='Je nationaal identiteitsnummer ontbreekt: zonder dat wordt de inschrijving niet verstuurd.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Verzenden…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))

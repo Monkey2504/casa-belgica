@@ -138,7 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
-    <label>Ton numéro d'identité national, de ton pays (si tu en as un, facultatif)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
+    <label>Ton numéro d'identité national, de ton pays<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label>Ta personne référente, celle qui t'a parlé du projet et qui te suit<select name="referent" required><option value="">Choisis son prénom</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -147,7 +147,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> Mon prénom et ma photo peuvent apparaître sur une fenêtre de la façade, pour montrer que la liste avance.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Je m'inscris</button></div>
-    <p class="confidentialite">Ton prénom et ton contact sont gardés par Ballal ASBL, seulement pour te recontacter au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à admin@ballal.be. Ton prénom et ta photo n'apparaissent sur la façade que si tu coches la case. Pour les retirer, écris-nous.</p>
+    <p class="confidentialite">Ton prénom, ton contact et ton numéro d'identité national sont gardés par Ballal ASBL, seulement pour te recontacter et t'identifier au sujet de Casa Belgica. On ne les donne à personne, et on les efface si tu le demandes à admin@ballal.be. Ton numéro d'identité national n'est jamais visible publiquement. Ton prénom et ta photo n'apparaissent sur la façade que si tu coches la case. Pour les retirer, écris-nous.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Viens nous voir, ou écris à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -203,6 +203,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Il manque le prénom de ta personne référente : sans elle, l\'inscription ne part pas.';montrer(ko);return;}
+    if(!f.numeroNational.value.trim()){ko.textContent='Il manque ton numéro d\'identité national : sans lui, l\'inscription ne part pas.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
