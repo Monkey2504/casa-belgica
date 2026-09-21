@@ -363,7 +363,7 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .faux-btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border-radius:3px;font-weight:700;background:var(--or);color:var(--vert-nuit);transition:background .15s,transform .1s}
 .porte .fleche{font-size:1.6rem;line-height:1;color:var(--or);transition:transform .2s}
 .porte:focus-visible{outline-offset:-6px}
-.sep-portes{width:1px;background:#3B4F43}
+.sep-portes{width:18px;background:repeating-linear-gradient(157deg,#3B4F43 0 2px,transparent 2px 10px)}
 /* arrivée sur l'entrée : une seule séquence, les deux portes à 80 ms d'écart */
 @media(prefers-reduced-motion:no-preference){
   .porte .qui,.porte .grand,.porte .bas{animation:arriver .4s cubic-bezier(.2,.7,.2,1) both}
@@ -388,7 +388,7 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .porte .bas{justify-content:center}
 @media(max-width:760px){
   .portes{grid-template-columns:minmax(0,1fr)}
-  .sep-portes{width:auto;height:1px}
+  .sep-portes{width:auto;height:16px;background:repeating-linear-gradient(25deg,#3B4F43 0 2px,transparent 2px 10px)}
   .porte{min-height:0;padding-block:40px 36px;gap:22px}
   .porte .grand{font-size:clamp(2.4rem,11vw,3.6rem)}
 }

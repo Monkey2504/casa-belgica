@@ -31,18 +31,11 @@
 <div class="w">
   <a class="logo" href="/" aria-label="Sortir du squat, retour à l'entrée"><i aria-hidden="true"></i><span>SORTIR DU SQUAT<small>Premier bâtiment : Casa Belgica</small></span></a>
   <nav aria-label="Sections">
-    <a class="link" href="#probleme">Le problème</a>
-    <a class="link" href="#batiment">Le bâtiment</a>
-    <a class="link" href="#argent">Les chiffres</a>
-    <a class="link" href="#risque">Les risques</a>
-    <a class="link" href="#faq">Objections</a>
+    <a class="link onglet" href="#dossier" data-onglet="dossier">Les chiffres</a>
     <select class="langues" aria-label="Langue" onchange="location.href=this.value"><option value="/preter.html" lang="fr" selected>Français</option><option value="/en/preter.html" lang="en">English</option><option value="/de/preter.html" lang="de">Deutsch</option><option value="/nl/preter.html" lang="nl">Nederlands</option><option value="/ar/preter.html" lang="ar">العربية</option></select>
     <a class="lang" href="/">↩ Entrée</a>
     <a class="cta" href="#appel">Devenir l'un des 120</a>
   </nav>
-</div>
-<div class="subnav" aria-hidden="true">
-  <a href="#probleme">Le problème</a><a href="#batiment">Le bâtiment</a><a href="#argent">Les chiffres</a><a href="#risque">Les risques</a><a href="#faq">Objections</a>
 </div>
 </header>
 
@@ -58,7 +51,7 @@
     <p class="cta-q">Vous nous soutenez ?</p>
     <div class="actions">
       <a class="btn or" href="#appel">Devenir l'un des 120</a>
-      <a class="btn ghost" href="#argent">Vérifier les chiffres</a>
+      <a class="btn ghost onglet" href="#dossier" data-onglet="dossier">Vérifier les chiffres</a>
     </div>
   </div>
   <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt.</figcaption></figure>
@@ -73,6 +66,45 @@
 </section>
 
 <div class="bandeau" aria-hidden="true"><div class="piste"><span>1 brique = 1 000 €</span><span>0 % d'intérêt</span><span>50 chambres</span><span>300 €/mois tout compris</span><span>Molenbeek</span><span>Remboursé entre l'an 6 et l'an 10</span><span>1 brique = 1 000 €</span><span>0 % d'intérêt</span><span>50 chambres</span><span>300 €/mois tout compris</span><span>Molenbeek</span><span>Remboursé entre l'an 6 et l'an 10</span></div></div>
+<section class="ask" id="appel">
+<div class="w">
+<p class="kick">L'appel</p>
+<h2>Ce qu'on vous demande.</h2>
+  <figure class="wall">
+    <div class="courses" id="mur" role="group" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser. Chaque brique se clique."></div>
+    <figcaption><span id="mur-compte" hidden><strong class="num rouleau" id="compte">0</strong> <span id="l-compte">briques</span> sur 120</span><span id="mur-amorce"><strong class="num">Les premières briques se posent</strong></span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
+    <p class="compteur-ligne" aria-live="polite"><span id="rapporte-compte" hidden><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles.</span></span><span id="rapporte-amorce"><strong class="num">120</strong> <span>promesses à réunir, 1 000 € chacune, à 0 %.</span></span> <span>Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
+  </figure>
+<ol class="asks">
+  <li><strong>Partagez le diagnostic</strong><p>Pour quelqu'un qui sort d'un squat, il n'existe vraiment aucun sas entre le squat et le studio à 775 € ? Dites-nous si on se trompe.</p></li>
+  <li><strong>Ouvrez vos réseaux</strong><p>Vous connaissez un CPAS à convaincre, un bâtiment public vide, une communauté religieuse, un bureau d'architecture ? Les étapes 1 et 2 ne coûtent rien et dépendent de vos réseaux.</p></li>
+  <li><strong>Promettez 1 000 €</strong><p>Dès que le bâtiment est trouvé et le crédit accordé. Avant, pas un euro ne bouge. On constitue dès maintenant la liste des 120 promesses — c'est la preuve de fonds propres dont la banque a besoin.</p></li>
+</ol>
+<div class="two" style="margin-top:34px">
+  <form class="form sombre" id="fPromesse" novalidate>
+    <label>Votre nom<input name="nom" required maxlength="120" autocomplete="name"></label>
+    <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
+    <label>Votre numéro d'identité national, de votre pays<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label class="photo">Votre photo, si vous voulez qu'on vous voie sur votre brique (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
+    <img class="apercu" alt="" hidden>
+    <label class="case"><input type="checkbox" name="affiche"> Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</label>
+    <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="actions"><button class="btn or" type="submit">Devenir l'un des 120</button></div>
+    <p class="confidentialite">Votre nom, votre contact et votre numéro d'identité national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro d'identité national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous cochez la case. Pour les retirer, écrivez-nous.</p>
+    <p class="ok" role="status"></p>
+    <p class="ko">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> — on pose la brique à la main.</p>
+  </form>
+  <div class="stack">
+    <h3 style="color:#fff">Une promesse, pas un virement.</h3>
+    <p>Vous laissez un nom et un moyen de vous joindre. Rien d'autre : pas de montant à verser, pas de document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
+    <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Je connais un CPAS, un bâtiment, un architecte</a></p>
+  </div>
+</div>
+<div class="callout">La collecte démarre dans 18 à 21 mois, après les quatre étapes. On ne collecte pas avant que le dossier tienne. <strong>120 personnes convaincues, ce sont 50 personnes logées. Le capital citoyen revient, et le bâtiment reste.</strong></div>
+</div>
+</section>
+
+<div id="dossier" hidden>
 <section class="manifeste"><div class="w"><p class="grand"><span>Une clé.</span><span>Une adresse.</span><span>Une boîte aux lettres à son nom.</span></p><p class="dessous">Un squat donne un toit. Il ne donne pas d'adresse, donc pas de domiciliation, donc pas d'accès aux droits. Casa Belgica, c'est le sas qui manque entre les deux.</p></div></section>
 
 <section id="probleme">
@@ -283,43 +315,6 @@
 </div>
 </section>
 
-<section class="ask" id="appel">
-<div class="w">
-<p class="kick">L'appel</p>
-<h2>Ce qu'on vous demande.</h2>
-  <figure class="wall">
-    <div class="courses" id="mur" role="group" aria-label="Un mur de 120 briques : les briques dorées sont les promesses déjà faites, les briques en pointillé restent à poser. Chaque brique se clique."></div>
-    <figcaption><span id="mur-compte" hidden><strong class="num rouleau" id="compte">0</strong> <span id="l-compte">briques</span> sur 120</span><span id="mur-amorce"><strong class="num">Les premières briques se posent</strong></span><span>1 brique = 1 prêteur = <strong>1 000 €</strong> à 0 %</span></figcaption>
-    <p class="compteur-ligne" aria-live="polite"><span id="rapporte-compte" hidden><strong class="num"><span class="rouleau" id="rapporte">0</span> €</strong> <span>promis sur 120 000 €, en promesses réelles.</span></span><span id="rapporte-amorce"><strong class="num">120</strong> <span>promesses à réunir, 1 000 € chacune, à 0 %.</span></span> <span>Clique sur une brique : le mur se met à jour à chaque inscription.</span></p>
-  </figure>
-<ol class="asks">
-  <li><strong>Partagez le diagnostic</strong><p>Pour quelqu'un qui sort d'un squat, il n'existe vraiment aucun sas entre le squat et le studio à 775 € ? Dites-nous si on se trompe.</p></li>
-  <li><strong>Ouvrez vos réseaux</strong><p>Vous connaissez un CPAS à convaincre, un bâtiment public vide, une communauté religieuse, un bureau d'architecture ? Les étapes 1 et 2 ne coûtent rien et dépendent de vos réseaux.</p></li>
-  <li><strong>Promettez 1 000 €</strong><p>Dès que le bâtiment est trouvé et le crédit accordé. Avant, pas un euro ne bouge. On constitue dès maintenant la liste des 120 promesses — c'est la preuve de fonds propres dont la banque a besoin.</p></li>
-</ol>
-<div class="two" style="margin-top:34px">
-  <form class="form sombre" id="fPromesse" novalidate>
-    <label>Votre nom<input name="nom" required maxlength="120" autocomplete="name"></label>
-    <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Votre numéro d'identité national, de votre pays<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
-    <label class="photo">Votre photo, si vous voulez qu'on vous voie sur votre brique (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
-    <img class="apercu" alt="" hidden>
-    <label class="case"><input type="checkbox" name="affiche"> Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</label>
-    <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="actions"><button class="btn or" type="submit">Devenir l'un des 120</button></div>
-    <p class="confidentialite">Votre nom, votre contact et votre numéro d'identité national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro d'identité national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous cochez la case. Pour les retirer, écrivez-nous.</p>
-    <p class="ok" role="status"></p>
-    <p class="ko">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> — on pose la brique à la main.</p>
-  </form>
-  <div class="stack">
-    <h3 style="color:#fff">Une promesse, pas un virement.</h3>
-    <p>Vous laissez un nom et un moyen de vous joindre. Rien d'autre : pas de montant à verser, pas de document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
-    <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Je connais un CPAS, un bâtiment, un architecte</a></p>
-  </div>
-</div>
-<div class="callout">La collecte démarre dans 18 à 21 mois, après les quatre étapes. On ne collecte pas avant que le dossier tienne. <strong>120 personnes convaincues, ce sont 50 personnes logées. Le capital citoyen revient, et le bâtiment reste.</strong></div>
-</div>
-</section>
 
 <section class="line sources" id="sources">
 <div class="w">
@@ -335,6 +330,7 @@
 </ol>
 </div>
 </section>
+</div>
 
 </main>
 
@@ -347,6 +343,17 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
 </div>
 </footer>
 
+<script>
+/* Le résumé suffit pour agir. Le dossier complet (problème détaillé, bâtiment, chiffres, remboursement, risques, objections, sources)
+   ne s'affiche qu'au clic sur « Les chiffres » ou « Vérifier les chiffres », pour les personnes qui veulent vérifier avant de s'engager. */
+(function(){
+  var dossier=document.getElementById('dossier'); if(!dossier)return;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-onglet="dossier"]'); if(!a)return;
+    dossier.hidden=false;
+  });
+})();
+</script>
 <script src="batiment.js"></script>
 <script>
 (function(){
