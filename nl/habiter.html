@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Uit het kraakpand: ik heb een dak nodig</title>
+<meta name="description" content="Een kamer voor jou alleen, met douche en wc, € 300 per maand alles inbegrepen, in Brussel. Nog niet open: het project wordt gebouwd. Schrijf je in om als eerste verwittigd te worden.">
+<meta property="og:title" content="Uit het kraakpand: ik heb een dak nodig">
+<meta property="og:description" content="Een kamer voor jou alleen, met douche en wc, € 300 per maand alles inbegrepen, in Brussel. Nog niet open: schrijf je in om als eerste verwittigd te worden.">
+<meta property="og:url" content="https://casa-belgica.vercel.app/nl/habiter">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://casa-belgica.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13251A">
+<link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter">
+<link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/habiter">
+<link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter">
+<link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter">
+<link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/habiter">
+<link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/habiter">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+.hero .lead strong{color:#fff}
+h1{max-width:16ch}
+.hero .adr{margin-top:24px;font-size:1rem;color:var(--sur-vert)}
+.hero .adr b{color:#fff}
+.faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:820px){.faits{grid-template-columns:minmax(0,1fr)}}
+.fait{background:var(--vert);color:var(--sur-vert);border-radius:4px;padding:24px 24px 26px}
+.fait b{display:block;font-family:var(--disp);font-weight:800;font-size:1.45rem;line-height:1.1;color:#fff;margin-bottom:10px}
+.fait b em{font-style:normal;color:var(--or)}
+.fait p{font-size:.97rem;max-width:none}
+.mieux{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.05;color:var(--vert);margin-top:10px}
+.mieux em{font-style:normal;color:var(--or-sombre)}
+</style>
+</head>
+<body>
+
+<header>
+<div class="w">
+  <a class="logo" href="/nl/" aria-label="Uit het kraakpand, terug naar de ingang"><i aria-hidden="true"></i><span>UIT HET KRAAKPAND</span></a>
+  <nav aria-label="Navigatie">
+    <a class="link" href="#cestquoi">Wat is het</a>
+    <select class="langues" aria-label="Taal" onchange="location.href=this.value"><option value="/habiter.html" lang="fr">Français</option><option value="/en/habiter.html" lang="en">English</option><option value="/de/habiter.html" lang="de">Deutsch</option><option value="/nl/habiter.html" lang="nl" selected>Nederlands</option><option value="/ar/habiter.html" lang="ar">العربية</option></select>
+    <a class="lang" href="/nl/">↩ Ingang</a>
+    <a class="cta" href="#inscrire">Ik schrijf me in</a>
+  </nav>
+</div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+<div class="w">
+<div class="heroRow">
+  <div>
+    <p class="eyebrow"><span class="badge">Nog niet open: eerste sleutel over ± 3 jaar</span></p>
+    <h1>Een kamer voor jou. <mark>€ 300 per maand</mark>, alles inbegrepen.</h1>
+    <p class="lead"><strong>Het gebouw bestaat nog niet</strong>: we bouwen het, en dat duurt ongeveer drie jaar. Wat je vandaag kan doen: je inschrijven. Je wordt als eerste verwittigd als het opengaat, en tot dan gaan we samen met jou vooruit.</p>
+    <p class="lead" lang="en">Not open yet — first key in about three years. Your own room with shower and toilet, €300 a month all included. Sign up below to be first in line.</p>
+    <div class="actions">
+      <a class="btn or" href="#inscrire">Ik schrijf me in</a>
+      <a class="btn ghost" href="#cestquoi">Wat is het precies?</a>
+    </div>
+    <p class="adr"><b>Of kom langs:</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
+  </div>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Gevel van het gebouw: 50 ramen, één per persoon die zich inschreef om er te wonen. Elk raam is klikbaar."></svg><figcaption><strong><span class="rouleau" id="r-hab">5</span> <span id="l-hab">verlichte ramen</span> van de 50</strong>: de 5 referentiepersonen, één per verdieping, en <strong><span class="rouleau" id="r-ins">0</span> <span id="l-ins">ingeschreven persoon</span></strong> om er te wonen. Klik op een raam.</figcaption>
+  <ul class="etages" id="etages" aria-label="Bezetting per verdieping"></ul></figure>
+</div>
+</div>
+</section>
+
+<section id="cestquoi">
+<div class="w">
+<p class="kick">Wat is het</p>
+<h2>Jouw kamer, jouw sleutel, jouw contract.</h2>
+<p class="big" style="margin-bottom:26px">Casa Belgica bereidt een gebouw met 50 kamers voor in Brussel, voor mensen die net hun papieren hebben gekregen en uit een kraakpand komen. Geen centrum, geen slaapzaal.</p>
+<div class="faits">
+  <div class="fait"><b>Jouw kamer, <em>jouw sleutel</em></b><p>Minstens 18 m², met je eigen douche en je eigen wc. Een individueel contract, op jouw naam. Niemand komt bij jou binnen.</p></div>
+  <div class="fait"><b>Een <em>adres</em></b><p>Een echt adres op jouw naam: je ‘domicilie’. Dat is wat de steun van het OCMW (het leefloon) opent, het ziekenfonds, werk. En omdat je alleen in je kamer woont, krijg je het volledige tarief: € 1.340 per maand, geen € 894.</p></div>
+  <div class="fait"><b>Tijd om <em>op adem te komen</em></b><p>Drie tot vier jaar om te sparen, een opleiding te volgen, een echte woning te vinden. Je vertrekt wanneer je er klaar voor bent, niet wanneer je wordt uitgezet.</p></div>
+</div>
+</div>
+</section>
+
+<section class="line">
+<div class="w">
+<p class="kick">Reken met ons mee</p>
+<h2>€ 475 meer, elke maand.</h2>
+<div class="two">
+  <div class="stack">
+    <p class="big">Met je papieren en het leefloon aan het volledige tarief krijg je € 1.340 per maand. Een Brusselse studio kost € 700 tot € 850 huur, plus de waarborg. Je houdt amper genoeg over om van te leven, en niets om opzij te zetten.</p>
+    <p>Bij Casa Belgica betaal je <strong>€ 300 alles inbegrepen</strong>: verwarming, water, elektriciteit, internet. De rest is voor jou.</p>
+    <p class="mieux">Van € 565 naar <em>€ 1.040</em> om van te leven.</p>
+  </div>
+  <div class="reste" aria-label="Vergelijking van wat overblijft om van te leven">
+    <div class="row">
+      <div class="lbl"><span>Privéstudio · € 775 huur</span><b class="num">blijft € 565</b></div>
+      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:775">huur</i><i class="vie" style="flex:565">om te leven</i></div>
+    </div>
+    <div class="row win">
+      <div class="lbl"><span>Casa Belgica · € 300 alles inbegrepen</span><b class="num">blijft € 1.040</b></div>
+      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:300">€ 300</i><i class="vie" style="flex:1040">om te leven</i></div>
+    </div>
+    <div class="scale"><span>€ 0</span><span>€ 1.340 / maand (de steun van het OCMW, volledig tarief)</span></div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="line">
+<div class="w">
+<p class="kick">Voor wie</p>
+<h2>Recente papieren, uit het kraakpand.</h2>
+<div class="two">
+  <div class="stack">
+    <p class="big">Voor mensen die net geregulariseerd zijn, die uit een kraakpand of een bezetting komen, en die een inkomen hebben: de steun van het OCMW of een loon.</p>
+    <p>Het project wordt gedragen door Ballal ASBL, in Molenbeek, dat sinds de bezettingen meer dan 150 mensen begeleidt. Als je al langs de chaussée de Gand bent gepasseerd, ken je ons al.</p>
+  </div>
+  <div class="stack">
+    <p><strong>Heb je je papieren nog niet?</strong> Casa Belgica zal je geen woning kunnen geven: het model steunt op de hulp van het OCMW. Maar kom toch: de begeleiding van Ballal is er nu al voor jou.</p>
+    <p class="note">Niemand zal je vragen om iets te betalen om je in te schrijven. De inschrijving is gratis, zonder voorwaarden, en verbindt je tot niets.</p>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="ask" id="inscrire">
+<div class="w">
+<p class="kick">Inschrijven</p>
+<h2>Twee minuten, drie vragen.</h2>
+<div class="two" style="margin-top:8px">
+  <form class="form sombre" id="fHabitant" novalidate>
+    <label>Je voornaam<input name="nom" required maxlength="120" autocomplete="given-name"></label>
+    <label>Hoe we je kunnen bereiken (telefoon, WhatsApp of e-mail)<input name="contact" required maxlength="200"></label>
+    <label>Je referentiepersoon, wie je over het project vertelde en je opvolgt<select name="referent" required><option value="">Kies zijn of haar voornaam</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
+    <label>Waar je nu slaapt, hoe het staat met je papieren (als je wil)<textarea name="note" maxlength="500"></textarea></label>
+    <label class="photo">Je foto, als je wil dat we je aan het raam zien (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
+    <img class="apercu" alt="" hidden>
+    <p class="avertissement"><strong>Voor je aanvinkt:</strong> de gevel is openbaar, iedereen kan je voornaam en je foto zien. Als je een reden hebt om niet zichtbaar te zijn, vink dan niet aan: je inschrijving telt precies evenveel, je raam licht op zonder naam. Je kan altijd van gedachten veranderen, we halen alles weg op eenvoudig verzoek.</p>
+    <label class="case"><input type="checkbox" name="affiche"> Mijn voornaam en mijn foto mogen op een raam van de gevel verschijnen, om te tonen dat de lijst groeit.</label>
+    <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="actions"><button class="btn or" type="submit">Ik schrijf me in</button></div>
+    <p class="confidentialite">Je voornaam en je contactgegevens worden bewaard door Ballal ASBL, alleen om je opnieuw te contacteren over Casa Belgica. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
+    <p class="ok" role="status"></p>
+    <p class="ko">Het verzenden is mislukt. Kom langs, of schrijf naar <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
+  </form>
+  <div class="stack">
+    <h3 style="color:#fff">Of kom langs.</h3>
+    <p style="color:var(--sur-vert)">Ballal ASBL<br>645 chaussée de Gand<br>1080 Molenbeek, Brussel</p>
+    <p style="color:var(--sur-vert-mut)">Frans, Engels, en als je geen van beide spreekt, kom toch, we vinden wel iemand. Geen dossier, geen bewijs: we praten gewoon met elkaar.</p>
+  </div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="w">
+<b>Uit het kraakpand: Casa Belgica</b> · coöperatie voor transitwoningen in oprichting · Brussel<br>
+Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · zetel: place Masui 9/3, 1030 Bruxelles · permanentie: 645 chaussée de Gand, 1080 Molenbeek<br>
+<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Ik wil helpen bouwen →</a> · <a href="/nl/">de ingang</a>
+<p class="langues-pied" aria-label="Andere talen"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+</div>
+</footer>
+
+<script src="../batiment.js"></script>
+<script>
+(function(){
+  var B=window.Batiment;
+  // La façade : 50 fenêtres, une par personne inscrite pour y vivre, numérotées du rez-de-chaussée vers le haut.
+  var fac=B.facade(document.getElementById('facade'));
+  B.brancher(fac.fens,'fenetre',{fenetre:'#inscrire'});
+  var etat={habitants:0,noms:{habitant:{}}};
+  // Les 5 personnes référentes vivront là : le compteur part d'elles.
+  function afficher(){
+    var total=Math.min(50,B.EQUIPE+etat.habitants);
+    B.rouleau(document.getElementById('r-hab'),total);
+    B.rouleau(document.getElementById('r-ins'),etat.habitants);
+    document.getElementById('l-hab').textContent=total===1?'verlicht raam':'verlichte ramen';
+    document.getElementById('l-ins').textContent=etat.habitants===1?'ingeschreven persoon':'ingeschreven personen';
+  }
+  B.charger().then(function(d){ etat=d; afficher(); B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); })
+    .catch(function(){ afficher(); });
+
+  /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */
+  var f=document.getElementById('fHabitant'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
+  var libelle=btn.textContent, koHTML=ko.innerHTML;
+  function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
+  // aperçu de la photo choisie
+  var apercu=f.querySelector('.apercu');
+  f.photo.addEventListener('change',function(){ var fi=f.photo.files&&f.photo.files[0]; if(fi&&/^image\//.test(fi.type)){apercu.src=URL.createObjectURL(fi);apercu.hidden=false;} else {apercu.hidden=true;apercu.removeAttribute('src');} });
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(f.site.value){ok.textContent='Bedankt.';montrer(ok);return;}
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
+    if(!nom||!contact){ko.textContent='Je voornaam ontbreekt, of een manier om je te bereiken.';montrer(ko);return;}
+    if(referent.length<2){ko.textContent='De voornaam van je referentiepersoon ontbreekt: zonder die vertrekt de inschrijving niet.';montrer(ko);return;}
+    btn.disabled=true; btn.textContent='Verzenden…';
+    var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
+    (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
+    .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
+    .then(function(){return B.charger().catch(function(){return null})})
+    .then(function(d){
+      ko.classList.remove('visible');
+      // Où la personne atterrit : sur l'étage de sa personne référente, à la k-ième place réunie.
+      var R=B.referentDe(referent), E=d&&R?d.etages.filter(function(e){return e.ref===R})[0]:null, k=E?E.personnes.length:0, n=E?B.fenetreDe(R,k):0, texte;
+      var suite=(affiche?(photo?", met je voornaam en je foto erop":", met je voornaam erop"):"")+". We nemen opnieuw contact met je op, en je blijft vanaf nu welkom op 645 chaussée de Gand."+(photoRatee?" De foto is niet doorgekomen: je kan ze ons per e-mail sturen.":"");
+      if(!d) texte="Genoteerd, "+nom+". We houden je plaats in de lijst en we nemen opnieuw contact met je op. Je blijft vanaf nu welkom op 645 chaussée de Gand.";
+      else if(n) texte="Genoteerd, "+nom+". Je zit op verdieping "+R.etage+", die van "+R.nom+": raam "+n+suite;
+      else texte="Genoteerd, "+nom+". De verdieping van "+R.nom+" is vol, je staat op de wachtlijst ("+k+"e persoon)"+suite;
+      ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='fenetre-msg'; glyphe.setAttribute('aria-hidden','true');
+      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
+      if(d){ etat=d; afficher(); B.etages(document.getElementById('etages'),d);
+        // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
+        var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
+        if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
+      f.nom.value='';f.contact.value='';f.referent.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      ok.scrollIntoView({block:'nearest'});
+    })
+    .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
+  });
+})();
+</script>
+
+</body>
+</html>
