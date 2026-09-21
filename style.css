@@ -373,6 +373,10 @@ body>header,body>.etat,body>footer{flex-shrink:0}
   .porte:hover .fleche{transform:translateX(6px)}
 }
 @media(prefers-reduced-motion:reduce){.porte,.porte .fleche{transition:none}.porte:hover .fleche{transform:none}}
+/* l'entrée est une affiche : chaque porte est composée au centre, à toutes les tailles */
+.porte{align-items:center;text-align:center}
+.porte .qui,.porte .grand .en{margin-inline:auto}
+.porte .bas{justify-content:center}
 @media(max-width:760px){
   .portes{grid-template-columns:minmax(0,1fr)}
   .sep-portes{width:auto;height:1px}
