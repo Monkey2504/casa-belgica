@@ -514,3 +514,14 @@ html[lang="ar"] .tag{font-family:inherit;transform:none}
 .logo span{display:grid;gap:3px;line-height:1}
 .logo small{font-family:var(--body);font-weight:500;text-transform:none;letter-spacing:.02em;font-size:.66rem;color:var(--sur-vert-mut);white-space:nowrap}
 @media(max-width:600px){.logo small{font-size:.6rem;overflow:hidden;text-overflow:ellipsis}}
+
+/* héros de habiter / prêter, en dessous de 900 px : un bloc seul se centre, comme les portes de l'entrée */
+@media(max-width:900px){
+  .heroTxt{text-align:center}
+  .heroTxt .eyebrow,.heroTxt .lead,.heroTxt .adr{margin-inline:auto}
+  .heroTxt h1{margin-inline:auto}
+  .heroTxt .actions{justify-content:center}
+  .immeuble{text-align:center}
+  .immeuble figcaption{margin-inline:auto}
+  .etages{justify-content:center}
+}
