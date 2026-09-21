@@ -60,7 +60,7 @@
       <a class="btn ghost" href="#argent">Die Zahlen prüfen</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Fassade des Gebäudes: 50 Fenster, eines pro Person, die sich zum Wohnen eingetragen hat. Jedes Fenster lässt sich anklicken."></svg><figcaption><strong>50 Fenster, 50 Zimmer.</strong> Jedes leuchtet an dem Tag auf, an dem jemand seine Koffer abstellt.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Das Gebäude: 50 Fenster für künftige Bewohnerinnen und Bewohner, 120 Steine für Darlehensgeberinnen und -geber. Jede Stelle lässt sich anklicken."></svg><figcaption><strong>50 Fenster, 120 Steine.</strong> Ein Fenster pro angemeldeter Person, ein Stein pro Zusage.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120.000 €</b><span>Bürgerdarlehen, zu 0 %</span></div>
@@ -426,12 +426,13 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
 </script>
 
 <script>
-/* La façade du haut : 50 fenêtres, une par personne inscrite pour y vivre. */
+/* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg);
+  var fac=B.facade(svg,{mur:true});
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
+  B.brancher(fac.briques,'brique',{brique:'#appel'});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

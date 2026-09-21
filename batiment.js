@@ -15,7 +15,7 @@
   var LOCALE={fr:'fr-BE',en:'en-GB',de:'de-DE',nl:'nl-BE',ar:'fr-BE'}[LANG]||'fr-BE';
   function fmt(v){return Math.max(0,v|0).toLocaleString(LOCALE)}
   var TEXTES={
-    fr:{etage:function(n,nom){return 'Étage '+n+' : '+nom},refRdc:'Référent·e du rez-de-chaussée. ',refEtage:'Référent·e de l\'étage. ',
+    fr:{etage:function(n,nom){return 'Étage '+n+' : '+nom},refRdc:'Référent du rez-de-chaussée. ',refEtage:'Référent de l\'étage. ',
         reunies:function(c,t){return c+' personne'+(c>1?'s':'')+' sur '+t+' réunie'+(c>1?'s':'')+' sur cet étage.'},
         fenetre:function(n){return 'Fenêtre '+n},ou:function(e,nom){return ', étage '+e+' ('+nom+')'},libre:'Encore libre.',lienFenetre:'Tu pourrais être là',
         yVivra:function(nom){return nom+', y vivra'},anonymeHab:'Quelqu’un y vivra (prénom non affiché)',

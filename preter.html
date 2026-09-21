@@ -60,7 +60,7 @@
       <a class="btn ghost" href="#argent">Vérifier les chiffres</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Façade de l'immeuble : 50 fenêtres, une par personne inscrite pour y vivre. Chaque fenêtre se clique."></svg><figcaption><strong>50 fenêtres, 50 chambres.</strong> Chacune s'allume le jour où quelqu'un pose ses valises.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120 000 €</b><span>de prêts citoyens, à 0 %</span></div>
@@ -339,7 +339,7 @@
 <footer>
 <div class="w">
 <b>Sortir du squat</b> · programme de logement de transition, en création · premier bâtiment : Casa Belgica, Molenbeek<br>
-Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · porté par François Halleux · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
+Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, porteur du projet · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
 <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/">l'entrée</a>
 <p class="langues-pied" aria-label="Autres langues"><a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
 </div>
@@ -426,12 +426,13 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · porté par Françoi
 </script>
 
 <script>
-/* La façade du haut : 50 fenêtres, une par personne inscrite pour y vivre. */
+/* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg);
+  var fac=B.facade(svg,{mur:true});
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
+  B.brancher(fac.briques,'brique',{brique:'#appel'});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

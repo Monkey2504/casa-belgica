@@ -60,7 +60,7 @@
       <a class="btn ghost" href="#argent">Check the figures</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="The front of the building: 50 windows, one per person signed up to live there. Every window can be clicked."></svg><figcaption><strong>50 windows, 50 rooms.</strong> Each one lights up the day someone puts down their bags.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="The building: 50 windows for future residents, 120 bricks for lenders. Every spot can be clicked."></svg><figcaption><strong>50 windows, 120 bricks.</strong> One window per person signed up, one brick per pledge.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>€120,000</b><span>in citizen loans, at 0%</span></div>
@@ -426,12 +426,13 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
 </script>
 
 <script>
-/* La façade du haut : 50 fenêtres, une par personne inscrite pour y vivre. */
+/* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg);
+  var fac=B.facade(svg,{mur:true});
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
+  B.brancher(fac.briques,'brique',{brique:'#appel'});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

@@ -139,7 +139,7 @@ h1{max-width:16ch}
     <label>Dein Vorname<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Wie wir dich erreichen (Telefon, WhatsApp oder E-Mail)<input name="contact" required maxlength="200"></label>
     <label>Deine nationale Identitätsnummer, aus deinem Herkunftsland<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
-    <label>Deine Bezugsperson, die dir vom Projekt erzählt hat und dich begleitet<select name="referent" required><option value="">Wähle ihren Vornamen</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
+    <label>Deine Bezugsperson, die dir vom Projekt erzählt hat und dich begleitet<select name="referent" required><option value="">Wähle seinen Vornamen</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Wo du gerade schläfst, wie es mit deinen Papieren steht (wenn du willst)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Dein Foto, wenn du am Fenster zu sehen sein willst (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
@@ -202,7 +202,7 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
     if(f.site.value){ok.textContent='Danke.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Es fehlt dein Vorname oder eine Möglichkeit, dich zu erreichen.';montrer(ko);return;}
-    if(referent.length<2){ko.textContent='Es fehlt der Vorname deiner Bezugsperson: ohne sie geht die Eintragung nicht raus.';montrer(ko);return;}
+    if(referent.length<2){ko.textContent='Es fehlt der Vorname deiner Bezugsperson: ohne ihn geht die Eintragung nicht raus.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Deine nationale Identitätsnummer fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Wird gesendet…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;

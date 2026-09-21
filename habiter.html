@@ -60,7 +60,7 @@ h1{max-width:16ch}
 <div class="heroRow">
   <div class="heroTxt">
     <p class="eyebrow"><span class="badge">Pas encore ouvert — première clé dans ± 3 ans</span></p>
-    <h1>Une chambre à <em class="tag">toi</em>. <mark>300 € par mois</mark>, tout compris.</h1>
+    <h1>Une chambre, un <em class="tag">toit</em>, à <mark>300 €/mois</mark>.</h1>
     <p class="lead pitch">300 € par mois, tout compris, dans une ville où un studio classique coûte 700 à 850 €.</p>
     <p class="lead" lang="en">€300 a month, all included, in a city where rent starts at €700.</p>
     <div class="actions">
@@ -139,7 +139,7 @@ h1{max-width:16ch}
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
     <label>Ton numéro d'identité national, de ton pays<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
-    <label>Ta personne référente, celle qui t'a parlé du projet et qui te suit<select name="referent" required><option value="">Choisis son prénom</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
+    <label>Ta personne référente, celui qui t'a parlé du projet et qui te suit<select name="referent" required><option value="">Choisis son prénom</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
@@ -165,7 +165,7 @@ h1{max-width:16ch}
 <footer>
 <div class="w">
 <b>Sortir du squat</b> · programme de logement de transition, en création · premier bâtiment : Casa Belgica, Molenbeek<br>
-Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · porté par François Halleux · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
+Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, porteur du projet · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
 <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Je veux aider à le construire →</a> · <a href="/">l'entrée</a>
 <p class="langues-pied" aria-label="Autres langues"><a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
 </div>
@@ -202,7 +202,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · porté par Françoi
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Il manque ton prénom ou un moyen de te joindre.';montrer(ko);return;}
-    if(referent.length<2){ko.textContent='Il manque le prénom de ta personne référente : sans elle, l\'inscription ne part pas.';montrer(ko);return;}
+    if(referent.length<2){ko.textContent='Il manque le prénom de ta personne référente : sans lui, l\'inscription ne part pas.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Il manque ton numéro d\'identité national : sans lui, l\'inscription ne part pas.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
