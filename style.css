@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Sedgwick+Ave+Display&family=Cairo:wght@400;600;800&display=swap");
 /* Sortir du squat — Casa Belgica : identité vert nuit / or */
 
 /* ---- Jetons : palette du dossier imprimé (vert profond, or, crème) ---- */
@@ -460,3 +461,43 @@ body>header,body>.etat,body>footer{flex-shrink:0}
   .logo i{width:20px;height:10px}
   nav a.cta{padding:9px 12px;font-size:.85rem}
 }
+
+/* ---- Écriture de droite à gauche (pages en arabe) ----
+   Le flux (flex, grid, marges logiques) se retourne seul avec dir="rtl" ; on ne corrige ici que les propriétés physiques. */
+html[lang="ar"]{--disp:"Cairo",ui-sans-serif,system-ui,sans-serif;--body:"Cairo",ui-sans-serif,system-ui,sans-serif}
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] .logo{letter-spacing:0}
+[dir="rtl"] header nav{right:auto;left:var(--gut)}
+[dir="rtl"] nav a.lang,[dir="rtl"] nav a.cta{margin-left:0;margin-right:6px}
+[dir="rtl"] nav select.langues{padding:7px 10px 7px 26px;background-position:14px 50%,9px 50%}
+[dir="rtl"] .form select{padding-right:14px;padding-left:40px;background-position:20px 50%,14px 50%}
+[dir="rtl"] .jauge i{transform-origin:right}
+[dir="rtl"] .sources ol{padding-left:0;padding-right:1.3em}
+[dir="rtl"] .legend i{margin-right:0;margin-left:6px}
+[dir="rtl"] .bandeau span{padding-right:0;padding-left:28px}
+@media(prefers-reduced-motion:no-preference){[dir="rtl"] .bandeau .piste{animation-name:defile-rtl}@keyframes defile-rtl{to{transform:translateX(50%)}}}
+@media(hover:hover) and (pointer:fine){[dir="rtl"] .porte:hover .fleche{transform:translateX(-6px)}}
+
+/* ==== Écriture « luxe-street » : Anton en capitales pour les titres, les chiffres et les boutons ;
+   un mot tagué en or (Sedgwick Ave Display) dans les grands titres. Le texte courant reste en Instrument Sans. ==== */
+:root{--disp:"Anton",Impact,"Arial Narrow",ui-sans-serif,system-ui,sans-serif;--tag:"Sedgwick Ave Display",cursive}
+body{font-synthesis-weight:none} /* Anton n'a qu'une graisse : pas de faux gras */
+h1,h2,h3,.logo,.kick,.btn,nav a.cta,.faux-btn,.keys b,.stats b,.split b,.reste .lbl b,.encart .duo b,.cond li:before,tr.tot td,th,.faq summary,.bulle b,.wall figcaption strong,.etat .gros,.asks li:before,.bandeau .piste,.manifeste .grand,.porte .grand{font-weight:400}
+h1,h2,.logo,.kick,.btn,nav a.cta,.faux-btn,.manifeste .grand,.porte .grand,.bandeau .piste,.badge{text-transform:uppercase}
+h1,h2,h3,.porte .grand,.manifeste .grand,.bandeau .piste{letter-spacing:.012em}
+h1{line-height:.95}
+h2{font-size:clamp(1.8rem,4vw,2.9rem);line-height:1;margin-bottom:20px}
+h3{font-size:1.3rem;letter-spacing:.02em}
+.logo{letter-spacing:.2em;font-size:1.05rem}
+.kick{font-family:var(--disp);font-size:.8rem;letter-spacing:.2em}
+.btn,nav a.cta,.faux-btn,.badge{font-family:var(--disp);letter-spacing:.12em;font-size:.95rem}
+nav a.cta{font-size:.85rem}
+.faq summary{text-transform:none;letter-spacing:.01em;font-size:clamp(1.1rem,2vw,1.35rem)}
+th{letter-spacing:.08em;text-transform:uppercase}
+.porte .grand{font-size:clamp(3.2rem,8.6vw,7.2rem);line-height:.9;color:#fff}
+.porte.construire .grand{color:#fff}
+@media(max-width:760px){.porte .grand{font-size:clamp(2.8rem,13vw,4.4rem)}}
+/* le mot tagué */
+.tag{font-family:var(--tag);font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;color:var(--or);display:inline-block;transform:rotate(-4deg) translateY(.04em);font-size:1.02em}
+html[lang="ar"] .tag{font-family:inherit;transform:none}
+.porte .grand .en{font-family:var(--body);font-weight:400;text-transform:none;letter-spacing:0}
+@media(max-width:600px){.logo{font-size:.85rem;letter-spacing:.14em}}
