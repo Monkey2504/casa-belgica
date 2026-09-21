@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Leave the Squat: two paths, one building</title>
+<meta name="description" content="Leave the Squat (Casa Belgica), a transitional housing cooperative being set up in Molenbeek. Looking for a roof, or want to help build it? Two paths, one building.">
+<meta property="og:title" content="Leave the Squat: two paths, one building">
+<meta property="og:description" content="I need a roof / I want to build it. 50 rooms, €300/month all included, backed by 120 citizen lenders.">
+<meta property="og:url" content="https://casa-belgica.vercel.app/en/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://casa-belgica.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13251A">
+<link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/">
+<link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/">
+<link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/">
+<link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/">
+<link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+html,body{height:100%}
+body{display:flex;flex-direction:column;background:var(--vert-nuit)}
+header{position:static}
+/* le nom du projet, centré en haut */
+header .w{justify-content:center;position:relative}
+header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
+header nav{position:absolute;right:var(--gut)}
+@media(max-width:760px){html,body{height:auto}}
+footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
+footer .w{text-align:center}
+footer b,footer a{color:var(--sur-vert)}
+/* où en est le projet — visible dès l'arrivée */
+.etat{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:24px}
+.etat .w{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+@media(max-width:760px){.etat .w{grid-template-columns:minmax(0,1fr)}}
+.batiment{margin:0;justify-self:center;text-align:center}
+.batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible;margin-inline:auto}
+.batiment figcaption{margin:12px auto 0;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
+.batiment .etages{justify-content:center}
+.chiffres{display:grid;gap:10px}
+.chiffres p{max-width:none}
+.chiffres .gros+.fixe{margin-top:-6px}
+.chiffres .pret{display:grid;gap:10px}
+.chiffres [hidden]{display:none}
+.chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
+.etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2.8vw,1.9rem);color:#fff}
+.etat .gros b{color:var(--or)}
+.etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
+.jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
+.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="w">
+  <a class="logo" href="/en/"><i aria-hidden="true"></i><span>LEAVE THE SQUAT</span></a>
+  <nav aria-label="Language"><select class="langues" aria-label="Language" onchange="location.href=this.value"><option value="/" lang="fr">Français</option><option value="/en/index.html" lang="en" selected>English</option><option value="/de/index.html" lang="de">Deutsch</option><option value="/nl/index.html" lang="nl">Nederlands</option><option value="/ar/index.html" lang="ar">العربية</option></select></nav>
+</div>
+</header>
+
+<main class="portes">
+  <a class="porte habiter" href="habiter.html">
+    <span class="qui">Just got your papers?<br>Leaving a squat?<br>Sleeping badly, paying too much?</span>
+    <h1 class="grand">I need<br>a roof.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+    <span class="bas"><span class="faux-btn">This way</span><span class="fleche" aria-hidden="true">→</span></span>
+  </a>
+  <div class="sep-portes" aria-hidden="true"></div>
+  <a class="porte construire" href="preter.html">
+    <span class="qui">Can you lend €1,000?<br>Open up your network?<br>Check our figures?</span>
+    <h1 class="grand">Support<br>the project.<span class="en" lang="fr">Soutenir le projet — prêtez 1&nbsp;000&nbsp;€ à 0&nbsp;%, récupérés.</span></h1>
+    <span class="bas"><span class="faux-btn">See the case</span><span class="fleche" aria-hidden="true">→</span></span>
+  </a>
+</main>
+
+<div class="etat">
+<div class="w">
+  <figure class="batiment"><svg id="batiment" role="group" aria-label="The building: 50 windows for the people who will live there, 120 bricks for the lenders. Every spot can be clicked."></svg><figcaption>Every window is a person signed up to live there, every brick a loan pledge. One floor per referent. Click on them.</figcaption>
+  <ul class="etages" id="etages" aria-label="Occupancy by floor"></ul></figure>
+  <div class="chiffres" aria-live="polite">
+    <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">windows lit</span> out of 50</p>
+    <p class="fixe">The 5 referents, one per floor, plus <b class="rouleau" id="r-ins">0</b> <span id="l-ins">person signed up</span>. €<b class="rouleau" id="r-loyer">1,500</b>&nbsp;in rent per month, at €300 a room.</p>
+    <div class="pret" id="pret-chiffres" hidden>
+      <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">loan pledges</span> out of 120</p>
+      <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
+      <p class="fixe">€<b class="rouleau" id="r-somme">0</b> pledged of €120,000, at €1,000 a brick</p>
+    </div>
+    <div class="pret" id="pret-amorce">
+      <p class="gros">The first bricks are being laid.</p>
+      <p class="fixe"><b>120</b> loan pledges to gather, €1,000&nbsp;each, at 0%.</p>
+    </div>
+    <p class="fixe etape">Current stage: gathering the 120 pledges. Next: the building, the bank, the works, the keys.</p>
+  </div>
+</div>
+</div>
+
+<footer>
+<div class="w">
+<b>Leave the Squat: Casa Belgica</b> · one building, 50 rooms at €300/month all included, backed by 120 lenders<br>
+A project by Ballal ASBL · company no. 1016.925.333 · <a href="mailto:admin@ballal.be">write to us</a>
+<p class="langues-pied" aria-label="Other languages"><a href="/" lang="fr" hreflang="fr">Français</a> · <a href="/de/index.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/index.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+</div>
+</footer>
+
+<script src="../batiment.js"></script>
+<script>
+(function(){
+  var B=window.Batiment;
+  // Le bâtiment de l'entrée : 50 fenêtres (futurs habitants) sur un mur de 120 briques (prêteurs). Chaque place se clique.
+  var b=B.facade(document.getElementById('batiment'),{mur:true});
+  B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
+  B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
+  // Les 5 personnes référentes vivront là : le compteur part d'elles. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
+  var SEUIL=3;
+  function afficher(d){
+    var total=Math.min(50,B.EQUIPE+d.habitants);
+    B.rouleau(document.getElementById('r-hab'),total);
+    B.rouleau(document.getElementById('r-ins'),d.habitants);
+    B.rouleau(document.getElementById('r-loyer'),total*300);
+    document.getElementById('l-hab').textContent=total===1?'window lit':'windows lit';
+    document.getElementById('l-ins').textContent=d.habitants===1?'person signed up':'people signed up';
+    var assez=d.preteurs>=SEUIL;
+    document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
+    if(!assez)return;
+    B.rouleau(document.getElementById('r-pret'),d.preteurs);
+    B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
+    document.getElementById('l-pret').textContent=d.preteurs===1?'loan pledge':'loan pledges';
+    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,.02)+')';
+  }
+  B.charger().then(function(d){
+    // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
+    B.observer(document.querySelector('.etat'),function(){
+      afficher(d);
+      B.placer(b.fens,d,true); B.etages(document.getElementById('etages'),d);
+      B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
+    },.15);
+  }).catch(function(){ afficher({habitants:0,preteurs:0}); });
+})();
+</script>
+</body>
+</html>
