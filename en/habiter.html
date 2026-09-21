@@ -138,6 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Your first name<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>How to reach you (phone, WhatsApp or e-mail)<input name="contact" required maxlength="200"></label>
+    <label>Your national ID number, from your home country (if you have one, optional)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label>Your referent, the person who told you about the project and keeps in touch with you<select name="referent" required><option value="">Choose their first name</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Where you're sleeping right now, where your papers are at (if you want)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Your photo, if you want to be seen at the window (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -206,7 +207,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · registered office: place
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -222,7 +223,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · registered office: place
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

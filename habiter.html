@@ -138,6 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Ton prénom<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Comment te joindre (téléphone, WhatsApp ou e-mail)<input name="contact" required maxlength="200"></label>
+    <label>Ton numéro d'identité national, de ton pays (si tu en as un, facultatif)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label>Ta personne référente, celle qui t'a parlé du projet et qui te suit<select name="referent" required><option value="">Choisis son prénom</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Où tu dors en ce moment, où en sont tes papiers (si tu veux)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Ta photo, si tu veux qu'on te voie à la fenêtre (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -206,7 +207,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -222,7 +223,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · siège : place Masu
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
