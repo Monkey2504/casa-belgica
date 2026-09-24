@@ -74,9 +74,12 @@
     return fetch(SB+'/rest/v1/rpc/'+nom,{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:'{}'})
       .then(function(r){if(!r.ok)throw 0;return r.json()});
   }
+  // Une reprise avant d'abandonner : un réseau mobile perd parfois une des deux requêtes en vol,
+  // et sans ça le compteur de texte et les fenêtres allumées finissent par se contredire.
+  function rpcAvecReprise(nom){ return rpc(nom).catch(function(){ return rpc(nom); }); }
   // → {habitants, preteurs, brut, noms:{preteur:{n:{nom,photo}}}, etages:[{ref, personnes:[…]}], sansEtage}
   function charger(){
-    return Promise.all([rpc('compteur'),rpc('facade').catch(function(){return []})]).then(function(r){
+    return Promise.all([rpcAvecReprise('compteur'),rpcAvecReprise('facade').catch(function(){return []})]).then(function(r){
       var c=r[0]||{}, noms={habitant:{},preteur:{}}, hab=[];
       (r[1]||[]).forEach(function(g){
         var pers={i:g.i,nom:g.nom||'',photo:g.photo||'',referent:g.referent||''};
