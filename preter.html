@@ -55,7 +55,7 @@
       <a class="btn ghost onglet" href="#dossier" data-onglet="dossier">Vérifier les chiffres</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt. Actuellement, nous avons un groupe de <b class="rouleau" id="r-groupe">0</b> personne<span id="l-groupe">s</span> capable<span id="l-groupe2">s</span> de payer <b class="rouleau" id="r-capacite">0</b>&nbsp;€/mois.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120 000 €</b><span>de prêts citoyens, à 0 %</span></div>
@@ -395,7 +395,13 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
   function poser(anime){ B.allumer(places,'brique',etat.preteurs,etat.noms.preteur,anime); synchroniser(); if(visible) afficher(); }
   // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
   B.observer(mur,function(){ visible=true; mur.classList.add('vu'); afficher(); },.2);
-  B.charger().then(function(d){ etat=d; poser(false); }).catch(function(){ poser(false); });
+  B.charger().then(function(d){ etat=d; poser(false);
+    var hab=Math.min(50,d.habitants||0);
+    B.rouleau(document.getElementById('r-groupe'),hab);
+    B.rouleau(document.getElementById('r-capacite'),hab*300);
+    document.getElementById('l-groupe').textContent=hab===1?'':'s';
+    document.getElementById('l-groupe2').textContent=hab===1?'':'s';
+  }).catch(function(){ poser(false); });
 
   /* Promesse de prêt : une ligne type 'preteur' dans public.inscriptions, puis le mur se remet à jour. */
   var f=document.getElementById('fPromesse'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
