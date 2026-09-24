@@ -184,11 +184,9 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
   function afficher(){
     var total=Math.min(50,etat.habitants);
     B.rouleau(document.getElementById('r-hab'),total);
-    B.rouleau(document.getElementById('r-ins'),etat.habitants);
     document.getElementById('l-hab').textContent=total===1?'fenêtre allumée':'fenêtres allumées';
-    document.getElementById('l-ins').textContent=etat.habitants===1?'personne inscrite':'personnes inscrites';
   }
-  B.charger().then(function(d){ etat=d; afficher(); B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); })
+  B.charger().then(function(d){ etat=d; B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); afficher(); })
     .catch(function(){ afficher(); });
 
   /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */

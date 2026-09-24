@@ -184,11 +184,9 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
   function afficher(){
     var total=Math.min(50,etat.habitants);
     B.rouleau(document.getElementById('r-hab'),total);
-    B.rouleau(document.getElementById('r-ins'),etat.habitants);
     document.getElementById('l-hab').textContent=total===1?'verlicht raam':'verlichte ramen';
-    document.getElementById('l-ins').textContent=etat.habitants===1?'ingeschreven persoon':'ingeschreven personen';
   }
-  B.charger().then(function(d){ etat=d; afficher(); B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); })
+  B.charger().then(function(d){ etat=d; B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); afficher(); })
     .catch(function(){ afficher(); });
 
   /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */
