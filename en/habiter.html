@@ -145,7 +145,7 @@ h1{max-width:16ch}
     <label class="photo">Your photo, if you want to be seen at the window (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <p class="avertissement"><strong>Before you tick:</strong> the front of the building is public, anyone can see your first name and your photo. If you have a reason not to be visible, don't tick: your sign-up counts exactly the same, your window lights up without a name. You can change your mind whenever you want, we remove everything on request.</p>
-    <label class="case"><input type="checkbox" name="affiche"> My first name and my photo can appear on a window of the building's front, to show that the list is growing.</label>
+    <fieldset class="case"><legend>My first name and my photo can appear on a window of the building's front, to show that the list is growing.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Yes</label><label><input type="radio" name="affiche" value="non"> No</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Sign me up</button></div>
     <p class="confidentialite">Your first name, your contact details, your Belgian national register number and your nationality are kept by Ballal ASBL, only to get back in touch with you, identify you about Casa Belgica, and keep a good mix of nationalities in the building. We don't give them to anyone, and we delete them if you ask at admin@ballal.be. Your national register number and your nationality are never shown publicly. Your first name and your photo only appear on the front if you tick the box. To have them removed, write to us.</p>
@@ -201,8 +201,9 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Thanks.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Your first name or a way to reach you is missing.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Answer yes or no: your first name can appear on the window, or not.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Your referent\'s first name is missing: without it, the sign-up can\'t be sent.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Your Belgian national register number (or BIS number) is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
     if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='This number doesn\'t look right: check the 11 digits.';montrer(ko);return;}
@@ -227,7 +228,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

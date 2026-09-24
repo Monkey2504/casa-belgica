@@ -145,7 +145,7 @@ h1{max-width:16ch}
     <label class="photo">Dein Foto, wenn du am Fenster zu sehen sein willst (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <p class="avertissement"><strong>Bevor du ankreuzt:</strong> die Fassade ist öffentlich, jeder kann deinen Vornamen und dein Foto sehen. Wenn du einen Grund hast, nicht sichtbar zu sein, kreuz nicht an: deine Eintragung zählt genau gleich, dein Fenster leuchtet ohne Namen. Du kannst es dir jederzeit anders überlegen, wir nehmen alles auf einfache Anfrage raus.</p>
-    <label class="case"><input type="checkbox" name="affiche"> Mein Vorname und mein Foto dürfen an einem Fenster der Fassade erscheinen, um zu zeigen, dass die Liste wächst.</label>
+    <fieldset class="case"><legend>Mein Vorname und mein Foto dürfen an einem Fenster der Fassade erscheinen, um zu zeigen, dass die Liste wächst.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nein</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Ich trage mich ein</button></div>
     <p class="confidentialite">Dein Vorname, dein Kontakt, deine belgische Nationalregisternummer und deine Nationalität werden von Ballal ASBL aufbewahrt, nur um dich zu kontaktieren, dich zu identifizieren wegen Casa Belgica, und für eine gute Durchmischung der Nationalitäten im Gebäude zu sorgen. Wir geben sie an niemanden weiter, und wir löschen sie, wenn du es bei admin@ballal.be verlangst. Deine Nationalregisternummer und deine Nationalität werden nie öffentlich angezeigt. Dein Vorname und dein Foto erscheinen nur dann an der Fassade, wenn du das Kästchen ankreuzt. Um sie zu entfernen, schreib uns.</p>
@@ -201,8 +201,9 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Danke.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Es fehlt dein Vorname oder eine Möglichkeit, dich zu erreichen.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Antworte mit Ja oder Nein: dein Vorname kann am Fenster erscheinen, oder nicht.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Es fehlt der Vorname deiner Bezugsperson: ohne ihn geht die Eintragung nicht raus.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Deine belgische Nationalregisternummer (oder BIS-Nummer) fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
     if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüf die 11 Ziffern.';montrer(ko);return;}
@@ -227,7 +228,7 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

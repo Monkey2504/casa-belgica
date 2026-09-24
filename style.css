@@ -418,9 +418,12 @@ body>header,body>.etat,body>footer{flex-shrink:0}
   .form .ok .brique-msg,.form .ok .fenetre-msg{animation:naitre .5s cubic-bezier(.2,.7,.2,1) .2s both}
   @keyframes glisser{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 }
-/* accord pour afficher son nom sur la façade ou le mur */
-.form label.case{display:flex;align-items:flex-start;gap:10px;font-weight:500;font-size:.92rem;color:var(--sur-vert);cursor:pointer}
-.form .case input{width:20px;height:20px;min-height:0;margin:2px 0 0;padding:0;flex:none;accent-color:var(--or);cursor:pointer}
+/* accord pour afficher son nom sur la façade ou le mur : choix oui/non explicite, pas de case qu'on oublie de cocher */
+.form fieldset.case{border:0;padding:0;margin:0;min-width:0}
+.form fieldset.case legend{padding:0;margin:0 0 8px;font-weight:500;font-size:.92rem;color:var(--sur-vert)}
+.form fieldset.case .choix{display:flex;gap:20px}
+.form fieldset.case label{display:flex;align-items:center;gap:8px;font-weight:500;font-size:.92rem;color:var(--sur-vert);cursor:pointer}
+.form fieldset.case input{width:20px;height:20px;min-height:0;margin:0;padding:0;flex:none;accent-color:var(--or);cursor:pointer}
 /* photo facultative : champ fichier et aperçu */
 .form label.photo{gap:8px}
 .form input[type=file]{font:inherit;font-size:.9rem;color:var(--sur-vert-mut);padding:10px 12px;border:1.5px dashed #3B4F43;border-radius:3px;background:transparent;min-height:0;cursor:pointer;max-width:100%}

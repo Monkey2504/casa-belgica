@@ -145,7 +145,7 @@ h1{max-width:16ch}
     <label class="photo">Je foto, als je wil dat we je aan het raam zien (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <p class="avertissement"><strong>Voor je aanvinkt:</strong> de gevel is openbaar, iedereen kan je voornaam en je foto zien. Als je een reden hebt om niet zichtbaar te zijn, vink dan niet aan: je inschrijving telt precies evenveel, je raam licht op zonder naam. Je kan altijd van gedachten veranderen, we halen alles weg op eenvoudig verzoek.</p>
-    <label class="case"><input type="checkbox" name="affiche"> Mijn voornaam en mijn foto mogen op een raam van de gevel verschijnen, om te tonen dat de lijst groeit.</label>
+    <fieldset class="case"><legend>Mijn voornaam en mijn foto mogen op een raam van de gevel verschijnen, om te tonen dat de lijst groeit.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nee</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Ik schrijf me in</button></div>
     <p class="confidentialite">Je voornaam, je contactgegevens, je Belgisch rijksregisternummer en je nationaliteit worden bewaard door Ballal ASBL, alleen om je te contacteren, te identificeren over Casa Belgica, en te zorgen voor een goede spreiding van nationaliteiten in het gebouw. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je rijksregisternummer en je nationaliteit worden nooit publiek getoond. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
@@ -201,8 +201,9 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Bedankt.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Je voornaam ontbreekt, of een manier om je te bereiken.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Antwoord ja of nee: je voornaam kan op het raam verschijnen, of niet.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='De voornaam van je referentiepersoon ontbreekt: zonder die vertrekt de inschrijving niet.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Je Belgisch rijksregisternummer (of BIS-nummer) ontbreekt: zonder dat wordt de inschrijving niet verstuurd.';montrer(ko);return;}
     if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='Dit nummer lijkt niet te kloppen: controleer de 11 cijfers.';montrer(ko);return;}
@@ -227,7 +228,7 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

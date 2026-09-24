@@ -303,7 +303,7 @@
     <label>Uw Belgisch rijksregisternummer, of uw BIS-nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">Uw foto, als u wil dat men u op uw steen ziet (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
-    <label class="case"><input type="checkbox" name="affiche"> Mijn naam en mijn foto mogen op een steen van de muur verschijnen, om te tonen dat de beloftes vooruitgaan.</label>
+    <fieldset class="case"><legend>Mijn naam en mijn foto mogen op een steen van de muur verschijnen, om te tonen dat de beloftes vooruitgaan.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nee</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Word een van de 120</button></div>
     <p class="confidentialite">Uw naam, uw contactgegevens en uw Belgisch rijksregisternummer worden bewaard door Ballal ASBL, uitsluitend om bij u terug te komen en u te identificeren over Casa Belgica. Ze worden aan niemand doorgegeven en worden gewist op eenvoudig verzoek via admin@ballal.be. Uw rijksregisternummer wordt nooit publiek getoond. Uw naam en uw foto verschijnen alleen op de muur als u het vakje aanvinkt. Om ze weg te halen, schrijft u ons.</p>
@@ -398,8 +398,9 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Bedankt.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Uw naam ontbreekt, of een manier om u te bereiken.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Antwoord ja of nee: uw naam kan op de steen verschijnen, of niet.';montrer(ko);return;}
     if(!numeroNational){ko.textContent='Uw Belgisch rijksregisternummer (of BIS-nummer) ontbreekt: zonder dat wordt de belofte niet verstuurd.';montrer(ko);return;}
     if(!B.validerNumeroNational(numeroNational)){ko.textContent='Dit nummer lijkt niet te kloppen: controleer de 11 cijfers.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Verzenden…';
@@ -419,7 +420,7 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

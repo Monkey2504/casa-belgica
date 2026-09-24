@@ -145,7 +145,7 @@ h1{max-width:16ch}
     <label class="photo">صورتك، إذا أردت أن يراك الناس في النافذة (اختياري)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <p class="avertissement"><strong>قبل أن تضع علامة:</strong> الواجهة علنية، والجميع يمكنهم رؤية اسمك وصورتك. إذا كان لديك سبب لألّا تكون ظاهرًا، فلا تضع علامة: تسجيلك يُحسب تمامًا بالمثل، ونافذتك تُضاء بدون اسم. يمكنك تغيير رأيك متى شئت، ونحذف كل شيء بمجرد طلبك.</p>
-    <label class="case"><input type="checkbox" name="affiche"> يمكن أن يظهر اسمي وصورتي على نافذة في الواجهة، لإظهار أن القائمة تتقدّم.</label>
+    <fieldset class="case"><legend>يمكن أن يظهر اسمي وصورتي على نافذة في الواجهة، لإظهار أن القائمة تتقدّم.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> نعم</label><label><input type="radio" name="affiche" value="non"> لا</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">أسجّل اسمي</button></div>
     <p class="confidentialite">اسمك ووسيلة الاتصال بك ورقمك في السجل الوطني وجنسيتك تحتفظ بها جمعية Ballal ASBL، فقط للتواصل معك والتعرّف عليك بخصوص Casa Belgica، وللحفاظ على تنوّع جيد للجنسيات داخل المبنى. لا نعطيها لأحد، ونحذفها إذا طلبت ذلك على admin@ballal.be. رقمك في السجل الوطني وجنسيتك لا يُعرضان علنًا أبدًا. اسمك وصورتك لا يظهران على الواجهة إلا إذا وضعت علامة في المربّع. لحذفهما، راسلنا.</p>
@@ -201,8 +201,9 @@ h1{max-width:16ch}
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='شكرًا.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='ينقص اسمك الأول أو وسيلة للتواصل معك.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='أجب بنعم أو لا: يمكن أن يظهر اسمك على النافذة، أو لا.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='ينقص اسم الشخص المرجعي لك: بدونه لا يُرسَل التسجيل.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='ينقص رقمك في السجل الوطني (أو رقم BIS): بدونه لا يتم إرسال التسجيل.';montrer(ko);return;}
     if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='هذا الرقم لا يبدو صحيحًا: تحقّق من الأرقام الـ11.';montrer(ko);return;}
@@ -227,7 +228,7 @@ h1{max-width:16ch}
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

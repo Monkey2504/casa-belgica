@@ -303,7 +303,7 @@
     <label>Your Belgian national register number, or your BIS number<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">Your photo, if you would like to be seen on your brick (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
-    <label class="case"><input type="checkbox" name="affiche"> My name and my photo may appear on a brick in the wall, to show that the pledges are moving forward.</label>
+    <fieldset class="case"><legend>My name and my photo may appear on a brick in the wall, to show that the pledges are moving forward.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Yes</label><label><input type="radio" name="affiche" value="non"> No</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Become one of the 120</button></div>
     <p class="confidentialite">Your name, your contact details and your Belgian national register number are kept by Ballal ASBL, solely to get back to you and identify you about Casa Belgica. They are not passed on to anyone and are deleted on request at admin@ballal.be. Your national register number is never shown publicly. Your name and your photo only appear on the wall if you tick the box. To have them removed, write to us.</p>
@@ -398,8 +398,9 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Thanks.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Your name or a way to reach you is missing.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Answer yes or no: your name can appear on the brick, or not.';montrer(ko);return;}
     if(!numeroNational){ko.textContent='Your Belgian national register number (or BIS number) is missing: without it, the pledge won\'t go through.';montrer(ko);return;}
     if(!B.validerNumeroNational(numeroNational)){ko.textContent='This number doesn\'t look right: check the 11 digits.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Sending…';
@@ -419,7 +420,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

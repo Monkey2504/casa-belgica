@@ -88,7 +88,7 @@
     <label>Votre numéro de registre national belge, ou votre numéro BIS<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">Votre photo, si vous voulez qu'on vous voie sur votre brique (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
-    <label class="case"><input type="checkbox" name="affiche"> Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</label>
+    <fieldset class="case"><legend>Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Oui</label><label><input type="radio" name="affiche" value="non"> Non</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Devenir l'un des 120</button></div>
     <p class="confidentialite">Votre nom, votre contact et votre numéro de registre national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro de registre national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous cochez la case. Pour les retirer, écrivez-nous.</p>
@@ -407,8 +407,9 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Il manque votre nom ou un moyen de vous joindre.';montrer(ko);return;}
+    if(!f.affiche.value){ko.textContent='Répondez oui ou non : votre nom peut apparaître sur la brique, ou pas.';montrer(ko);return;}
     if(!numeroNational){ko.textContent='Il manque votre numéro de registre national (ou numéro BIS) : sans lui, la promesse ne part pas.';montrer(ko);return;}
     if(!B.validerNumeroNational(numeroNational)){ko.textContent='Ce numéro ne semble pas correct : vérifiez les 11 chiffres.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
@@ -428,7 +429,7 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
