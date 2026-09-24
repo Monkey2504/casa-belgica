@@ -69,7 +69,7 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>Of kom langs:</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Gevel van het gebouw: 50 ramen, één per persoon die zich inschreef om er te wonen. Elk raam is klikbaar."></svg><figcaption><strong><span class="rouleau" id="r-hab">5</span> <span id="l-hab">verlichte ramen</span> van de 50</strong>: de 5 referentiepersonen, één per verdieping, en <strong><span class="rouleau" id="r-ins">0</span> <span id="l-ins">ingeschreven persoon</span></strong> om er te wonen. Klik op een raam.</figcaption>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Gevel van het gebouw: 50 ramen, één per persoon die zich inschreef om er te wonen. Elk raam is klikbaar."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">verlichte ramen</span> van de 50</strong>: één raam per persoon die zich inschreef om er te wonen. Klik op een raam.</figcaption>
   <ul class="etages" id="etages" aria-label="Bezetting per verdieping"></ul></figure>
 </div>
 </div>
@@ -180,9 +180,9 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
   var fac=B.facade(document.getElementById('facade'));
   B.brancher(fac.fens,'fenetre',{fenetre:'#inscrire'});
   var etat={habitants:0,noms:{habitant:{}}};
-  // Les 5 personnes référentes vivront là : le compteur part d'elles.
+  // Les personnes référentes vivent aussi dans l'immeuble ; leur fenêtre ne s'allume que si elles s'inscrivent, comme tout le monde.
   function afficher(){
-    var total=Math.min(50,B.EQUIPE+etat.habitants);
+    var total=Math.min(50,etat.habitants);
     B.rouleau(document.getElementById('r-hab'),total);
     B.rouleau(document.getElementById('r-ins'),etat.habitants);
     document.getElementById('l-hab').textContent=total===1?'verlicht raam':'verlichte ramen';

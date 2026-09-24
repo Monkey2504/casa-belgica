@@ -69,7 +69,7 @@ h1{max-width:16ch}
     </div>
     <p class="adr"><b>أو مرّ لزيارتنا:</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="واجهة المبنى: 50 نافذة، واحدة لكل شخص مسجّل للسكن هنا. كل نافذة يمكن النقر عليها."></svg><figcaption><strong><span class="rouleau" id="r-hab">5</span> <span id="l-hab">نوافذ مضاءة</span> من أصل 50</strong>: الأشخاص المرجعيون الخمسة، واحد في كل طابق، و<strong><span class="rouleau" id="r-ins">0</span> <span id="l-ins">شخص مسجّل</span></strong> للسكن هنا. انقر على نافذة.</figcaption>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="واجهة المبنى: 50 نافذة، واحدة لكل شخص مسجّل للسكن هنا. كل نافذة يمكن النقر عليها."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">نوافذ مضاءة</span> من أصل 50</strong>: نافذة واحدة لكل شخص مسجّل للسكن هنا. انقر على نافذة.</figcaption>
   <ul class="etages" id="etages" aria-label="الامتلاء حسب الطابق"></ul></figure>
 </div>
 </div>
@@ -180,9 +180,9 @@ h1{max-width:16ch}
   var fac=B.facade(document.getElementById('facade'));
   B.brancher(fac.fens,'fenetre',{fenetre:'#inscrire'});
   var etat={habitants:0,noms:{habitant:{}}};
-  // Les 5 personnes référentes vivront là : le compteur part d'elles.
+  // Les personnes référentes vivent aussi dans l'immeuble ; leur fenêtre ne s'allume que si elles s'inscrivent, comme tout le monde.
   function afficher(){
-    var total=Math.min(50,B.EQUIPE+etat.habitants);
+    var total=Math.min(50,etat.habitants);
     B.rouleau(document.getElementById('r-hab'),total);
     B.rouleau(document.getElementById('r-ins'),etat.habitants);
     document.getElementById('l-hab').textContent=total===1?'نافذة مضاءة':'نوافذ مضاءة';

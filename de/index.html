@@ -88,7 +88,7 @@ footer b,footer a{color:var(--sur-vert)}
   <ul class="etages" id="etages" aria-label="Belegung pro Etage"></ul></figure>
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">erleuchtete Fenster</span> von 50</p>
-    <p class="fixe">Die 5 Bezugspersonen, eine pro Etage, und <b class="rouleau" id="r-ins">0</b> <span id="l-ins">eingetragene Person</span>. <b class="rouleau" id="r-loyer">1.500</b>&nbsp;€ Miete pro Monat, bei 300 € pro Zimmer.</p>
+    <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">eingetragene Person</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ Miete pro Monat, bei 300 € pro Zimmer.</p>
     <div class="pret" id="pret-chiffres" hidden>
       <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">Darlehenszusagen</span> von 120</p>
       <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
@@ -119,10 +119,10 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
   var b=B.facade(document.getElementById('batiment'),{mur:true});
   B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
   B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
-  // Les 5 personnes référentes vivront là : le compteur part d'elles. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
+  // Les personnes référentes s'inscrivent comme tout le monde, leur fenêtre ne s'allume pas d'office. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
   var SEUIL=3;
   function afficher(d){
-    var total=Math.min(50,B.EQUIPE+d.habitants);
+    var total=Math.min(50,d.habitants);
     B.rouleau(document.getElementById('r-hab'),total);
     B.rouleau(document.getElementById('r-ins'),d.habitants);
     B.rouleau(document.getElementById('r-loyer'),total*300);

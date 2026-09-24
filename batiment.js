@@ -65,7 +65,7 @@
   // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
   // Les cinq personnes référentes vivront dans le bâtiment : elles comptent parmi les 50, une par étage.
   var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Cissé',etage:3},{nom:'Delya',etage:4},{nom:'Ibrahim',etage:5}];
-  var PAR_ETAGE=9;
+  var PAR_ETAGE=10;
   function normaliser(t){ return (t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
   function referentDe(nom){ var n=normaliser(nom); for(var i=0;i<REFERENTS.length;i++) if(normaliser(REFERENTS[i].nom)===n) return REFERENTS[i]; return null; }
 
@@ -234,18 +234,15 @@
     var p=places[n]; if(!p)return;
     observer(p,function(){ if(genre)garnir(p,genre,n,true,personne,etage); p.classList.add('on'); p.classList.add('neuve'); },.5);
   }
-  // Place les futurs habitants sur la façade : un étage par personne référente (sa fenêtre en premier), puis les personnes qu'elle a réunies.
+  // Place les futurs habitants sur la façade : un étage par personne référente, 10 fenêtres pour les personnes qu'elle a réunies —
+  // la personne référente elle-même y a sa fenêtre si, comme les autres, elle s'est inscrite.
   function placerEtages(fens,d,anime){
     var ordre=[];
     d.etages.forEach(function(E){
       var base=(E.ref.etage-1)*10, info={ref:E.ref,compte:E.personnes.length};
-      var pRef=fens[base+1];
-      if(pRef){ pRef.classList.add('referent'); garnir(pRef,'referent',base+1,true,{nom:E.ref.nom},info);
-        if(!pRef.querySelector('rect.marque')){ var r=pRef.querySelector('rect.base'); el('rect',{'class':'marque',x:+r.getAttribute('x')+4,y:+r.getAttribute('y')+4,width:+r.getAttribute('width')-8,height:5,rx:1},pRef); }
-        if(!pRef.classList.contains('on')) ordre.push(pRef); }
       for(var k=1;k<=PAR_ETAGE;k++){
-        var p=fens[base+1+k], pers=E.personnes[k-1], occ=!!pers; if(!p)continue;
-        garnir(p,'fenetre',base+1+k,occ,pers,info);
+        var p=fens[base+k], pers=E.personnes[k-1], occ=!!pers; if(!p)continue;
+        garnir(p,'fenetre',base+k,occ,pers,info);
         if(!occ){p.classList.remove('on');continue}
         if(!p.classList.contains('on')) ordre.push(p);
       }
@@ -254,8 +251,8 @@
     ordre.sort(function(a,b){return ((+a.getAttribute('data-n'))*37)%101-((+b.getAttribute('data-n'))*37)%101});
     ordre.forEach(function(p,k){ setTimeout(function(){p.classList.add('on')},k*60); });
   }
-  // Numéro de fenêtre d'une personne : k-ième (1..9) réunie par R → fenêtre (étage-1)*10+1+k ; 0 si l'étage est complet.
-  function fenetreDe(R,k){ return (R&&k>=1&&k<=PAR_ETAGE)?(R.etage-1)*10+1+k:0; }
+  // Numéro de fenêtre d'une personne : k-ième (1..10) réunie par R → fenêtre (étage-1)*10+k ; 0 si l'étage est complet.
+  function fenetreDe(R,k){ return (R&&k>=1&&k<=PAR_ETAGE)?(R.etage-1)*10+k:0; }
   // Remplit une liste <ul class="etages"> : un item par étage, avec la progression.
   function etages(ul,d){
     if(!ul)return; ul.innerHTML='';
