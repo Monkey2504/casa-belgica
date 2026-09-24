@@ -89,6 +89,7 @@ footer b,footer a{color:var(--sur-vert)}
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">windows lit</span> out of 50</p>
     <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">person signed up</span>. €<b class="rouleau" id="r-loyer">0</b>&nbsp;in rent per month, at €300 a room.</p>
+    <p class="fixe">Right now, we have a group of <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">people</span> able to pay <b class="rouleau" id="r-capacite">0</b>&nbsp;a month.</p>
     <div class="pret" id="pret-chiffres" hidden>
       <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">loan pledges</span> out of 120</p>
       <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
@@ -128,6 +129,9 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
     B.rouleau(document.getElementById('r-loyer'),total*300);
     document.getElementById('l-hab').textContent=total===1?'window lit':'windows lit';
     document.getElementById('l-ins').textContent=d.habitants===1?'person signed up':'people signed up';
+    B.rouleau(document.getElementById('r-groupe'),d.habitants);
+    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
+    document.getElementById('l-groupe').textContent=d.habitants===1?'person':'people';
     var assez=d.preteurs>=SEUIL;
     document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
     if(!assez)return;

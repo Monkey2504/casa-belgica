@@ -60,7 +60,7 @@
       <a class="btn ghost" href="#argent">Check the figures</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="The building: 50 windows for future residents, 120 bricks for lenders. Every spot can be clicked."></svg><figcaption><strong>50 windows, 120 bricks.</strong> One window per person signed up, one brick per pledge.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="The building: 50 windows for future residents, 120 bricks for lenders. Every spot can be clicked."></svg><figcaption><strong>50 windows, 120 bricks.</strong> One window per person signed up, one brick per pledge. Right now, we have a group of <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">people</span> able to pay <b class="rouleau" id="r-capacite">0</b>&nbsp;a month.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>€120,000</b><span>in citizen loans, at 0%</span></div>
@@ -386,7 +386,12 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
   function poser(anime){ B.allumer(places,'brique',etat.preteurs,etat.noms.preteur,anime); synchroniser(); if(visible) afficher(); }
   // La pose des briques et le décompte ne se jouent que quand le mur entre dans l'écran.
   B.observer(mur,function(){ visible=true; mur.classList.add('vu'); afficher(); },.2);
-  B.charger().then(function(d){ etat=d; poser(false); }).catch(function(){ poser(false); });
+  B.charger().then(function(d){ etat=d; poser(false);
+    var hab=Math.min(50,d.habitants||0);
+    B.rouleau(document.getElementById('r-groupe'),hab);
+    B.rouleau(document.getElementById('r-capacite'),hab*300);
+    document.getElementById('l-groupe').textContent=hab===1?'person':'people';
+  }).catch(function(){ poser(false); });
 
   /* Promesse de prêt : une ligne type 'preteur' dans public.inscriptions, puis le mur se remet à jour. */
   var f=document.getElementById('fPromesse'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');

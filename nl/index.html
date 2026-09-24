@@ -89,6 +89,7 @@ footer b,footer a{color:var(--sur-vert)}
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">verlichte ramen</span> van de 50</p>
     <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">ingeschreven persoon</span>. €&nbsp;<b class="rouleau" id="r-loyer">0</b> huur per maand, aan € 300 per kamer.</p>
+    <p class="fixe">Op dit moment hebben we een groep van <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">personen</span> met een betaalcapaciteit van € <b class="rouleau" id="r-capacite">0</b> per maand.</p>
     <div class="pret" id="pret-chiffres" hidden>
       <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">leenbeloftes</span> van de 120</p>
       <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
@@ -128,6 +129,9 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
     B.rouleau(document.getElementById('r-loyer'),total*300);
     document.getElementById('l-hab').textContent=total===1?'verlicht raam':'verlichte ramen';
     document.getElementById('l-ins').textContent=d.habitants===1?'ingeschreven persoon':'ingeschreven personen';
+    B.rouleau(document.getElementById('r-groupe'),d.habitants);
+    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
+    document.getElementById('l-groupe').textContent=d.habitants===1?'persoon':'personen';
     var assez=d.preteurs>=SEUIL;
     document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
     if(!assez)return;

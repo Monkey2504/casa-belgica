@@ -89,6 +89,7 @@ footer b,footer a{color:var(--sur-vert)}
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">5</b> <span id="l-hab">fenêtres allumées</span> sur 50</p>
     <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">personne inscrite</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ de loyers par mois, à 300 € la chambre.</p>
+    <p class="fixe">Actuellement, nous avons un groupe de <b class="rouleau" id="r-groupe">0</b> personne<span id="l-groupe">s</span> capable<span id="l-groupe2">s</span> de payer <b class="rouleau" id="r-capacite">0</b>&nbsp;€/mois.</p>
     <div class="pret" id="pret-chiffres" hidden>
       <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">promesses de prêt</span> sur 120</p>
       <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
@@ -128,6 +129,10 @@ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, 
     B.rouleau(document.getElementById('r-loyer'),total*300);
     document.getElementById('l-hab').textContent=total===1?'fenêtre allumée':'fenêtres allumées';
     document.getElementById('l-ins').textContent=d.habitants===1?'personne inscrite':'personnes inscrites';
+    B.rouleau(document.getElementById('r-groupe'),d.habitants);
+    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
+    document.getElementById('l-groupe').textContent=d.habitants===1?'':'s';
+    document.getElementById('l-groupe2').textContent=d.habitants===1?'':'s';
     var assez=d.preteurs>=SEUIL;
     document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
     if(!assez)return;
