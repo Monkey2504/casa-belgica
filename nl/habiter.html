@@ -139,6 +139,7 @@ h1{max-width:16ch}
     <label>Je voornaam<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Hoe we je kunnen bereiken (telefoon, WhatsApp of e-mail)<input name="contact" required maxlength="200"></label>
     <label>Je nationaal identiteitsnummer, uit je land van herkomst<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Je nationaliteit<input name="nationalite" required maxlength="60" autocomplete="off"></label>
     <label>Je referentiepersoon, wie je over het project vertelde en je opvolgt<select name="referent" required><option value="">Kies zijn voornaam</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Waar je nu slaapt, hoe het staat met je papieren (als je wil)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">Je foto, als je wil dat we je aan het raam zien (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -147,7 +148,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> Mijn voornaam en mijn foto mogen op een raam van de gevel verschijnen, om te tonen dat de lijst groeit.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Ik schrijf me in</button></div>
-    <p class="confidentialite">Je voornaam, je contactgegevens en je nationaal identiteitsnummer worden bewaard door Ballal ASBL, alleen om je te contacteren en te identificeren over Casa Belgica. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je nationaal identiteitsnummer wordt nooit publiek getoond. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
+    <p class="confidentialite">Je voornaam, je contactgegevens, je nationaal identiteitsnummer en je nationaliteit worden bewaard door Ballal ASBL, alleen om je te contacteren, te identificeren over Casa Belgica, en te zorgen voor een goede spreiding van nationaliteiten in het gebouw. We geven ze aan niemand door, en we wissen ze als je het vraagt via admin@ballal.be. Je nationaal identiteitsnummer en je nationaliteit worden nooit publiek getoond. Je voornaam en je foto verschijnen alleen op de gevel als je het vakje aanvinkt. Om ze weg te halen, schrijf je ons.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Het verzenden is mislukt. Kom langs, of schrijf naar <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -204,11 +205,12 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
     if(!nom||!contact){ko.textContent='Je voornaam ontbreekt, of een manier om je te bereiken.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='De voornaam van je referentiepersoon ontbreekt: zonder die vertrekt de inschrijving niet.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='Je nationaal identiteitsnummer ontbreekt: zonder dat wordt de inschrijving niet verstuurd.';montrer(ko);return;}
+    if(!f.nationalite.value.trim()){ko.textContent='Je nationaliteit ontbreekt: zonder die wordt de inschrijving niet verstuurd.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Verzenden…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,nationalite:f.nationalite.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -224,7 +226,7 @@ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door Fr
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});

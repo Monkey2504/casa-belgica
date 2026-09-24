@@ -139,6 +139,7 @@ h1{max-width:16ch}
     <label>اسمك الأول<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>كيف نتواصل معك (هاتف، واتساب أو بريد إلكتروني)<input name="contact" required maxlength="200"></label>
     <label>رقم هويتك الوطني، من بلدك الأصلي<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>جنسيتك<input name="nationalite" required maxlength="60" autocomplete="off"></label>
     <label>الشخص المرجعي لك، الذي حدّثك عن المشروع ويتابعك<select name="referent" required><option value="">اختر اسمه</option><option value="Telly">تيلي</option><option value="François">فرانسوا</option><option value="Cissé">سيسي</option><option value="Delya">ديليا</option><option value="Ibrahim">إبراهيم</option></select></label>
     <label>أين تنام الآن، وأين وصلت أوراقك (إذا أردت)<textarea name="note" maxlength="500"></textarea></label>
     <label class="photo">صورتك، إذا أردت أن يراك الناس في النافذة (اختياري)<input type="file" name="photo" accept="image/*" capture="user"></label>
@@ -147,7 +148,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> يمكن أن يظهر اسمي وصورتي على نافذة في الواجهة، لإظهار أن القائمة تتقدّم.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">أسجّل اسمي</button></div>
-    <p class="confidentialite">اسمك ووسيلة الاتصال بك ورقم هويتك الوطني تحتفظ بها جمعية Ballal ASBL، فقط للتواصل معك والتعرّف عليك بخصوص Casa Belgica. لا نعطيها لأحد، ونحذفها إذا طلبت ذلك على admin@ballal.be. رقم هويتك الوطني لا يُعرض علنًا أبدًا. اسمك وصورتك لا يظهران على الواجهة إلا إذا وضعت علامة في المربّع. لحذفهما، راسلنا.</p>
+    <p class="confidentialite">اسمك ووسيلة الاتصال بك ورقم هويتك الوطني وجنسيتك تحتفظ بها جمعية Ballal ASBL، فقط للتواصل معك والتعرّف عليك بخصوص Casa Belgica، وللحفاظ على تنوّع جيد للجنسيات داخل المبنى. لا نعطيها لأحد، ونحذفها إذا طلبت ذلك على admin@ballal.be. رقم هويتك الوطني وجنسيتك لا يُعرضان علنًا أبدًا. اسمك وصورتك لا يظهران على الواجهة إلا إذا وضعت علامة في المربّع. لحذفهما، راسلنا.</p>
     <p class="ok" role="status"></p>
     <p class="ko">لم ينجح الإرسال. تعال لزيارتنا، أو اكتب إلى <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -204,11 +205,12 @@ h1{max-width:16ch}
     if(!nom||!contact){ko.textContent='ينقص اسمك الأول أو وسيلة للتواصل معك.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='ينقص اسم الشخص المرجعي لك: بدونه لا يُرسَل التسجيل.';montrer(ko);return;}
     if(!f.numeroNational.value.trim()){ko.textContent='ينقص رقم هويتك الوطني: بدونه لا يتم إرسال التسجيل.';montrer(ko);return;}
+    if(!f.nationalite.value.trim()){ko.textContent='تنقص جنسيتك: بدونها لا يتم إرسال التسجيل.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='جارٍ الإرسال…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,referent:referent,numero_national:f.numeroNational.value.trim()||null,nationalite:f.nationalite.value.trim()||null,note:f.note.value.trim()||null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -224,7 +226,7 @@ h1{max-width:16ch}
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.note.value='';f.affiche.checked=false;f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
