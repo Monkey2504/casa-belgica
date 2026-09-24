@@ -87,6 +87,15 @@
       return {habitants:Math.min(50,c.habitants||0), preteurs:Math.min(120,c.preteurs||0), brut:c, noms:noms, etages:etages, sansEtage:sansEtage};
     });
   }
+  // Numéro de registre national belge ou numéro BIS (même clé de contrôle, modulo 97) : accepte les deux hypothèses
+  // de siècle de naissance, faute de savoir laquelle s'applique. Retire espaces, points et tirets avant de vérifier.
+  function validerNumeroNational(valeur){
+    var n=(valeur||'').replace(/[^0-9]/g,'');
+    if(n.length!==11) return false;
+    var corps=n.slice(0,9), cle=parseInt(n.slice(9),10);
+    var avant2000=97-(parseInt(corps,10)%97), apres1999=97-(parseInt('2'+corps,10)%97);
+    return cle===avant2000||cle===apres1999;
+  }
   function inscrire(donnees){
     return fetch(SB+'/rest/v1/inscriptions',{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(donnees)})
       .then(function(r){if(!r.ok)throw 0;});
@@ -297,5 +306,5 @@
     return {fens:fens,briques:briques};
   }
 
-  window.Batiment={EQUIPE:REFERENTS.length,charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,placer:placerEtages,eclairer:eclairer,etages:etages,fenetreDe:fenetreDe,referentDe:referentDe,REFERENTS:REFERENTS,PAR_ETAGE:PAR_ETAGE,fermer:fermer,observer:observer,reduit:reduit};
+  window.Batiment={EQUIPE:REFERENTS.length,charger:charger,inscrire:inscrire,televerser:televerser,photoUrl:photoUrl,rouleau:rouleau,facade:facade,brancher:brancher,allumer:allumer,placer:placerEtages,eclairer:eclairer,etages:etages,fenetreDe:fenetreDe,referentDe:referentDe,REFERENTS:REFERENTS,PAR_ETAGE:PAR_ETAGE,fermer:fermer,observer:observer,reduit:reduit,validerNumeroNational:validerNumeroNational};
 })();

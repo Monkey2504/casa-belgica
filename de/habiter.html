@@ -138,7 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Dein Vorname<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>Wie wir dich erreichen (Telefon, WhatsApp oder E-Mail)<input name="contact" required maxlength="200"></label>
-    <label>Deine nationale Identitätsnummer, aus deinem Herkunftsland<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Deine belgische Nationalregisternummer, oder deine BIS-Nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label>Deine Nationalität<input name="nationalite" required maxlength="60" autocomplete="off"></label>
     <label>Deine Bezugsperson, die dir vom Projekt erzählt hat und dich begleitet<select name="referent" required><option value="">Wähle seinen Vornamen</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Wo du gerade schläfst, wie es mit deinen Papieren steht (wenn du willst)<textarea name="note" maxlength="500"></textarea></label>
@@ -148,7 +148,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> Mein Vorname und mein Foto dürfen an einem Fenster der Fassade erscheinen, um zu zeigen, dass die Liste wächst.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Ich trage mich ein</button></div>
-    <p class="confidentialite">Dein Vorname, dein Kontakt, deine nationale Identitätsnummer und deine Nationalität werden von Ballal ASBL aufbewahrt, nur um dich zu kontaktieren, dich zu identifizieren wegen Casa Belgica, und für eine gute Durchmischung der Nationalitäten im Gebäude zu sorgen. Wir geben sie an niemanden weiter, und wir löschen sie, wenn du es bei admin@ballal.be verlangst. Deine nationale Identitätsnummer und deine Nationalität werden nie öffentlich angezeigt. Dein Vorname und dein Foto erscheinen nur dann an der Fassade, wenn du das Kästchen ankreuzt. Um sie zu entfernen, schreib uns.</p>
+    <p class="confidentialite">Dein Vorname, dein Kontakt, deine belgische Nationalregisternummer und deine Nationalität werden von Ballal ASBL aufbewahrt, nur um dich zu kontaktieren, dich zu identifizieren wegen Casa Belgica, und für eine gute Durchmischung der Nationalitäten im Gebäude zu sorgen. Wir geben sie an niemanden weiter, und wir löschen sie, wenn du es bei admin@ballal.be verlangst. Deine Nationalregisternummer und deine Nationalität werden nie öffentlich angezeigt. Dein Vorname und dein Foto erscheinen nur dann an der Fassade, wenn du das Kästchen ankreuzt. Um sie zu entfernen, schreib uns.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Das Senden hat nicht geklappt. Komm bei uns vorbei, oder schreib an <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -204,7 +204,8 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Es fehlt dein Vorname oder eine Möglichkeit, dich zu erreichen.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Es fehlt der Vorname deiner Bezugsperson: ohne ihn geht die Eintragung nicht raus.';montrer(ko);return;}
-    if(!f.numeroNational.value.trim()){ko.textContent='Deine nationale Identitätsnummer fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
+    if(!f.numeroNational.value.trim()){ko.textContent='Deine belgische Nationalregisternummer (oder BIS-Nummer) fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
+    if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüf die 11 Ziffern.';montrer(ko);return;}
     if(!f.nationalite.value.trim()){ko.textContent='Deine Nationalität fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Wird gesendet…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;

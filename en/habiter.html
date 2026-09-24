@@ -138,7 +138,7 @@ h1{max-width:16ch}
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Your first name<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>How to reach you (phone, WhatsApp or e-mail)<input name="contact" required maxlength="200"></label>
-    <label>Your national ID number, from your home country<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Your Belgian national register number, or your BIS number<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label>Your nationality<input name="nationalite" required maxlength="60" autocomplete="off"></label>
     <label>Your referent, the person who told you about the project and keeps in touch with you<select name="referent" required><option value="">Choose their first name</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label>Where you're sleeping right now, where your papers are at (if you want)<textarea name="note" maxlength="500"></textarea></label>
@@ -148,7 +148,7 @@ h1{max-width:16ch}
     <label class="case"><input type="checkbox" name="affiche"> My first name and my photo can appear on a window of the building's front, to show that the list is growing.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Sign me up</button></div>
-    <p class="confidentialite">Your first name, your contact details, your national ID number and your nationality are kept by Ballal ASBL, only to get back in touch with you, identify you about Casa Belgica, and keep a good mix of nationalities in the building. We don't give them to anyone, and we delete them if you ask at admin@ballal.be. Your national ID number and your nationality are never shown publicly. Your first name and your photo only appear on the front if you tick the box. To have them removed, write to us.</p>
+    <p class="confidentialite">Your first name, your contact details, your Belgian national register number and your nationality are kept by Ballal ASBL, only to get back in touch with you, identify you about Casa Belgica, and keep a good mix of nationalities in the building. We don't give them to anyone, and we delete them if you ask at admin@ballal.be. Your national register number and your nationality are never shown publicly. Your first name and your photo only appear on the front if you tick the box. To have them removed, write to us.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Sending didn't work. Come and see us, or write to <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -204,7 +204,8 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), referent=f.referent.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Your first name or a way to reach you is missing.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Your referent\'s first name is missing: without it, the sign-up can\'t be sent.';montrer(ko);return;}
-    if(!f.numeroNational.value.trim()){ko.textContent='Your national ID number is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
+    if(!f.numeroNational.value.trim()){ko.textContent='Your Belgian national register number (or BIS number) is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
+    if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='This number doesn\'t look right: check the 11 digits.';montrer(ko);return;}
     if(!f.nationalite.value.trim()){ko.textContent='Your nationality is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Sending…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;

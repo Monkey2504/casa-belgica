@@ -300,13 +300,13 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>اسمكم<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>كيف نتواصل معكم (بريد إلكتروني أو هاتف)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>رقم هويتكم الوطني، من بلدكم الأصلي<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>رقمكم في السجل الوطني البلجيكي، أو رقم BIS الخاص بكم<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">صورتكم، إذا أردتم أن يراكم الناس على طوبتكم (اختياري)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <label class="case"><input type="checkbox" name="affiche"> يمكن أن يظهر اسمي وصورتي على طوبة في الجدار، لإظهار أن الوعود تتقدّم.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">كونوا واحدًا من الـ 120</button></div>
-    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم ورقم هويتكم الوطني تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم والتعرّف عليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. رقم هويتكم الوطني لا يُعرض علنًا أبدًا. اسمكم وصورتكم لا يظهران على الجدار إلا إذا وضعتم علامة في المربّع. لحذفهما، راسلونا.</p>
+    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم ورقمكم في السجل الوطني تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم والتعرّف عليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. رقمكم في السجل الوطني لا يُعرض علنًا أبدًا. اسمكم وصورتكم لا يظهران على الجدار إلا إذا وضعتم علامة في المربّع. لحذفهما، راسلونا.</p>
     <p class="ok" role="status"></p>
     <p class="ko">لم ينجح الإرسال. راسلونا على <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>، ونضع الطوبة يدويًا.</p>
   </form>
@@ -400,7 +400,8 @@
     if(f.site.value){ok.textContent='شكرًا.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='ينقص اسمكم أو وسيلة للتواصل معكم.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='ينقص رقم هويتكم الوطني: بدونه لا يتم إرسال الوعد.';montrer(ko);return;}
+    if(!numeroNational){ko.textContent='ينقص رقمكم في السجل الوطني (أو رقم BIS): بدونه لا يتم إرسال الوعد.';montrer(ko);return;}
+    if(!B.validerNumeroNational(numeroNational)){ko.textContent='هذا الرقم لا يبدو صحيحًا: تحقّقوا من الأرقام الـ11.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='جارٍ الإرسال…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))

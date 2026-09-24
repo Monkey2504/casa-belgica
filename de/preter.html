@@ -300,13 +300,13 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Ihr Name<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Wie wir Sie erreichen (E-Mail oder Telefon)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Ihre nationale Identitätsnummer, aus Ihrem Herkunftsland<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Ihre belgische Nationalregisternummer, oder Ihre BIS-Nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
     <label class="photo">Ihr Foto, wenn Sie auf Ihrem Stein zu sehen sein möchten (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <label class="case"><input type="checkbox" name="affiche"> Mein Name und mein Foto dürfen auf einem Stein der Mauer erscheinen, um zu zeigen, dass die Zusagen vorankommen.</label>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Zu den 120 gehören</button></div>
-    <p class="confidentialite">Ihr Name, Ihr Kontakt und Ihre nationale Identitätsnummer werden von Ballal ASBL aufbewahrt, ausschließlich um auf Sie zurückzukommen und Sie zu identifizieren, wegen Casa Belgica. Sie werden an niemanden weitergegeben und auf einfache Anfrage an admin@ballal.be gelöscht. Ihre nationale Identitätsnummer wird nie öffentlich angezeigt. Ihr Name und Ihr Foto erscheinen nur dann auf der Mauer, wenn Sie das Kästchen ankreuzen. Um sie zu entfernen, schreiben Sie uns.</p>
+    <p class="confidentialite">Ihr Name, Ihr Kontakt und Ihre belgische Nationalregisternummer werden von Ballal ASBL aufbewahrt, ausschließlich um auf Sie zurückzukommen und Sie zu identifizieren, wegen Casa Belgica. Sie werden an niemanden weitergegeben und auf einfache Anfrage an admin@ballal.be gelöscht. Ihre Nationalregisternummer wird nie öffentlich angezeigt. Ihr Name und Ihr Foto erscheinen nur dann auf der Mauer, wenn Sie das Kästchen ankreuzen. Um sie zu entfernen, schreiben Sie uns.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Das Senden hat nicht geklappt. Schreiben Sie uns an <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>, wir setzen den Stein von Hand.</p>
   </form>
@@ -400,7 +400,8 @@ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von F
     if(f.site.value){ok.textContent='Danke.';montrer(ok);return;}
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=!!f.affiche.checked;
     if(!nom||!contact){ko.textContent='Es fehlt Ihr Name oder eine Möglichkeit, Sie zu erreichen.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='Ihre nationale Identitätsnummer fehlt: ohne sie wird die Zusage nicht abgeschickt.';montrer(ko);return;}
+    if(!numeroNational){ko.textContent='Ihre belgische Nationalregisternummer (oder BIS-Nummer) fehlt: ohne sie wird die Zusage nicht abgeschickt.';montrer(ko);return;}
+    if(!B.validerNumeroNational(numeroNational)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüfen Sie die 11 Ziffern.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Wird gesendet…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
