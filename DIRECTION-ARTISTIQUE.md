@@ -19,10 +19,9 @@ Trois familles chargées, un seul rôle chacune :
 
 - **Titres, chiffres, boutons, étiquettes** (`--disp`) : **Anton**, tout en capitales, une seule
   graisse (`font-synthesis-weight:none` pour ne pas la faire gras artificiellement). C'est la police
-  d'affiche du site depuis la passe « luxe-street ». *Bricolage Grotesque reste chargé depuis Google
-  Fonts dans le `<head>` de chaque page mais n'est plus utilisé nulle part : `--disp` est redéfini
-  plus loin dans `style.css` (ligne ~488) et écrase la valeur initiale. C'est un lien de police mort
-  qui coûte une requête réseau pour rien — à corriger un jour, séparément de ce document.*
+  d'affiche du site depuis la passe « luxe-street ». Le lien Google Fonts mort vers Bricolage
+  Grotesque (jamais utilisé, `--disp` étant redéfini plus loin dans `style.css`) a été retiré du
+  `<head>` des 15 pages ; seul Instrument Sans y reste chargé.
 - **Le mot tagué** (`.tag`, classe `--tag`) : **Sedgwick Ave Display**, cursive, couleur or, tourné
   -4° (`rotate(-4deg) translateY(.04em)`), utilisé une fois par grand titre (`<em class="tag">`).
   Ne s'applique pas à l'arabe (`html[lang="ar"] .tag` retombe sur la police du corps, sans rotation :
