@@ -54,13 +54,13 @@
   <div class="heroTxt">
     <p class="eyebrow">Raus aus dem Squat, das Programm für Übergangswohnen von Ballal ASBL (Unternehmensnummer 1016.925.333), in Molenbeek seit 2023. Erstes Gebäude: Casa Belgica.</p>
     <h1>Es fehlen nur <mark>120</mark> <em class="tag">Menschen</em>.</h1>
-    <p class="lead pitch">Sie leihen 1.000 €, zu 0 %, zurückgezahlt. Genug, um jemandem, der fast nichts hat, 300 € im Monat zu zahlen, in Brüssel, wo ein normales Studio 725 € kostet.</p>
+    <p class="lead pitch">Sie leihen 1.000 €, zu 0 %, zurückgezahlt. Genug, um jemandem, der fast nichts hat, 300 € im Monat zu zahlen, in Brüssel, wo ein Studio 725 € Miete kostet.</p>
     <div class="actions">
       <a class="btn or" href="#appel">Zu den 120 gehören</a>
       <a class="btn ghost" href="#argent">Die Zahlen prüfen</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Das Gebäude: 50 Fenster für künftige Bewohnerinnen und Bewohner, 120 Steine für Darlehensgeberinnen und -geber. Jede Stelle lässt sich anklicken."></svg><figcaption><strong>50 Fenster, 120 Steine.</strong> Ein Fenster pro angemeldeter Person, ein Stein pro Zusage. Aktuell haben wir eine Gruppe von <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">Personen</span> mit einer Zahlkraft von <b class="rouleau" id="r-capacite">0</b>&nbsp;€ im Monat.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Das Gebäude: 50 Fenster für künftige Bewohnerinnen und Bewohner. Jedes Fenster lässt sich anklicken."></svg><figcaption><strong>50 Fenster, 120 Steine.</strong> Ein Fenster pro angemeldeter Person, ein Stein pro Zusage. Aktuell haben wir eine Gruppe von <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">Personen</span> mit einer Zahlkraft von <b class="rouleau" id="r-capacite">0</b>&nbsp;€ im Monat.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120.000 €</b><span>Bürgerdarlehen, zu 0 %</span></div>
@@ -68,6 +68,11 @@
   <div><b>50</b><span>Plätze, jeder mit eigenem Einzelzimmer</span></div>
   <div><b>250 bis 350</b><span>Menschen mit einem Zuhause in zwanzig Jahren</span></div>
 </div>
+<ol class="frise-cle" aria-label="Zeitplan des Projekts">
+  <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a href="#risque">Details ansehen</a>.</span></li>
+  <li><b>Ab 18 bis 21 Monaten</b><span>Sammeln der 120 Kreditzusagen der Bürger·innen, zu 0 %.</span></li>
+  <li><b>± 3 Jahre</b><span>Gebäude saniert, erste Schlüssel übergeben.</span></li>
+</ol>
 </div>
 </section>
 
@@ -300,23 +305,23 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Ihr Name<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Wie wir Sie erreichen (E-Mail oder Telefon)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Ihre belgische Nationalregisternummer, oder Ihre BIS-Nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Ihre belgische Nationalregisternummer, oder Ihre BIS-Nummer (freiwillig, dient zur Überprüfung Ihrer Zusage)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">Ihr Foto, wenn Sie auf Ihrem Stein zu sehen sein möchten (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>Mein Name und mein Foto dürfen auf einem Stein der Mauer erscheinen, um zu zeigen, dass die Zusagen vorankommen.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nein</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Zu den 120 gehören</button></div>
-    <p class="confidentialite">Ihr Name, Ihr Kontakt und Ihre belgische Nationalregisternummer werden von Ballal ASBL aufbewahrt, ausschließlich um auf Sie zurückzukommen und Sie zu identifizieren, wegen Casa Belgica. Sie werden an niemanden weitergegeben und auf einfache Anfrage an admin@ballal.be gelöscht. Ihre Nationalregisternummer wird nie öffentlich angezeigt. Ihr Name und Ihr Foto erscheinen nur dann auf der Mauer, wenn Sie mit Ja antworten. Um sie zu entfernen, schreiben Sie uns.</p>
+    <p class="confidentialite">Ihr Name, Ihr Kontakt und, wenn Sie sie angeben, Ihre belgische Nationalregisternummer werden von Ballal ASBL aufbewahrt, ausschließlich um auf Sie zurückzukommen und Sie zu identifizieren, wegen Casa Belgica. Sie werden an niemanden weitergegeben und auf einfache Anfrage an admin@ballal.be gelöscht. Ihre Nationalregisternummer wird nie öffentlich angezeigt. Ihr Name und Ihr Foto erscheinen nur dann auf der Mauer, wenn Sie mit Ja antworten. Um sie zu entfernen, schreiben Sie uns.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Das Senden hat nicht geklappt. Schreiben Sie uns an <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>, wir setzen den Stein von Hand.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">Eine Zusage, keine Überweisung.</h3>
-    <p>Sie hinterlassen einen Namen und eine Kontaktmöglichkeit. Sonst nichts: kein Betrag zu zahlen, kein Dokument, das heute zu unterschreiben wäre. Wenn das Gebäude gefunden und der Kredit bewilligt ist, kommen wir auf Sie zurück.</p>
+    <p>Sie hinterlassen einen Namen und eine Kontaktmöglichkeit. Der Rest — Nationalregisternummer, Foto — ist freiwillig: kein Betrag zu zahlen, kein Dokument, das heute zu unterschreiben wäre. Wenn das Gebäude gefunden und der Kredit bewilligt ist, kommen wir auf Sie zurück.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Ich kenne ein CPAS, ein Gebäude, einen Architekten</a></p>
   </div>
 </div>
-<div class="callout">Die Sammlung beginnt in 18 bis 21 Monaten, nach den vier Schritten. Wir sammeln nicht, bevor das Dossier steht. <strong>120 überzeugte Menschen, das sind 50 Menschen mit einem Zuhause. Das Bürgerkapital kommt zurück, und das Gebäude bleibt.</strong></div>
+<div class="callout">Die Sammlung beginnt in 18 bis 21 Monaten, nach den <a href="#risque" style="color:inherit">vier Schritten</a>. Wir sammeln nicht, bevor das Dossier steht. <strong>120 überzeugte Menschen, das sind 50 Menschen mit einem Zuhause. Das Bürgerkapital kommt zurück, und das Gebäude bleibt.</strong></div>
 </div>
 </section>
 
@@ -326,6 +331,8 @@
 <h2>Die Quellen der öffentlichen Zahlen.</h2>
 <ol>
   <li><strong>Mieten und Sozialwohnungen in Brüssel</strong>: <a href="https://slrb-bghm.brussels/fr" rel="noopener">SLRB</a> (Société du Logement de la Région de Bruxelles-Capitale) und <a href="https://ibsa.brussels/themes/logement" rel="noopener">IBSA, Thema Wohnen</a> (Institut bruxellois de statistique et d'analyse), Daten Ende 2025.</li>
+  <li><strong>Referenzmiete für ein Studio in Brüssel (725 €)</strong>: <a href="https://loyers.brussels/a-propos-des-loyers-de-reference" rel="noopener">Mietrichtwertraster, loyers.brussels</a>.</li>
+  <li><strong>Beträge des Eingliederungseinkommens (RIS), Alleinstehenden- und Zusammenwohnenden-Satz</strong>: <a href="https://www.mi-is.be" rel="noopener">SPP Intégration sociale, mi-is.be</a>. Die hier gezeigten Beträge stammen aus der Vorbereitung des Dossiers; der Satz wird regelmäßig indexiert, aktuellen Betrag siehe Website.</li>
   <li><strong>Wohnnormen: eigene Dusche und eigenes WC, mindestens 18 m² netto</strong>: <a href="https://www.ejustice.just.fgov.be/eli/arrete/2023/11/30/2023048295/justel" rel="noopener">Erlass vom 30. November 2023</a> (Belgisches Staatsblatt), in Kraft seit dem 1. Januar 2026.</li>
   <li><strong>Unentgeltliche Erbpacht zu gemeinnützigen Zwecken zugunsten einer ASBL</strong>: <a href="https://www.ejustice.just.fgov.be/eli/loi/2020/02/04/2020A20347/justel" rel="noopener">Buch 3 des Zivilgesetzbuchs, Gesetz vom 4. Februar 2020</a>, in Kraft seit dem 1. September 2021.</li>
   <li><strong>Genehmigungspflichtige Nutzungsänderung</strong>: <a href="https://urban.brussels/fr/articles/le-nouvel-arrete-du-gouvernement-de-la-rbc-du-16-mai-2024-relatif-aux-changements-d-utilisation-soumis-a-permis-d-urbanisme-et-son-vade-mecum" rel="noopener">Erlass vom 16. Mai 2024 und sein Vademecum</a> (urban.brussels).</li>
@@ -407,13 +414,12 @@ Der Aufbau, ganz transparent: Die ASBL Ballal trägt die Erbpacht, den Bankkredi
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Es fehlt Ihr Name oder eine Möglichkeit, Sie zu erreichen.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Antworten Sie mit Ja oder Nein: Ihr Name kann auf dem Stein erscheinen, oder nicht.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='Ihre belgische Nationalregisternummer (oder BIS-Nummer) fehlt: ohne sie wird die Zusage nicht abgeschickt.';montrer(ko);return;}
-    if(!B.validerNumeroNational(numeroNational)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüfen Sie die 11 Ziffern.';montrer(ko);return;}
+    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüfen Sie die 11 Ziffern, oder lassen Sie das Feld leer.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Wird gesendet…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -438,10 +444,9 @@ Der Aufbau, ganz transparent: Die ASBL Ballal trägt die Erbpacht, den Bankkredi
 /* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg,{mur:true});
+  var fac=B.facade(svg);
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(fac.briques,'brique',{brique:'#appel'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

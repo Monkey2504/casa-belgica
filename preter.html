@@ -47,15 +47,15 @@
   <div class="heroTxt">
     <p class="eyebrow">Sortir du squat, programme de logement de transition de Ballal ASBL (n° d'entreprise 1016.925.333), à Molenbeek depuis 2023. Premier bâtiment : Casa Belgica.</p>
     <h1>Il ne manque que <mark>120</mark> <em class="tag">personnes</em>.</h1>
-    <p class="lead pitch">À Bruxelles, un loyer de base coûte 725 €. Le revenu d'intégration (RIS), l'aide du CPAS pour une personne isolée, s'élève à 1 340 €. Ça laisse à peine de quoi vivre, et jamais de quoi épargner, surtout quand on est déjà en situation précaire. Ça, c'est le problème. Vous êtes d'accord ?</p>
-    <p class="lead pitch">Notre solution : un logement à 300 € par mois, pour que l'épargne redevienne possible, et pour exister dans la ville. Pour ça, on signe un bail emphytéotique et on rénove un bâtiment existant plutôt que d'en acheter un : environ 1 020 000 € de travaux. Ça, c'est la solution. Vous êtes d'accord ?</p>
-    <p class="lead pitch">Personne ne finance ça cash. Il faut un crédit bancaire de 900 000 €, et pour que la banque suive, il faut d'abord 120 000 € de fonds propres : 120 personnes qui s'engagent à prêter 1 000 € chacune, remboursés entre l'année 6 et l'année 10, soit 16 € par mois. Voilà ce qu'on vous demande. Vous nous soutenez ?</p>
+    <p class="lead pitch">À Bruxelles, un studio coûte 725 € de loyer. Le revenu d'intégration (RIS), l'aide du CPAS pour une personne isolée, s'élève à 1 340 €<a href="#sources" style="color:inherit">*</a>. Ça laisse à peine de quoi vivre, et jamais de quoi épargner, surtout quand on est déjà en situation précaire. Ça, c'est le problème.</p>
+    <p class="lead pitch">Notre solution : un logement à 300 € par mois, pour que l'épargne redevienne possible, et pour exister dans la ville. Pour ça, on signe un bail emphytéotique et on rénove un bâtiment existant plutôt que d'en acheter un : environ 1 020 000 € de travaux. Ça, c'est la solution.</p>
+    <p class="lead pitch">Personne ne finance ça cash. Il faut un crédit bancaire de 900 000 €, et pour que la banque suive, il faut d'abord 120 000 € de fonds propres : 120 personnes qui s'engagent à prêter 1 000 € chacune, remboursés en une fois entre l'année 6 et l'année 10. Voilà ce qu'on vous demande. Vous êtes d'accord ?</p>
     <div class="actions">
       <a class="btn or" href="#appel">Devenir l'un des 120</a>
       <a class="btn ghost onglet" href="#dossier" data-onglet="dossier">Vérifier les chiffres</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt. Actuellement, nous avons un groupe de <b class="rouleau" id="r-groupe">0</b> personne<span id="l-groupe">s</span> capable<span id="l-groupe2">s</span> de payer <b class="rouleau" id="r-capacite">0</b>&nbsp;€/mois.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Le bâtiment : 50 fenêtres pour les futurs habitants. Chaque fenêtre se clique."></svg><figcaption><strong>50 fenêtres, 120 briques.</strong> Une fenêtre par personne inscrite, une brique par promesse de prêt. Actuellement, nous avons un groupe de <b class="rouleau" id="r-groupe">0</b> personne<span id="l-groupe">s</span> capable<span id="l-groupe2">s</span> de payer <b class="rouleau" id="r-capacite">0</b>&nbsp;€/mois.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120 000 €</b><span>de prêts citoyens, à 0 %</span></div>
@@ -63,6 +63,11 @@
   <div><b>50</b><span>places, chacune avec sa chambre individuelle</span></div>
   <div><b>250 à 350</b><span>personnes logées en vingt ans</span></div>
 </div>
+<ol class="frise-cle" aria-label="Calendrier du projet">
+  <li><b>0 à 21 mois</b><span>Quatre étapes préalables : CPAS, propriétaire, étude de faisabilité, banque. <a href="#risque" data-onglet="dossier">Voir le détail</a>.</span></li>
+  <li><b>Dès 18 à 21 mois</b><span>Collecte des 120 promesses de prêt citoyen, à 0 %.</span></li>
+  <li><b>± 3 ans</b><span>Bâtiment rénové, premières clés remises.</span></li>
+</ol>
 </div>
 </section>
 
@@ -85,23 +90,23 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Votre nom<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Votre numéro de registre national belge, ou votre numéro BIS<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Votre numéro de registre national belge, ou votre numéro BIS (facultatif, sert à vérifier votre promesse)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">Votre photo, si vous voulez qu'on vous voie sur votre brique (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Oui</label><label><input type="radio" name="affiche" value="non"> Non</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Devenir l'un des 120</button></div>
-    <p class="confidentialite">Votre nom, votre contact et votre numéro de registre national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro de registre national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous répondez oui. Pour les retirer, écrivez-nous.</p>
+    <p class="confidentialite">Votre nom, votre contact et, si vous le donnez, votre numéro de registre national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro de registre national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous répondez oui. Pour les retirer, écrivez-nous.</p>
     <p class="ok" role="status"></p>
     <p class="ko">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> — on pose la brique à la main.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">Une promesse, pas un virement.</h3>
-    <p>Vous laissez un nom et un moyen de vous joindre. Rien d'autre : pas de montant à verser, pas de document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
+    <p>Vous laissez un nom et un moyen de vous joindre. Le reste — numéro de registre national, photo — est facultatif : aucun montant à verser, aucun document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Je connais un CPAS, un bâtiment, un architecte</a></p>
   </div>
 </div>
-<div class="callout">La collecte démarre dans 18 à 21 mois, après les quatre étapes. On ne collecte pas avant que le dossier tienne. <strong>120 personnes convaincues, ce sont 50 personnes logées. Le capital citoyen revient, et le bâtiment reste.</strong></div>
+<div class="callout">La collecte démarre dans 18 à 21 mois, après les <a href="#risque" data-onglet="dossier" style="color:inherit">quatre étapes</a>. On ne collecte pas avant que le dossier tienne. <strong>120 personnes convaincues, ce sont 50 personnes logées. Le capital citoyen revient, et le bâtiment reste.</strong></div>
 </div>
 </section>
 
@@ -323,6 +328,8 @@
 <h2>Les sources des chiffres publics.</h2>
 <ol>
   <li><strong>Loyers et logement social à Bruxelles</strong> — <a href="https://slrb-bghm.brussels/fr" rel="noopener">SLRB</a> (Société du Logement de la Région de Bruxelles-Capitale) et <a href="https://ibsa.brussels/themes/logement" rel="noopener">IBSA, thème logement</a> (Institut bruxellois de statistique et d'analyse), données fin 2025.</li>
+  <li><strong>Loyer de référence pour un studio à Bruxelles (725 €)</strong> — <a href="https://loyers.brussels/a-propos-des-loyers-de-reference" rel="noopener">grille indicative des loyers, loyers.brussels</a>.</li>
+  <li><strong>Montants du revenu d'intégration (RIS), taux isolé et cohabitant</strong> — <a href="https://www.mi-is.be" rel="noopener">SPP Intégration sociale, mi-is.be</a>. Les montants affichés ici datent de la préparation du dossier ; le barème est indexé périodiquement, voir le site pour le montant en vigueur.</li>
   <li><strong>Normes d'habitabilité : douche et WC privés, au moins 18 m² nets</strong> — <a href="https://www.ejustice.just.fgov.be/eli/arrete/2023/11/30/2023048295/justel" rel="noopener">arrêté du 30 novembre 2023</a> (Moniteur belge), en vigueur depuis le 1er janvier 2026.</li>
   <li><strong>Emphytéose gratuite à but non lucratif au profit d'une ASBL</strong> — <a href="https://www.ejustice.just.fgov.be/eli/loi/2020/02/04/2020A20347/justel" rel="noopener">livre 3 du Code civil, loi du 4 février 2020</a>, en vigueur depuis le 1er septembre 2021.</li>
   <li><strong>Changement d'affectation soumis à permis</strong> — <a href="https://urban.brussels/fr/articles/le-nouvel-arrete-du-gouvernement-de-la-rbc-du-16-mai-2024-relatif-aux-changements-d-utilisation-soumis-a-permis-d-urbanisme-et-son-vade-mecum" rel="noopener">arrêté du 16 mai 2024 et son vade-mecum</a> (urban.brussels).</li>
@@ -354,6 +361,9 @@ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le 
     var a=e.target.closest('[data-onglet="dossier"]'); if(!a)return;
     dossier.hidden=false;
   });
+  // Un lien externe (ou un favori) peut arriver directement sur une ancre du dossier : on le révèle et on y va.
+  var id=location.hash.slice(1), cible=id&&document.getElementById(id);
+  if(cible&&dossier.contains(cible)){ dossier.hidden=false; cible.scrollIntoView(); }
 })();
 </script>
 <script src="batiment.js"></script>
@@ -417,13 +427,12 @@ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le 
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Il manque votre nom ou un moyen de vous joindre.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Répondez oui ou non : votre nom peut apparaître sur la brique, ou pas.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='Il manque votre numéro de registre national (ou numéro BIS) : sans lui, la promesse ne part pas.';montrer(ko);return;}
-    if(!B.validerNumeroNational(numeroNational)){ko.textContent='Ce numéro ne semble pas correct : vérifiez les 11 chiffres.';montrer(ko);return;}
+    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='Ce numéro ne semble pas correct : vérifiez les 11 chiffres, ou laissez le champ vide.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -448,10 +457,9 @@ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le 
 /* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg,{mur:true});
+  var fac=B.facade(svg);
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(fac.briques,'brique',{brique:'#appel'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

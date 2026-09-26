@@ -54,13 +54,13 @@
   <div class="heroTxt">
     <p class="eyebrow">Leave the Squat, the transitional housing programme of Ballal ASBL (company no. 1016.925.333), in Molenbeek since 2023. First building: Casa Belgica.</p>
     <h1>Only <mark>120</mark> <em class="tag">people</em> are missing.</h1>
-    <p class="lead pitch">You lend €1,000, at 0%, paid back. Enough to cover €300 a month for someone who has almost nothing, in Brussels, where a regular studio costs €725.</p>
+    <p class="lead pitch">You lend €1,000, at 0%, paid back. Enough to cover €300 a month for someone who has almost nothing, in Brussels, where a studio costs €725 in rent.</p>
     <div class="actions">
       <a class="btn or" href="#appel">Become one of the 120</a>
       <a class="btn ghost" href="#argent">Check the figures</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="The building: 50 windows for future residents, 120 bricks for lenders. Every spot can be clicked."></svg><figcaption><strong>50 windows, 120 bricks.</strong> One window per person signed up, one brick per pledge. Right now, we have a group of <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">people</span> able to pay <b class="rouleau" id="r-capacite">0</b>&nbsp;a month.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="The building: 50 windows for future residents. Every window can be clicked."></svg><figcaption><strong>50 windows, 120 bricks.</strong> One window per person signed up, one brick per pledge. Right now, we have a group of <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">people</span> able to pay <b class="rouleau" id="r-capacite">0</b>&nbsp;a month.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>€120,000</b><span>in citizen loans, at 0%</span></div>
@@ -68,6 +68,11 @@
   <div><b>50</b><span>places, each with its own individual room</span></div>
   <div><b>250&nbsp;to&nbsp;350</b><span>people housed over twenty years</span></div>
 </div>
+<ol class="frise-cle" aria-label="Project timeline">
+  <li><b>0 to 21 months</b><span>Four preliminary steps: CPAS, owner, feasibility study, bank. <a href="#risque" data-onglet="dossier">See the detail</a>.</span></li>
+  <li><b>From 18 to 21 months</b><span>Gathering the 120 citizen loan pledges, at 0%.</span></li>
+  <li><b>± 3 years</b><span>Building renovated, first keys handed over.</span></li>
+</ol>
 </div>
 </section>
 
@@ -300,23 +305,23 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Your name<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>How to reach you (e-mail or phone)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Your Belgian national register number, or your BIS number<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Your Belgian national register number, or your BIS number (optional, used to verify your pledge)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">Your photo, if you would like to be seen on your brick (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>My name and my photo may appear on a brick in the wall, to show that the pledges are moving forward.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Yes</label><label><input type="radio" name="affiche" value="non"> No</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Become one of the 120</button></div>
-    <p class="confidentialite">Your name, your contact details and your Belgian national register number are kept by Ballal ASBL, solely to get back to you and identify you about Casa Belgica. They are not passed on to anyone and are deleted on request at admin@ballal.be. Your national register number is never shown publicly. Your name and your photo only appear on the wall if you answer yes. To have them removed, write to us.</p>
+    <p class="confidentialite">Your name, your contact details and, if you give it, your Belgian national register number are kept by Ballal ASBL, solely to get back to you and identify you about Casa Belgica. They are not passed on to anyone and are deleted on request at admin@ballal.be. Your national register number is never shown publicly. Your name and your photo only appear on the wall if you answer yes. To have them removed, write to us.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Sending did not work. Write to us at <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> and we will lay the brick by hand.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">A pledge, not a transfer.</h3>
-    <p>You leave a name and a way to reach you. Nothing else: no amount to pay, no document to sign today. When the building is found and the loan granted, we get back to you.</p>
+    <p>You leave a name and a way to reach you. The rest — national register number, photo — is optional: no amount to pay, no document to sign today. When the building is found and the loan granted, we get back to you.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">I know a CPAS, a building, an architect</a></p>
   </div>
 </div>
-<div class="callout">The collection starts in 18&nbsp;to&nbsp;21 months, after the four stages. We do not collect before the case holds together. <strong>120 people convinced means 50 people housed. The citizen capital comes back, and the building stays.</strong></div>
+<div class="callout">The collection starts in 18&nbsp;to&nbsp;21 months, after the <a href="#risque" data-onglet="dossier" style="color:inherit">four stages</a>. We do not collect before the case holds together. <strong>120 people convinced means 50 people housed. The citizen capital comes back, and the building stays.</strong></div>
 </div>
 </section>
 
@@ -326,6 +331,8 @@
 <h2>The sources for the public figures.</h2>
 <ol>
   <li><strong>Rents and social housing in Brussels</strong>: <a href="https://slrb-bghm.brussels/fr" rel="noopener">SLRB</a> (Brussels-Capital Region Housing Company) and <a href="https://ibsa.brussels/themes/logement" rel="noopener">IBSA, housing</a> (Brussels Institute for Statistics and Analysis), data as at end 2025.</li>
+  <li><strong>Reference rent for a studio in Brussels (€725)</strong>: <a href="https://loyers.brussels/a-propos-des-loyers-de-reference" rel="noopener">indicative rent grid, loyers.brussels</a>.</li>
+  <li><strong>Integration income (RIS) amounts, single and cohabiting rates</strong>: <a href="https://www.mi-is.be" rel="noopener">SPP Intégration sociale, mi-is.be</a>. The amounts shown here date from when the case was prepared; the scale is indexed periodically, see the site for the current amount.</li>
   <li><strong>Habitability standards: private shower and toilet, at least 18&nbsp;m² net</strong>: <a href="https://www.ejustice.just.fgov.be/eli/arrete/2023/11/30/2023048295/justel" rel="noopener">decree of 30 November 2023</a> (Belgian Official Gazette), in force since 1 January 2026.</li>
   <li><strong>Free non-profit emphyteutic lease in favour of an ASBL</strong>: <a href="https://www.ejustice.just.fgov.be/eli/loi/2020/02/04/2020A20347/justel" rel="noopener">Book 3 of the Civil Code, law of 4 February 2020</a>, in force since 1 September 2021.</li>
   <li><strong>Change of use subject to a permit</strong>: <a href="https://urban.brussels/fr/articles/le-nouvel-arrete-du-gouvernement-de-la-rbc-du-16-mai-2024-relatif-aux-changements-d-utilisation-soumis-a-permis-d-urbanisme-et-son-vade-mecum" rel="noopener">decree of 16 May 2024 and its vade-mecum</a> (urban.brussels).</li>
@@ -407,13 +414,12 @@ Structure, fully transparent: Ballal ASBL holds the emphyteutic lease, the bank 
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Your name or a way to reach you is missing.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Answer yes or no: your name can appear on the brick, or not.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='Your Belgian national register number (or BIS number) is missing: without it, the pledge won\'t go through.';montrer(ko);return;}
-    if(!B.validerNumeroNational(numeroNational)){ko.textContent='This number doesn\'t look right: check the 11 digits.';montrer(ko);return;}
+    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='This number doesn\'t look right: check the 11 digits, or leave the field empty.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Sending…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -438,10 +444,9 @@ Structure, fully transparent: Ballal ASBL holds the emphyteutic lease, the bank 
 /* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg,{mur:true});
+  var fac=B.facade(svg);
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(fac.briques,'brique',{brique:'#appel'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

@@ -137,8 +137,8 @@
     if(elm.getAttribute('data-forme')!==forme){
       elm.innerHTML='';
       chars.forEach(function(c){
-        if(/\d/.test(c)){var col=hel('span','col'),pile=hel('span','pile');for(var d=0;d<10;d++)pile.appendChild(hel('span',null,String(d)));col.appendChild(pile);elm.appendChild(col);}
-        else elm.appendChild(hel('span','sep',c));
+        if(/\d/.test(c)){var col=hel('span','col'),pile=hel('span','pile');for(var d=0;d<10;d++)pile.appendChild(hel('span',null,String(d)));col.appendChild(pile);col.setAttribute('aria-hidden','true');elm.appendChild(col);}
+        else { var sep=hel('span','sep',c); sep.setAttribute('aria-hidden','true'); elm.appendChild(sep); }
       });
       elm.setAttribute('data-forme',forme); elm.classList.add('rouleau');
       void elm.offsetWidth; // les nouvelles colonnes partent de 0
