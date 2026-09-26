@@ -27,6 +27,8 @@
 <style>
 .hero .lead strong{color:#fff}
 h1{max-width:16ch}
+.heroTxt{container-type:inline-size}
+.heroTxt h1{font-size:clamp(2.9rem,9.5cqi,4.2rem)}
 .hero .adr{margin-top:24px;font-size:1rem;color:var(--sur-vert)}
 .hero .adr b{color:#fff}
 .faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -72,6 +74,11 @@ h1{max-width:16ch}
   <figure class="immeuble"><svg id="facade" role="group" aria-label="The front of the building: 50 windows, one per person signed up to live there. Every window can be clicked."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">windows lit</span> out of 50</strong>: one window per person signed up to live there. Click on a window.</figcaption>
   <ul class="etages" id="etages" aria-label="Occupancy by floor"></ul></figure>
 </div>
+<ol class="frise-cle" aria-label="Project timeline">
+  <li><b>0 to 21 months</b><span>Four preliminary steps: CPAS, owner, feasibility study, bank. <a href="preter.html#risque">See the detail</a>.</span></li>
+  <li><b>From 18 to 21 months</b><span>Gathering the 120 citizen loan pledges, at 0%.</span></li>
+  <li><b>± 3 years</b><span>Building renovated, first keys handed over.</span></li>
+</ol>
 </div>
 </section>
 
@@ -133,7 +140,7 @@ h1{max-width:16ch}
 <section class="ask" id="inscrire">
 <div class="w">
 <p class="kick">Sign up</p>
-<h2>Two minutes, three questions.</h2>
+<h2>A few minutes, seven questions.</h2>
 <div class="two" style="margin-top:8px">
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Your first name<input name="nom" required maxlength="120" autocomplete="given-name"></label>

@@ -27,6 +27,8 @@
 <style>
 .hero .lead strong{color:#fff}
 h1{max-width:16ch}
+.heroTxt{container-type:inline-size}
+.heroTxt h1{font-size:clamp(2.9rem,9.5cqi,4.2rem)}
 .hero .adr{margin-top:24px;font-size:1rem;color:var(--sur-vert)}
 .hero .adr b{color:#fff}
 .faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -72,6 +74,11 @@ h1{max-width:16ch}
   <figure class="immeuble"><svg id="facade" role="group" aria-label="Fassade des Gebäudes: 50 Fenster, eines pro Person, die sich zum Wohnen eingetragen hat. Jedes Fenster lässt sich anklicken."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">erleuchtete Fenster</span> von 50</strong>: ein Fenster pro Person, die sich zum Wohnen eingetragen hat. Klick auf ein Fenster.</figcaption>
   <ul class="etages" id="etages" aria-label="Belegung pro Etage"></ul></figure>
 </div>
+<ol class="frise-cle" aria-label="Zeitplan des Projekts">
+  <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a href="preter.html#risque">Details ansehen</a>.</span></li>
+  <li><b>Ab 18 bis 21 Monaten</b><span>Sammeln der 120 Kreditzusagen der Bürger·innen, zu 0 %.</span></li>
+  <li><b>± 3 Jahre</b><span>Gebäude saniert, erste Schlüssel übergeben.</span></li>
+</ol>
 </div>
 </section>
 
@@ -133,7 +140,7 @@ h1{max-width:16ch}
 <section class="ask" id="inscrire">
 <div class="w">
 <p class="kick">Eintragen</p>
-<h2>Zwei Minuten, drei Fragen.</h2>
+<h2>Ein paar Minuten, sieben Fragen.</h2>
 <div class="two" style="margin-top:8px">
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Dein Vorname<input name="nom" required maxlength="120" autocomplete="given-name"></label>

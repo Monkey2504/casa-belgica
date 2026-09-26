@@ -54,13 +54,13 @@
   <div class="heroTxt">
     <p class="eyebrow">اخرج من السكوات، برنامج السكن الانتقالي لجمعية Ballal ASBL (رقم المؤسسة 1016.925.333)، في مولنبيك منذ 2023. أول مبنى: Casa Belgica.</p>
     <h1>لا ينقص سوى <mark>120</mark> <em class="tag">شخصًا</em>.</h1>
-    <p class="lead pitch">تُقرض 1 000 €، بفائدة 0 %، تُرد لاحقًا. يكفي ذلك ليدفع شخص لا يملك شيئًا تقريبًا 300 € في الشهر، في بروكسل، حيث يكلف الاستوديو العادي 725 €.</p>
+    <p class="lead pitch">تُقرض 1 000 €، بفائدة 0 %، تُرد لاحقًا. يكفي ذلك ليدفع شخص لا يملك شيئًا تقريبًا 300 € في الشهر، في بروكسل، حيث يكلّف الاستوديو في بروكسل 725 € إيجارًا.</p>
     <div class="actions">
       <a class="btn or" href="#appel">كونوا واحدًا من الـ 120</a>
       <a class="btn ghost" href="#argent">تحقّقوا من الأرقام</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="المبنى: 50 نافذة للسكان المستقبليين، 120 طوبة للمُقرِضين. كل مكان يمكن النقر عليه."></svg><figcaption><strong>50 نافذة، 120 طوبة.</strong> نافذة لكل شخص مسجَّل، وطوبة لكل وعد بقرض. حاليًا، لدينا مجموعة من <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">أشخاص</span> قادرين على دفع <b class="rouleau" id="r-capacite">0</b>&nbsp;€ في الشهر.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="المبنى: 50 نافذة للسكان المستقبليين. كل نافذة يمكن النقر عليها."></svg><figcaption><strong>50 نافذة، 120 طوبة.</strong> نافذة لكل شخص مسجَّل، وطوبة لكل وعد بقرض. حاليًا، لدينا مجموعة من <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">أشخاص</span> قادرين على دفع <b class="rouleau" id="r-capacite">0</b>&nbsp;€ في الشهر.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>120 000 €</b><span>قروض من المواطنين، بفائدة 0 %</span></div>
@@ -68,6 +68,11 @@
   <div><b>50</b><span>مكانًا، لكل منها غرفتها الفردية</span></div>
   <div><b>250 إلى 350</b><span>شخصًا يُسكنون خلال عشرين سنة</span></div>
 </div>
+<ol class="frise-cle" aria-label="الجدول الزمني للمشروع">
+  <li><b>0 إلى 21 شهرًا</b><span>أربع خطوات تمهيدية: CPAS، المالك، دراسة الجدوى، البنك. <a href="#risque">اطّلع على التفاصيل</a>.</span></li>
+  <li><b>ابتداءً من 18 إلى 21 شهرًا</b><span>جمع 120 وعدًا بقرض من المواطنين، بفائدة 0 %.</span></li>
+  <li><b>± 3 سنوات</b><span>المبنى مجدّد، وتُسلَّم أولى المفاتيح.</span></li>
+</ol>
 </div>
 </section>
 
@@ -300,23 +305,23 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>اسمكم<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>كيف نتواصل معكم (بريد إلكتروني أو هاتف)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>رقمكم في السجل الوطني البلجيكي، أو رقم BIS الخاص بكم<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>رقمكم في السجل الوطني البلجيكي، أو رقم BIS الخاص بكم (اختياري، يُستخدم للتحقّق من وعدكم)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">صورتكم، إذا أردتم أن يراكم الناس على طوبتكم (اختياري)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>يمكن أن يظهر اسمي وصورتي على طوبة في الجدار، لإظهار أن الوعود تتقدّم.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> نعم</label><label><input type="radio" name="affiche" value="non"> لا</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">كونوا واحدًا من الـ 120</button></div>
-    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم ورقمكم في السجل الوطني تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم والتعرّف عليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. رقمكم في السجل الوطني لا يُعرض علنًا أبدًا. اسمكم وصورتكم لا يظهران على الجدار إلا إذا أجبتم بنعم. لحذفهما، راسلونا.</p>
+    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم، وإذا أعطيتموه، رقمكم في السجل الوطني، تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم والتعرّف عليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. رقمكم في السجل الوطني لا يُعرض علنًا أبدًا. اسمكم وصورتكم لا يظهران على الجدار إلا إذا أجبتم بنعم. لحذفهما، راسلونا.</p>
     <p class="ok" role="status"></p>
     <p class="ko">لم ينجح الإرسال. راسلونا على <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>، ونضع الطوبة يدويًا.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">وعد، لا تحويل.</h3>
-    <p>تتركون اسمًا ووسيلة للتواصل معكم. لا شيء آخر: لا مبلغ يُدفع، ولا وثيقة تُوقَّع اليوم. عندما يُعثر على المبنى ويُمنح القرض، نعود إليكم.</p>
+    <p>تتركون اسمًا ووسيلة للتواصل معكم. الباقي — رقم السجل الوطني، الصورة — اختياري: لا مبلغ يُدفع، ولا وثيقة تُوقَّع اليوم. عندما يُعثر على المبنى ويُمنح القرض، نعود إليكم.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">أعرف CPAS، أو مبنى، أو مهندسًا معماريًا</a></p>
   </div>
 </div>
-<div class="callout">يبدأ الجمع بعد 18 إلى 21 شهرًا، بعد المراحل الأربع. لا نجمع شيئًا قبل أن يكتمل الملف. <strong>120 شخصًا مقتنعًا يعني 50 شخصًا مُسكنًا. رأس المال المواطني يعود، والمبنى يبقى.</strong></div>
+<div class="callout">يبدأ الجمع بعد 18 إلى 21 شهرًا، بعد <a href="#risque" style="color:inherit">المراحل الأربع</a>. لا نجمع شيئًا قبل أن يكتمل الملف. <strong>120 شخصًا مقتنعًا يعني 50 شخصًا مُسكنًا. رأس المال المواطني يعود، والمبنى يبقى.</strong></div>
 </div>
 </section>
 
@@ -326,6 +331,8 @@
 <h2>مصادر الأرقام العامة.</h2>
 <ol>
   <li><strong>الإيجارات والسكن الاجتماعي في بروكسل</strong>: <a href="https://slrb-bghm.brussels/fr" rel="noopener">SLRB</a> (شركة الإسكان لمنطقة بروكسل العاصمة) و<a href="https://ibsa.brussels/themes/logement" rel="noopener">IBSA، موضوع السكن</a> (معهد بروكسل للإحصاء والتحليل)، بيانات نهاية 2025.</li>
+  <li><strong>الإيجار المرجعي لاستوديو في بروكسل (725 €)</strong>: <a href="https://loyers.brussels/a-propos-des-loyers-de-reference" rel="noopener">شبكة الإيجارات الإرشادية، loyers.brussels</a>.</li>
+  <li><strong>مبالغ دخل الإدماج (RIS)، معدّل الشخص المنفرد والمتشارك</strong>: <a href="https://www.mi-is.be" rel="noopener">SPP Intégration sociale، mi-is.be</a>. المبالغ المعروضة هنا تعود إلى فترة إعداد الملف؛ يُحيَّن السلّم دوريًا، راجعوا الموقع للمبلغ الحالي.</li>
   <li><strong>معايير الصلاحية للسكن: دوش ومرحاض خاصّان، 18 م² صافية على الأقل</strong>: <a href="https://www.ejustice.just.fgov.be/eli/arrete/2023/11/30/2023048295/justel" rel="noopener">مرسوم 30 نوفمبر 2023</a> (الجريدة الرسمية البلجيكية)، ساري المفعول منذ 1 يناير 2026.</li>
   <li><strong>عقد انتفاع مجاني لغير غرض الربح لصالح جمعية ASBL</strong>: <a href="https://www.ejustice.just.fgov.be/eli/loi/2020/02/04/2020A20347/justel" rel="noopener">الكتاب 3 من القانون المدني، قانون 4 فبراير 2020</a>، ساري المفعول منذ 1 سبتمبر 2021.</li>
   <li><strong>تغيير التخصيص الخاضع لرخصة</strong>: <a href="https://urban.brussels/fr/articles/le-nouvel-arrete-du-gouvernement-de-la-rbc-du-16-mai-2024-relatif-aux-changements-d-utilisation-soumis-a-permis-d-urbanisme-et-son-vade-mecum" rel="noopener">مرسوم 16 مايو 2024 ودليله التطبيقي</a> (urban.brussels).</li>
@@ -407,13 +414,12 @@
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='ينقص اسمكم أو وسيلة للتواصل معكم.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='أجيبوا بنعم أو لا: يمكن أن يظهر اسمكم على الطوبة، أو لا.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='ينقص رقمكم في السجل الوطني (أو رقم BIS): بدونه لا يتم إرسال الوعد.';montrer(ko);return;}
-    if(!B.validerNumeroNational(numeroNational)){ko.textContent='هذا الرقم لا يبدو صحيحًا: تحقّقوا من الأرقام الـ11.';montrer(ko);return;}
+    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='هذا الرقم لا يبدو صحيحًا: تحقّقوا من الأرقام الـ11، أو اتركوا الحقل فارغًا.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='جارٍ الإرسال…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -438,10 +444,9 @@
 /* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg,{mur:true});
+  var fac=B.facade(svg);
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(fac.briques,'brique',{brique:'#appel'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>

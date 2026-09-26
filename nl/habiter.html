@@ -27,6 +27,8 @@
 <style>
 .hero .lead strong{color:#fff}
 h1{max-width:16ch}
+.heroTxt{container-type:inline-size}
+.heroTxt h1{font-size:clamp(2.9rem,9.5cqi,4.2rem)}
 .hero .adr{margin-top:24px;font-size:1rem;color:var(--sur-vert)}
 .hero .adr b{color:#fff}
 .faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -72,6 +74,11 @@ h1{max-width:16ch}
   <figure class="immeuble"><svg id="facade" role="group" aria-label="Gevel van het gebouw: 50 ramen, één per persoon die zich inschreef om er te wonen. Elk raam is klikbaar."></svg><figcaption><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">verlichte ramen</span> van de 50</strong>: één raam per persoon die zich inschreef om er te wonen. Klik op een raam.</figcaption>
   <ul class="etages" id="etages" aria-label="Bezetting per verdieping"></ul></figure>
 </div>
+<ol class="frise-cle" aria-label="Tijdlijn van het project">
+  <li><b>0 tot 21 maanden</b><span>Vier voorafgaande stappen: OCMW, eigenaar, haalbaarheidsstudie, bank. <a href="preter.html#risque">Bekijk de details</a>.</span></li>
+  <li><b>Vanaf 18 tot 21 maanden</b><span>Verzamelen van de 120 leningsbeloftes van burgers, aan 0 %.</span></li>
+  <li><b>± 3 jaar</b><span>Gebouw gerenoveerd, eerste sleutels overhandigd.</span></li>
+</ol>
 </div>
 </section>
 
@@ -133,7 +140,7 @@ h1{max-width:16ch}
 <section class="ask" id="inscrire">
 <div class="w">
 <p class="kick">Inschrijven</p>
-<h2>Twee minuten, drie vragen.</h2>
+<h2>Een paar minuten, zeven vragen.</h2>
 <div class="two" style="margin-top:8px">
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Je voornaam<input name="nom" required maxlength="120" autocomplete="given-name"></label>

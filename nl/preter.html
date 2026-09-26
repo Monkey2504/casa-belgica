@@ -54,13 +54,13 @@
   <div class="heroTxt">
     <p class="eyebrow">Uit het kraakpand, het programma voor transitwoningen van Ballal ASBL (ondernemingsnummer 1016.925.333), in Molenbeek sinds 2023. Eerste gebouw: Casa Belgica.</p>
     <h1>Er ontbreken maar <mark>120</mark> <em class="tag">mensen</em>.</h1>
-    <p class="lead pitch">U leent € 1.000, aan 0 %, terugbetaald. Genoeg om iemand die bijna niets heeft € 300 per maand te laten betalen, in Brussel, waar een gewone studio € 725 kost.</p>
+    <p class="lead pitch">U leent € 1.000, aan 0 %, terugbetaald. Genoeg om iemand die bijna niets heeft € 300 per maand te laten betalen, in Brussel, waar een studio € 725 huur kost.</p>
     <div class="actions">
       <a class="btn or" href="#appel">Word een van de 120</a>
       <a class="btn ghost" href="#argent">Controleer de cijfers</a>
     </div>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Het gebouw: 50 ramen voor toekomstige bewoners, 120 stenen voor leners. Elke plek is klikbaar."></svg><figcaption><strong>50 ramen, 120 stenen.</strong> Eén raam per ingeschreven persoon, één steen per belofte. Op dit moment hebben we een groep van <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">personen</span> met een betaalcapaciteit van € <b class="rouleau" id="r-capacite">0</b> per maand.</figcaption></figure>
+  <figure class="immeuble"><svg id="facade" role="group" aria-label="Het gebouw: 50 ramen voor toekomstige bewoners. Elk raam is klikbaar."></svg><figcaption><strong>50 ramen, 120 stenen.</strong> Eén raam per ingeschreven persoon, één steen per belofte. Op dit moment hebben we een groep van <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">personen</span> met een betaalcapaciteit van € <b class="rouleau" id="r-capacite">0</b> per maand.</figcaption></figure>
 </div>
 <div class="keys">
   <div><b>€ 120.000</b><span>aan burgerleningen, aan 0 %</span></div>
@@ -68,6 +68,11 @@
   <div><b>50</b><span>plaatsen, elk met een eigen kamer</span></div>
   <div><b>250 tot 350</b><span>mensen gehuisvest in twintig jaar</span></div>
 </div>
+<ol class="frise-cle" aria-label="Tijdlijn van het project">
+  <li><b>0 tot 21 maanden</b><span>Vier voorafgaande stappen: OCMW, eigenaar, haalbaarheidsstudie, bank. <a href="#risque">Bekijk de details</a>.</span></li>
+  <li><b>Vanaf 18 tot 21 maanden</b><span>Verzamelen van de 120 leningsbeloftes van burgers, aan 0 %.</span></li>
+  <li><b>± 3 jaar</b><span>Gebouw gerenoveerd, eerste sleutels overhandigd.</span></li>
+</ol>
 </div>
 </section>
 
@@ -300,23 +305,23 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Uw naam<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Hoe we u kunnen bereiken (e-mail of telefoon)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Uw Belgisch rijksregisternummer, of uw BIS-nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
+    <label>Uw Belgisch rijksregisternummer, of uw BIS-nummer (facultatief, dient om uw belofte te verifiëren)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">Uw foto, als u wil dat men u op uw steen ziet (niet verplicht)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>Mijn naam en mijn foto mogen op een steen van de muur verschijnen, om te tonen dat de beloftes vooruitgaan.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nee</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Word een van de 120</button></div>
-    <p class="confidentialite">Uw naam, uw contactgegevens en uw Belgisch rijksregisternummer worden bewaard door Ballal ASBL, uitsluitend om bij u terug te komen en u te identificeren over Casa Belgica. Ze worden aan niemand doorgegeven en worden gewist op eenvoudig verzoek via admin@ballal.be. Uw rijksregisternummer wordt nooit publiek getoond. Uw naam en uw foto verschijnen alleen op de muur als u ja antwoordt. Om ze weg te halen, schrijft u ons.</p>
+    <p class="confidentialite">Uw naam, uw contactgegevens en, als u het geeft, uw Belgisch rijksregisternummer worden bewaard door Ballal ASBL, uitsluitend om bij u terug te komen en u te identificeren over Casa Belgica. Ze worden aan niemand doorgegeven en worden gewist op eenvoudig verzoek via admin@ballal.be. Uw rijksregisternummer wordt nooit publiek getoond. Uw naam en uw foto verschijnen alleen op de muur als u ja antwoordt. Om ze weg te halen, schrijft u ons.</p>
     <p class="ok" role="status"></p>
     <p class="ko">Het verzenden is mislukt. Schrijf ons op <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>, wij leggen de steen met de hand.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">Een belofte, geen overschrijving.</h3>
-    <p>U laat een naam en een manier om u te bereiken achter. Meer niet: geen bedrag te storten, geen document te ondertekenen vandaag. Wanneer het gebouw gevonden en het krediet toegekend is, komen we bij u terug.</p>
+    <p>U laat een naam en een manier om u te bereiken achter. De rest — rijksregisternummer, foto — is facultatief: geen bedrag te storten, geen document te ondertekenen vandaag. Wanneer het gebouw gevonden en het krediet toegekend is, komen we bij u terug.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Ik ken een OCMW, een gebouw, een architect</a></p>
   </div>
 </div>
-<div class="callout">De inzameling start over 18 tot 21 maanden, na de vier stappen. We zamelen niets in voor het dossier standhoudt. <strong>120 overtuigde mensen, dat zijn 50 gehuisveste mensen. Het burgerkapitaal komt terug, en het gebouw blijft.</strong></div>
+<div class="callout">De inzameling start over 18 tot 21 maanden, na de <a href="#risque" style="color:inherit">vier stappen</a>. We zamelen niets in voor het dossier standhoudt. <strong>120 overtuigde mensen, dat zijn 50 gehuisveste mensen. Het burgerkapitaal komt terug, en het gebouw blijft.</strong></div>
 </div>
 </section>
 
@@ -407,13 +412,12 @@ De opzet, volledig transparant: vzw Ballal draagt de erfpacht, het bankkrediet e
     var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Uw naam ontbreekt, of een manier om u te bereiken.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Antwoord ja of nee: uw naam kan op de steen verschijnen, of niet.';montrer(ko);return;}
-    if(!numeroNational){ko.textContent='Uw Belgisch rijksregisternummer (of BIS-nummer) ontbreekt: zonder dat wordt de belofte niet verstuurd.';montrer(ko);return;}
-    if(!B.validerNumeroNational(numeroNational)){ko.textContent='Dit nummer lijkt niet te kloppen: controleer de 11 cijfers.';montrer(ko);return;}
+    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='Dit nummer lijkt niet te kloppen: controleer de 11 cijfers, of laat het veld leeg.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Verzenden…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -438,10 +442,9 @@ De opzet, volledig transparant: vzw Ballal draagt de erfpacht, het bankkrediet e
 /* Le bâtiment du haut : 50 fenêtres (futurs habitants) et 120 briques (prêteurs), animés ensemble. */
 (function(){
   var B=window.Batiment, svg=document.getElementById('facade'); if(!svg)return;
-  var fac=B.facade(svg,{mur:true});
+  var fac=B.facade(svg);
   B.brancher(fac.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(fac.briques,'brique',{brique:'#appel'});
-  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); B.allumer(fac.briques,'brique',d.preteurs,d.noms.preteur,true); },.2); }).catch(function(){});
+  B.charger().then(function(d){ B.observer(svg,function(){ B.placer(fac.fens,d,true); },.2); }).catch(function(){});
 })();
 </script>
 </body>
