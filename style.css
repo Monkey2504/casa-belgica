@@ -422,7 +422,7 @@ body>header,body>.etat,body>footer{flex-shrink:0}
 .form fieldset.case{border:0;padding:0;margin:0;min-width:0}
 .form fieldset.case legend{padding:0;margin:0 0 8px;font-weight:500;font-size:.92rem;color:var(--sur-vert)}
 .form fieldset.case .choix{display:flex;gap:20px}
-.form fieldset.case label{display:flex;align-items:center;gap:8px;font-weight:500;font-size:.92rem;color:var(--sur-vert);cursor:pointer}
+.form fieldset.case label{display:flex;align-items:center;gap:8px;padding-block:8px;font-weight:500;font-size:.92rem;color:var(--sur-vert);cursor:pointer}
 .form fieldset.case input{width:20px;height:20px;min-height:0;margin:0;padding:0;flex:none;accent-color:var(--or);cursor:pointer}
 /* photo facultative : champ fichier et aperçu */
 .form label.photo{gap:8px}
