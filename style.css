@@ -480,6 +480,8 @@ html[lang="ar"]{--disp:"Cairo",ui-sans-serif,system-ui,sans-serif;--body:"Cairo"
 [dir="rtl"] .sources ol{padding-left:0;padding-right:1.3em}
 [dir="rtl"] .legend i{margin-right:0;margin-left:6px}
 [dir="rtl"] .bandeau span{padding-right:0;padding-left:28px}
+[dir="rtl"] th,[dir="rtl"] td{text-align:right}
+@media(max-width:760px){[dir="rtl"] .frise-cle{text-align:right}}
 @media(prefers-reduced-motion:no-preference){[dir="rtl"] .bandeau .piste{animation-name:defile-rtl}@keyframes defile-rtl{to{transform:translateX(50%)}}}
 @media(hover:hover) and (pointer:fine){[dir="rtl"] .porte:hover .fleche{transform:translateX(-6px)}}
 
