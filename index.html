@@ -58,11 +58,12 @@ footer b,footer a{color:var(--sur-vert)}
 .jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 @media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
 
-/* ==== PROTOTYPE — direction "restraint" (analysée sur orangeculture.com.ng) ====
-   Principe : interface neutre en noir/blanc/gris, la couleur vient d'un seul endroit —
-   ici, le bâtiment (fenêtres/briques), pas de photo de personne, pour ne pas exposer
-   des habitants potentiellement sans-papiers. Police existante (Instrument Sans) gardée
-   pour les titres à la place d'Anton, pour ne pas ajouter une 3e famille de police (Jost). */
+/* ==== PROTOTYPE v2 — restructuration inspirée de l'anatomie d'orangeculture.com.ng ====
+   (grande image éditoriale → grille de catégories avec flèche ronde → bandeau plein largeur)
+   pas juste sa palette. Interface neutre noir/blanc/gris ; le bâtiment (fenêtres/briques)
+   reste la seule zone en couleur — pas de photo de personne, pour ne pas exposer des
+   habitants potentiellement sans-papiers. Police existante (Instrument Sans) gardée pour
+   les titres à la place d'Anton, pour ne pas ajouter une 3e famille de police (Jost). */
 :root{
   --rt-noir:#000; --rt-blanc:#fff; --rt-gris:#666; --rt-bordure:#CCC; --rt-fond:#F3F3F3;
   --disp:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
@@ -75,22 +76,53 @@ header .logo,header .logo small{color:var(--rt-noir)}
 header .logo i{background:var(--rt-noir);border-radius:0}
 nav select.langues{color:var(--rt-noir);border-color:var(--rt-bordure);background-image:linear-gradient(45deg,transparent 50%,var(--rt-noir) 50%),linear-gradient(135deg,var(--rt-noir) 50%,transparent 50%)}
 nav select.langues option{color:var(--rt-noir);background:var(--rt-blanc)}
-main.portes{background:var(--rt-blanc)}
-.porte{background:var(--rt-blanc)!important;color:var(--rt-noir)!important}
-.porte .qui{color:var(--rt-gris)!important;font-size:1rem;line-height:24px}
-.porte .grand{color:var(--rt-noir)!important;font-weight:600;font-size:clamp(2.2rem,6vw,3.6rem)}
-.porte .grand .en{color:var(--rt-gris)!important;font-family:var(--body);font-weight:400}
-.porte .tag{color:var(--rt-noir)!important;font-family:var(--body);font-style:italic;transform:none;padding-bottom:0}
-.faux-btn{background:var(--rt-noir);color:var(--rt-blanc);border-radius:0;padding:12px 16px;font-weight:500}
-.porte:hover .faux-btn{background:var(--rt-gris)}
-.porte .fleche{color:var(--rt-noir)}
-.sep-portes{background:repeating-linear-gradient(157deg,var(--rt-bordure) 0 2px,transparent 2px 10px)}
-@media(max-width:760px){.sep-portes{background:repeating-linear-gradient(25deg,var(--rt-bordure) 0 2px,transparent 2px 10px)}}
-/* le bâtiment reste la seule zone en couleur, comme une photo chez Orange Culture */
-.etat{background:var(--vert-nuit);border-top:1px solid var(--rt-bordure)}
-.etat .gros{font-family:var(--body);font-weight:600;font-size:clamp(1.1rem,2.4vw,1.5rem)}
 footer{background:var(--rt-blanc)!important;color:var(--rt-gris)!important;border-top:1px solid var(--rt-bordure)}
 footer b,footer a{color:var(--rt-noir)!important}
+
+/* 1. Grande image éditoriale : le bâtiment, en pleine largeur, seule zone en couleur */
+.hero-edito{background:var(--vert-nuit);padding-block:clamp(28px,5vw,56px) 0;overflow:hidden}
+.hero-edito .batiment-hero{margin:0 auto;max-width:720px;padding-inline:var(--gut)}
+.hero-edito .batiment-hero svg{display:block;width:100%;height:auto;overflow:visible}
+.hero-titre{background:var(--rt-blanc);padding-block:clamp(24px,4vw,40px)}
+.hero-titre .w{max-width:840px}
+.hero-titre h1{font-family:var(--body);font-weight:600;font-size:clamp(1.8rem,4.6vw,3rem);line-height:1.08;margin:0 0 10px;color:var(--rt-noir);max-width:none;letter-spacing:0}
+.hero-titre p{color:var(--rt-gris);font-size:1rem;line-height:24px;max-width:56ch}
+
+/* 2. Grille de catégories : carte + libellé + flèche ronde, comme les 3 colonnes d'Orange Culture */
+.grille-choix{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rt-bordure);border-bottom:1px solid var(--rt-bordure)}
+@media(max-width:640px){.grille-choix{grid-template-columns:1fr}}
+.choix{display:flex;align-items:center;gap:16px;padding:28px var(--gut);text-decoration:none;color:var(--rt-noir);border-right:1px solid var(--rt-bordure);transition:background .15s}
+.grille-choix a.choix:last-child{border-right:none}
+@media(max-width:640px){.choix{border-right:none;border-bottom:1px solid var(--rt-bordure)}.grille-choix a.choix:last-child{border-bottom:none}}
+@media(hover:hover){.choix:hover{background:var(--rt-fond)}}
+.choix-marque{flex:none;width:44px;height:44px;background:var(--or);border:1px solid var(--rt-noir)}
+.choix-texte{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.choix-texte strong{font-family:var(--body);font-weight:600;font-size:1.25rem}
+.choix-texte span{color:var(--rt-gris);font-size:.92rem;line-height:1.4}
+.choix-fleche{flex:none;width:36px;height:36px;border:1px solid var(--rt-noir);border-radius:50%;display:grid;place-items:center;font-size:1.1rem}
+
+/* 3. Bandeau plein largeur : les chiffres en direct, seule zone en couleur avec le bâtiment */
+.etat{background:var(--vert-nuit);padding-block:32px}
+.etat .w{display:block;max-width:640px}
+.chiffres{display:grid;gap:10px}
+.chiffres p{max-width:none}
+.chiffres .gros+.fixe{margin-top:-6px}
+.chiffres .pret{display:grid;gap:10px}
+.chiffres [hidden]{display:none}
+.chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
+.etat .gros{font-family:var(--body);font-weight:600;font-size:clamp(1.2rem,2.8vw,1.7rem);color:#fff}
+.etat .gros b{color:var(--or)}
+.etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
+.etat .etages{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.85rem;color:var(--sur-vert-mut)}
+.etat .etages li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;min-width:120px}
+.etat .etages b{color:#fff;font-weight:600}
+.etat .etages i{display:block;height:6px;background:#22382B;overflow:hidden}
+.etat .etages i:before{content:"";display:block;height:100%;width:var(--p,0%);background:var(--or)}
+.jauge{height:10px;background:#22382B;overflow:hidden}
+.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
+.faux-btn{display:inline-block;background:var(--rt-noir);color:var(--rt-blanc);padding:12px 16px;font-weight:500;text-decoration:none;margin-top:14px}
+.faux-btn:hover{background:var(--rt-gris)}
 </style>
 </head>
 <body>
@@ -102,24 +134,30 @@ footer b,footer a{color:var(--rt-noir)!important}
 </div>
 </header>
 
-<main class="portes">
-  <a class="porte habiter" href="habiter.html">
-    <span class="qui">Tu viens d'avoir tes papiers ?<br>Tu sors d'un squat ?<br>Tu dors mal, tu payes trop ?</span>
-    <h1 class="grand">J'ai besoin<br>d'un <em class="tag">toit</em>.<span class="en" lang="en">I need a roof — English spoken, come as you are.</span></h1>
-    <span class="bas"><span class="faux-btn">C'est par ici</span><span class="fleche" aria-hidden="true">→</span></span>
+<section class="hero-edito">
+  <figure class="batiment-hero"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg></figure>
+</section>
+<div class="hero-titre"><div class="w">
+  <h1>Deux chemins.<br>Un même bâtiment.</h1>
+  <p>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Un étage par personne référente. Clique dessus.</p>
+</div></div>
+
+<nav class="grille-choix" aria-label="Choisir son chemin">
+  <a class="choix" href="habiter.html">
+    <span class="choix-marque" aria-hidden="true"></span>
+    <span class="choix-texte"><strong>J'ai besoin d'un toit</strong><span>Tu sors d'un squat, tu viens d'avoir tes papiers — English spoken.</span></span>
+    <span class="choix-fleche" aria-hidden="true">→</span>
   </a>
-  <div class="sep-portes" aria-hidden="true"></div>
-  <a class="porte construire" href="preter.html">
-    <span class="qui">Tu peux prêter 1 000 € ?<br>Ouvrir ton réseau ?<br>Vérifier nos chiffres ?</span>
-    <h1 class="grand">Soutenir<br>le <em class="tag">projet</em>.<span class="en" lang="en">Support the project — lend €1,000 at 0%, get it back.</span></h1>
-    <span class="bas"><span class="faux-btn">Voir le dossier</span><span class="fleche" aria-hidden="true">→</span></span>
+  <a class="choix" href="preter.html">
+    <span class="choix-marque" aria-hidden="true"></span>
+    <span class="choix-texte"><strong>Soutenir le projet</strong><span>Prêter 1 000 €, à 0 %, récupérés.</span></span>
+    <span class="choix-fleche" aria-hidden="true">→</span>
   </a>
-</main>
+</nav>
 
 <div class="etat">
 <div class="w">
-  <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg><figcaption>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Un étage par personne référente. Clique dessus.</figcaption>
-  <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
+  <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul>
   <div class="chiffres" aria-live="polite">
     <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">fenêtres allumées</span> sur 50</p>
     <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">personne inscrite</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ de loyers par mois, à 300 € la chambre.</p>
