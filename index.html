@@ -58,71 +58,64 @@ footer b,footer a{color:var(--sur-vert)}
 .jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 @media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
 
-/* ==== PROTOTYPE v2 — restructuration inspirée de l'anatomie d'orangeculture.com.ng ====
-   (grande image éditoriale → grille de catégories avec flèche ronde → bandeau plein largeur)
-   pas juste sa palette. Interface neutre noir/blanc/gris ; le bâtiment (fenêtres/briques)
-   reste la seule zone en couleur — pas de photo de personne, pour ne pas exposer des
-   habitants potentiellement sans-papiers. Police existante (Instrument Sans) gardée pour
-   les titres à la place d'Anton, pour ne pas ajouter une 3e famille de police (Jost). */
-:root{
-  --rt-noir:#000; --rt-blanc:#fff; --rt-gris:#666; --rt-bordure:#CCC; --rt-fond:#F3F3F3;
-  --disp:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
-}
-html,body{background:var(--rt-blanc)}
-body{color:var(--rt-noir)}
-h1,h2,h3{text-transform:none;letter-spacing:0}
-header{background:var(--rt-blanc);border-bottom:1px solid var(--rt-bordure)}
-header .logo,header .logo small{color:var(--rt-noir)}
-header .logo i{background:var(--rt-noir);border-radius:0}
-nav select.langues{color:var(--rt-noir);border-color:var(--rt-bordure);background-image:linear-gradient(45deg,transparent 50%,var(--rt-noir) 50%),linear-gradient(135deg,var(--rt-noir) 50%,transparent 50%)}
-nav select.langues option{color:var(--rt-noir);background:var(--rt-blanc)}
-footer{background:var(--rt-blanc)!important;color:var(--rt-gris)!important;border-top:1px solid var(--rt-bordure)}
-footer b,footer a{color:var(--rt-noir)!important}
+/* ==== PROTOTYPE v3 — repart de zéro, composition affiche asymétrique ====
+   Gros bloc de couleur cassé en diagonale + typographie surdimensionnée, dans l'esprit
+   « street luxe » (énergie éditoriale, contraste noir/or, rien de centré-sage). Le bâtiment
+   redevient un module secondaire, pas le sujet. Pas de photo de personne (habitants
+   potentiellement sans-papiers). Police existante (Instrument Sans), pas de 3e famille. */
+:root{ --p-noir:#0A0A0A; --p-or:#E3C362; --p-blanc:#fff; --p-gris:#9a9a9a; }
+html,body{background:var(--p-noir)}
+body{color:var(--p-blanc)}
+h1{text-transform:none;letter-spacing:0}
+header{background:linear-gradient(rgba(0,0,0,.55),transparent);position:absolute;inset:0 0 auto 0;z-index:5}
+header .logo,header .logo small{color:var(--p-blanc)}
+header .logo i{background:var(--p-or);border-radius:0}
+nav select.langues{color:var(--p-blanc);border-color:rgba(255,255,255,.4);background-image:linear-gradient(45deg,transparent 50%,var(--p-blanc) 50%),linear-gradient(135deg,var(--p-blanc) 50%,transparent 50%)}
+nav select.langues option{color:var(--p-noir);background:var(--p-blanc)}
+footer{background:var(--p-noir)!important;color:var(--p-gris)!important;border-top:1px solid #262626}
+footer b,footer a{color:var(--p-blanc)!important}
 
-/* 1. Grande image éditoriale : le bâtiment, en pleine largeur, seule zone en couleur */
-.hero-edito{background:var(--vert-nuit);padding-block:clamp(28px,5vw,56px) 0;overflow:hidden}
-.hero-edito .batiment-hero{margin:0 auto;max-width:720px;padding-inline:var(--gut)}
-.hero-edito .batiment-hero svg{display:block;width:100%;height:auto;overflow:visible}
-.hero-titre{background:var(--rt-blanc);padding-block:clamp(24px,4vw,40px)}
-.hero-titre .w{max-width:840px}
-.hero-titre h1{font-family:var(--body);font-weight:600;font-size:clamp(1.8rem,4.6vw,3rem);line-height:1.08;margin:0 0 10px;color:var(--rt-noir);max-width:none;letter-spacing:0}
-.hero-titre p{color:var(--rt-gris);font-size:1rem;line-height:24px;max-width:56ch}
+/* Scène : bloc or en diagonale, titre surdimensionné à cheval sur les deux zones */
+.scene{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end;overflow:hidden;padding-bottom:clamp(28px,5vw,56px)}
+.bloc-couleur{position:absolute;inset:0;background:var(--p-or);clip-path:polygon(38% 0,100% 0,100% 100%,58% 100%)}
+@media(max-width:760px){.bloc-couleur{clip-path:polygon(0 62%,100% 44%,100% 100%,0 100%)}}
+.scene-texte{position:relative;z-index:2;width:100%;padding-inline:var(--gut)}
+.kicker{font-weight:600;letter-spacing:.14em;font-size:.8rem;color:var(--p-or);margin:0 0 18px;text-transform:uppercase}
+@media(max-width:760px){.kicker{color:var(--p-noir)}}
+.titre-poster{font-family:var(--body);font-weight:700;font-size:clamp(3rem,10vw,7.5rem);line-height:.92;letter-spacing:-.02em;margin:0 0 32px;max-width:none}
+.titre-poster .l1{display:block;color:var(--p-blanc)}
+.titre-poster .l2{display:block;color:var(--p-noir)}
+.tags{display:flex;flex-wrap:wrap;gap:12px}
+.tag-cta{display:inline-flex;align-items:center;gap:8px;background:var(--p-blanc);color:var(--p-noir);border-radius:999px;padding:14px 24px;font-weight:600;text-decoration:none;font-size:.98rem}
+.tag-cta.alt{background:transparent;color:var(--p-blanc);border:1.5px solid var(--p-blanc)}
+@media(hover:hover){.tag-cta:hover{background:var(--p-noir);color:var(--p-blanc)}.tag-cta.alt:hover{background:var(--p-blanc);color:var(--p-noir)}}
 
-/* 2. Grille de catégories : carte + libellé + flèche ronde, comme les 3 colonnes d'Orange Culture */
-.grille-choix{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rt-bordure);border-bottom:1px solid var(--rt-bordure)}
-@media(max-width:640px){.grille-choix{grid-template-columns:1fr}}
-.choix{display:flex;align-items:center;gap:16px;padding:28px var(--gut);text-decoration:none;color:var(--rt-noir);border-right:1px solid var(--rt-bordure);transition:background .15s}
-.grille-choix a.choix:last-child{border-right:none}
-@media(max-width:640px){.choix{border-right:none;border-bottom:1px solid var(--rt-bordure)}.grille-choix a.choix:last-child{border-bottom:none}}
-@media(hover:hover){.choix:hover{background:var(--rt-fond)}}
-.choix-marque{flex:none;width:44px;height:44px;background:var(--or);border:1px solid var(--rt-noir)}
-.choix-texte{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-.choix-texte strong{font-family:var(--body);font-weight:600;font-size:1.25rem}
-.choix-texte span{color:var(--rt-gris);font-size:.92rem;line-height:1.4}
-.choix-fleche{flex:none;width:36px;height:36px;border:1px solid var(--rt-noir);border-radius:50%;display:grid;place-items:center;font-size:1.1rem}
+/* Bandeau défilant (réutilise .bandeau du style.css partagé) */
+.bandeau{border-block:1px solid #262626}
 
-/* 3. Bandeau plein largeur : les chiffres en direct, seule zone en couleur avec le bâtiment */
-.etat{background:var(--vert-nuit);padding-block:32px}
-.etat .w{display:block;max-width:640px}
+/* Module bâtiment : redevient secondaire, en colonne compacte */
+.etat{background:var(--p-noir);padding-block:56px}
+.etat .w{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:center;max-width:1040px}
+@media(max-width:760px){.etat .w{grid-template-columns:1fr}}
+.batiment{margin:0}
+.batiment svg{display:block;width:100%;max-width:340px;height:auto;overflow:visible}
 .chiffres{display:grid;gap:10px}
 .chiffres p{max-width:none}
 .chiffres .gros+.fixe{margin-top:-6px}
 .chiffres .pret{display:grid;gap:10px}
 .chiffres [hidden]{display:none}
-.chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
-.etat .gros{font-family:var(--body);font-weight:600;font-size:clamp(1.2rem,2.8vw,1.7rem);color:#fff}
-.etat .gros b{color:var(--or)}
-.etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
-.etat .etages{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.85rem;color:var(--sur-vert-mut)}
+.chiffres .etape{margin-top:10px;border-top:1px solid #262626;padding-top:12px}
+.etat .gros{font-family:var(--body);font-weight:700;font-size:clamp(1.3rem,2.8vw,1.8rem);color:#fff}
+.etat .gros b{color:var(--p-or)}
+.etat .fixe{font-size:.92rem;color:var(--p-gris)}
+.etat .etages{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.85rem;color:var(--p-gris)}
 .etat .etages li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;min-width:120px}
 .etat .etages b{color:#fff;font-weight:600}
-.etat .etages i{display:block;height:6px;background:#22382B;overflow:hidden}
-.etat .etages i:before{content:"";display:block;height:100%;width:var(--p,0%);background:var(--or)}
-.jauge{height:10px;background:#22382B;overflow:hidden}
-.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.etat .etages i{display:block;height:6px;background:#222;overflow:hidden}
+.etat .etages i:before{content:"";display:block;height:100%;width:var(--p,0%);background:var(--p-or)}
+.jauge{height:10px;background:#222;overflow:hidden}
+.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--p-or);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 @media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
-.faux-btn{display:inline-block;background:var(--rt-noir);color:var(--rt-blanc);padding:12px 16px;font-weight:500;text-decoration:none;margin-top:14px}
-.faux-btn:hover{background:var(--rt-gris)}
 </style>
 </head>
 <body>
@@ -134,31 +127,25 @@ footer b,footer a{color:var(--rt-noir)!important}
 </div>
 </header>
 
-<section class="hero-edito">
-  <figure class="batiment-hero"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg></figure>
+<section class="scene">
+  <div class="bloc-couleur" aria-hidden="true"></div>
+  <div class="scene-texte">
+    <p class="kicker">Sortir du squat · Molenbeek</p>
+    <h1 class="titre-poster"><span class="l1">Un toit.</span><span class="l2">À 300&nbsp;€.</span></h1>
+    <div class="tags">
+      <a class="tag-cta" href="habiter.html">J'ai besoin d'un toit ↗</a>
+      <a class="tag-cta alt" href="preter.html">Soutenir le projet ↗</a>
+    </div>
+  </div>
 </section>
-<div class="hero-titre"><div class="w">
-  <h1>Deux chemins.<br>Un même bâtiment.</h1>
-  <p>Chaque fenêtre est une personne inscrite pour y vivre, chaque brique une promesse de prêt. Un étage par personne référente. Clique dessus.</p>
-</div></div>
 
-<nav class="grille-choix" aria-label="Choisir son chemin">
-  <a class="choix" href="habiter.html">
-    <span class="choix-marque" aria-hidden="true"></span>
-    <span class="choix-texte"><strong>J'ai besoin d'un toit</strong><span>Tu sors d'un squat, tu viens d'avoir tes papiers — English spoken.</span></span>
-    <span class="choix-fleche" aria-hidden="true">→</span>
-  </a>
-  <a class="choix" href="preter.html">
-    <span class="choix-marque" aria-hidden="true"></span>
-    <span class="choix-texte"><strong>Soutenir le projet</strong><span>Prêter 1 000 €, à 0 %, récupérés.</span></span>
-    <span class="choix-fleche" aria-hidden="true">→</span>
-  </a>
-</nav>
+<div class="bandeau" aria-hidden="true"><div class="piste"><span>50 chambres</span><span>300 €/mois tout compris</span><span>120 prêteurs citoyens</span><span>0 % d'intérêt</span><span>Molenbeek</span><span>50 chambres</span><span>300 €/mois tout compris</span><span>120 prêteurs citoyens</span><span>0 % d'intérêt</span><span>Molenbeek</span></div></div>
 
 <div class="etat">
 <div class="w">
-  <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul>
+  <figure class="batiment"><svg id="batiment" role="group" aria-label="Le bâtiment : 50 fenêtres pour les personnes qui y vivront, 120 briques pour les prêteurs. Chaque place se clique."></svg></figure>
   <div class="chiffres" aria-live="polite">
+    <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul>
     <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">fenêtres allumées</span> sur 50</p>
     <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">personne inscrite</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ de loyers par mois, à 300 € la chambre.</p>
     <p class="fixe">Actuellement, nous avons un groupe de <b class="rouleau" id="r-groupe">0</b> personne<span id="l-groupe">s</span> capable<span id="l-groupe2">s</span> de payer <b class="rouleau" id="r-capacite">0</b>&nbsp;€/mois.</p>
