@@ -154,9 +154,9 @@ strong{font-weight:700}
 
 /* Répartition 57 / 38 / 5 */
 .split{display:flex;height:56px;border-radius:3px;overflow:hidden;margin-top:22px}
-.split div{display:flex;flex-direction:column;justify-content:center;padding-inline:14px;color:#fff;min-width:0}
-.split b{font-family:var(--disp);font-size:1.15rem;white-space:nowrap}
-.split small{font-size:.76rem;white-space:nowrap;opacity:.85}
+.split div{display:flex;flex-direction:column;justify-content:center;padding-inline:14px;color:#fff;min-width:0;overflow:hidden}
+.split b{font-family:var(--disp);font-size:1.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.split small{font-size:.76rem;white-space:nowrap;opacity:.85;overflow:hidden;text-overflow:ellipsis}
 .split .a{background:var(--vert)}.split .b{background:var(--vert-nuit)}.split .c{background:var(--or);color:var(--vert-nuit)}
 .split .c b,.split .c small{display:none}
 .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font-size:.88rem;color:var(--mut)}
