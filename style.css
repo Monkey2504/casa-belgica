@@ -24,6 +24,9 @@ a{color:inherit;touch-action:manipulation}
 :focus-visible{outline:3px solid var(--or);outline-offset:3px}
 .num{font-variant-numeric:tabular-nums}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Lien d'évitement : visible uniquement au focus clavier (WCAG 2.4.1) */
+.skip{position:absolute;left:8px;top:-100px;z-index:50;background:var(--or);color:var(--vert-nuit);font-weight:700;padding:10px 16px;border-radius:3px;text-decoration:none}
+.skip:focus{top:8px}
 
 /* ---- En-tête ---- */
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--vert-nuit);color:var(--sur-vert)}
