@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Raus aus dem Squat: ich brauche ein Dach über dem Kopf</title>
+<title>Sortir du squat — ich brauche ein Dach über dem Kopf</title>
 <meta name="description" content="Ein eigenes Zimmer mit Dusche und WC, 300 € im Monat alles inklusive, in Brüssel. Noch nicht offen: das Projekt entsteht gerade. Trag dich ein, dann erfährst du es zuerst.">
-<meta property="og:title" content="Raus aus dem Squat: ich brauche ein Dach über dem Kopf">
+<meta property="og:title" content="Sortir du squat — ich brauche ein Dach über dem Kopf">
 <meta property="og:description" content="Ein eigenes Zimmer mit Dusche und WC, 300 € im Monat alles inklusive, in Brüssel. Noch nicht offen: trag dich ein, dann erfährst du es zuerst.">
 <meta property="og:url" content="https://casa-belgica.vercel.app/de/habiter">
 <link rel="canonical" href="https://casa-belgica.vercel.app/de/habiter">
@@ -14,239 +14,191 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#13251A">
+<meta name="theme-color" content="#34496A"><!-- = --ciel -->
 <link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter">
 <link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/habiter">
 <link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter">
 <link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter">
 <link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/habiter">
 <link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/habiter">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23F4B740'/></svg>">
+<link rel="preconnect" href="https://gjvxwijhowbyhfwlybvt.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="../style.css">
-<style>
-.hero .lead strong{color:#fff}
-h1{max-width:16ch}
-.heroTxt{container-type:inline-size}
-.heroTxt h1{font-size:clamp(2.9rem,9.5cqi,4.2rem)}
-.hero .adr{margin-top:24px;font-size:1rem;color:var(--sur-vert)}
-.hero .adr b{color:#fff}
-.faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-@media(max-width:820px){.faits{grid-template-columns:minmax(0,1fr)}}
-.fait{background:var(--vert);color:var(--sur-vert);border-radius:4px;padding:24px 24px 26px}
-.fait b{display:block;font-family:var(--disp);font-weight:800;font-size:1.45rem;line-height:1.1;color:#fff;margin-bottom:10px}
-.fait b em{font-style:normal;color:var(--or)}
-.fait p{font-size:.97rem;max-width:none}
-.mieux{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.05;color:var(--vert);margin-top:10px}
-.mieux em{font-style:normal;color:var(--or-sombre)}
-</style>
 </head>
-<body>
-<a class="skip" href="#top">Zum Inhalt springen</a>
+<body class="p-habiter">
+<a class="skip" href="#contenu">Zum Inhalt springen</a>
 
-<header>
-<div class="w">
-  <a class="logo" href="/de/" aria-label="Raus aus dem Squat, zurück zum Eingang"><i aria-hidden="true"></i><span>RAUS AUS DEM SQUAT<small>Erstes Gebäude: Casa Belgica</small></span></a>
-  <nav aria-label="Navigation">
-    <a class="link" href="#cestquoi">Was ist das</a>
-    <select class="langues" aria-label="Sprache" onchange="location.href=this.value"><option value="/habiter.html" lang="fr">Français</option><option value="/en/habiter.html" lang="en">English</option><option value="/de/habiter.html" lang="de" selected>Deutsch</option><option value="/nl/habiter.html" lang="nl">Nederlands</option><option value="/ar/habiter.html" lang="ar">العربية</option></select>
-    <a class="lang" href="/de/">↩ Eingang</a>
-    <a class="cta" href="#inscrire">Ich trage mich ein</a>
-  </nav>
-</div>
-</header>
+<header class="ciel"><div class="w entete">
+    <a class="logo" href="/de/" aria-label="Sortir du squat, zurück zum Eingang"><b>Sortir du squat</b><span>Erstes Gebäude: Casa Belgica</span></a>
+    <nav aria-label="Sprache">
+      <ul class="langues">
+        <li><a href="/habiter.html" lang="fr" hreflang="fr">Français</a></li>
+        <li><a href="/en/habiter.html" lang="en" hreflang="en">English</a></li>
+        <li><a href="/de/habiter.html" lang="de" hreflang="de" aria-current="page">Deutsch</a></li>
+        <li><a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a></li>
+        <li><a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></li>
+      </ul>
+    </nav>
+</div></header>
 
-<main id="top">
+<main id="contenu">
+<div class="ciel scene">
+  <div class="w titre">
+    <p class="badge">Noch nicht offen: erster Schlüssel in ± 3 Jahren</p>
+    <h1>Ein Zimmer für dich, ein Dach in Brüssel, für <span class="prix nw">300&nbsp;€/Monat</span>.</h1>
+  </div>
 
-<section class="hero">
-<div class="w">
-<div class="heroRow">
-  <div class="heroTxt">
-    <p class="eyebrow"><span class="badge">Noch nicht offen: erster Schlüssel in ± 3 Jahren</span></p>
-    <h1>Ein <em class="tag">Raum</em>, ein Heim, ganz für dich allein — in Brüssel, für <mark>300 € im Monat</mark>.</h1>
-    <p class="lead pitch">300 € im Monat, alles inklusive, in einer Stadt, in der ein normales Studio 725 € kostet.</p>
-    <p class="lead" lang="fr">300 € par mois, tout compris, dans une ville où un studio coûte 725 €.</p>
-    <div class="actions">
-      <a class="btn or" href="#inscrire">Ich trage mich ein</a>
-      <a class="btn ghost" href="#cestquoi">Was ist das genau?</a>
+  <!-- La même façade que l'entrée. Ici, la porte lumière est l'action de la page ; la porte brique mène à l'autre page. -->
+  <div class="facade">
+    <div class="dessin" data-dessin="facade"></div>
+    <!-- La plaque compte à l'écran ; les lecteurs d'écran entendent une seule fois le résultat final (data-resume), pas chaque chiffre. -->
+    <p class="plaque" aria-hidden="true"><span><span class="nw"><b class="num" data-plaque="fen">0</b> <span data-accord="fen" data-un="erleuchtetes Fenster" data-plus="erleuchtete Fenster">erleuchtete Fenster</span> von 50,</span> <span class="nw"><b class="num" data-plaque="bri">0</b> <span data-accord="bri" data-un="Stein" data-plus="Steine">Steine</span> von 120</span></span></p>
+    <p class="sr-only" data-resume="fenetres briques" aria-live="polite">0 erleuchtete Fenster von 50 · 0 gesetzte Steine von 120</p>
+    <div class="portes">
+      <a class="porte porte-1" href="#inscrire"><span class="nom">Ich trage mich ein</span><span class="suite">Sechs Fragen</span></a>
+      <a class="porte porte-2" href="preter.html"><span class="nom">Das Projekt unter&shy;stützen</span><span class="suite">Zum Dossier</span></a>
     </div>
-    <p class="adr"><b>Oder komm vorbei:</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
   </div>
-  <figure class="immeuble"><svg id="facade" role="group" aria-label="Fassade des Gebäudes: 50 Fenster, eines pro Person, die sich zum Wohnen eingetragen hat. Jedes Fenster lässt sich anklicken."></svg><figcaption aria-live="polite"><strong><span class="rouleau" id="r-hab">0</span> <span id="l-hab">erleuchtete Fenster</span> von 50</strong>: ein Fenster pro Person, die sich zum Wohnen eingetragen hat. Klick auf ein Fenster.</figcaption>
-  <ul class="etages" id="etages" aria-label="Belegung pro Etage"></ul></figure>
-</div>
-<ol class="frise-cle" aria-label="Zeitplan des Projekts">
-  <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a href="preter.html#risque">Details ansehen</a>.</span></li>
-  <li><b>Ab 18 bis 21 Monaten</b><span>Sammeln der 120 Kreditzusagen der Bürger·innen, zu 0 %.</span></li>
-  <li><b>± 3 Jahre</b><span>Gebäude saniert, erste Schlüssel übergeben.</span></li>
-</ol>
-</div>
-</section>
 
-<section id="cestquoi">
-<div class="w">
-<p class="kick">Was ist das</p>
-<h2>Dein Zimmer, dein Schlüssel, dein Vertrag.</h2>
-<p class="big" style="margin-bottom:26px">Raus aus dem Squat bereitet sein erstes Gebäude vor, Casa Belgica: 50 Zimmer in Brüssel, für Menschen, die gerade ihre Papiere bekommen haben und aus einem Squat kommen. Kein Zentrum, kein Schlafsaal.</p>
-<div class="faits">
-  <div class="fait"><b>Dein Zimmer, <em>dein Schlüssel</em></b><p>Mindestens 18 m², mit eigener Dusche und eigenem WC. Ein eigener Vertrag, auf deinen Namen. Niemand kommt einfach zu dir rein.</p></div>
-  <div class="fait"><b>Eine <em>Adresse</em></b><p>Eine echte Adresse auf deinen Namen, die „Domizilierung“. Sie öffnet die Hilfe vom CPAS (das RIS), die Krankenkasse, den Job. Und weil du allein in deinem Zimmer wohnst, bekommst du den vollen Satz: 1.340 € im Monat, nicht 894 €.</p></div>
-  <div class="fait"><b>Zeit zum <em>Durchatmen</em></b><p>Drei bis vier Jahre, um zu sparen, eine Ausbildung zu machen, eine richtige Wohnung zu finden. Du gehst, wenn du bereit bist, nicht, wenn man dich rauswirft.</p></div>
-</div>
-</div>
-</section>
-
-<section class="line">
-<div class="w">
-<p class="kick">Rechne mit uns</p>
-<h2>425 € mehr, jeden Monat.</h2>
-<div class="two">
-  <div class="stack">
-    <p class="big">Mit deinen Papieren und dem RIS zum vollen Satz bekommst du 1.340 € im Monat. Ein Studio in Brüssel kostet 725 € Miete, plus Kaution. Dir bleibt kaum genug zum Leben, und nichts zum Zurücklegen.</p>
-    <p>Bei Casa Belgica zahlst du <strong>300 € alles inklusive</strong>: Heizung, Wasser, Strom, Internet. Der Rest gehört dir.</p>
-    <p class="mieux">Von 615 € auf <em>1.040 €</em> zum Leben.</p>
-  </div>
-  <div class="reste" aria-label="Vergleich: was zum Leben bleibt">
-    <div class="row">
-      <div class="lbl"><span>Privates Studio · 725 € Miete</span><b class="num">bleiben 615 €</b></div>
-      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:725">Miete</i><i class="vie" style="flex:615">zum Leben</i></div>
+  <div class="w sous-facade">
+    <div>
+      <p class="pitch">300&nbsp;€ im Monat, alles inklusive, in einer Stadt, in der ein normales Studio 725&nbsp;€ kostet.</p>
+      <p lang="fr">300&nbsp;€ par mois, tout compris, dans une ville où un studio coûte 725&nbsp;€.</p>
+      <p class="legende">Ein Fenster pro Person, die sich zum Wohnen eingetragen hat, ein Stein pro Darlehenszusage. Klick auf ein Fenster.</p>
+      <p class="adr"><b>Oder komm vorbei:</b> Ballal, 645 chaussée de Gand, 1080 Molenbeek.</p>
+      <a class="btn btn-ciel" href="#cestquoi">Was ist das genau?</a>
     </div>
-    <div class="row win">
-      <div class="lbl"><span>Casa Belgica · 300 € alles inklusive</span><b class="num">bleiben 1.040 €</b></div>
-      <div class="bar" aria-hidden="true"><i class="loyer" style="flex:300">300 €</i><i class="vie" style="flex:1040">zum Leben</i></div>
-    </div>
-    <div class="scale"><span>0 €</span><span>1.340 € / Monat (die Hilfe vom CPAS, voller Satz)</span></div>
-  </div>
-</div>
-</div>
-</section>
-
-<section class="line">
-<div class="w">
-<p class="kick">Für wen</p>
-<h2>Frische Papiere, raus aus dem Squat.</h2>
-<div class="two">
-  <div class="stack">
-    <p class="big">Für Menschen, die gerade regularisiert wurden, die aus einem Squat oder einer Besetzung kommen und die ein Einkommen haben: die Hilfe vom CPAS oder einen Lohn.</p>
-    <p>Ballal ASBL begleitet seit 2015 mehr als 150 Menschen ohne Papiere oder in prekärer Lage in Molenbeek. Mütter, Kinder, ganze Familien, im Lauf der Jahre von einem Squat zum nächsten verdrängt: Sie sind es, die nach etwas anderem als einer weiteren Notunterkunft gefragt haben, nach einem stabilen, eigenen Gebäude. Raus aus dem Squat ist aus dieser Forderung entstanden, getragen von Ballal seit 2023. Wenn du schon mal in der chaussée de Gand warst, kennst du uns bereits.</p>
-  </div>
-  <div class="stack">
-    <p><strong>Du hast deine Papiere noch nicht?</strong> Dann kann Casa Belgica dich nicht unterbringen: das Modell beruht auf der Hilfe vom CPAS. Aber komm trotzdem: die Begleitung durch Ballal ist ab sofort für dich da.</p>
-    <p class="note">Niemand wird dich bitten, irgendetwas zu bezahlen, um dich einzutragen. Die Eintragung ist kostenlos, ohne Bedingungen, und verpflichtet dich zu nichts.</p>
-  </div>
-</div>
-</div>
-</section>
-
-<section class="ask" id="inscrire">
-<div class="w">
-<p class="kick">Eintragen</p>
-<h2>Ein paar Minuten, sieben Fragen.</h2>
-<div class="two" style="margin-top:8px">
-  <form class="form sombre" id="fHabitant" novalidate>
-    <label>Dein Vorname<input name="nom" required maxlength="120" autocomplete="given-name"></label>
-    <label>Wie wir dich erreichen (WhatsApp oder E-Mail)<input name="contact" required maxlength="200"></label>
-    <label>Deine Telefonnummer<input name="telephone" type="tel" required maxlength="30" autocomplete="tel"></label>
-    <label>Deine belgische Nationalregisternummer, oder deine BIS-Nummer<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
-    <label>Deine Nationalität<input name="nationalite" required maxlength="60" autocomplete="off"></label>
-    <label>Deine Bezugsperson, die dir vom Projekt erzählt hat und dich begleitet<select name="referent" required><option value="">Wähle seinen Vornamen</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
-    <label class="photo">Dein Foto, wenn du am Fenster zu sehen sein willst (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
-    <img class="apercu" alt="" hidden>
-    <p class="avertissement"><strong>Bevor du ankreuzt:</strong> die Fassade ist öffentlich, jeder kann deinen Vornamen und dein Foto sehen. Wenn du einen Grund hast, nicht sichtbar zu sein, kreuz nicht an: deine Eintragung zählt genau gleich, dein Fenster leuchtet ohne Namen. Du kannst es dir jederzeit anders überlegen, wir nehmen alles auf einfache Anfrage raus.</p>
-    <fieldset class="case"><legend>Mein Vorname und mein Foto dürfen an einem Fenster der Fassade erscheinen, um zu zeigen, dass die Liste wächst.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Ja</label><label><input type="radio" name="affiche" value="non"> Nein</label></div></fieldset>
-    <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="actions"><button class="btn or" type="submit">Ich trage mich ein</button></div>
-    <p class="confidentialite">Dein Vorname, dein Kontakt, deine Telefonnummer, deine belgische Nationalregisternummer und deine Nationalität werden von Ballal ASBL aufbewahrt, nur um dich zu kontaktieren, dich zu identifizieren wegen Casa Belgica, und für eine gute Durchmischung der Nationalitäten im Gebäude zu sorgen. Wir geben sie an niemanden weiter, und wir löschen sie, wenn du es bei admin@ballal.be verlangst. Deine Nationalregisternummer und deine Nationalität werden nie öffentlich angezeigt. Dein Vorname und dein Foto erscheinen nur dann an der Fassade, wenn du mit Ja antwortest. Um sie zu entfernen, schreib uns.</p>
-    <p class="ok" role="status"></p>
-    <p class="ko" role="alert">Das Senden hat nicht geklappt. Komm bei uns vorbei, oder schreib an <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
-  </form>
-  <div class="stack">
-    <h3 style="color:#fff">Oder komm vorbei.</h3>
-    <p style="color:var(--sur-vert)">Ballal ASBL<br>645 chaussée de Gand<br>1080 Molenbeek, Brüssel</p>
-    <p style="color:var(--sur-vert-mut)">Französisch, Englisch: und wenn du keins von beiden sprichst, komm trotzdem, wir finden jemanden. Keine Akte, kein Nachweis: wir reden miteinander.</p>
-    <div class="keys" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-      <div><b>150+</b><span>Menschen, die Ballal ASBL in Molenbeek bereits begleitet hat, seit 2015.</span></div>
-      <div><b>3 bis 4 Jahre</b><span>um zu sparen, sich auszubilden, eine richtige Wohnung zu finden — so lange dauert der Aufenthalt.</span></div>
+    <div class="remplissage">
+      <h2 class="remplissage-titre" id="t-etages">Belegung pro Etage</h2>
+      <ul class="etages" data-etages aria-labelledby="t-etages"></ul>
+      <button type="button" class="voir" data-liste="habitants" aria-expanded="false" aria-controls="liste-habitants">Sehen, wer hier wohnt</button>
+      <div class="liste-noms" id="liste-habitants" hidden></div>
     </div>
   </div>
 </div>
-</div>
+
+<section class="w calendrier" aria-labelledby="t-cal">
+  <h2 class="sr-only" id="t-cal">Zeitplan des Projekts</h2>
+  <ol class="frise" aria-label="Zeitplan des Projekts">
+    <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a class="lien" href="preter.html#risque">Details ansehen</a>.</span></li>
+    <li><b>Ab 18 bis 21 Monaten</b><span>Sammeln der 120 Darlehenszusagen der Bürgerinnen und Bürger, zu 0&nbsp;%.</span></li>
+    <li><b>± 3 Jahre</b><span>Gebäude saniert, erste Schlüssel übergeben.</span></li>
+  </ol>
 </section>
 
+<section class="w suite" id="cestquoi" aria-labelledby="t-quoi">
+  <div class="rang">
+    <div><p class="kick">Was ist das</p><h2 id="t-quoi">Dein Zimmer, dein Schlüssel, dein Vertrag.</h2></div>
+    <div class="corps">
+      <p class="big">Sortir du squat bereitet sein erstes Gebäude vor, Casa Belgica: 50 Zimmer in Brüssel, für Menschen, die gerade ihre Papiere bekommen haben und aus einem Squat kommen. Kein Zentrum, kein Schlafsaal.</p>
+      <ul class="faits">
+        <li><b>Dein Zimmer, <em>dein Schlüssel</em></b><p>Mindestens 18 m², mit eigener Dusche und eigenem WC. Ein eigener Vertrag, auf deinen Namen. Niemand kommt einfach zu dir rein.</p></li>
+        <li><b>Eine <em>Adresse</em></b><p>Eine echte Adresse auf deinen Namen, die „Domizilierung“. Sie öffnet die Hilfe vom CPAS (das RIS), die Krankenkasse, den Job. Und weil du allein in deinem Zimmer wohnst, bekommst du den vollen Satz: <span class="num nw">1.340&nbsp;€</span> im Monat, nicht <span class="num nw">894&nbsp;€</span>.</p></li>
+        <li><b>Zeit zum <em>Durchatmen</em></b><p>Drei bis vier Jahre, um zu sparen, eine Ausbildung zu machen, eine richtige Wohnung zu finden. Du gehst, wenn du bereit bist, nicht, wenn man dich rauswirft.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="w suite" aria-labelledby="t-compte">
+  <div class="rang">
+    <div><p class="kick">Rechne mit uns</p><h2 id="t-compte"><span class="num">425&nbsp;€</span> mehr, jeden Monat.</h2></div>
+    <div class="corps">
+      <p class="big">Mit deinen Papieren und dem RIS zum vollen Satz bekommst du <span class="num nw">1.340&nbsp;€</span> im Monat. Ein Studio in Brüssel kostet <span class="num nw">725&nbsp;€</span> Miete, plus Kaution. Dir bleibt kaum genug zum Leben, und nichts zum Zurücklegen.</p>
+      <p>Bei Casa Belgica zahlst du <strong>300&nbsp;€ alles inklusive</strong>: Heizung, Wasser, Strom, Internet. Der Rest gehört dir.</p>
+      <p class="mieux num">Von 615&nbsp;€ auf <em>1.040&nbsp;€</em> zum Leben.</p>
+      <div class="reste revele" role="group" aria-label="Vergleich: was zum Leben bleibt">
+        <div class="row">
+          <div class="lbl"><span>Privates Studio · 725&nbsp;€ Miete</span><b>bleiben 615&nbsp;€</b></div>
+          <div class="bar" aria-hidden="true"><i class="loyer" style="flex:725">Miete</i><i class="vie" style="flex:615">zum Leben</i></div>
+        </div>
+        <div class="row win">
+          <div class="lbl"><span>Casa Belgica · 300&nbsp;€ alles inklusive</span><b>bleiben 1.040&nbsp;€</b></div>
+          <div class="bar" aria-hidden="true"><i class="loyer" style="flex:300">300&nbsp;€</i><i class="vie" style="flex:1040">zum Leben</i></div>
+        </div>
+        <div class="scale"><span>0&nbsp;€</span><span>1.340&nbsp;€ / Monat (die Hilfe vom CPAS, voller Satz)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="w suite" aria-labelledby="t-qui">
+  <div class="rang">
+    <div><p class="kick">Für wen</p><h2 id="t-qui">Frische Papiere, raus aus dem Squat.</h2></div>
+    <div class="corps">
+      <p class="big">Für Menschen, die gerade regularisiert wurden, die aus einem Squat oder einer Besetzung kommen und die ein Einkommen haben: die Hilfe vom CPAS oder einen Lohn.</p>
+      <p>Ballal ASBL begleitet seit 2015 mehr als 150 Menschen ohne Papiere oder in prekärer Lage in Molenbeek. Mütter, Kinder, ganze Familien, im Lauf der Jahre von einem Squat zum nächsten verdrängt: Sie sind es, die nach etwas anderem als einer weiteren Notunterkunft gefragt haben, nach einem stabilen, eigenen Gebäude. Sortir du squat ist aus dieser Forderung entstanden, getragen von Ballal seit 2023. Wenn du schon mal in der chaussée de Gand warst, kennst du uns bereits.</p>
+      <p><strong>Du hast deine Papiere noch nicht?</strong> Dann kann Casa Belgica dich nicht unterbringen: das Modell beruht auf der Hilfe vom CPAS. Aber komm trotzdem: die Begleitung durch Ballal ist ab sofort für dich da.</p>
+      <p class="note">Niemand wird dich bitten, irgendetwas zu bezahlen, um dich einzutragen. Die Eintragung ist kostenlos, ohne Bedingungen, und verpflichtet dich zu nichts.</p>
+    </div>
+  </div>
+</section>
+
+<section class="porte-ouverte" id="inscrire" aria-labelledby="t-inscrire">
+ <div class="w">
+  <div class="rang">
+    <div><p class="kick">Eintragen</p><h2 id="t-inscrire">Ein paar Minuten, sechs Fragen.</h2></div>
+    <form class="form" id="fHabitant" novalidate>
+      <label>Dein Vorname<input name="nom" required maxlength="120" autocomplete="given-name"></label>
+      <label>Wie wir dich erreichen (WhatsApp oder E-Mail)<input name="contact" required maxlength="200"></label>
+      <label>Deine Telefonnummer<input name="telephone" type="tel" required maxlength="30" autocomplete="tel"></label>
+      <label>Deine Bezugsperson, die dir vom Projekt erzählt hat und dich begleitet<select name="referent" required><option value="">Wähle ihren Vornamen</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
+      <label class="photo">Dein Foto, wenn du am Fenster zu sehen sein willst (freiwillig)<input type="file" name="photo" accept="image/*" capture="user"></label>
+      <img class="apercu" alt="" hidden>
+      <p class="avertissement" id="avert-facade"><strong>Bevor du ankreuzt:</strong> die Fassade ist öffentlich, jeder kann deinen Vornamen und dein Foto sehen. Wenn du einen Grund hast, nicht sichtbar zu sein, kreuz nicht an: deine Eintragung zählt genau gleich, dein Fenster leuchtet ohne Namen. Du kannst es dir jederzeit anders überlegen, wir nehmen alles auf einfache Anfrage raus.</p>
+      <fieldset class="case"><legend>Mein Vorname und mein Foto dürfen an einem Fenster der Fassade erscheinen, um zu zeigen, dass die Liste wächst.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui" aria-describedby="avert-facade"> Ja</label><label><input type="radio" name="affiche" value="non" aria-describedby="avert-facade"> Nein</label></div></fieldset>
+      <p class="confidentialite" id="notice-habiter"><strong>Deine Daten</strong><br>
+        Verantwortlich: Ballal ASBL, Unternehmensnummer 1016.925.333, 645 chaussée de Gand, 1080 Molenbeek-Saint-Jean, admin@ballal.be.<br>
+        Wozu: um dich wieder zu kontaktieren und einen Termin zu Casa Belgica vorzubereiten.<br>
+        Rechtsgrundlage: deine Einwilligung, die du jederzeit widerrufen kannst.<br>
+        Daten: dein Vorname, dein Kontakt, deine Telefonnummer, deine Bezugsperson, deine Wahl zur Anzeige an der Fassade und, wenn du willst, dein Foto. Das Foto ist freiwillig und hat keinerlei Einfluss auf die Vergabe eines Zimmers.<br>
+        Wer Zugriff hat: nur Ballal ASBL. Die Datenbank wird bei Supabase gehostet, einem Dienstleister, dessen Server sich außerhalb der Europäischen Union befinden können; diese Übermittlung ist durch Standardvertragsklauseln abgesichert.<br>
+        Wie lange: bis zum Ende des Projekts Casa Belgica oder 24 Monate ohne Kontakt mit dir; danach wird alles gelöscht.<br>
+        Deine Rechte: Auskunft, Berichtigung, Löschung, Widerruf der Einwilligung, per E-Mail an admin@ballal.be. Du kannst dich auch bei der Datenschutzbehörde beschweren (datenschutzbehorde.be).<br>
+        Wenn du ein Pflichtfeld nicht ausfüllst, können wir dich nicht wieder kontaktieren: die Anmeldung wird nicht abgeschickt.<br>
+        Alle Details: <a href="/confidentialite" hreflang="fr">Datenschutzerklärung (auf Französisch)</a>.</p>
+      <fieldset class="case"><legend>Deine Einwilligung</legend><div class="choix"><label><input type="checkbox" name="consentement" value="oui" required aria-describedby="notice-habiter"> Ich habe den Hinweis gelesen und bin einverstanden</label></div></fieldset>
+      <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="actions"><button class="btn btn-chassis" type="submit">Ich trage mich ein</button></div>
+      <p class="ok" id="msg-ok" role="status"></p>
+      <p class="ko" id="msg-ko" role="alert">Das Senden hat nicht geklappt. Komm bei uns vorbei, oder schreib an <a href="mailto:admin@ballal.be">admin@ballal.be</a></p>
+    </form>
+  </div>
+ </div>
+</section>
+
+<section class="w" aria-labelledby="t-voir">
+  <div class="rang">
+    <div><h2 id="t-voir">Oder komm vorbei.</h2></div>
+    <div class="corps">
+      <p class="adresse">Ballal ASBL<br>645 chaussée de Gand<br>1080 Molenbeek — Brüssel</p>
+      <p>Französisch, Englisch — und wenn du keins von beiden sprichst, komm trotzdem, wir finden jemanden. Keine Akte, kein Nachweis: wir reden miteinander.</p>
+      <dl class="chiffres revele">
+        <div><dt>Menschen, die Ballal ASBL in Molenbeek seit 2015 bereits begleitet hat.</dt><dd>150+</dd></div>
+        <div><dt>um zu sparen, dich auszubilden, eine richtige Wohnung zu finden — so lange dauert der Aufenthalt.</dt><dd>3 bis 4 Jahre</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer>
-<div class="w">
-<b>Raus aus dem Squat</b> · Programm für Übergangswohnen, in Gründung · erstes Gebäude: Casa Belgica, Molenbeek<br>
-Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von François Halleux · Sitz: place Masui 9/3, 1030 Bruxelles · Sprechstunde: 645 chaussée de Gand, 1080 Molenbeek<br>
-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Ich will beim Bauen helfen →</a> · <a href="/de/">der Eingang</a>
-<p class="langues-pied" aria-label="Andere Sprachen"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
-</div>
+  <div class="w">
+    <p><b>Sortir du squat</b> · Programm für Übergangswohnen, in Gründung · erstes Gebäude: Casa Belgica, Molenbeek</p>
+    <p>Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · RJP Brüssel · François Halleux, Projektträger · Sitz: place Masui 9/3, 1030 Schaerbeek · Sprechstunde: 645 chaussée de Gand, 1080 Molenbeek-Saint-Jean · <a href="mailto:admin@ballal.be">admin@ballal.be</a></p>
+    <p><a href="preter.html">Ich will beim Bauen helfen →</a> · <a href="/de/">der Eingang</a> · <a href="/confidentialite" hreflang="fr">Datenschutzerklärung (auf Französisch)</a></p>
+    <nav aria-label="Andere Sprachen"><ul>
+      <li><a href="/habiter.html" lang="fr" hreflang="fr">Français</a></li>
+      <li><a href="/en/habiter.html" lang="en" hreflang="en">English</a></li>
+      <li><a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a></li>
+      <li><a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></li>
+    </ul></nav>
+  </div>
 </footer>
 
 <script src="../batiment.js"></script>
-<script>
-(function(){
-  var B=window.Batiment;
-  // La façade : 50 fenêtres, une par personne inscrite pour y vivre, numérotées du rez-de-chaussée vers le haut.
-  var fac=B.facade(document.getElementById('facade'));
-  B.brancher(fac.fens,'fenetre',{fenetre:'#inscrire'});
-  var etat={habitants:0,noms:{habitant:{}}};
-  // Les personnes référentes vivent aussi dans l'immeuble ; leur fenêtre ne s'allume que si elles s'inscrivent, comme tout le monde.
-  function afficher(){
-    var total=Math.min(50,etat.habitants);
-    B.rouleau(document.getElementById('r-hab'),total);
-    document.getElementById('l-hab').textContent=total===1?'erleuchtetes Fenster':'erleuchtete Fenster';
-  }
-  B.charger().then(function(d){ etat=d; B.placer(fac.fens,d,true); B.etages(document.getElementById('etages'),d); afficher(); })
-    .catch(function(){ afficher(); });
-
-  /* Inscription habitant : une ligne type 'habitant', puis la fenêtre suivante s'allume. */
-  var f=document.getElementById('fHabitant'), ok=f.querySelector('.ok'), ko=f.querySelector('.ko'), btn=f.querySelector('button');
-  var libelle=btn.textContent, koHTML=ko.innerHTML;
-  function montrer(el){ el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); }
-  // aperçu de la photo choisie
-  var apercu=f.querySelector('.apercu');
-  f.photo.addEventListener('change',function(){ var fi=f.photo.files&&f.photo.files[0]; if(fi&&/^image\//.test(fi.type)){apercu.src=URL.createObjectURL(fi);apercu.hidden=false;} else {apercu.hidden=true;apercu.removeAttribute('src');} });
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(f.site.value){ok.textContent='Danke.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), telephone=f.telephone.value.trim(), referent=f.referent.value.trim(), affiche=f.affiche.value==='oui';
-    if(!nom||!contact){ko.textContent='Es fehlt dein Vorname oder eine Möglichkeit, dich zu erreichen.';montrer(ko);return;}
-    if(!telephone){ko.textContent='Deine Telefonnummer fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
-    if(!f.affiche.value){ko.textContent='Antworte mit Ja oder Nein: dein Vorname kann am Fenster erscheinen, oder nicht.';montrer(ko);return;}
-    if(referent.length<2){ko.textContent='Es fehlt der Vorname deiner Bezugsperson: ohne ihn geht die Eintragung nicht raus.';montrer(ko);return;}
-    if(!f.numeroNational.value.trim()){ko.textContent='Deine belgische Nationalregisternummer (oder BIS-Nummer) fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
-    if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='Diese Nummer scheint nicht zu stimmen: prüf die 11 Ziffern.';montrer(ko);return;}
-    if(!f.nationalite.value.trim()){ko.textContent='Deine Nationalität fehlt: ohne sie wird die Anmeldung nicht abgeschickt.';montrer(ko);return;}
-    btn.disabled=true; btn.textContent='Wird gesendet…';
-    var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
-    (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
-    .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,telephone:telephone,referent:referent,numero_national:f.numeroNational.value.trim()||null,nationalite:f.nationalite.value.trim()||null,affiche:affiche,photo:photo}); })
-    .then(function(){return B.charger().catch(function(){return null})})
-    .then(function(d){
-      ko.classList.remove('visible');
-      // Où la personne atterrit : sur l'étage de sa personne référente, à la k-ième place réunie.
-      var R=B.referentDe(referent), E=d&&R?d.etages.filter(function(e){return e.ref===R})[0]:null, k=E?E.personnes.length:0, n=E?B.fenetreDe(R,k):0, texte;
-      var suite=(affiche?(photo?", mit deinem Vornamen und deinem Foto darauf":", mit deinem Vornamen darauf"):"")+". Wir melden uns bei dir, und du bist ab sofort in der 645 chaussée de Gand willkommen."+(photoRatee?" Das Foto ist nicht durchgekommen: du kannst es uns per E-Mail schicken.":"");
-      if(!d) texte="Notiert, "+nom+". Wir halten deinen Platz auf der Liste frei und melden uns bei dir. Du bist ab sofort in der 645 chaussée de Gand willkommen.";
-      else if(n) texte="Notiert, "+nom+". Du bist auf Etage "+R.etage+", der von "+R.nom+": Fenster "+n+suite;
-      else texte="Notiert, "+nom+". Die Etage von "+R.nom+" ist voll, du stehst auf der Warteliste ("+k+". Person)"+suite;
-      ok.textContent=''; var glyphe=document.createElement('i'); glyphe.className='fenetre-msg'; glyphe.setAttribute('aria-hidden','true');
-      ok.appendChild(glyphe); ok.appendChild(document.createTextNode(texte)); montrer(ok);
-      if(d){ etat=d; afficher(); B.etages(document.getElementById('etages'),d);
-        // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
-        var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
-        if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.telephone.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
-      ok.scrollIntoView({block:'nearest'});
-    })
-    .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
-  });
-})();
-</script>
-
+<script>Batiment.habiter();</script>
 </body>
 </html>
