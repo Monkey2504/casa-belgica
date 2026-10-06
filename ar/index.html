@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>اخرج من السكوات: طريقان، مبنى واحد</title>
-<meta name="description" content="اخرج من السكوات، برنامج سكن انتقالي قيد التأسيس. أول مبنى: Casa Belgica في مولنبيك. تبحث عن سقف، أو تريد أن تساعد في بنائه؟ طريقان، مبنى واحد.">
-<meta property="og:title" content="اخرج من السكوات: طريقان، مبنى واحد">
-<meta property="og:description" content="أحتاج إلى سقف / أريد أن أبنيه. 50 غرفة، 300 € في الشهر شاملة كل شيء، يحملها 120 مُقرِضًا من المواطنين.">
+<title>Sortir du squat — مقترح لتعاونية سكن انتقالي</title>
+<meta name="description" content="Sortir du squat، برنامج سكن انتقالي قيد التأسيس. أول مبنى: Casa Belgica في مولنبيك. تبحث عن سقف، أو تريد أن تساعد في بنائه؟">
+<meta property="og:title" content="Sortir du squat — مقترح لتعاونية سكن انتقالي">
+<meta property="og:description" content="أحتاج إلى سقف / أريد أن أبنيه. 50 غرفة، 300 € في الشهر شاملة كل شيء، مع 120 مُقرِضًا من المواطنين.">
 <meta property="og:url" content="https://casa-belgica.vercel.app/ar/">
 <link rel="canonical" href="https://casa-belgica.vercel.app/ar/">
 <meta property="og:type" content="website">
@@ -14,143 +14,69 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#13251A">
+<meta name="theme-color" content="#34496A"><!-- = --ciel -->
 <link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/">
 <link rel="alternate" hreflang="x-default" href="https://casa-belgica.vercel.app/">
 <link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/">
 <link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/">
 <link rel="alternate" hreflang="nl" href="https://casa-belgica.vercel.app/nl/">
 <link rel="alternate" hreflang="ar" href="https://casa-belgica.vercel.app/ar/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23E3C362'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'><rect width='20' height='10' fill='%23F4B740'/></svg>">
+<link rel="preconnect" href="https://gjvxwijhowbyhfwlybvt.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Cairo:wght@400;600;800&display=swap">
 <link rel="stylesheet" href="../style.css">
-<style>
-html,body{height:100%}
-body{display:flex;flex-direction:column;background:var(--vert-nuit)}
-header{position:static}
-/* le nom du projet, centré en haut */
-header .w{justify-content:center;position:relative}
-header .logo{font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.1em}
-header nav{position:absolute;right:var(--gut)}
-@media(max-width:760px){html,body{height:auto}}
-@media(max-width:600px){header .w{justify-content:space-between}header nav{position:static}}
-footer{background:var(--vert-nuit);border-top:1px solid #3B4F43;color:var(--sur-vert-mut)}
-footer .w{text-align:center}
-footer b,footer a{color:var(--sur-vert)}
-/* où en est le projet — visible dès l'arrivée */
-.etat{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:24px}
-.etat .w{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
-@media(max-width:760px){.etat .w{grid-template-columns:minmax(0,1fr)}}
-.batiment{margin:0;justify-self:center;text-align:center}
-.batiment svg{display:block;width:100%;max-width:460px;height:auto;overflow:visible;margin-inline:auto}
-.batiment figcaption{margin:12px auto 0;font-size:.88rem;color:var(--sur-vert-mut);max-width:44ch;line-height:1.45}
-.batiment .etages{justify-content:center}
-.chiffres{display:grid;gap:10px}
-.chiffres p{max-width:none}
-.chiffres .gros+.fixe{margin-top:-6px}
-.chiffres .pret{display:grid;gap:10px}
-.chiffres [hidden]{display:none}
-.chiffres .etape{margin-top:10px;border-top:1px solid #3B4F43;padding-top:12px}
-.etat .gros{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2.8vw,1.9rem);color:#fff}
-.etat .gros b{color:var(--or)}
-.etat .fixe{font-size:.92rem;color:var(--sur-vert-mut)}
-.jauge{height:10px;background:#22382B;border-radius:999px;overflow:hidden}
-.jauge i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--or);border-radius:999px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-@media(prefers-reduced-motion:reduce){.jauge i{transition:none}}
-</style>
 </head>
-<body>
-<a class="skip" href="#top">انتقل إلى المحتوى</a>
+<body class="p-entree">
+<a class="skip" href="#contenu">انتقل إلى المحتوى</a>
 
-<header>
-<div class="w">
-  <a class="logo" href="/ar/"><i aria-hidden="true"></i><span>اخرج من السكوات<small>أول مبنى: Casa Belgica</small></span></a>
-  <nav aria-label="اللغة"><select class="langues" aria-label="اللغة" onchange="location.href=this.value"><option value="/" lang="fr">Français</option><option value="/en/index.html" lang="en">English</option><option value="/de/index.html" lang="de">Deutsch</option><option value="/nl/index.html" lang="nl">Nederlands</option><option value="/ar/index.html" lang="ar" selected>العربية</option></select></nav>
-</div>
-</header>
+<header class="ciel"><div class="w entete">
+    <a class="logo" href="/ar/"><b><bdi lang="fr" class="nw">Sortir du squat</bdi></b><span>أول مبنى: <bdi>Casa Belgica</bdi></span></a>
+    <nav aria-label="اللغة">
+      <ul class="langues">
+        <li><a href="/" lang="fr" hreflang="fr">Français</a></li>
+        <li><a href="/en/index.html" lang="en" hreflang="en">English</a></li>
+        <li><a href="/de/index.html" lang="de" hreflang="de">Deutsch</a></li>
+        <li><a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a></li>
+        <li><a href="/ar/index.html" lang="ar" hreflang="ar" dir="rtl" aria-current="page">العربية</a></li>
+      </ul>
+    </nav>
+</div></header>
 
-<main class="portes" id="top">
-  <a class="porte habiter" href="habiter.html">
-    <span class="qui">حصلت على أوراقك للتو؟<br>خارج من سكوات؟<br>تنام بشكل سيّئ، تدفع كثيرًا؟</span>
-    <h1 class="grand">أحتاج<br>إلى <em class="tag">سقف</em>.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
-    <span class="bas"><span class="faux-btn">من هنا</span><span class="fleche" aria-hidden="true">←</span></span>
-  </a>
-  <div class="sep-portes" aria-hidden="true"></div>
-  <a class="porte construire" href="preter.html">
-    <span class="qui">تستطيع إقراض 1 000 €؟<br>فتح شبكة علاقاتك؟<br>التحقّق من أرقامنا؟</span>
-    <h1 class="grand">ادعم<br><em class="tag">المشروع</em>.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
-    <span class="bas"><span class="faux-btn">اطّلع على الملف</span><span class="fleche" aria-hidden="true">←</span></span>
-  </a>
-</main>
+<main id="contenu">
+<div class="ciel scene">
+  <div class="w titre">
+    <h1><bdi lang="fr" class="nw">Sortir du squat</bdi>، مقترح لتعاونية سكن انتقالي.</h1>
+  </div>
 
-<div class="etat">
-<div class="w">
-  <figure class="batiment"><svg id="batiment" role="group" aria-label="المبنى: 50 نافذة للأشخاص الذين سيسكنون فيه، و120 طوبة للمُقرِضين. كل مكان يمكن النقر عليه."></svg><figcaption>كل نافذة هي شخص مسجّل للسكن هنا، وكل طوبة هي وعد بقرض. طابق لكل شخص مرجعي. انقر عليها.</figcaption>
-  <ul class="etages" id="etages" aria-label="الامتلاء حسب الطابق"></ul></figure>
-  <div class="chiffres" aria-live="polite">
-    <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">نوافذ مضاءة</span> من أصل 50</p>
-    <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">شخص مسجّل</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ من الإيجارات في الشهر، بـ 300 € للغرفة.</p>
-    <p class="fixe">حاليًا، لدينا مجموعة من <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">أشخاص</span> قادرين على دفع <b class="rouleau" id="r-capacite">0</b>&nbsp;€ في الشهر.</p>
-    <div class="pret" id="pret-chiffres" hidden>
-      <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">وعود قرض</span> من أصل 120</p>
-      <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
-      <p class="fixe"><b class="rouleau" id="r-somme">0</b> € موعود بها من أصل 120 000 €، بـ 1 000 € للطوبة</p>
+  <div class="facade">
+    <div class="dessin" data-dessin="facade"></div>
+    <!-- La plaque compte à l'écran ; les lecteurs d'écran entendent une seule fois le résultat final (data-resume), pas chaque chiffre. -->
+    <p class="plaque" aria-hidden="true"><span><span class="nw"><b class="num" data-plaque="fen">0</b> <span data-accord="fen" data-un="نافذة مضاءة" data-plus="نوافذ مضاءة">نوافذ مضاءة</span> من أصل 50،</span> <span class="nw"><b class="num" data-plaque="bri">0</b> <span data-accord="bri" data-un="طوبة" data-plus="طوبات">طوبات</span> من أصل 120</span></span></p>
+    <p class="sr-only" data-resume="fenetres briques" aria-live="polite">0 نوافذ مضاءة من أصل 50 · 0 طوبات موضوعة من أصل 120</p>
+    <div class="portes">
+      <a class="porte porte-1" href="habiter.html"><span class="nom">أحتاج إلى سقف</span><span class="suite">من هنا</span></a>
+      <a class="porte porte-2" href="preter.html"><span class="nom">ادعم المشروع</span><span class="suite">اطّلع على الملف</span></a>
     </div>
-    <div class="pret" id="pret-amorce">
-      <p class="gros">الطوبات الأولى بدأت توضع.</p>
-      <p class="fixe"><b>120</b> وعدًا بالقرض يجب جمعها، 1 000&nbsp;€ لكل واحد، بفائدة 0&nbsp;%.</p>
-    </div>
-    <p class="fixe etape">المرحلة الحالية: جمع الوعود الـ 120. بعد ذلك: المبنى، البنك، الأشغال، المفاتيح.</p>
   </div>
 </div>
-</div>
+
+</main>
 
 <footer>
-<div class="w">
-<b>اخرج من السكوات</b> · أول مبنى: Casa Belgica، مولنبيك · 50 غرفة، 300 € في الشهر شاملة كل شيء، يحملها 120 مُقرِضًا<br>
-مشروع من Ballal ASBL · رقم المؤسسة 1016.925.333 · بقيادة François Halleux · <a href="mailto:admin@ballal.be">راسلنا</a>
-<p class="langues-pied" aria-label="لغات أخرى"><a href="/" lang="fr" hreflang="fr">Français</a> · <a href="/en/index.html" lang="en" hreflang="en">English</a> · <a href="/de/index.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a></p>
-</div>
+  <div class="w">
+    <p>مشروع من <bdi>Ballal ASBL</bdi> · رقم المؤسسة <bdi>1016.925.333</bdi> · سجل الأشخاص الاعتباريين (<bdi>RPM</bdi>) بروكسل · المقرّ: <bdi>place Masui 9/3, 1030 Schaerbeek</bdi> · مكتب الاستقبال: <bdi>645 chaussée de Gand, 1080 Molenbeek-Saint-Jean</bdi> · <bdi>François Halleux</bdi>، صاحب المشروع · <a href="mailto:admin@ballal.be"><bdi>admin@ballal.be</bdi></a></p>
+    <p><a href="/confidentialite" hreflang="fr">سياسة الخصوصية (بالفرنسية)</a></p>
+    <nav aria-label="لغات أخرى"><ul>
+      <li><a href="/" lang="fr" hreflang="fr">Français</a></li>
+      <li><a href="/en/index.html" lang="en" hreflang="en">English</a></li>
+      <li><a href="/de/index.html" lang="de" hreflang="de">Deutsch</a></li>
+      <li><a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a></li>
+    </ul></nav>
+  </div>
 </footer>
 
 <script src="../batiment.js"></script>
-<script>
-(function(){
-  var B=window.Batiment;
-  // Le bâtiment de l'entrée : 50 fenêtres (futurs habitants) sur un mur de 120 briques (prêteurs). Chaque place se clique.
-  var b=B.facade(document.getElementById('batiment'),{mur:true});
-  B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
-  // Les personnes référentes s'inscrivent comme tout le monde, leur fenêtre ne s'allume pas d'office. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
-  var SEUIL=3;
-  function afficher(d){
-    var total=Math.min(50,d.habitants);
-    B.rouleau(document.getElementById('r-hab'),total);
-    B.rouleau(document.getElementById('r-ins'),d.habitants);
-    B.rouleau(document.getElementById('r-loyer'),total*300);
-    document.getElementById('l-hab').textContent=total===1?'نافذة مضاءة':'نوافذ مضاءة';
-    document.getElementById('l-ins').textContent=d.habitants===1?'شخص مسجّل':'أشخاص مسجّلين';
-    B.rouleau(document.getElementById('r-groupe'),d.habitants);
-    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
-    document.getElementById('l-groupe').textContent=d.habitants===1?'شخص':'أشخاص';
-    var assez=d.preteurs>=SEUIL;
-    document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
-    if(!assez)return;
-    B.rouleau(document.getElementById('r-pret'),d.preteurs);
-    B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
-    document.getElementById('l-pret').textContent=d.preteurs===1?'وعد قرض':'وعود قرض';
-    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,.02)+')';
-  }
-  B.charger().then(function(d){
-    // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
-    B.observer(document.querySelector('.etat'),function(){
-      afficher(d);
-      B.placer(b.fens,d,true); B.etages(document.getElementById('etages'),d);
-      B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
-    },.15);
-  }).catch(function(){ afficher({habitants:0,preteurs:0}); });
-})();
-</script>
+<script>Batiment.entree();</script>
 </body>
 </html>
