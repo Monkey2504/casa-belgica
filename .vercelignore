@@ -1,3 +1,16 @@
-.claude
-.jez
+# Fichiers à NE PAS publier sur Vercel (même syntaxe que .gitignore).
+# Seul le site est en ligne : pages .html, style.css, batiment.js, og.png, robots.txt, sitemap.xml, vercel.json.
+.claude/
+.jez/
+.verify/
+node_modules/
+scripts/
+supabase/
+package.json
+package-lock.json
+CLAUDE.md
+README.md
 DIRECTION-ARTISTIQUE.md
+ANALYSE-GRAPHIQUE.md
+.env
+.env.*
