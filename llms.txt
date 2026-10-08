@@ -1,0 +1,75 @@
+# Sortir du squat — Casa Belgica
+
+> Site de campagne de « Sortir du squat », programme de logement de transition porté par Ballal ASBL (n° d'entreprise 1016.925.333, 645 chaussée de Gand, 1080 Molenbeek, Bruxelles). Premier bâtiment : Casa Belgica, 50 chambres individuelles à 300 €/mois tout compris, pour des personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat. Financement : 120 personnes qui promettent de prêter 1 000 € chacune à 0 %, ce qui rend possible un crédit bancaire de 900 000 €. Le projet n'est pas encore ouvert : premières clés visées dans ± 3 ans.
+
+Ce fichier explique le site à une IA : son contenu, mais aussi son design et ce que le design veut dire. Sur ce site, le graphisme n'est pas une décoration : il porte une partie du message. Un lecteur qui ne lit que le texte rate la moitié du propos.
+
+## Pages
+
+- [Entrée](https://casa-belgica.vercel.app/) : deux portes, deux chemins, un même bâtiment.
+- [J'ai besoin d'un toit](https://casa-belgica.vercel.app/habiter) : pour les futurs habitants — ce qu'est le logement, à qui il s'adresse, inscription gratuite et sans engagement.
+- [Soutenir le projet / le dossier des 120](https://casa-belgica.vercel.app/preter) : pour les futurs prêteurs — le problème, la solution, les chiffres, les étapes, la promesse de prêt.
+- Versions : [English](https://casa-belgica.vercel.app/en/), [Deutsch](https://casa-belgica.vercel.app/de/), [Nederlands](https://casa-belgica.vercel.app/nl/), [العربية](https://casa-belgica.vercel.app/ar/). Mêmes trois pages dans chaque langue.
+- Contact : admin@ballal.be — ou sur place, chez Ballal, 645 chaussée de Gand, Molenbeek.
+
+## Le projet en chiffres
+
+- Un studio à Bruxelles coûte 725 € de loyer. Le revenu d'intégration du CPAS (RIS) pour une personne isolée est de 1 340 €/mois. Il reste 615 € pour vivre, rien pour épargner.
+- À Casa Belgica : 300 €/mois tout compris (chauffage, eau, électricité, internet). Il reste 1 040 € pour vivre, soit 425 € de plus chaque mois.
+- Chaque chambre fait au moins 18 m², avec sa propre douche et son propre WC, et un contrat individuel. Comme chacun vit seul dans sa chambre, il touche le RIS au taux plein (1 340 € au lieu de 894 €), et il a une vraie adresse à son nom (domiciliation).
+- Séjour de 3 à 4 ans : le temps d'épargner, de se former, de trouver un vrai logement. 250 à 350 personnes logées en vingt ans.
+- Bâtiment existant rénové sous bail emphytéotique : environ 1 020 000 € de travaux. Crédit bancaire : 900 000 €. Fonds propres : 120 000 €, apportés par 120 prêteurs citoyens (1 000 € chacun, 0 %, remboursés en une fois entre l'année 6 et l'année 10).
+- Étapes : 0 à 21 mois, quatre étapes préalables (CPAS, propriétaire, étude de faisabilité, banque) ; dès 18 à 21 mois, collecte des 120 promesses ; ± 3 ans, premières clés. Avant que le bâtiment soit trouvé et le crédit accordé, aucun euro ne bouge : une promesse n'est pas un virement.
+- Risque maximal engagé avant tout appel de fonds citoyen : 30 000 €, en grande partie subsidiable.
+- Ballal ASBL accompagne plus de 150 personnes sans-papiers ou en situation précaire à Molenbeek depuis 2015. Sortir du squat est né de la demande de ces personnes, et Ballal le porte depuis 2023.
+
+## Le design et ce qu'il veut dire
+
+### L'idée centrale : le bâtiment est l'interface
+
+Tout le site est construit autour d'une seule image : le bâtiment qu'on veut ouvrir. On n'y lit pas seulement qu'il faut 50 habitants et 120 prêteurs : on le voit se construire.
+
+- **Le bâtiment** : une façade de 5 étages × 10 fenêtres = 50 fenêtres = les 50 chambres. Chaque fenêtre est une personne réellement inscrite pour y vivre. Une fenêtre éteinte est une place encore libre ; une fenêtre allumée (or, avec une lueur) est une personne inscrite ; avec sa photo si elle a accepté d'être visible. Chaque étage correspond à une personne référente du terrain, celle qui accompagne les inscrits de cet étage. Au rez-de-chaussée, une porte or.
+- **Le mur** : sous le bâtiment, 120 briques en 8 rangées de 15, posées comme un vrai mur (joints décalés). 1 brique = 1 prêteur = 1 000 € à 0 %. Une brique en pointillé est une promesse encore à trouver ; une brique pleine (or) est une promesse faite. C'est la métaphore centrale du projet, et le mur est dessiné sous le bâtiment.
+- **Des données réelles, pas une illustration** : le bâtiment et le mur ne sont pas des images. Ils sont dessinés en direct à partir de la base de données des inscriptions. Le principe du site : prouver au lieu d'affirmer. Les chiffres ne sont jamais gonflés ni simulés. Si 5 fenêtres sont allumées, c'est que 5 personnes sont inscrites.
+- **Les fenêtres s'allument dans le désordre** : à l'affichage, l'ordre d'allumage est volontairement mélangé, pour ne jamais trahir l'ordre réel d'inscription des personnes.
+- **La vie privée est visible dans le dessin** : la façade est publique. Une personne qui ne veut pas être vue s'inscrit quand même, et sa fenêtre s'allume sans nom ni photo. Elle compte exactement pareil.
+- **Une veille** : les fenêtres encore libres ont une lueur faible et irrégulière, qui ne s'allume jamais en même temps d'une fenêtre à l'autre.
+
+### L'entrée : deux portes, un même bâtiment
+
+La page d'accueil n'est pas une page de contenu, c'est une affiche. L'écran est coupé en deux portes, en pleine hauteur :
+
+- à gauche, sur vert : « J'ai besoin d'un toit » — pour qui cherche un logement ;
+- à droite, sur vert nuit : « Soutenir le projet » — pour qui peut prêter 1 000 €, ouvrir son réseau, ou vérifier les chiffres.
+
+Les deux portes sont côte à côte, à la même taille. Le site le résume ainsi : deux chemins, un même bâtiment. Celui qui a besoin d'un toit et celui qui aide à le construire entrent par le même bâtiment, chacun par sa porte. Chaque porte pose d'abord trois questions directes au lecteur (« Tu viens d'avoir tes papiers ? Tu sors d'un squat ? ») avant de donner son titre. Sous la page, le même bâtiment et le même mur, avec l'avancement réel.
+
+### Couleurs
+
+La palette est celle du dossier imprimé du projet, pour qu'une personne qui reçoit le PDF puis ouvre le site reconnaisse la même chose :
+
+- vert nuit #13251A et vert #1F4A35 : le sérieux (la banque, la coopérative) ;
+- or #E3C362 : ce qui s'allume et ce qui compte — les fenêtres habitées, les briques promises, les chiffres importants, les boutons ;
+- crème #F3F1EA : le fond des pages de lecture.
+
+L'or n'est jamais un fond de texte long : il marque seulement ce qui avance.
+
+### Typographie : l'affiche et la voix calme
+
+- Titres en capitales, police d'affiche (Anton) : la voix forte, celle d'une affiche.
+- Dans chaque grand titre, un seul mot écrit comme un tag à la main, en or, légèrement penché (police Sedgwick Ave Display) : « toit », « projet ». Un seul mot par titre, pour que l'accent garde son sens.
+- Le texte courant (Instrument Sans) est sobre et ne crie jamais : phrases courtes, chiffres sourcés, ton direct, tutoiement pour les futurs habitants, vouvoiement pour les prêteurs.
+- En arabe, la police Cairo remplace tout, et le mot tagué redevient un mot normal (la police tag ne couvre pas l'arabe).
+
+### Ce que le site refuse
+
+Le site a été refait parce que la version précédente ressemblait à « n'importe quel dossier éditorial généré aujourd'hui » : un mot coloré dans chaque titre, des étiquettes en capitales partout, tout encadré de filets noirs. Choix assumés de la version actuelle : pas d'emoji, pas de jargon, pas de cadre autour des chiffres (« quand tout est encadré, plus rien n'est mis en avant »), des barres à l'échelle réelle plutôt que deux chiffres écrits côte à côte (par exemple : loyer contre reste à vivre, sur 1 340 €).
+
+### Mouvement et accessibilité
+
+Les animations sont courtes : une brique qui se pose, une fenêtre qui s'allume, une flèche qui glisse au survol d'une porte. Si la personne a demandé à son appareil de réduire les animations, tout s'affiche directement dans son état final. Les fenêtres et les briques se cliquent et s'utilisent au clavier. Le site est en cinq langues, dont l'arabe, de droite à gauche.
+
+## English summary
+
+"Sortir du squat" (Leave the Squat) is a transitional housing programme run by Ballal ASBL in Molenbeek, Brussels. Its first building, Casa Belgica, will offer 50 private rooms at €300/month all-inclusive for people who have just been regularised and are leaving squats, funded by 120 citizens each lending €1,000 at 0% (unlocking a €900,000 bank loan). The site's design is part of the message: the building's 50 windows light up for each real registered future resident, and a wall of 120 bricks fills up with each real loan promise. Data is live, never inflated. The home page is two equal doors — "I need a roof" and "Support the project" — into the same building.
