@@ -1,6 +1,11 @@
-# Sortir du squat — Casa Belgica
+# Sortir du squat
 
 > Site de campagne de « Sortir du squat », programme de logement de transition porté par Ballal ASBL (n° d'entreprise 1016.925.333, 645 chaussée de Gand, 1080 Molenbeek, Bruxelles). Premier bâtiment : Casa Belgica, 50 chambres individuelles à 300 €/mois tout compris, pour des personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat. Financement : 120 personnes qui promettent de prêter 1 000 € chacune à 0 %, ce qui rend possible un crédit bancaire de 900 000 €. Le projet n'est pas encore ouvert : premières clés visées dans ± 3 ans.
+
+Les noms, à ne pas confondre :
+- **Sortir du squat** (en anglais : Leave the Squat) est le nom du projet : un programme de logement de transition, conçu pour se reproduire dans plusieurs bâtiments.
+- **Casa Belgica** est le nom du premier bâtiment de ce programme, à Molenbeek (Bruxelles). Ce n'est pas le nom du projet.
+- Sans rapport avec la Casa Bélgica Álava (bâtiment historique en Équateur) ni avec d'autres lieux du même nom.
 
 Ce fichier explique le site à une IA : son contenu, mais aussi son design et ce que le design veut dire. Sur ce site, le graphisme n'est pas une décoration : il porte une partie du message. Un lecteur qui ne lit que le texte rate la moitié du propos.
 
