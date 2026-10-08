@@ -307,19 +307,18 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>اسمكم<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>كيف نتواصل معكم (بريد إلكتروني أو هاتف)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>رقمكم في السجل الوطني البلجيكي، أو رقم BIS الخاص بكم (اختياري، يُستخدم للتحقّق من وعدكم)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">صورتكم، إذا أردتم أن يراكم الناس على طوبتكم (اختياري)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>يمكن أن يظهر اسمي وصورتي على طوبة في الجدار، لإظهار أن الوعود تتقدّم.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> نعم</label><label><input type="radio" name="affiche" value="non"> لا</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">كونوا واحدًا من الـ 120</button></div>
-    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم، وإذا أعطيتموه، رقمكم في السجل الوطني، تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم والتعرّف عليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. رقمكم في السجل الوطني لا يُعرض علنًا أبدًا. اسمكم وصورتكم لا يظهران على الجدار إلا إذا أجبتم بنعم. لحذفهما، راسلونا.</p>
+    <p class="confidentialite">اسمكم ووسيلة الاتصال بكم تحتفظ بها جمعية Ballal ASBL، فقط للعودة إليكم بخصوص Casa Belgica. لا تُنقل إلى أحد، وتُحذف بمجرد طلب على admin@ballal.be. اسمكم وصورتكم لا يظهران على الجدار إلا إذا أجبتم بنعم. لحذفهما، راسلونا.</p>
     <p class="ok" role="status"></p>
     <p class="ko" role="alert">لم ينجح الإرسال. راسلونا على <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a>، ونضع الطوبة يدويًا.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">وعد، لا تحويل.</h3>
-    <p>تتركون اسمًا ووسيلة للتواصل معكم. الباقي — رقم السجل الوطني، الصورة — اختياري: لا مبلغ يُدفع، ولا وثيقة تُوقَّع اليوم. عندما يُعثر على المبنى ويُمنح القرض، نعود إليكم.</p>
+    <p>تتركون اسمًا ووسيلة للتواصل معكم. الباقي — الصورة — اختياري: لا مبلغ يُدفع، ولا وثيقة تُوقَّع اليوم. عندما يُعثر على المبنى ويُمنح القرض، نعود إليكم.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%86%D9%88%D8%AF%D9%91%20%D8%AA%D8%B9%D8%B1%D9%8A%D9%81%D9%83%D9%85%20%D8%A8%D9%87">أعرف CPAS، أو مبنى، أو مهندسًا معماريًا</a></p>
     <div class="keys" style="grid-template-columns:repeat(2,minmax(0,1fr))">
       <div><b>30 000 €</b><span>الخطر الأقصى قبل أن يتحرّك أي يورو من المواطنين — قابل للدعم في جزئه الأكبر.</span></div>
@@ -417,15 +416,14 @@
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='شكرًا.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='ينقص اسمكم أو وسيلة للتواصل معكم.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='أجيبوا بنعم أو لا: يمكن أن يظهر اسمكم على الطوبة، أو لا.';montrer(ko);return;}
-    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='هذا الرقم لا يبدو صحيحًا: تحقّقوا من الأرقام الـ11، أو اتركوا الحقل فارغًا.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='جارٍ الإرسال…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -438,7 +436,7 @@
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
