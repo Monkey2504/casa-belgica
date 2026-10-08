@@ -142,14 +142,12 @@ h1{max-width:16ch}
 <section class="ask" id="inscrire">
 <div class="w">
 <p class="kick">Sign up</p>
-<h2>A few minutes, seven questions.</h2>
+<h2>A few minutes, five questions.</h2>
 <div class="two" style="margin-top:8px">
   <form class="form sombre" id="fHabitant" novalidate>
     <label>Your first name<input name="nom" required maxlength="120" autocomplete="given-name"></label>
     <label>How to reach you (WhatsApp or e-mail)<input name="contact" required maxlength="200"></label>
     <label>Your phone number<input name="telephone" type="tel" required maxlength="30" autocomplete="tel"></label>
-    <label>Your Belgian national register number, or your BIS number<input name="numeroNational" required maxlength="40" autocomplete="off"></label>
-    <label>Your nationality<input name="nationalite" required maxlength="60" autocomplete="off"></label>
     <label>Your referent, the person who told you about the project and keeps in touch with you<select name="referent" required><option value="">Choose their first name</option><option>Telly</option><option>François</option><option>Cissé</option><option>Delya</option><option>Ibrahim</option></select></label>
     <label class="photo">Your photo, if you want to be seen at the window (optional)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
@@ -157,7 +155,7 @@ h1{max-width:16ch}
     <fieldset class="case"><legend>My first name and my photo can appear on a window of the building's front, to show that the list is growing.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Yes</label><label><input type="radio" name="affiche" value="non"> No</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Sign me up</button></div>
-    <p class="confidentialite">Your first name, your contact details, your phone number, your Belgian national register number and your nationality are kept by Ballal ASBL, only to get back in touch with you, identify you about Casa Belgica, and keep a good mix of nationalities in the building. We don't give them to anyone, and we delete them if you ask at admin@ballal.be. Your national register number and your nationality are never shown publicly. Your first name and your photo only appear on the front if you answer yes. To have them removed, write to us.</p>
+    <p class="confidentialite">Your first name, your contact details and your phone number are kept by Ballal ASBL, only to get back in touch with you about Casa Belgica. We don't give them to anyone, and we delete them if you ask at admin@ballal.be. Your first name and your photo only appear on the front if you answer yes. To have them removed, write to us.</p>
     <p class="ok" role="status"></p>
     <p class="ko" role="alert">Sending didn't work. Come and see us, or write to <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a></p>
   </form>
@@ -217,14 +215,11 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
     if(!telephone){ko.textContent='Your phone number is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Answer yes or no: your first name can appear on the window, or not.';montrer(ko);return;}
     if(referent.length<2){ko.textContent='Your referent\'s first name is missing: without it, the sign-up can\'t be sent.';montrer(ko);return;}
-    if(!f.numeroNational.value.trim()){ko.textContent='Your Belgian national register number (or BIS number) is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
-    if(!B.validerNumeroNational(f.numeroNational.value)){ko.textContent='This number doesn\'t look right: check the 11 digits.';montrer(ko);return;}
-    if(!f.nationalite.value.trim()){ko.textContent='Your nationality is missing: without it, the sign-up won\'t go through.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Sending…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'habitant',nom:nom,contact:contact,telephone:telephone,referent:referent,numero_national:f.numeroNational.value.trim()||null,nationalite:f.nationalite.value.trim()||null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'habitant',nom:nom,contact:contact,telephone:telephone,referent:referent,numero_national:null,nationalite:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -240,7 +235,7 @@ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux
         // on pose tout le monde sauf la nouvelle fenêtre, qui s'éclaire quand elle passe à l'écran
         var avant={etages:d.etages.map(function(e){return e===E?{ref:e.ref,personnes:e.personnes.slice(0,-1)}:e})}; B.placer(fac.fens,avant,false);
         if(n) B.eclairer(fac.fens,n,'fenetre',{nom:affiche?nom:'',photo:photo||''},{ref:R,compte:k}); }
-      f.nom.value='';f.contact.value='';f.telephone.value='';f.referent.value='';f.numeroNational.value='';f.nationalite.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.telephone.value='';f.referent.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
