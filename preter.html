@@ -92,19 +92,18 @@
   <form class="form sombre" id="fPromesse" novalidate>
     <label>Votre nom<input name="nom" required maxlength="120" autocomplete="name"></label>
     <label>Comment vous joindre (e-mail ou téléphone)<input name="contact" required maxlength="200" autocomplete="email"></label>
-    <label>Votre numéro de registre national belge, ou votre numéro BIS (facultatif, sert à vérifier votre promesse)<input name="numeroNational" maxlength="40" autocomplete="off"></label>
     <label class="photo">Votre photo, si vous voulez qu'on vous voie sur votre brique (facultatif)<input type="file" name="photo" accept="image/*" capture="user"></label>
     <img class="apercu" alt="" hidden>
     <fieldset class="case"><legend>Mon nom et ma photo peuvent apparaître sur une brique du mur, pour montrer que les promesses avancent.</legend><div class="choix"><label><input type="radio" name="affiche" value="oui"> Oui</label><label><input type="radio" name="affiche" value="non"> Non</label></div></fieldset>
     <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="actions"><button class="btn or" type="submit">Devenir l'un des 120</button></div>
-    <p class="confidentialite">Votre nom, votre contact et, si vous le donnez, votre numéro de registre national sont gardés par Ballal ASBL, uniquement pour revenir vers vous et vous identifier au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre numéro de registre national n'est jamais visible publiquement. Votre nom et votre photo n'apparaissent sur le mur que si vous répondez oui. Pour les retirer, écrivez-nous.</p>
+    <p class="confidentialite">Votre nom et votre contact sont gardés par Ballal ASBL, uniquement pour revenir vers vous au sujet de Casa Belgica. Ils ne sont transmis à personne et sont effacés sur simple demande à admin@ballal.be. Votre nom et votre photo n'apparaissent sur le mur que si vous répondez oui. Pour les retirer, écrivez-nous.</p>
     <p class="ok" role="status"></p>
     <p class="ko" role="alert">L'envoi n'a pas marché. Écrivez-nous à <a href="mailto:admin@ballal.be" style="color:#fff">admin@ballal.be</a> — on pose la brique à la main.</p>
   </form>
   <div class="stack">
     <h3 style="color:#fff">Une promesse, pas un virement.</h3>
-    <p>Vous laissez un nom et un moyen de vous joindre. Le reste — numéro de registre national, photo — est facultatif : aucun montant à verser, aucun document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
+    <p>Vous laissez un nom et un moyen de vous joindre. Le reste — la photo — est facultatif : aucun montant à verser, aucun document à signer aujourd'hui. Quand le bâtiment est trouvé et le crédit accordé, on revient vers vous.</p>
     <p><a class="btn ghost" href="mailto:admin@ballal.be?subject=Casa%20Belgica%20%E2%80%94%20un%20contact%20%C3%A0%20vous%20ouvrir">Je connais un CPAS, un bâtiment, un architecte</a></p>
     <div class="keys" style="grid-template-columns:repeat(2,minmax(0,1fr))">
       <div><b>30 000 €</b><span>risque maximal engagé avant tout appel de fonds citoyen — en grande partie subsidiable.</span></div>
@@ -430,15 +429,14 @@ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le 
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.site.value){ok.textContent='Merci.';montrer(ok);return;}
-    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), numeroNational=f.numeroNational.value.trim(), affiche=f.affiche.value==='oui';
+    var nom=f.nom.value.trim(), contact=f.contact.value.trim(), affiche=f.affiche.value==='oui';
     if(!nom||!contact){ko.textContent='Il manque votre nom ou un moyen de vous joindre.';montrer(ko);return;}
     if(!f.affiche.value){ko.textContent='Répondez oui ou non : votre nom peut apparaître sur la brique, ou pas.';montrer(ko);return;}
-    if(numeroNational&&!B.validerNumeroNational(numeroNational)){ko.textContent='Ce numéro ne semble pas correct : vérifiez les 11 chiffres, ou laissez le champ vide.';montrer(ko);return;}
     btn.disabled=true; btn.textContent='Envoi…';
     var fichier=f.photo.files&&f.photo.files[0], photo=null, photoRatee=false;
     (affiche&&fichier?B.televerser(fichier):Promise.resolve(null))
     .then(function(p){ photo=p; photoRatee=!!(affiche&&fichier&&!p);
-      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:numeroNational||null,note:null,affiche:affiche,photo:photo}); })
+      return B.inscrire({type:'preteur',nom:nom,contact:contact,numero_national:null,note:null,affiche:affiche,photo:photo}); })
     .then(function(){return B.charger().catch(function(){return null})})
     .then(function(d){
       ko.classList.remove('visible');
@@ -451,7 +449,7 @@ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le 
       if(d){ var total=d.preteurs; etat=d; etat.preteurs=Math.max(0,total-1); poser(false); etat.preteurs=total; if(visible) afficher();
         if(t<=120){ var pers={nom:affiche?nom:'',photo:photo||''}; B.eclairer(places,t,'brique',pers);
           if(jumelles[t]) B.observer(jumelles[t],function(){ var j=jumelles[t]; j.classList.add('on'); j.classList.add('neuve'); if(pers.photo){j.style.backgroundImage='url("'+B.photoUrl(pers.photo)+'")';j.classList.add('photo');} },.5); } }
-      f.nom.value='';f.contact.value='';f.numeroNational.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
+      f.nom.value='';f.contact.value='';f.affiche.value='';f.photo.value='';apercu.hidden=true;btn.disabled=false;btn.textContent=libelle;
       ok.scrollIntoView({block:'nearest'});
     })
     .catch(function(){btn.disabled=false;btn.textContent=libelle;ko.innerHTML=koHTML;montrer(ko)});
