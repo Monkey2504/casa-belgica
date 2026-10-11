@@ -64,13 +64,6 @@ footer b,footer a{color:var(--sur-vert)}
 <body>
 <a class="skip" href="#top">Skip to content</a>
 
-<header>
-<div class="w">
-  <a class="logo" href="/en/"><i aria-hidden="true"></i><span>LEAVE THE SQUAT<small>First building: Casa Belgica</small></span></a>
-  <nav aria-label="Language"><select class="langues" aria-label="Language" onchange="location.href=this.value"><option value="/" lang="fr">Français</option><option value="/en/index.html" lang="en" selected>English</option><option value="/de/index.html" lang="de">Deutsch</option><option value="/nl/index.html" lang="nl">Nederlands</option><option value="/ar/index.html" lang="ar">العربية</option></select></nav>
-</div>
-</header>
-
 <main class="portes" id="top">
   <a class="porte habiter" href="habiter.html">
     <span class="qui">Just got your papers?<br>Leaving a squat?<br>Sleeping badly, paying too much?</span>
@@ -84,74 +77,5 @@ footer b,footer a{color:var(--sur-vert)}
     <span class="bas"><span class="faux-btn">See the case</span><span class="fleche" aria-hidden="true">→</span></span>
   </a>
 </main>
-
-<div class="etat">
-<div class="w">
-  <figure class="batiment"><svg id="batiment" role="group" aria-label="The building: 50 windows for the people who will live there, 120 bricks for the lenders. Every spot can be clicked."></svg><figcaption>Every window is a person signed up to live there, every brick a loan pledge. One floor per referent. Click on them.</figcaption>
-  <ul class="etages" id="etages" aria-label="Occupancy by floor"></ul></figure>
-  <div class="chiffres" aria-live="polite">
-    <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">windows lit</span> out of 50</p>
-    <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">person signed up</span>. €<b class="rouleau" id="r-loyer">0</b>&nbsp;in rent per month, at €300 a room.</p>
-    <p class="fixe">Right now, we have a group of <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">people</span> able to pay <b class="rouleau" id="r-capacite">0</b>&nbsp;a month.</p>
-    <div class="pret" id="pret-chiffres" hidden>
-      <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">loan pledges</span> out of 120</p>
-      <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
-      <p class="fixe">€<b class="rouleau" id="r-somme">0</b> pledged of €120,000, at €1,000 a brick</p>
-    </div>
-    <div class="pret" id="pret-amorce">
-      <p class="gros">The first bricks are being laid.</p>
-      <p class="fixe"><b>120</b> loan pledges to gather, €1,000&nbsp;each, at 0%.</p>
-    </div>
-    <p class="fixe etape">Current stage: gathering the 120 pledges. Next: the building, the bank, the works, the keys.</p>
-  </div>
-</div>
-</div>
-
-<footer>
-<div class="w">
-<b>Leave the Squat</b> · first building: Casa Belgica, Molenbeek · 50 rooms at €300/month all included, backed by 120 lenders<br>
-A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux · <a href="mailto:admin@ballal.be">write to us</a>
-<p class="langues-pied" aria-label="Other languages"><a href="/" lang="fr" hreflang="fr">Français</a> · <a href="/de/index.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/index.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
-</div>
-</footer>
-
-<script src="../batiment.js"></script>
-<script>
-(function(){
-  var B=window.Batiment;
-  // Le bâtiment de l'entrée : 50 fenêtres (futurs habitants) sur un mur de 120 briques (prêteurs). Chaque place se clique.
-  var b=B.facade(document.getElementById('batiment'),{mur:true});
-  B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
-  // Les personnes référentes s'inscrivent comme tout le monde, leur fenêtre ne s'allume pas d'office. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
-  var SEUIL=3;
-  function afficher(d){
-    var total=Math.min(50,d.habitants);
-    B.rouleau(document.getElementById('r-hab'),total);
-    B.rouleau(document.getElementById('r-ins'),d.habitants);
-    B.rouleau(document.getElementById('r-loyer'),total*300);
-    document.getElementById('l-hab').textContent=total===1?'window lit':'windows lit';
-    document.getElementById('l-ins').textContent=d.habitants===1?'person signed up':'people signed up';
-    B.rouleau(document.getElementById('r-groupe'),d.habitants);
-    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
-    document.getElementById('l-groupe').textContent=d.habitants===1?'person':'people';
-    var assez=d.preteurs>=SEUIL;
-    document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
-    if(!assez)return;
-    B.rouleau(document.getElementById('r-pret'),d.preteurs);
-    B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
-    document.getElementById('l-pret').textContent=d.preteurs===1?'loan pledge':'loan pledges';
-    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,.02)+')';
-  }
-  B.charger().then(function(d){
-    // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
-    B.observer(document.querySelector('.etat'),function(){
-      afficher(d);
-      B.placer(b.fens,d,true); B.etages(document.getElementById('etages'),d);
-      B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
-    },.15);
-  }).catch(function(){ afficher({habitants:0,preteurs:0}); });
-})();
-</script>
 </body>
 </html>
