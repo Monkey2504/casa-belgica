@@ -79,16 +79,6 @@ footer b,footer a{color:var(--sur-vert)}
 .phases li.encours::before{content:"Phase " counter(ph) " · en cours";color:var(--or)}
 .phases .ensuite{margin-top:16px;font-size:.88rem;color:var(--sur-vert-mut)}
 @media(max-width:900px){.phases ol{grid-template-columns:minmax(0,1fr)}}
-/* le chemin de l'argent */
-.argent{background:#0E1D14;border-top:1px solid #3B4F43;color:var(--sur-vert);padding-block:32px 36px}
-.argent h2{font-size:clamp(1.3rem,2.8vw,1.8rem);color:#fff;margin:0 0 6px}
-.argent .intro{color:var(--sur-vert-mut);margin:0 0 20px;max-width:62ch}
-.argent ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:ar;max-width:760px}
-.argent li{counter-increment:ar;display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:12px;align-items:baseline;line-height:1.5;color:var(--sur-vert-mut)}
-.argent li::before{content:counter(ar);font-family:var(--disp);font-weight:800;font-size:1.3rem;color:var(--or)}
-.argent li b{color:#fff}
-.argent .note{margin-top:18px;max-width:62ch;font-size:.95rem;line-height:1.55;color:var(--sur-vert-mut);border-left:3px solid var(--or);padding-left:14px}
-.argent .note b{color:#fff}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"NGO","@id":"https://casa-belgica.vercel.app/#ballal","name":"Ballal ASBL","url":"https://ballal.be","email":"admin@ballal.be","identifier":"1016.925.333","address":{"@type":"PostalAddress","streetAddress":"645 chaussée de Gand","postalCode":"1080","addressLocality":"Molenbeek-Saint-Jean","addressRegion":"Bruxelles","addressCountry":"BE"}},{"@type":"Project","@id":"https://casa-belgica.vercel.app/#projet","name":"Sortir du squat","alternateName":["Leave the Squat"],"description":"Programme de logement de transition, porté juridiquement par Ballal ASBL en attendant la création de l'entreprise qui le portera, conçu pour se reproduire dans plusieurs bâtiments. Premier bâtiment : Casa Belgica, à Molenbeek (Bruxelles) : 50 chambres individuelles à 300 €/mois tout compris pour des personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat. Financé par 120 prêts citoyens de 1 000 € à 0 % et un crédit bancaire de 900 000 €. Pas encore ouvert.","url":"https://casa-belgica.vercel.app/","parentOrganization":{"@id":"https://casa-belgica.vercel.app/#ballal"},"location":{"@id":"https://casa-belgica.vercel.app/#casa-belgica"}},{"@type":"Place","@id":"https://casa-belgica.vercel.app/#casa-belgica","name":"Casa Belgica","description":"Premier bâtiment du programme Sortir du squat : 50 chambres à Molenbeek-Saint-Jean (Bruxelles). En projet, pas encore ouvert.","containedInPlace":{"@type":"Place","name":"Molenbeek-Saint-Jean, Bruxelles, Belgique"}},{"@type":"WebSite","@id":"https://casa-belgica.vercel.app/#site","url":"https://casa-belgica.vercel.app/","name":"Sortir du squat · Casa Belgica","inLanguage":["fr","en","de","nl","ar"],"publisher":{"@id":"https://casa-belgica.vercel.app/#ballal"},"about":{"@id":"https://casa-belgica.vercel.app/#projet"}},{"@type":"WebPage","@id":"https://casa-belgica.vercel.app/","url":"https://casa-belgica.vercel.app/","inLanguage":"fr","isPartOf":{"@id":"https://casa-belgica.vercel.app/#site"},"about":{"@id":"https://casa-belgica.vercel.app/#projet"}}]}</script>
 </head>
@@ -148,20 +138,6 @@ footer b,footer a{color:var(--sur-vert)}
   </div>
 </div>
 </div>
-
-<section class="argent" aria-labelledby="argent-titre">
-<div class="w">
-  <h2 id="argent-titre">Le chemin de l'argent</h2>
-  <p class="intro">Ce que devient chaque euro prêté, du premier jour à la revente du bâtiment.</p>
-  <ol>
-    <li><span><b>Vous prêtez 1 000 € à l'entreprise.</b> Il faut 120 prêteurs par bâtiment : 120 000 €. C'est un prêt, il vous est remboursé.</span></li>
-    <li><span><b>La banque prête le reste.</b> Les 120 000 € servent d'apport : la banque prête environ 900 000 € pour la rénovation.</span></li>
-    <li><span><b>L'entreprise achète et rénove le bâtiment.</b> Il lui appartient jusqu'à la revente.</span></li>
-    <li><span><b>La coopérative des habitants rachète le bâtiment</b> avec son propre crédit, à un prix fixé à l'avance, qui comprend la marge de l'entreprise.</span></li>
-    <li><span><b>L'entreprise rembourse les prêteurs et la banque,</b> puis recommence avec le bâtiment suivant.</span></li>
-  </ol>
-</div>
-</section>
 
 <section class="phases" aria-labelledby="phases-titre">
 <div class="w">
