@@ -64,13 +64,6 @@ footer b,footer a{color:var(--sur-vert)}
 <body>
 <a class="skip" href="#top">انتقل إلى المحتوى</a>
 
-<header>
-<div class="w">
-  <a class="logo" href="/ar/"><i aria-hidden="true"></i><span>اخرج من السكوات<small>أول مبنى: Casa Belgica</small></span></a>
-  <nav aria-label="اللغة"><select class="langues" aria-label="اللغة" onchange="location.href=this.value"><option value="/" lang="fr">Français</option><option value="/en/index.html" lang="en">English</option><option value="/de/index.html" lang="de">Deutsch</option><option value="/nl/index.html" lang="nl">Nederlands</option><option value="/ar/index.html" lang="ar" selected>العربية</option></select></nav>
-</div>
-</header>
-
 <main class="portes" id="top">
   <a class="porte habiter" href="habiter.html">
     <span class="qui">حصلت على أوراقك للتو؟<br>خارج من سكوات؟<br>تنام بشكل سيّئ، تدفع كثيرًا؟</span>
@@ -84,74 +77,5 @@ footer b,footer a{color:var(--sur-vert)}
     <span class="bas"><span class="faux-btn">اطّلع على الملف</span><span class="fleche" aria-hidden="true">←</span></span>
   </a>
 </main>
-
-<div class="etat">
-<div class="w">
-  <figure class="batiment"><svg id="batiment" role="group" aria-label="المبنى: 50 نافذة للأشخاص الذين سيسكنون فيه، و120 طوبة للمُقرِضين. كل مكان يمكن النقر عليه."></svg><figcaption>كل نافذة هي شخص مسجّل للسكن هنا، وكل طوبة هي وعد بقرض. طابق لكل شخص مرجعي. انقر عليها.</figcaption>
-  <ul class="etages" id="etages" aria-label="الامتلاء حسب الطابق"></ul></figure>
-  <div class="chiffres" aria-live="polite">
-    <p class="gros"><b class="rouleau" id="r-hab">0</b> <span id="l-hab">نوافذ مضاءة</span> من أصل 50</p>
-    <p class="fixe"><b class="rouleau" id="r-ins">0</b> <span id="l-ins">شخص مسجّل</span>. <b class="rouleau" id="r-loyer">0</b>&nbsp;€ من الإيجارات في الشهر، بـ 300 € للغرفة.</p>
-    <p class="fixe">حاليًا، لدينا مجموعة من <b class="rouleau" id="r-groupe">0</b> <span id="l-groupe">أشخاص</span> قادرين على دفع <b class="rouleau" id="r-capacite">0</b>&nbsp;€ في الشهر.</p>
-    <div class="pret" id="pret-chiffres" hidden>
-      <p class="gros"><b class="rouleau" id="r-pret">0</b> <span id="l-pret">وعود قرض</span> من أصل 120</p>
-      <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
-      <p class="fixe"><b class="rouleau" id="r-somme">0</b> € موعود بها من أصل 120 000 €، بـ 1 000 € للطوبة</p>
-    </div>
-    <div class="pret" id="pret-amorce">
-      <p class="gros">الطوبات الأولى بدأت توضع.</p>
-      <p class="fixe"><b>120</b> وعدًا بالقرض يجب جمعها، 1 000&nbsp;€ لكل واحد، بفائدة 0&nbsp;%.</p>
-    </div>
-    <p class="fixe etape">المرحلة الحالية: جمع الوعود الـ 120. بعد ذلك: المبنى، البنك، الأشغال، المفاتيح.</p>
-  </div>
-</div>
-</div>
-
-<footer>
-<div class="w">
-<b>اخرج من السكوات</b> · أول مبنى: Casa Belgica، مولنبيك · 50 غرفة، 300 € في الشهر شاملة كل شيء، يحملها 120 مُقرِضًا<br>
-مشروع من Ballal ASBL · رقم المؤسسة 1016.925.333 · بقيادة François Halleux · <a href="mailto:admin@ballal.be">راسلنا</a>
-<p class="langues-pied" aria-label="لغات أخرى"><a href="/" lang="fr" hreflang="fr">Français</a> · <a href="/en/index.html" lang="en" hreflang="en">English</a> · <a href="/de/index.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/index.html" lang="nl" hreflang="nl">Nederlands</a></p>
-</div>
-</footer>
-
-<script src="../batiment.js"></script>
-<script>
-(function(){
-  var B=window.Batiment;
-  // Le bâtiment de l'entrée : 50 fenêtres (futurs habitants) sur un mur de 120 briques (prêteurs). Chaque place se clique.
-  var b=B.facade(document.getElementById('batiment'),{mur:true});
-  B.brancher(b.fens,'fenetre',{fenetre:'habiter.html#inscrire'});
-  B.brancher(b.briques,'brique',{brique:'preter.html#appel'});
-  // Les personnes référentes s'inscrivent comme tout le monde, leur fenêtre ne s'allume pas d'office. Les promesses de prêt ne s'affichent en chiffres qu'à partir de 3.
-  var SEUIL=3;
-  function afficher(d){
-    var total=Math.min(50,d.habitants);
-    B.rouleau(document.getElementById('r-hab'),total);
-    B.rouleau(document.getElementById('r-ins'),d.habitants);
-    B.rouleau(document.getElementById('r-loyer'),total*300);
-    document.getElementById('l-hab').textContent=total===1?'نافذة مضاءة':'نوافذ مضاءة';
-    document.getElementById('l-ins').textContent=d.habitants===1?'شخص مسجّل':'أشخاص مسجّلين';
-    B.rouleau(document.getElementById('r-groupe'),d.habitants);
-    B.rouleau(document.getElementById('r-capacite'),d.habitants*300);
-    document.getElementById('l-groupe').textContent=d.habitants===1?'شخص':'أشخاص';
-    var assez=d.preteurs>=SEUIL;
-    document.getElementById('pret-chiffres').hidden=!assez; document.getElementById('pret-amorce').hidden=assez;
-    if(!assez)return;
-    B.rouleau(document.getElementById('r-pret'),d.preteurs);
-    B.rouleau(document.getElementById('r-somme'),d.preteurs*1000);
-    document.getElementById('l-pret').textContent=d.preteurs===1?'وعد قرض':'وعود قرض';
-    document.getElementById('jauge').style.transform='scaleX('+Math.max(d.preteurs/120,.02)+')';
-  }
-  B.charger().then(function(d){
-    // les chiffres roulent et les places s'allument quand le bloc entre dans l'écran
-    B.observer(document.querySelector('.etat'),function(){
-      afficher(d);
-      B.placer(b.fens,d,true); B.etages(document.getElementById('etages'),d);
-      B.allumer(b.briques,'brique',d.preteurs,d.noms.preteur,true);
-    },.15);
-  }).catch(function(){ afficher({habitants:0,preteurs:0}); });
-})();
-</script>
 </body>
 </html>
