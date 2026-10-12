@@ -1,0 +1,463 @@
+From 3722c287bd63b179b1a36ceb21e3de65b78a9691 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 12 Oct 2026 08:05:35 +0200
+Subject: [PATCH] =?UTF-8?q?SEO=20:=20liens=20internes=20sans=20.html=20pou?=
+ =?UTF-8?q?r=20=C3=A9viter=20les=20redirections=20308?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Les liens pointaient vers /habiter.html, /preter.html, etc. Vercel (cleanUrls)
+redirige ces URL vers la version propre : Google les voyait comme des pages
+avec redirection. Les liens des pages d'accueil par langue sont rendus absolus
+(/en/habiter…) pour rester justes même si la page est servie sans slash final.
+Mise à jour du lastmod du sitemap.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Kwv4Y28meMT5TwipVGwRJJ
+---
+ ar/habiter.html |  6 +++---
+ ar/index.html   |  4 ++--
+ ar/preter.html  |  2 +-
+ de/habiter.html |  6 +++---
+ de/index.html   |  4 ++--
+ de/preter.html  |  2 +-
+ en/habiter.html |  6 +++---
+ en/index.html   |  4 ++--
+ en/preter.html  |  2 +-
+ habiter.html    |  6 +++---
+ index.html      |  4 ++--
+ nl/habiter.html |  6 +++---
+ nl/index.html   |  4 ++--
+ nl/preter.html  |  2 +-
+ preter.html     |  2 +-
+ sitemap.xml     | 30 +++++++++++++++---------------
+ 16 files changed, 45 insertions(+), 45 deletions(-)
+
+diff --git a/ar/habiter.html b/ar/habiter.html
+index 0ad7a8c..71a312b 100644
+--- a/ar/habiter.html
++++ b/ar/habiter.html
+@@ -77,7 +77,7 @@ h1{max-width:16ch}
+   <ul class="etages" id="etages" aria-label="الامتلاء حسب الطابق"></ul></figure>
+ </div>
+ <ol class="frise-cle" aria-label="الجدول الزمني للمشروع">
+-  <li><b>0 إلى 21 شهرًا</b><span>أربع خطوات تمهيدية: CPAS، المالك، دراسة الجدوى، البنك. <a href="preter.html#risque">اطّلع على التفاصيل</a>.</span></li>
++  <li><b>0 إلى 21 شهرًا</b><span>أربع خطوات تمهيدية: CPAS، المالك، دراسة الجدوى، البنك. <a href="preter#risque">اطّلع على التفاصيل</a>.</span></li>
+   <li><b>ابتداءً من 18 إلى 21 شهرًا</b><span>جمع 120 وعدًا بقرض من المواطنين، بفائدة 0 %.</span></li>
+   <li><b>± 3 سنوات</b><span>المبنى مجدّد، وتُسلَّم أولى المفاتيح.</span></li>
+ </ol>
+@@ -178,8 +178,8 @@ h1{max-width:16ch}
+ <div class="w">
+ <b>اخرج من السكوات</b> · برنامج سكن انتقالي قيد التأسيس · أول مبنى: Casa Belgica، مولنبيك<br>
+ مشروع من Ballal ASBL · رقم المؤسسة 1016.925.333 · بقيادة François Halleux · المقرّ: place Masui 9/3, 1030 Bruxelles · الاستقبال: 645 chaussée de Gand, 1080 Molenbeek<br>
+-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">أريد أن أساعد في بنائه ←</a> · <a href="/ar/">المدخل</a>
+-<p class="langues-pied" aria-label="لغات أخرى"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a></p>
++<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter">أريد أن أساعد في بنائه ←</a> · <a href="/ar/">المدخل</a>
++<p class="langues-pied" aria-label="لغات أخرى"><a href="/habiter" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter" lang="en" hreflang="en">English</a> · <a href="/de/habiter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter" lang="nl" hreflang="nl">Nederlands</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/ar/index.html b/ar/index.html
+index 10102bd..477a047 100644
+--- a/ar/index.html
++++ b/ar/index.html
+@@ -65,13 +65,13 @@ footer b,footer a{color:var(--sur-vert)}
+ <a class="skip" href="#top">انتقل إلى المحتوى</a>
+ 
+ <main class="portes" id="top">
+-  <a class="porte habiter" href="habiter.html">
++  <a class="porte habiter" href="/ar/habiter">
+     <span class="qui">حصلت على أوراقك للتو؟<br>خارج من سكوات؟<br>تنام بشكل سيّئ، تدفع كثيرًا؟</span>
+     <h1 class="grand">أحتاج<br>إلى <em class="tag">سقف</em>.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+     <span class="bas"><span class="faux-btn">من هنا</span><span class="fleche" aria-hidden="true">←</span></span>
+   </a>
+   <div class="sep-portes" aria-hidden="true"></div>
+-  <a class="porte construire" href="preter.html">
++  <a class="porte construire" href="/ar/preter">
+     <span class="qui">تستطيع إقراض 1 000 €؟<br>فتح شبكة علاقاتك؟<br>التحقّق من أرقامنا؟</span>
+     <h1 class="grand">ادعم<br><em class="tag">المشروع</em>.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
+     <span class="bas"><span class="faux-btn">اطّلع على الملف</span><span class="fleche" aria-hidden="true">←</span></span>
+diff --git a/ar/preter.html b/ar/preter.html
+index 9a63049..3c64264 100644
+--- a/ar/preter.html
++++ b/ar/preter.html
+@@ -355,7 +355,7 @@
+ مشروع من Ballal ASBL · رقم المؤسسة 1016.925.333 · بقيادة François Halleux · المقرّ: place Masui 9/3, 1030 Bruxelles · الاستقبال: 645 chaussée de Gand, 1080 Molenbeek<br>
+ <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/ar/">المدخل</a><br>
+ التنظيم، بكل شفافية: تحمل جمعية Ballal ASBL عقد الانتفاع والقرض المصرفي والقرض المواطني. تُسنَد إدارة الإيجار اليومية ("وظيفة المؤجّر"، 2 100 € شهريًا، محتسبة أصلًا ضمن المصاريف) بعقد إلى هيكل إدارة منفصل، يقوده صاحب المشروع. يمر المشروع بأربع مراحل يمكن لكل واحدة منها أن توقفه قبل أي طلب لأموال المواطنين: موافقة خطية من الـ CPAS على مخطط الغرفة النموذجي، موافقة مبدئية من المالك على عقد الانتفاع، دراسة جدوى ورأي SIAMU، وموافقة مصرفية على قرض 900 000 €.
+-<p class="langues-pied" aria-label="لغات أخرى"><a href="/preter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a></p>
++<p class="langues-pied" aria-label="لغات أخرى"><a href="/preter" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter" lang="en" hreflang="en">English</a> · <a href="/de/preter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter" lang="nl" hreflang="nl">Nederlands</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/de/habiter.html b/de/habiter.html
+index 24a4c5d..f3500e4 100644
+--- a/de/habiter.html
++++ b/de/habiter.html
+@@ -77,7 +77,7 @@ h1{max-width:16ch}
+   <ul class="etages" id="etages" aria-label="Belegung pro Etage"></ul></figure>
+ </div>
+ <ol class="frise-cle" aria-label="Zeitplan des Projekts">
+-  <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a href="preter.html#risque">Details ansehen</a>.</span></li>
++  <li><b>0 bis 21 Monate</b><span>Vier vorbereitende Etappen: CPAS, Eigentümer, Machbarkeitsstudie, Bank. <a href="preter#risque">Details ansehen</a>.</span></li>
+   <li><b>Ab 18 bis 21 Monaten</b><span>Sammeln der 120 Kreditzusagen der Bürger·innen, zu 0 %.</span></li>
+   <li><b>± 3 Jahre</b><span>Gebäude saniert, erste Schlüssel übergeben.</span></li>
+ </ol>
+@@ -178,8 +178,8 @@ h1{max-width:16ch}
+ <div class="w">
+ <b>Raus aus dem Squat</b> · Programm für Übergangswohnen, in Gründung · erstes Gebäude: Casa Belgica, Molenbeek<br>
+ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von François Halleux · Sitz: place Masui 9/3, 1030 Bruxelles · Sprechstunde: 645 chaussée de Gand, 1080 Molenbeek<br>
+-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Ich will beim Bauen helfen →</a> · <a href="/de/">der Eingang</a>
+-<p class="langues-pied" aria-label="Andere Sprachen"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter">Ich will beim Bauen helfen →</a> · <a href="/de/">der Eingang</a>
++<p class="langues-pied" aria-label="Andere Sprachen"><a href="/habiter" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter" lang="en" hreflang="en">English</a> · <a href="/nl/habiter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/de/index.html b/de/index.html
+index e7a6752..e29a606 100644
+--- a/de/index.html
++++ b/de/index.html
+@@ -65,13 +65,13 @@ footer b,footer a{color:var(--sur-vert)}
+ <a class="skip" href="#top">Zum Inhalt springen</a>
+ 
+ <main class="portes" id="top">
+-  <a class="porte habiter" href="habiter.html">
++  <a class="porte habiter" href="/de/habiter">
+     <span class="qui">Du hast gerade deine Papiere bekommen?<br>Du kommst aus einem Squat?<br>Du schläfst schlecht, du zahlst zu viel?</span>
+     <h1 class="grand">Ich brauche<br>ein <em class="tag">Dach</em>.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+     <span class="bas"><span class="faux-btn">Hier entlang</span><span class="fleche" aria-hidden="true">→</span></span>
+   </a>
+   <div class="sep-portes" aria-hidden="true"></div>
+-  <a class="porte construire" href="preter.html">
++  <a class="porte construire" href="/de/preter">
+     <span class="qui">Du kannst 1.000 € leihen?<br>Dein Netzwerk öffnen?<br>Unsere Zahlen prüfen?</span>
+     <h1 class="grand">Das <em class="tag">Projekt</em><br>unterstützen.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
+     <span class="bas"><span class="faux-btn">Zum Dossier</span><span class="fleche" aria-hidden="true">→</span></span>
+diff --git a/de/preter.html b/de/preter.html
+index 900a4e0..7297781 100644
+--- a/de/preter.html
++++ b/de/preter.html
+@@ -355,7 +355,7 @@
+ Ein Projekt von Ballal ASBL · Unternehmensnummer 1016.925.333 · geleitet von François Halleux · Sitz: place Masui 9/3, 1030 Bruxelles · Sprechstunde: 645 chaussée de Gand, 1080 Molenbeek<br>
+ <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/de/">der Eingang</a><br>
+ Der Aufbau, ganz transparent: Die ASBL Ballal trägt die Erbpacht, den Bankkredit und das Bürgerdarlehen. Die tägliche Vermietungsverwaltung (die „Vermieterfunktion", 2.100 €/Monat, bereits in den Betriebskosten enthalten) wird per Vertrag an eine getrennte Verwaltungsstruktur vergeben, die vom Projektträger geführt wird. Das Projekt durchläuft vier Schritte, von denen jeder es vor jedem Aufruf von Bürgergeldern stoppen kann: schriftliche Zusage des CPAS zum Standard-Zimmergrundriss, grundsätzliche Zustimmung des Eigentümers zur Erbpacht, Machbarkeitsstudie und SIAMU-Gutachten, Bankzusage für den Kredit von 900.000 €.
+-<p class="langues-pied" aria-label="Andere Sprachen"><a href="/preter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<p class="langues-pied" aria-label="Andere Sprachen"><a href="/preter" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter" lang="en" hreflang="en">English</a> · <a href="/nl/preter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/en/habiter.html b/en/habiter.html
+index c4cbed2..e6494e3 100644
+--- a/en/habiter.html
++++ b/en/habiter.html
+@@ -77,7 +77,7 @@ h1{max-width:16ch}
+   <ul class="etages" id="etages" aria-label="Occupancy by floor"></ul></figure>
+ </div>
+ <ol class="frise-cle" aria-label="Project timeline">
+-  <li><b>0 to 21 months</b><span>Four preliminary steps: CPAS, owner, feasibility study, bank. <a href="preter.html#risque">See the detail</a>.</span></li>
++  <li><b>0 to 21 months</b><span>Four preliminary steps: CPAS, owner, feasibility study, bank. <a href="preter#risque">See the detail</a>.</span></li>
+   <li><b>From 18 to 21 months</b><span>Gathering the 120 citizen loan pledges, at 0%.</span></li>
+   <li><b>± 3 years</b><span>Building renovated, first keys handed over.</span></li>
+ </ol>
+@@ -178,8 +178,8 @@ h1{max-width:16ch}
+ <div class="w">
+ <b>Leave the Squat</b> · transitional housing programme, being set up · first building: Casa Belgica, Molenbeek<br>
+ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux · registered office: place Masui 9/3, 1030 Brussels · drop-in: 645 chaussée de Gand, 1080 Molenbeek<br>
+-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">I want to help build it →</a> · <a href="/en/">the entrance</a>
+-<p class="langues-pied" aria-label="Other languages"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter">I want to help build it →</a> · <a href="/en/">the entrance</a>
++<p class="langues-pied" aria-label="Other languages"><a href="/habiter" lang="fr" hreflang="fr">Français</a> · <a href="/de/habiter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/en/index.html b/en/index.html
+index c72fa9d..a90e46b 100644
+--- a/en/index.html
++++ b/en/index.html
+@@ -65,13 +65,13 @@ footer b,footer a{color:var(--sur-vert)}
+ <a class="skip" href="#top">Skip to content</a>
+ 
+ <main class="portes" id="top">
+-  <a class="porte habiter" href="habiter.html">
++  <a class="porte habiter" href="/en/habiter">
+     <span class="qui">Just got your papers?<br>Leaving a squat?<br>Sleeping badly, paying too much?</span>
+     <h1 class="grand">I need<br>a <em class="tag">roof</em>.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+     <span class="bas"><span class="faux-btn">This way</span><span class="fleche" aria-hidden="true">→</span></span>
+   </a>
+   <div class="sep-portes" aria-hidden="true"></div>
+-  <a class="porte construire" href="preter.html">
++  <a class="porte construire" href="/en/preter">
+     <span class="qui">Can you lend €1,000?<br>Open up your network?<br>Check our figures?</span>
+     <h1 class="grand">Support<br>the <em class="tag">project</em>.<span class="en" lang="fr">Soutenir le projet — prêtez 1&nbsp;000&nbsp;€ à 0&nbsp;%, récupérés.</span></h1>
+     <span class="bas"><span class="faux-btn">See the case</span><span class="fleche" aria-hidden="true">→</span></span>
+diff --git a/en/preter.html b/en/preter.html
+index 3aa41ed..209fe56 100644
+--- a/en/preter.html
++++ b/en/preter.html
+@@ -355,7 +355,7 @@
+ A project by Ballal ASBL · company no. 1016.925.333 · led by François Halleux · registered office: place Masui 9/3, 1030 Brussels · drop-in: 645 chaussée de Gand, 1080 Molenbeek<br>
+ <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/en/">the entrance</a><br>
+ Structure, fully transparent: Ballal ASBL holds the emphyteutic lease, the bank loan and the citizen loan. Day-to-day rental management (the "landlord function", €2,100/month, already counted in the charges) is contracted out to a separate management structure, run by the project lead. The project goes through four steps, each of which can stop it before any citizen funds are called: written agreement from the CPAS on the standard room layout, agreement in principle from the owner for the emphyteutic lease, feasibility study and SIAMU opinion, bank agreement on the €900,000 loan.
+-<p class="langues-pied" aria-label="Other languages"><a href="/preter.html" lang="fr" hreflang="fr">Français</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<p class="langues-pied" aria-label="Other languages"><a href="/preter" lang="fr" hreflang="fr">Français</a> · <a href="/de/preter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/habiter.html b/habiter.html
+index 149fc22..14301d7 100644
+--- a/habiter.html
++++ b/habiter.html
+@@ -77,7 +77,7 @@ h1{max-width:16ch}
+   <ul class="etages" id="etages" aria-label="Remplissage par étage"></ul></figure>
+ </div>
+ <ol class="frise-cle" aria-label="Calendrier du projet">
+-  <li><b>0 à 21 mois</b><span>Quatre étapes préalables : CPAS, propriétaire, étude de faisabilité, banque. <a href="preter.html#risque">Voir le détail</a>.</span></li>
++  <li><b>0 à 21 mois</b><span>Quatre étapes préalables : CPAS, propriétaire, étude de faisabilité, banque. <a href="preter#risque">Voir le détail</a>.</span></li>
+   <li><b>Dès 18 à 21 mois</b><span>Collecte des 120 promesses de prêt citoyen, à 0 %.</span></li>
+   <li><b>± 3 ans</b><span>Bâtiment rénové, premières clés remises.</span></li>
+ </ol>
+@@ -178,8 +178,8 @@ h1{max-width:16ch}
+ <div class="w">
+ <b>Sortir du squat</b> · programme de logement de transition, en création · premier bâtiment : Casa Belgica, Molenbeek<br>
+ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, porteur du projet · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
+-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Je veux aider à le construire →</a> · <a href="/">l'entrée</a>
+-<p class="langues-pied" aria-label="Autres langues"><a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter">Je veux aider à le construire →</a> · <a href="/">l'entrée</a>
++<p class="langues-pied" aria-label="Autres langues"><a href="/en/habiter" lang="en" hreflang="en">English</a> · <a href="/de/habiter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/habiter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/habiter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/index.html b/index.html
+index 4783785..d638ade 100644
+--- a/index.html
++++ b/index.html
+@@ -86,13 +86,13 @@ footer b,footer a{color:var(--sur-vert)}
+ <a class="skip" href="#top">Aller au contenu</a>
+ 
+ <main class="portes" id="top">
+-  <a class="porte habiter" href="habiter.html">
++  <a class="porte habiter" href="/habiter">
+     <span class="qui">Tu viens d'avoir tes papiers ?<br>Tu sors d'un squat ?<br>Tu dors mal, tu payes trop ?</span>
+     <h1 class="grand">J'ai besoin<br>d'un <em class="tag">toit</em>.<span class="en" lang="en">I need a roof — English spoken, come as you are.</span></h1>
+     <span class="bas"><span class="faux-btn">C'est par ici</span><span class="fleche" aria-hidden="true">→</span></span>
+   </a>
+   <div class="sep-portes" aria-hidden="true"></div>
+-  <a class="porte construire" href="preter.html">
++  <a class="porte construire" href="/preter">
+     <span class="qui">Tu peux prêter 1 000 € ?<br>Ouvrir ton réseau ?<br>Vérifier nos chiffres ?</span>
+     <h1 class="grand">Soutenir<br>le <em class="tag">projet</em>.<span class="en" lang="en">Support the project — lend €1,000 at 0%, get it back.</span></h1>
+     <span class="bas"><span class="faux-btn">Voir le dossier</span><span class="fleche" aria-hidden="true">→</span></span>
+diff --git a/nl/habiter.html b/nl/habiter.html
+index 76d6e64..5508617 100644
+--- a/nl/habiter.html
++++ b/nl/habiter.html
+@@ -77,7 +77,7 @@ h1{max-width:16ch}
+   <ul class="etages" id="etages" aria-label="Bezetting per verdieping"></ul></figure>
+ </div>
+ <ol class="frise-cle" aria-label="Tijdlijn van het project">
+-  <li><b>0 tot 21 maanden</b><span>Vier voorafgaande stappen: OCMW, eigenaar, haalbaarheidsstudie, bank. <a href="preter.html#risque">Bekijk de details</a>.</span></li>
++  <li><b>0 tot 21 maanden</b><span>Vier voorafgaande stappen: OCMW, eigenaar, haalbaarheidsstudie, bank. <a href="preter#risque">Bekijk de details</a>.</span></li>
+   <li><b>Vanaf 18 tot 21 maanden</b><span>Verzamelen van de 120 leningsbeloftes van burgers, aan 0 %.</span></li>
+   <li><b>± 3 jaar</b><span>Gebouw gerenoveerd, eerste sleutels overhandigd.</span></li>
+ </ol>
+@@ -178,8 +178,8 @@ h1{max-width:16ch}
+ <div class="w">
+ <b>Uit het kraakpand</b> · programma voor transitwoningen, in oprichting · eerste gebouw: Casa Belgica, Molenbeek<br>
+ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door François Halleux · zetel: place Masui 9/3, 1030 Bruxelles · permanentie: 645 chaussée de Gand, 1080 Molenbeek<br>
+-<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter.html">Ik wil helpen bouwen →</a> · <a href="/nl/">de ingang</a>
+-<p class="langues-pied" aria-label="Andere talen"><a href="/habiter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter.html" lang="en" hreflang="en">English</a> · <a href="/de/habiter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/ar/habiter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="preter">Ik wil helpen bouwen →</a> · <a href="/nl/">de ingang</a>
++<p class="langues-pied" aria-label="Andere talen"><a href="/habiter" lang="fr" hreflang="fr">Français</a> · <a href="/en/habiter" lang="en" hreflang="en">English</a> · <a href="/de/habiter" lang="de" hreflang="de">Deutsch</a> · <a href="/ar/habiter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/nl/index.html b/nl/index.html
+index 5c720a8..614934b 100644
+--- a/nl/index.html
++++ b/nl/index.html
+@@ -65,13 +65,13 @@ footer b,footer a{color:var(--sur-vert)}
+ <a class="skip" href="#top">Naar de inhoud</a>
+ 
+ <main class="portes" id="top">
+-  <a class="porte habiter" href="habiter.html">
++  <a class="porte habiter" href="/nl/habiter">
+     <span class="qui">Heb je net je papieren gekregen?<br>Kom je uit een kraakpand?<br>Slaap je slecht, betaal je te veel?</span>
+     <h1 class="grand">Ik heb<br>een <em class="tag">dak</em> nodig.<span class="en" lang="fr">J'ai besoin d'un toit — on parle français, viens comme tu es.</span></h1>
+     <span class="bas"><span class="faux-btn">Hierlangs</span><span class="fleche" aria-hidden="true">→</span></span>
+   </a>
+   <div class="sep-portes" aria-hidden="true"></div>
+-  <a class="porte construire" href="preter.html">
++  <a class="porte construire" href="/nl/preter">
+     <span class="qui">Kan je € 1.000 uitlenen?<br>Je netwerk openstellen?<br>Onze cijfers nakijken?</span>
+     <h1 class="grand">Steun<br>het <em class="tag">project</em>.<span class="en" lang="fr">Soutenir le projet — prêtez 1 000 € à 0 %, récupérés.</span></h1>
+     <span class="bas"><span class="faux-btn">Bekijk het dossier</span><span class="fleche" aria-hidden="true">→</span></span>
+diff --git a/nl/preter.html b/nl/preter.html
+index 972ac33..0b19d9d 100644
+--- a/nl/preter.html
++++ b/nl/preter.html
+@@ -355,7 +355,7 @@
+ Een project van Ballal ASBL · ondernemingsnummer 1016.925.333 · geleid door François Halleux · zetel: place Masui 9/3, 1030 Bruxelles · permanentie: 645 chaussée de Gand, 1080 Molenbeek<br>
+ <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/nl/">de ingang</a><br>
+ De opzet, volledig transparant: vzw Ballal draagt de erfpacht, het bankkrediet en de burgerlening. Het dagelijkse verhuurbeheer (de "verhuurdersfunctie", € 2.100/maand, al meegerekend in de lasten) wordt via een contract toevertrouwd aan een aparte beheersstructuur, geleid door de projectdrager. Het project doorloopt vier stappen die elk het project kunnen stopzetten vóór er burgergeld wordt opgevraagd: schriftelijk akkoord van het OCMW over het standaard kamerplan, principeakkoord van de eigenaar voor de erfpacht, haalbaarheidsstudie en SIAMU-advies, bankakkoord over het krediet van € 900.000.
+-<p class="langues-pied" aria-label="Andere talen"><a href="/preter.html" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<p class="langues-pied" aria-label="Andere talen"><a href="/preter" lang="fr" hreflang="fr">Français</a> · <a href="/en/preter" lang="en" hreflang="en">English</a> · <a href="/de/preter" lang="de" hreflang="de">Deutsch</a> · <a href="/ar/preter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/preter.html b/preter.html
+index 9861963..6173098 100644
+--- a/preter.html
++++ b/preter.html
+@@ -353,7 +353,7 @@
+ Un projet de Ballal ASBL · n° d'entreprise 1016.925.333 · François Halleux, porteur du projet · siège : place Masui 9/3, 1030 Bruxelles · permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
+ <a href="mailto:admin@ballal.be">admin@ballal.be</a> · <a href="/">l'entrée</a><br>
+ Montage, en toute transparence : l'ASBL Ballal porte le bail emphytéotique, le crédit bancaire et le prêt citoyen. La gestion locative quotidienne (« fonction bailleur », 2 100 €/mois, déjà comptée dans les charges) est confiée par contrat à une structure de gestion distincte, pilotée par le porteur du projet. Le projet passe par quatre étapes qui peuvent chacune l'arrêter avant tout appel de fonds citoyen : accord écrit du CPAS sur le plan-type de chambre, accord de principe du propriétaire pour l'emphytéose, étude de faisabilité et avis SIAMU, accord bancaire sur le crédit de 900 000 €.
+-<p class="langues-pied" aria-label="Autres langues"><a href="/en/preter.html" lang="en" hreflang="en">English</a> · <a href="/de/preter.html" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter.html" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter.html" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
++<p class="langues-pied" aria-label="Autres langues"><a href="/en/preter" lang="en" hreflang="en">English</a> · <a href="/de/preter" lang="de" hreflang="de">Deutsch</a> · <a href="/nl/preter" lang="nl" hreflang="nl">Nederlands</a> · <a href="/ar/preter" lang="ar" hreflang="ar" dir="rtl">العربية</a></p>
+ </div>
+ </footer>
+ 
+diff --git a/sitemap.xml b/sitemap.xml
+index 87f9b1f..e990a91 100644
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -3,7 +3,7 @@
+         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+   <url>
+     <loc>https://casa-belgica.vercel.app/</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/"/>
+@@ -13,7 +13,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/habiter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter"/>
+@@ -23,7 +23,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/preter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter"/>
+@@ -33,7 +33,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/en/</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/"/>
+@@ -43,7 +43,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/en/habiter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter"/>
+@@ -53,7 +53,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/en/preter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter"/>
+@@ -63,7 +63,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/de/</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/"/>
+@@ -73,7 +73,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/de/habiter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter"/>
+@@ -83,7 +83,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/de/preter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter"/>
+@@ -93,7 +93,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/nl/</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/"/>
+@@ -103,7 +103,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/nl/habiter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter"/>
+@@ -113,7 +113,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/nl/preter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter"/>
+@@ -123,7 +123,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/ar/</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/"/>
+@@ -133,7 +133,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/ar/habiter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/habiter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/habiter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/habiter"/>
+@@ -143,7 +143,7 @@
+   </url>
+   <url>
+     <loc>https://casa-belgica.vercel.app/ar/preter</loc>
+-    <lastmod>2026-10-08</lastmod>
++    <lastmod>2026-10-12</lastmod>
+     <xhtml:link rel="alternate" hreflang="fr" href="https://casa-belgica.vercel.app/preter"/>
+     <xhtml:link rel="alternate" hreflang="en" href="https://casa-belgica.vercel.app/en/preter"/>
+     <xhtml:link rel="alternate" hreflang="de" href="https://casa-belgica.vercel.app/de/preter"/>
+-- 
+2.43.0
+
