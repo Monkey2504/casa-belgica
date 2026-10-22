@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Sortir du squat — note de présentation pour le RBDH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  @page :first { margin: 0; }
+  :root {
+    --nuit: #13251A; --vert: #1F4A35; --or: #E3C362; --creme: #F3F1EA;
+    --texte: #1d2420; --gris: #5b625d; --filet: #d9d5c8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Instrument Sans", "DejaVu Sans", sans-serif; font-size: 10.2pt; line-height: 1.5; color: var(--texte); background: #fff; }
+  h1, h2 { font-family: "Anton", "DejaVu Sans", sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .01em; line-height: 1.05; margin: 0; }
+  h2 { font-size: 22pt; color: var(--nuit); margin: 0 0 4mm; }
+  h3 { font-size: 11pt; margin: 5mm 0 1.5mm; color: var(--vert); }
+  p { margin: 0 0 2.6mm; }
+  .label { display: inline-block; font-size: 8.5pt; font-weight: 700; color: var(--vert); margin-bottom: 2mm; }
+  .label::before { content: ""; display: inline-block; width: 7mm; height: 2px; background: var(--or); vertical-align: middle; margin-right: 2mm; }
+  section { break-before: page; }
+  section.suite { break-before: auto; margin-top: 8mm; }
+  .chapeau { font-size: 11.5pt; line-height: 1.45; color: var(--nuit); margin-bottom: 4mm; }
+  ul { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: 1.2mm; }
+  .note { font-size: 8.6pt; color: var(--gris); }
+  strong { color: var(--nuit); }
+
+  /* Couverture */
+  .couv { height: 297mm; background: var(--nuit); color: var(--creme); padding: 24mm 20mm; display: flex; flex-direction: column; position: relative; break-after: page; }
+  .couv .haut { font-size: 9.5pt; letter-spacing: .04em; color: #c9cfc8; }
+  .couv h1 { font-size: 64pt; color: var(--creme); margin-top: 38mm; }
+  .couv h1 em { font-style: normal; color: var(--or); }
+  .couv .sous { font-size: 15pt; margin-top: 6mm; max-width: 150mm; line-height: 1.35; }
+  .couv .dest { margin-top: 14mm; font-size: 11pt; border-left: 2px solid var(--or); padding-left: 4mm; }
+  .couv .bas { margin-top: auto; font-size: 9pt; color: #c9cfc8; line-height: 1.6; }
+  .couv svg { position: absolute; right: 20mm; bottom: 30mm; }
+
+  /* Chiffres clés */
+  .cles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 5mm 0; }
+  .cle { background: var(--creme); padding: 4mm; }
+  .cle b { display: block; font-family: "Anton", sans-serif; font-weight: 400; font-size: 20pt; color: var(--vert); line-height: 1.1; }
+  .cle span { font-size: 8.8pt; color: var(--gris); }
+
+  /* Barres */
+  .barres { margin: 4mm 0 5mm; }
+  .barre { margin-bottom: 3mm; }
+  .barre .titre { font-size: 9pt; font-weight: 600; margin-bottom: 1mm; }
+  .barre .piste { display: flex; height: 8mm; font-size: 8.6pt; font-weight: 600; }
+  .barre .piste div { display: flex; align-items: center; padding: 0 2mm; white-space: nowrap; }
+  .loyer { background: var(--vert); color: #fff; }
+  .reste { background: var(--or); color: var(--nuit); }
+  .dette { background: #4d7a62; color: #fff; }
+  .exc { background: var(--or); color: var(--nuit); }
+
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.2pt; }
+  th, td { text-align: left; padding: 1.6mm 2mm; border-bottom: 1px solid var(--filet); vertical-align: top; }
+  th { font-weight: 700; color: var(--vert); border-bottom: 1.5px solid var(--vert); }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  tr.total td { font-weight: 700; border-bottom: 1.5px solid var(--vert); }
+
+  .deux { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
+  .encart { background: var(--creme); padding: 4mm 5mm; margin: 3mm 0 4mm; break-inside: avoid; }
+  .encart h3 { margin-top: 0; }
+  .etapes { counter-reset: e; list-style: none; padding: 0; }
+  .etapes li { counter-increment: e; padding-left: 9mm; position: relative; margin-bottom: 2.4mm; }
+  .etapes li::before { content: counter(e); position: absolute; left: 0; top: 0; width: 6mm; height: 6mm; border-radius: 50%; background: var(--vert); color: #fff; font-size: 8.5pt; font-weight: 700; text-align: center; line-height: 6mm; }
+  .lien td:first-child { width: 36%; font-weight: 600; }
+  .sources li { font-size: 8.8pt; }
+  .contact { background: var(--nuit); color: var(--creme); padding: 6mm; margin-top: 6mm; }
+  .contact strong { color: var(--or); }
+</style>
+</head>
+<body>
+
+<!-- Couverture -->
+<div class="couv">
+  <div class="haut">BALLAL ASBL · MOLENBEEK · OCTOBRE 2026</div>
+  <h1>Sortir<br>du <em>squat</em></h1>
+  <div class="sous">Un programme de logement de transition pour les personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat.<br>Premier bâtiment : Casa Belgica.</div>
+  <div class="dest">Note de présentation du projet<br>à l'attention du Rassemblement Bruxellois pour le Droit à l'Habitat (RBDH)</div>
+  <svg width="62mm" height="72mm" viewBox="0 0 100 116" aria-hidden="true">
+    <rect x="0" y="0" width="100" height="78" fill="#1F4A35"/>
+    <g fill="#13251A">
+      <rect x="6" y="6" width="6" height="9"/><rect x="15.4" y="6" width="6" height="9"/><rect x="24.8" y="6" width="6" height="9"/><rect x="34.2" y="6" width="6" height="9"/><rect x="43.6" y="6" width="6" height="9"/><rect x="53" y="6" width="6" height="9"/><rect x="62.4" y="6" width="6" height="9"/><rect x="71.8" y="6" width="6" height="9"/><rect x="81.2" y="6" width="6" height="9"/><rect x="90.6" y="6" width="3.4" height="9"/>
+    </g>
+    <g id="f">
+      <rect x="6" y="20" width="6" height="9" fill="#E3C362"/><rect x="24.8" y="20" width="6" height="9" fill="#13251A"/><rect x="43.6" y="20" width="6" height="9" fill="#13251A"/><rect x="62.4" y="20" width="6" height="9" fill="#E3C362"/><rect x="81.2" y="20" width="6" height="9" fill="#13251A"/>
+      <rect x="15.4" y="34" width="6" height="9" fill="#13251A"/><rect x="34.2" y="34" width="6" height="9" fill="#E3C362"/><rect x="53" y="34" width="6" height="9" fill="#13251A"/><rect x="71.8" y="34" width="6" height="9" fill="#13251A"/>
+      <rect x="6" y="48" width="6" height="9" fill="#13251A"/><rect x="24.8" y="48" width="6" height="9" fill="#13251A"/><rect x="53" y="48" width="6" height="9" fill="#E3C362"/><rect x="81.2" y="48" width="6" height="9" fill="#13251A"/>
+    </g>
+    <rect x="44" y="62" width="12" height="16" fill="#E3C362"/>
+    <g fill="none" stroke="#E3C362" stroke-width=".8" stroke-dasharray="1.5 1.2">
+      <rect x="0" y="82" width="19" height="7"/><rect x="20" y="82" width="19" height="7"/><rect x="40" y="82" width="19" height="7"/><rect x="60" y="82" width="19" height="7"/><rect x="80" y="82" width="20" height="7"/>
+      <rect x="10" y="91" width="19" height="7"/><rect x="30" y="91" width="19" height="7"/><rect x="50" y="91" width="19" height="7"/><rect x="70" y="91" width="19" height="7"/>
+      <rect x="0" y="100" width="19" height="7"/><rect x="20" y="100" width="19" height="7"/><rect x="40" y="100" width="19" height="7"/><rect x="60" y="100" width="19" height="7"/><rect x="80" y="100" width="20" height="7"/>
+    </g>
+  </svg>
+  <div class="bas">
+    Sortir du squat · programme de logement de transition, en création<br>
+    Porté par Ballal ASBL · n° d'entreprise 1016.925.333<br>
+    Permanence : 645 chaussée de Gand, 1080 Molenbeek · admin@ballal.be<br>
+    casa-belgica.vercel.app
+  </div>
+</div>
+
+<!-- 1. En bref -->
+<section style="break-before:auto">
+  <span class="label">En bref</span>
+  <h2>Le projet en une page</h2>
+  <p class="chapeau">Sortir du squat veut ouvrir, bâtiment après bâtiment, un logement de transition entre le squat et le marché locatif. Le premier bâtiment, Casa Belgica, offrira 50 chambres individuelles à 300 € par mois tout compris, à Molenbeek, pour des personnes qui viennent d'être régularisées et qui sortent d'un squat ou d'une occupation.</p>
+  <div class="cles">
+    <div class="cle"><b>50</b><span>chambres individuelles d'au moins 18 m², avec douche et WC privés</span></div>
+    <div class="cle"><b>300 €</b><span>par mois, tout compris (chauffage, eau, électricité, internet)</span></div>
+    <div class="cle"><b>3 à 4 ans</b><span>de séjour : épargner, se former, trouver un logement durable</span></div>
+    <div class="cle"><b>1 020 000 €</b><span>de travaux de rénovation d'un bâtiment existant, sous emphytéose</span></div>
+    <div class="cle"><b>900 000 €</b><span>de crédit bancaire, sur 20 ans à 4 %</span></div>
+    <div class="cle"><b>120 × 1 000 €</b><span>de prêts citoyens à 0 %, remboursés entre l'année 6 et l'année 10</span></div>
+  </div>
+  <h3>Les principes</h3>
+  <ul>
+    <li><strong>Pas d'achat.</strong> Un bâtiment existant, pris en emphytéose auprès d'un propriétaire public ou institutionnel, puis rénové.</li>
+    <li><strong>Une chambre, un contrat, une adresse.</strong> Chaque habitant·e a un contrat individuel et une domiciliation à son nom.</li>
+    <li><strong>Un modèle qui se porte seul.</strong> Les 300 € par mois couvrent l'exploitation et le remboursement de la dette, sans subside de fonctionnement.</li>
+    <li><strong>Les habitant·es décident.</strong> Majorité des voix en assemblée générale, la moitié des sièges au conseil d'administration ; une personne, une voix.</li>
+    <li><strong>Un risque plafonné.</strong> Quatre étapes préalables, chacune pouvant arrêter le projet ; 30 000 € au maximum engagés avant tout appel de fonds citoyen.</li>
+  </ul>
+  <h3>Où en est le projet</h3>
+  <p>Le projet est en phase préalable. Aucun bâtiment n'est encore signé. Les premières clés sont visées dans environ trois ans. Les inscriptions des futurs habitant·es et les promesses de prêt sont recueillies dès maintenant, sans engagement, et affichées en direct sur le site.</p>
+</section>
+
+<!-- 2. Constat -->
+<section>
+  <span class="label">Le constat</span>
+  <h2>Entre le squat et le studio, il n'y a rien</h2>
+  <p class="chapeau">Une personne qui vient d'obtenir ses papiers touche, si elle vit seule, le revenu d'intégration (RIS) au taux isolé : 1 340 € par mois. Un studio bruxellois coûte 725 € de loyer, plus la garantie locative. Il reste 615 € pour tout le reste.</p>
+  <div class="barres">
+    <div class="barre"><div class="titre">Studio privé · 725 € de loyer</div>
+      <div class="piste"><div class="loyer" style="width:54.1%">loyer 725 €</div><div class="reste" style="width:45.9%">reste 615 €</div></div></div>
+    <div class="barre"><div class="titre">Casa Belgica · 300 € tout compris</div>
+      <div class="piste"><div class="loyer" style="width:22.4%">300 €</div><div class="reste" style="width:77.6%">reste 1 040 €</div></div></div>
+    <div class="note">Barres à l'échelle de 1 340 € par mois (RIS taux isolé). Montants au moment de la préparation du dossier ; le barème est indexé périodiquement.</div>
+  </div>
+  <p>Un squat permet de vivre à bas coût. Ce qu'il ne donne pas : un titre d'occupation sûr, donc une adresse, donc une domiciliation, donc l'accès aux droits, et la certitude de ne pas être expulsé avant d'avoir fini d'épargner.</p>
+  <h3>Le contexte bruxellois</h3>
+  <ul>
+    <li>Fin 2025, 62 234 ménages attendent un logement social à Bruxelles, soit environ 10 % des ménages, avec 9 à 13 ans d'attente selon le type de logement.</li>
+    <li>Entre 2020 et 2024, la Région a investi près de 2 milliards d'euros, construit plus de 2 000 logements et en a rénové plus de 7 500 ; la demande a augmenté de 25 % sur la même période.</li>
+    <li>L'écart entre le RIS isolé (1 340 €) et le RIS cohabitant (± 894 €) est de 447 € par mois. Vivre à plusieurs dans un logement partagé fait perdre ce montant.</li>
+  </ul>
+  <h3>D'où vient le projet</h3>
+  <p>Ballal ASBL accompagne depuis 2015, à Molenbeek, plus de 150 personnes sans papiers ou en situation précaire : des mères, des enfants, des familles entières, déplacées d'un squat à l'autre au fil des années. Ce sont ces personnes qui ont demandé autre chose qu'un hébergement de plus : un bâtiment stable. Sortir du squat est né de cette demande et Ballal le porte depuis 2023.</p>
+  <div class="encart">
+    <h3>Le public visé</h3>
+    <p style="margin:0">Des personnes qui viennent d'être régularisées, qui sortent d'un squat ou d'une occupation, et qui disposent d'un revenu (RIS ou salaire). Le modèle financier reposant sur ce revenu, Casa Belgica ne pourra pas loger les personnes encore sans papiers ; l'accompagnement de Ballal reste ouvert à elles.</p>
+  </div>
+</section>
+
+<!-- 3. Le bâtiment -->
+<section>
+  <span class="label">Ce qui est construit</span>
+  <h2>Casa Belgica : 50 chambres, 300 € par mois</h2>
+  <p class="chapeau">Un immeuble bruxellois ancien d'environ 1 200 m², en emphytéose auprès d'un propriétaire public ou institutionnel, rénové en 50 chambres individuelles d'au moins 18 m² nets, chacune avec sa douche et son WC.</p>
+  <h3>L'emphytéose plutôt que l'achat</h3>
+  <p>À 300 € par mois, le modèle ne peut porter aucune acquisition. La durée visée est de 30 ans au maximum, nécessaire pour amortir le million d'euros de travaux ; la loi autorise jusqu'à 99 ans, mais c'est la base de 30 ans qui sert aux projections. Depuis la réforme du Code civil (livre 3, en vigueur le 1<sup>er</sup> septembre 2021), l'emphytéose gratuite à but non lucratif au profit d'une ASBL est explicitement permise : le canon peut être nul. Rien n'est encore signé.</p>
+  <h3>Pourquoi des sanitaires privés</h3>
+  <p>La douche et le WC individuels ne sont pas un confort. Ils sécurisent le statut d'isolé au CPAS, soit 447 € par mois de revenu en plus par habitant·e, donc la capacité de payer 300 €. Le coût des 50 unités sanitaires est estimé entre 300 000 et 600 000 € (6 000 à 12 000 € par chambre). Si on rognait sur ce poste, le groupe d'habitant·es perdrait environ 22 000 € par mois de revenus.</p>
+  <h3>Quatre conditions non négociables</h3>
+  <table>
+    <tr><th>Condition</th><th>Fondement</th></tr>
+    <tr><td>Douche et WC privés, au moins 18 m² nets</td><td>Arrêté du 30 novembre 2023, en vigueur depuis le 1<sup>er</sup> janvier 2026</td></tr>
+    <tr><td>Contrat individuel et nominatif</td><td>Jouissance exclusive d'une unité déterminée</td></tr>
+    <tr><td>Pas de caisse commune</td><td>Aucune gestion ménagère commune formalisée</td></tr>
+    <tr><td>Avis écrit du CPAS avant tout engagement</td><td>Sur la base d'un plan type de chambre</td></tr>
+  </table>
+  <h3>Ce que le séjour apporte</h3>
+  <ul>
+    <li>Une clé, une adresse, une boîte aux lettres à son nom : la domiciliation ouvre le RIS, la mutuelle, l'emploi.</li>
+    <li>425 € de plus chaque mois par rapport à un studio à 725 € ; 7 000 à 10 000 € mis de côté en trois ans en n'épargnant que la moitié.</li>
+    <li>Trois à quatre ans pour se former et trouver un logement durable. On part quand on est prêt·e.</li>
+    <li>Sur vingt ans, 250 à 350 personnes logées à partir d'un seul bâtiment.</li>
+  </ul>
+</section>
+
+<!-- 4. Chiffres -->
+<section>
+  <span class="label">Les chiffres</span>
+  <h2>Un modèle qui se porte seul</h2>
+  <p class="chapeau">Recettes : 50 places × 300 €, à 95 % d'occupation, soit 14 250 € par mois et 171 000 € par an.</p>
+  <div class="barre"><div class="titre">Répartition des recettes mensuelles (14 250 €)</div>
+    <div class="piste"><div class="loyer" style="width:57%">Exploitation 8 120 € · 57 %</div><div class="dette" style="width:38%">Dette 5 450 € · 38 %</div><div class="exc" style="width:5%"></div></div>
+    <div class="note">En or : excédent de 680 € par mois (5 %).</div>
+  </div>
+  <div class="deux">
+    <div>
+      <h3>Charges d'exploitation, par mois</h3>
+      <table>
+        <tr><td>Énergie (chauffage, eau chaude, électricité)</td><td class="n">2 200 €</td></tr>
+        <tr><td>Eau</td><td class="n">700 €</td></tr>
+        <tr><td>Assurance incendie et RC</td><td class="n">420 €</td></tr>
+        <tr><td>Précompte immobilier (exonération à demander)</td><td class="n">300 €</td></tr>
+        <tr><td>Télécoms, déchets, consommables, petit entretien</td><td class="n">400 €</td></tr>
+        <tr><td>Comptabilité, administration, banque</td><td class="n">250 €</td></tr>
+        <tr><td>Réserve gros entretien (1 %/an)</td><td class="n">1 250 €</td></tr>
+        <tr><td>Canon emphytéotique (hypothèse prudente ; peut être nul)</td><td class="n">500 €</td></tr>
+        <tr><td>Fonction bailleur, 0,5 ETP</td><td class="n">2 100 €</td></tr>
+        <tr class="total"><td>Total</td><td class="n">8 120 €</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Financement des travaux</h3>
+      <table>
+        <tr><td>Crédit bancaire, 20 ans à 4 %</td><td class="n">900 000 €</td></tr>
+        <tr><td>Prêt citoyen subordonné, 0 %</td><td class="n">120 000 €</td></tr>
+        <tr class="total"><td>Budget travaux</td><td class="n">1 020 000 €</td></tr>
+      </table>
+      <div class="encart">
+        <h3>Le risque principal : l'écart travaux</h3>
+        <p style="margin:0">Le budget disponible représente environ 850 €/m² sur 1 200 m², alors qu'une rénovation lourde coûte de 1 100 à 1 800 €/m². L'écart de 200 000 à 480 000 € doit être comblé par trois leviers : la TVA à 6 % au lieu de 21 % (≈ 150 000 €), un chantier participatif sur les lots non techniques, et des subsides (Contrat de quartier durable, appels à projets régionaux, fonds européens). L'étude de faisabilité tranche, avant tout engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Prêt citoyen -->
+<section>
+  <span class="label">Le prêt citoyen</span>
+  <h2>120 personnes, 1 000 € chacune</h2>
+  <p class="chapeau">Pour accorder 900 000 €, la banque demande d'abord 120 000 € de fonds propres. Ils sont apportés par 120 personnes qui promettent de prêter 1 000 € chacune, à 0 %.</p>
+  <h3>Forme juridique</h3>
+  <p>Prêt subordonné à 0 %, sans remboursement les cinq premières années, remboursé en une fois entre l'année 6 et l'année 10. Subordonné signifie qu'en cas de difficulté, la banque est remboursée avant les citoyens ; c'est ce qui permet à la banque de traiter les 120 000 € comme des quasi-fonds propres.</p>
+  <h3>Calendrier du remboursement</h3>
+  <table>
+    <tr><th>Période</th><th>Ce qui se passe</th></tr>
+    <tr><td>Années 1 à 5</td><td>L'excédent de 680 € par mois s'accumule.</td></tr>
+    <tr><td>Années 6 à 10</td><td>Remboursement des 120 000 €.</td></tr>
+    <tr><td>Années 11 à 20</td><td>Fin du crédit bancaire.</td></tr>
+    <tr><td>Année 21 et après</td><td>Environ 65 000 € par an libérés.</td></tr>
+  </table>
+  <h3>Ce qui finance le remboursement</h3>
+  <ul>
+    <li>L'indexation : à 2 % par an, la contribution passe de 300 à 331 € en année 5 (+1 480 € de recettes par mois, les charges augmentant aussi de 845 € par mois), soit environ 640 € par mois disponibles.</li>
+    <li>L'excédent accumulé : 680 € par mois pendant 60 mois, soit 41 000 €.</li>
+    <li>Le solde de 79 000 € est refinancé sur dix ans, environ 800 € par mois.</li>
+  </ul>
+  <h3>Une promesse, pas un virement</h3>
+  <p>Avant que le bâtiment soit trouvé et le crédit accordé, aucun euro ne bouge. La liste des 120 promesses sert de preuve de fonds propres auprès de la banque. La collecte effective démarre après les quatre étapes préalables, dans 18 à 21 mois.</p>
+  <h3>Variante</h3>
+  <p>Si la banque refuse la subordination, les 120 000 € deviennent des parts de coopérative : des fonds propres sans sortie. Le levier et le budget restent identiques, mais l'argent ne revient pas aux prêteurs.</p>
+  <h3>Un programme, pas un seul bâtiment</h3>
+  <p>Une fois remboursés, les 120 000 € peuvent repartir vers un deuxième bâtiment, avec le même montage : statuts, emphytéose, dossier bancaire.</p>
+</section>
+
+<!-- 6. Gouvernance et calendrier -->
+<section>
+  <span class="label">Gouvernance et étapes</span>
+  <h2>Qui porte, qui décide, dans quel ordre</h2>
+  <h3>Le montage</h3>
+  <ul>
+    <li><strong>Ballal ASBL</strong> porte le bail emphytéotique, le crédit bancaire et le prêt citoyen.</li>
+    <li><strong>La gestion locative quotidienne</strong> (« fonction bailleur », 2 100 € par mois, déjà comptés dans les charges) est confiée par contrat à une structure de gestion distincte, pilotée par le porteur du projet.</li>
+    <li><strong>Les habitant·es</strong> détiennent la majorité des voix en assemblée générale et la moitié des sièges au conseil d'administration. Les prêteurs apportent le capital. Une personne, une voix.</li>
+  </ul>
+  <h3>Quatre étapes préalables, quatre points d'arrêt</h3>
+  <ol class="etapes">
+    <li><strong>Mois 0 à 3 — CPAS.</strong> Avis écrit sur le plan type de chambre. Si le CPAS refuse le statut d'isolé, le modèle à 300 € ne tient pas : arrêt. Coût : zéro.</li>
+    <li><strong>Mois 3 à 9 — Propriétaire.</strong> Accord de principe pour une emphytéose. Si aucun propriétaire n'ouvre la discussion : arrêt. Coût : zéro.</li>
+    <li><strong>Mois 9 à 15 — Faisabilité.</strong> Étude de faisabilité et avis des pompiers (SIAMU). Si l'écart travaux est impossible à combler : arrêt. Coût : l'étude, subsidiée.</li>
+    <li><strong>Mois 15 à 21 — Banque.</strong> Accord sur le crédit de 900 000 €. En cas de refus : arrêt, ou bascule vers la variante en parts de coopérative.</li>
+  </ol>
+  <p>Ensuite : collecte des 120 promesses (dès 18 à 21 mois), permis, travaux, premières clés (± 3 ans).</p>
+  <h3>Argent engagé avant le point de non-retour</h3>
+  <table>
+    <tr><th>Poste</th><th class="n">Coût</th><th>Couvert par</th></tr>
+    <tr><td>Avis écrit du CPAS</td><td class="n">0 €</td><td>—</td></tr>
+    <tr><td>Recherche du bâtiment</td><td class="n">0 €</td><td>—</td></tr>
+    <tr><td>Étude de faisabilité et avis SIAMU</td><td class="n">15 à 25 k€</td><td>Appels à projets (Brulocalis, Fondation Roi Baudouin, Coopcity)</td></tr>
+    <tr><td>Statuts de la coopérative, notaire, FSMA</td><td class="n">3 à 5 k€</td><td>Fonds propres</td></tr>
+    <tr class="total"><td>Risque maximal</td><td class="n">30 000 €</td><td>En grande partie subsidiable</td></tr>
+  </table>
+  <h3>Autres contraintes identifiées</h3>
+  <ul>
+    <li><strong>Permis.</strong> Le changement d'affectation est soumis à permis depuis l'arrêté du 16 mai 2024 : 12 à 24 mois, enquête publique probable.</li>
+    <li><strong>Incendie.</strong> Un hébergement collectif de 50 personnes exige compartimentage, deux voies d'évacuation et détection généralisée ; avis préalable du SIAMU avant tout engagement financier.</li>
+  </ul>
+</section>
+
+<!-- 7. Articulation -->
+<section>
+  <span class="label">Le projet dans le paysage bruxellois</span>
+  <h2>Ce qui existe, ce qui manque</h2>
+  <p class="chapeau">Sortir du squat ne remplace ni le logement social, ni les AIS, ni les projets existants. Il vise un moment précis du parcours : la sortie du squat juste après la régularisation.</p>
+  <table class="lien">
+    <tr><th>Dispositif</th><th>Ce qu'il fait</th></tr>
+    <tr><td>Logement social</td><td>62 234 ménages candidats fin 2025, 9 à 13 ans d'attente.</td></tr>
+    <tr><td>Community Land Trust Bruxelles (CLTB)</td><td>Acquisition pour des ménages ; plus de 1 300 personnes en liste d'attente.</td></tr>
+    <tr><td>Habitat groupé avec portage de bâtiment</td><td>D'autres acteurs le développent : Fair Ground Brussels, L'Îlot, Renovassistance.</td></tr>
+    <tr><td>Occupations temporaires conventionnées</td><td>Un toit à bas coût, sur une durée limitée par le projet du propriétaire.</td></tr>
+    <tr><td><strong>Sortir du squat</strong></td><td><strong>Un sas de trois à quatre ans, à 300 € tout compris, en chambre individuelle avec statut d'isolé, pour des personnes sortant de squats.</strong></td></tr>
+  </table>
+  <h3>Points de contact avec le mémorandum 2024 du RBDH</h3>
+  <p>Le tableau ci-dessous met en regard certaines demandes formulées par le RBDH dans son mémorandum 2024 et la manière dont le projet s'y rapporte. Il ne préjuge pas de la position du RBDH sur le projet.</p>
+  <table class="lien">
+    <tr><th>Mémorandum RBDH 2024</th><th>Sortir du squat</th></tr>
+    <tr><td>Bâtiments publics inoccupés proposés pour des projets sociaux, « autant que possible pour des projets d'hébergement » (logements vides, proposition 7).</td><td>Cherche un bâtiment existant auprès d'un propriétaire public ou institutionnel, en emphytéose, à canon possiblement nul.</td></tr>
+    <tr><td>Suppression du statut cohabitant, qui « freine le déploiement d'alternatives au logement individuel cher ».</td><td>Travaille dans le cadre actuel : chambres et contrats individuels pour que chaque habitant·e garde le taux isolé (447 € par mois d'écart).</td></tr>
+    <tr><td>Régularisation des personnes sans papiers, premières cibles des marchands de sommeil.</td><td>S'adresse aux personnes qui viennent d'être régularisées, au moment où elles quittent le squat.</td></tr>
+    <tr><td>Fin du sans-abrisme : « On ne sort pas de la rue sans logement » ; l'accompagnement des publics relogés comme priorité.</td><td>Propose un logement stable de 3 à 4 ans, avec l'accompagnement de Ballal et une personne référente pour chaque groupe d'habitant·es.</td></tr>
+    <tr><td>Soutien aux méthodes alternatives : Community Land Trust, projets coopératifs.</td><td>Gouvernance où les habitant·es détiennent la majorité des voix ; variante en parts de coopérative.</td></tr>
+  </table>
+</section>
+
+<!-- 8. Échange, contact, sources -->
+<section>
+  <span class="label">L'échange</span>
+  <h2>Ce que nous soumettons au RBDH</h2>
+  <ul>
+    <li><strong>Le diagnostic.</strong> Pour une personne qui sort d'un squat, existe-t-il réellement aucun sas entre le squat et le studio à 725 € ? Si nous nous trompons, nous voulons le savoir.</li>
+    <li><strong>Les réseaux.</strong> Les étapes 1 et 2 (CPAS, propriétaire) ne coûtent rien et dépendent des contacts : un CPAS à convaincre, un bâtiment public vide, une communauté religieuse, un bureau d'architecture.</li>
+    <li><strong>Les chiffres.</strong> L'ensemble des hypothèses financières est publié et peut être vérifié et discuté.</li>
+  </ul>
+  <div class="contact">
+    <strong>Contact</strong><br>
+    Ballal ASBL · n° d'entreprise 1016.925.333<br>
+    François Halleux, porteur du projet<br>
+    Siège : place Masui 9/3, 1030 Bruxelles · Permanence : 645 chaussée de Gand, 1080 Molenbeek<br>
+    admin@ballal.be · casa-belgica.vercel.app
+  </div>
+  <section class="suite">
+    <span class="label">Sources</span>
+    <ul class="sources">
+      <li>Loyers et logement social à Bruxelles : SLRB et IBSA (thème logement), données fin 2025.</li>
+      <li>Loyer de référence d'un studio à Bruxelles (725 €) : grille indicative des loyers, loyers.brussels.</li>
+      <li>Montants du revenu d'intégration, taux isolé et cohabitant : SPP Intégration sociale, mi-is.be (barème indexé périodiquement).</li>
+      <li>Normes d'habitabilité (douche et WC privés, 18 m² nets) : arrêté du 30 novembre 2023, en vigueur depuis le 1<sup>er</sup> janvier 2026.</li>
+      <li>Emphytéose gratuite au profit d'une ASBL : livre 3 du Code civil, loi du 4 février 2020, en vigueur depuis le 1<sup>er</sup> septembre 2021.</li>
+      <li>Changement d'affectation soumis à permis : arrêté du 16 mai 2024 et son vade-mecum (urban.brussels).</li>
+      <li>Outils juridiques pour les bâtiments publics vides : Fondation Roi Baudouin, analyse juridique et term sheet type.</li>
+      <li>Inventaire des terrains et bâtiments vides : perspective.brussels.</li>
+      <li>RBDH, Mémorandum 2024 (associations membres en novembre 2023).</li>
+    </ul>
+  </section>
+</section>
+
+</body>
+</html>
