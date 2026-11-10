@@ -132,7 +132,7 @@ Les deux visuels sont générés en JS (`batiment.js`, fonction `facade()`), jam
 ce sont des données réelles rendues en SVG, pas une illustration.
 
 - **Le bâtiment** : 5 étages × 10 fenêtres, numérotées du rez-de-chaussée vers le haut. Une personne
-  référente par étage (Telly, François, Cissé, Delya, Ibrahim), sa fenêtre marquée d'un cadre blanc
+  référente par étage (Telly, François, Cissé, Delya, Said), sa fenêtre marquée d'un cadre blanc
   distinct. États d'une fenêtre : éteinte (avec la veille ambiante), allumée (or, lueur), allumée avec
   photo. Chaque fenêtre est cliquable et clavier-accessible (`role="button"`, `tabindex`).
 - **Le mur** : 120 briques en 8 rangées de 15, appareil à joints décalés (les rangées paires ont deux

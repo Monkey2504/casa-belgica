@@ -64,7 +64,7 @@
   function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
   // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
   // Les cinq personnes référentes vivront dans le bâtiment : elles comptent parmi les 50, une par étage.
-  var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Cissé',etage:3},{nom:'Delya',etage:4},{nom:'Ibrahim',etage:5}];
+  var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Cissé',etage:3},{nom:'Delya',etage:4},{nom:'Said',etage:5}];
   var PAR_ETAGE=10;
   function normaliser(t){ return (t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
   function referentDe(nom){ var n=normaliser(nom); for(var i=0;i<REFERENTS.length;i++) if(normaliser(REFERENTS[i].nom)===n) return REFERENTS[i]; return null; }
@@ -244,8 +244,8 @@
     d.etages.forEach(function(E){
       var base=(E.ref.etage-1)*10, info={ref:E.ref,compte:E.personnes.length};
       for(var k=1;k<=PAR_ETAGE;k++){
-        var p=fens[base+k], pers=E.personnes[k-1], occ=!!pers; if(!p)continue;
-        garnir(p,'fenetre',base+k,occ,pers,info);
+        var pos=placeDe(E.ref.etage,k), p=fens[base+pos], pers=E.personnes[k-1], occ=!!pers; if(!p)continue;
+        garnir(p,'fenetre',base+pos,occ,pers,info);
         if(!occ){p.classList.remove('on');continue}
         if(!p.classList.contains('on')) ordre.push(p);
       }
@@ -254,8 +254,11 @@
     ordre.sort(function(a,b){return ((+a.getAttribute('data-n'))*37)%101-((+b.getAttribute('data-n'))*37)%101});
     ordre.forEach(function(p,k){ setTimeout(function(){p.classList.add('on')},k*60); });
   }
-  // Numéro de fenêtre d'une personne : k-ième (1..10) réunie par R → fenêtre (étage-1)*10+k ; 0 si l'étage est complet.
-  function fenetreDe(R,k){ return (R&&k>=1&&k<=PAR_ETAGE)?(R.etage-1)*10+k:0; }
+  // Éparpille les personnes sur leur étage au lieu de les aligner l'une à la suite de l'autre :
+  // la k-ième personne (1..10) va à la place ((k-1)*3 + décalage propre à l'étage) modulo 10 — 3 et 10 étant premiers entre eux, chaque place sert une seule fois.
+  function placeDe(etage,k){ return ((k-1)*3+(etage*7)%PAR_ETAGE)%PAR_ETAGE+1; }
+  // Numéro de fenêtre d'une personne : k-ième (1..10) réunie par R → fenêtre (étage-1)*10+place éparpillée ; 0 si l'étage est complet.
+  function fenetreDe(R,k){ return (R&&k>=1&&k<=PAR_ETAGE)?(R.etage-1)*10+placeDe(R.etage,k):0; }
   // Remplit une liste <ul class="etages"> : un item par étage, avec la progression.
   function etages(ul,d){
     if(!ul)return; ul.innerHTML='';
