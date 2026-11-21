@@ -1,6 +1,6 @@
 # Sortir du squat
 
-> Site de campagne de « Sortir du squat », programme de logement de transition porté par Ballal ASBL (n° d'entreprise 1016.925.333, 645 chaussée de Gand, 1080 Molenbeek, Bruxelles). Premier bâtiment : Casa Belgica, 50 chambres individuelles à 300 €/mois tout compris, pour des personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat. Financement : 120 personnes qui promettent de prêter 1 000 € chacune à 0 %, ce qui rend possible un crédit bancaire de 900 000 €. Le projet n'est pas encore ouvert : premières clés visées dans ± 3 ans.
+> Site de campagne de « Sortir du squat », programme de logement de transition porté par Ballal ASBL (n° d'entreprise 1016.925.333, 645 chaussée de Gand, 1080 Molenbeek, Bruxelles). Premier bâtiment : Casa Belgica, 50 chambres individuelles à 300 €/mois tout compris, pour des personnes qui viennent d'obtenir leurs papiers et qui sortent d'un squat. Financement : les loyers remboursent un prêt (au mieux 1,35 million d'euros) ; il reste un apport à trouver, de 0,35 à 2,15 millions selon le bâtiment et le crédit, dont des prêts de citoyens de 1 000 €. Le projet n'est pas encore ouvert : premières clés 3 à 4 ans et demi après l'accord d'un propriétaire.
 
 Les noms, à ne pas confondre :
 - **Sortir du squat** (en anglais : Leave the Squat) est le nom du projet : un programme de logement de transition, conçu pour se reproduire dans plusieurs bâtiments.
@@ -13,29 +13,33 @@ Ce fichier explique le site à une IA : son contenu, mais aussi son design et ce
 
 - [Entrée](https://casa-belgica.vercel.app/) : deux portes, deux chemins, un même bâtiment.
 - [J'ai besoin d'un toit](https://casa-belgica.vercel.app/habiter) : pour les futurs habitants — ce qu'est le logement, à qui il s'adresse, inscription gratuite et sans engagement.
-- [Soutenir le projet / le dossier des 120](https://casa-belgica.vercel.app/preter) : pour les futurs prêteurs — le problème, la solution, les chiffres, les étapes, la promesse de prêt.
+- [Soutenir le projet](https://casa-belgica.vercel.app/preter) : pour les futurs prêteurs — le problème, la solution, les chiffres, les étapes, la promesse de prêt.
 - Versions : [English](https://casa-belgica.vercel.app/en/), [Deutsch](https://casa-belgica.vercel.app/de/), [Nederlands](https://casa-belgica.vercel.app/nl/), [العربية](https://casa-belgica.vercel.app/ar/). Mêmes trois pages dans chaque langue.
 - Contact : admin@ballal.be — ou sur place, chez Ballal, 645 chaussée de Gand, Molenbeek.
 
 ## Le projet en chiffres
 
-- Un studio à Bruxelles coûte 725 € de loyer. Le revenu d'intégration du CPAS (RIS) pour une personne isolée est de 1 340 €/mois. Il reste 615 € pour vivre, rien pour épargner.
-- À Casa Belgica : 300 €/mois tout compris (chauffage, eau, électricité, internet). Il reste 1 040 € pour vivre, soit 425 € de plus chaque mois.
-- Chaque chambre fait au moins 18 m², avec sa propre douche et son propre WC, et un contrat individuel. Comme chacun vit seul dans sa chambre, il touche le RIS au taux plein (1 340 € au lieu de 894 €), et il a une vraie adresse à son nom (domiciliation).
-- Séjour de 3 à 4 ans : le temps d'épargner, de se former, de trouver un vrai logement. 250 à 350 personnes logées en vingt ans.
-- Bâtiment existant rénové sous bail emphytéotique : environ 1 020 000 € de travaux. Crédit bancaire : 900 000 €. Fonds propres : 120 000 €, apportés par 120 prêteurs citoyens (1 000 € chacun, 0 %, remboursés en une fois entre l'année 6 et l'année 10).
-- Étapes : 0 à 21 mois, quatre étapes préalables (CPAS, propriétaire, étude de faisabilité, banque) ; dès 18 à 21 mois, collecte des 120 promesses ; ± 3 ans, premières clés. Avant que le bâtiment soit trouvé et le crédit accordé, aucun euro ne bouge : une promesse n'est pas un virement.
-- Risque maximal engagé avant tout appel de fonds citoyen : 30 000 €, en grande partie subsidiable.
-- Ballal ASBL accompagne plus de 150 personnes sans-papiers ou en situation précaire à Molenbeek depuis 2015. Sortir du squat est né de la demande de ces personnes, et Ballal le porte depuis 2023.
+Ces chiffres sont ceux de la note de présentation du projet du 23 novembre 2026.
+
+- À Bruxelles, une chambre avec douche coûte 720 € par mois, un studio 885 €. L'aide du CPAS pour une personne isolée est de 1 367 € par mois (911,56 € au taux cohabitant). Les propriétaires demandent un revenu de trois fois le loyer.
+- À Casa Belgica : 300 €/mois tout compris (chauffage, eau, électricité, internet), soit 350 € de moins à payer chaque mois qu'une chambre privée à 650 €. Avec 1 367 € par mois, il reste 1 067 € au lieu de 717 €.
+- Chaque chambre fait 18 m², avec sa propre douche et son propre WC, et un bail individuel. Le bâtiment (environ 1 350 m²) est divisé en groupes de 6 à 10 chambres, chacun avec sa cuisine et son séjour.
+- Public : des personnes qui viennent d'être régularisées, qui sortent d'une occupation et qui ont un revenu, d'abord par le travail.
+- Durée visée du séjour : trois ans. La loi donne un bail de neuf ans : personne n'est mis à la rue. Plus de 300 personnes logées en vingt ans si chacun reste trois ans.
+- Argent : 50 chambres à 300 €, occupées à 95 %, soit 14 250 € par mois ; 8 120 € paient le fonctionnement, 6 130 € remboursent le crédit, soit environ 1,35 million d'euros sur 30 ans à 3,5 %. Apport à trouver : de 0,35 à 0,75 million pour un bâtiment prêté en bon état, de 1,75 à 2,15 millions pour un bâtiment à transformer.
+- Cinq sources pour l'apport : un bâtiment prêté pour longtemps (emphytéose d'au moins 40 ans), des prêts longs à bas taux, des prêts de citoyens (par exemple 1 000 € chacun ; moins de 500 000 € par an et pas plus de 5 000 € par prêteur), les événements et les dons, trois décisions publiques.
+- Étapes : 0 à 21 mois, quatre étapes préalables (CPAS, propriétaire, faisabilité, financement) ; ensuite seulement, prêts citoyens, permis (12 à 24 mois) et chantier (12 à 18 mois). Avant que le bâtiment soit trouvé et le financement accordé, aucun euro ne bouge : une promesse n'est pas un virement.
+- Pas plus de 30 000 € engagés avant la décision finale.
+- Ballal ASBL est née au 645 chaussée de Gand, à Molenbeek, et y tient sa permanence ; elle accompagne plus de 150 personnes.
 
 ## Le design et ce qu'il veut dire
 
 ### L'idée centrale : le bâtiment est l'interface
 
-Tout le site est construit autour d'une seule image : le bâtiment qu'on veut ouvrir. On n'y lit pas seulement qu'il faut 50 habitants et 120 prêteurs : on le voit se construire.
+Tout le site est construit autour d'une seule image : le bâtiment qu'on veut ouvrir. On n'y lit pas seulement qu'il faut 50 habitants et des prêteurs : on le voit se construire.
 
 - **Le bâtiment** : une façade de 5 étages × 10 fenêtres = 50 fenêtres = les 50 chambres. Chaque fenêtre est une personne réellement inscrite pour y vivre. Une fenêtre éteinte est une place encore libre ; une fenêtre allumée (or, avec une lueur) est une personne inscrite ; avec sa photo si elle a accepté d'être visible. Chaque étage correspond à une personne référente du terrain, celle qui accompagne les inscrits de cet étage. Au rez-de-chaussée, une porte or.
-- **Le mur** : sous le bâtiment, 120 briques en 8 rangées de 15, posées comme un vrai mur (joints décalés). 1 brique = 1 prêteur = 1 000 € à 0 %. Une brique en pointillé est une promesse encore à trouver ; une brique pleine (or) est une promesse faite. C'est la métaphore centrale du projet, et le mur est dessiné sous le bâtiment.
+- **Le mur** : sous le bâtiment, 120 briques en 8 rangées de 15, posées comme un vrai mur (joints décalés). 1 brique = 1 prêteur = 1 000 € à 0 %. Ces 120 briques représentent 120 000 € : une partie de l'apport à trouver, pas tout. Une brique en pointillé est une promesse encore à trouver ; une brique pleine (or) est une promesse faite. C'est la métaphore centrale du projet, et le mur est dessiné sous le bâtiment.
 - **Des données réelles, pas une illustration** : le bâtiment et le mur ne sont pas des images. Ils sont dessinés en direct à partir de la base de données des inscriptions. Le principe du site : prouver au lieu d'affirmer. Les chiffres ne sont jamais gonflés ni simulés. Si 5 fenêtres sont allumées, c'est que 5 personnes sont inscrites.
 - **Les fenêtres s'allument dans le désordre** : à l'affichage, l'ordre d'allumage est volontairement mélangé, pour ne jamais trahir l'ordre réel d'inscription des personnes.
 - **La vie privée est visible dans le dessin** : la façade est publique. Une personne qui ne veut pas être vue s'inscrit quand même, et sa fenêtre s'allume sans nom ni photo. Elle compte exactement pareil.
@@ -69,7 +73,7 @@ L'or n'est jamais un fond de texte long : il marque seulement ce qui avance.
 
 ### Ce que le site refuse
 
-Le site a été refait parce que la version précédente ressemblait à « n'importe quel dossier éditorial généré aujourd'hui » : un mot coloré dans chaque titre, des étiquettes en capitales partout, tout encadré de filets noirs. Choix assumés de la version actuelle : pas d'emoji, pas de jargon, pas de cadre autour des chiffres (« quand tout est encadré, plus rien n'est mis en avant »), des barres à l'échelle réelle plutôt que deux chiffres écrits côte à côte (par exemple : loyer contre reste à vivre, sur 1 340 €).
+Le site a été refait parce que la version précédente ressemblait à « n'importe quel dossier éditorial généré aujourd'hui » : un mot coloré dans chaque titre, des étiquettes en capitales partout, tout encadré de filets noirs. Choix assumés de la version actuelle : pas d'emoji, pas de jargon, pas de cadre autour des chiffres (« quand tout est encadré, plus rien n'est mis en avant »), des barres à l'échelle réelle plutôt que deux chiffres écrits côte à côte (par exemple : loyer contre reste à vivre, sur 1 367 €).
 
 ### Mouvement et accessibilité
 
@@ -77,4 +81,4 @@ Les animations sont courtes : une brique qui se pose, une fenêtre qui s'allume,
 
 ## English summary
 
-"Sortir du squat" (Leave the Squat) is a transitional housing programme run by Ballal ASBL in Molenbeek, Brussels. Its first building, Casa Belgica, will offer 50 private rooms at €300/month all-inclusive for people who have just been regularised and are leaving squats, funded by 120 citizens each lending €1,000 at 0% (unlocking a €900,000 bank loan). The site's design is part of the message: the building's 50 windows light up for each real registered future resident, and a wall of 120 bricks fills up with each real loan promise. Data is live, never inflated. The home page is two equal doors — "I need a roof" and "Support the project" — into the same building.
+"Sortir du squat" (Leave the Squat) is a transitional housing programme run by Ballal ASBL in Molenbeek, Brussels. Its first building, Casa Belgica, will offer 50 private rooms at €300/month all-inclusive for people who have just been regularised and are leaving squats, Rents repay a loan (at best €1.35 million); a down payment of €0.35 to €2.15 million remains to be found, partly through citizen loans of €1,000. The site's design is part of the message: the building's 50 windows light up for each real registered future resident, and a wall of 120 bricks fills up with each real loan promise. Data is live, never inflated. The home page is two equal doors — "I need a roof" and "Support the project" — into the same building.
