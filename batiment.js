@@ -111,11 +111,11 @@
       var url=URL.createObjectURL(fichier), img=new Image();
       img.onload=function(){
         try{
-          var T=320, c=document.createElement('canvas'); c.width=T; c.height=T;
+          var T=640, c=document.createElement('canvas'); c.width=T; c.height=T;
           var s=Math.min(img.naturalWidth,img.naturalHeight), sx=(img.naturalWidth-s)/2, sy=(img.naturalHeight-s)/2;
           c.getContext('2d').drawImage(img,sx,sy,s,s,0,0,T,T);
           URL.revokeObjectURL(url);
-          c.toBlob(function(b){ b?ok(b):ko(0) },'image/jpeg',.82);
+          c.toBlob(function(b){ b?ok(b):ko(0) },'image/jpeg',.88);
         }catch(e){ko(e)}
       };
       img.onerror=function(){URL.revokeObjectURL(url);ko(0)};
