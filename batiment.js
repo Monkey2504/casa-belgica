@@ -64,7 +64,7 @@
   function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
   // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
   // Les cinq personnes référentes vivront dans le bâtiment : elles comptent parmi les 50, une par étage.
-  var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Blandine',etage:3},{nom:'Delya',etage:4},{nom:'Ibrahim',etage:5}];
+  var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Delya',etage:3},{nom:'Blandine',etage:4},{nom:'Ibrahim',etage:5}];
   var PAR_ETAGE=10;
   function normaliser(t){ return (t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
   function referentDe(nom){ var n=normaliser(nom); for(var i=0;i<REFERENTS.length;i++) if(normaliser(REFERENTS[i].nom)===n) return REFERENTS[i]; return null; }
