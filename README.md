@@ -1,6 +1,6 @@
 # Casa Belgica — Sortir du squat / Leave the Squat
 
-Site statique de la campagne Casa Belgica : coopérative de logement de transition en création, portée par Ballal ASBL (Molenbeek).
+Site statique de la campagne Sortir du squat : projet pilote de logement (un bâtiment, Casa Belgica, 50 chambres à 300 €/mois), porté par Ballal ASBL (Molenbeek). Le contenu suit la note de présentation du 23 novembre 2026.
 
 - `fr.html` — version française
 - `index.html` — version anglaise
