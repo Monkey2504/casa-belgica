@@ -298,7 +298,10 @@ h1 mark{border:0;background:linear-gradient(transparent 58%,rgba(227,195,98,.28)
 /* portrait dans une fenêtre ou sur une brique : la place garde son cadre doré */
 .fen .portrait,.brique .portrait{pointer-events:none}
 .fen.on.photo .base{fill:#0E1B13}
-.fen.on.photo .portrait{filter:drop-shadow(0 0 6px rgba(227,195,98,.65))}
+.fen.on.photo .portrait{filter:blur(1.2px) drop-shadow(0 0 6px rgba(227,195,98,.65))}
+/* passants : ombres qui traversent les fenêtres allumées */
+.fen .passant{fill:rgba(23,46,33,.55);opacity:0;pointer-events:none;transform-box:view-box}
+.fen.photo .ombre{display:none}
 /* briques dessinées dans le SVG (bâtiment de l'entrée) */
 .brique{cursor:pointer;outline:none}
 .brique .base{fill:transparent;stroke:rgba(227,195,98,.68);stroke-width:1.5;stroke-dasharray:3 3;transition:fill .5s,stroke .5s}
@@ -307,6 +310,8 @@ h1 mark{border:0;background:linear-gradient(transparent 58%,rgba(227,195,98,.28)
 .brique[aria-expanded="true"] .base{stroke:#fff;stroke-width:2;stroke-dasharray:none}
 @media(prefers-reduced-motion:no-preference){
   .fen:not(.on) .veille{animation:veille 7s ease-in-out infinite;animation-delay:var(--d,0ms)}
+  .fen.on .passant{animation:passe var(--dur,12s) ease-in-out var(--del,0ms) infinite}
+  @keyframes passe{0%{opacity:1;transform:translateX(calc(var(--sens,1)*-30px))}14%{opacity:1;transform:translateX(0)}20%{opacity:1;transform:translateX(0)}34%,100%{opacity:1;transform:translateX(calc(var(--sens,1)*30px))}}
   @keyframes veille{0%,72%,100%{opacity:0}86%{opacity:.16}}
   .fen.neuve .base,.brique.neuve .base{transform-box:fill-box;transform-origin:center;animation:naitre .6s cubic-bezier(.2,.7,.2,1) both}
 }

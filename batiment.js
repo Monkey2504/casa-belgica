@@ -285,6 +285,13 @@
       var n=(4-r)*10+c+1, x=x0+c*cw+(c>4?8:0), y=y0+r*62;
       var g=el('g',{'class':'fen','data-n':n},svg);
       el('rect',{'class':'base',x:x,y:y,width:26,height:ch-18,rx:1},g);
+      // silhouette qui passe de temps en temps derrière la fenêtre allumée (découpée à la taille de la vitre)
+      var cp=el('clipPath',{id:'vitre'+n},svg); el('rect',{x:x,y:y,width:26,height:ch-18},cp);
+      var o=el('g',{'class':'ombre','clip-path':'url(#vitre'+n+')'},g);
+      var dur=9+((n*7)%9), del=((n*389)%17000);
+      var s=el('g',{'class':'passant',style:'--dur:'+dur+'s;--del:'+del+'ms;--sens:'+(n%2?1:-1)},o);
+      el('circle',{cx:x+13,cy:y+17,r:5},s);
+      el('path',{d:'M'+(x+3)+' '+(y+40)+'Q'+(x+3)+' '+(y+24)+' '+(x+13)+' '+(y+24)+'Q'+(x+23)+' '+(y+24)+' '+(x+23)+' '+(y+40)+'Z'},s);
       el('rect',{'class':'veille',x:x,y:y,width:26,height:ch-18,rx:1,style:'--d:'+((n*173)%6000)+'ms'},g);
       fens[n]=g;
     }
