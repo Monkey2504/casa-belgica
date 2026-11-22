@@ -171,7 +171,7 @@
   }
   function ouvrir(cible,t){
     var b=laBulle(); b.innerHTML='';
-    if(t.photo){ var im=hel('img','portrait'); im.src=photoUrl(t.photo); im.alt=''; im.width=64; im.height=64; b.appendChild(im); b.classList.add('avec-photo'); } else b.classList.remove('avec-photo');
+    if(t.photo){ var im=hel('img','portrait'); im.src=photoUrl(t.photo); im.alt=''; im.width=320; im.height=320; im.onload=placer; b.appendChild(im); b.classList.add('avec-photo'); } else b.classList.remove('avec-photo');
     var txt=hel('div','texte'); txt.appendChild(hel('b',null,t.titre)); txt.appendChild(hel('span',null,t.texte));
     if(t.lien){var a=hel('a',null,t.lien.texte);a.href=t.lien.href;txt.appendChild(a);}
     b.appendChild(txt);
