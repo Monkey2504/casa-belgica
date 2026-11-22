@@ -310,8 +310,9 @@ h1 mark{border:0;background:linear-gradient(transparent 58%,rgba(227,195,98,.28)
 .brique[aria-expanded="true"] .base{stroke:#fff;stroke-width:2;stroke-dasharray:none}
 @media(prefers-reduced-motion:no-preference){
   .fen:not(.on) .veille{animation:veille 7s ease-in-out infinite;animation-delay:var(--d,0ms)}
-  .fen.on .passant{animation:passe var(--dur,22s) linear var(--del,0ms) infinite}
-  @keyframes passe{0%{opacity:1;transform:translateX(calc(var(--sens,1)*-30px))}4.5%,100%{opacity:1;transform:translateX(calc(var(--sens,1)*30px))}}
+  .fen .passant{animation:passe 250s linear var(--del,0s) infinite}
+  .fen:not(.on) .passant{fill:var(--or)}
+  @keyframes passe{0%{opacity:1;transform:translateX(calc(var(--sens,1)*-30px))}2%{opacity:1;transform:translateX(calc(var(--sens,1)*30px))}2.01%,100%{opacity:0}}
   @keyframes veille{0%,72%,100%{opacity:0}86%{opacity:.16}}
   .fen.neuve .base,.brique.neuve .base{transform-box:fill-box;transform-origin:center;animation:naitre .6s cubic-bezier(.2,.7,.2,1) both}
 }

@@ -288,9 +288,9 @@
       // silhouette qui passe de temps en temps derrière la fenêtre allumée (découpée à la taille de la vitre)
       var cp=el('clipPath',{id:'vitre'+n},svg); el('rect',{x:x,y:y,width:26,height:ch-18},cp);
       var o=el('g',{'class':'ombre','clip-path':'url(#vitre'+n+')'},g);
-      // un seul passant par étage : il traverse l'étage fenêtre après fenêtre, puis repasse plus tard
-      var sens=r%2?-1:1, pos=sens>0?c:9-c, del=((r*4700)%20000)+pos*900;
-      var s=el('g',{'class':'passant',style:'--dur:22s;--del:'+del+'ms;--sens:'+sens},o);
+      // un seul passant pour tout le bâtiment : il part du rez, longe chaque étage (en zigzag) et monte, 5 s par fenêtre
+      var f=4-r, sens=f%2?-1:1, idx=f*10+(f%2?9-c:c);
+      var s=el('g',{'class':'passant',style:'--del:'+(idx*5)+'s;--sens:'+sens},o);
       el('circle',{cx:x+13,cy:y+17,r:5},s);
       el('path',{d:'M'+(x+3)+' '+(y+40)+'Q'+(x+3)+' '+(y+24)+' '+(x+13)+' '+(y+24)+'Q'+(x+23)+' '+(y+24)+' '+(x+23)+' '+(y+40)+'Z'},s);
       el('rect',{'class':'veille',x:x,y:y,width:26,height:ch-18,rx:1,style:'--d:'+((n*173)%6000)+'ms'},g);
