@@ -61,7 +61,9 @@
     io=new IntersectionObserver(function(es){ if(es[0].isIntersecting) go(); },{threshold:seuil||.3});
     io.observe(cible); addEventListener('scroll',verif,{passive:true}); setTimeout(verif,400);
   }
-  function photoUrl(nom){ return nom?SB+'/storage/v1/object/public/portraits/'+nom:null; }
+  function photoUrl(nom){ return nom?(nom.charAt(0)==='/'?nom:SB+'/storage/v1/object/public/portraits/'+nom):null; }
+  // Photos fournies à part (pas passées par le formulaire), par nom exact d'inscription.
+  var PHOTOS_FIXES={'ibrahim':'/ibrahim.jpg'};
   // Les cinq personnes référentes, une par étage, du rez-de-chaussée vers le haut. Chaque étage : la référente ou le référent + 9 personnes.
   // Les cinq personnes référentes vivront dans le bâtiment : elles comptent parmi les 50, une par étage.
   var REFERENTS=[{nom:'Telly',etage:1},{nom:'François',etage:2},{nom:'Delya',etage:3},{nom:'Blandine',etage:4},{nom:'Ibrahim',etage:5}];
@@ -208,7 +210,7 @@
   }
   // Pose (ou retire) la photo sur une place : <image> dans le SVG, fond d'image sur une brique HTML.
   function garnir(p,genre,n,occupe,personne,etage){
-    var nom=personne&&personne.nom||'', photo=occupe&&personne&&personne.photo||'';
+    var nom=personne&&personne.nom||'', photo=occupe&&personne&&(personne.photo||PHOTOS_FIXES[normaliser(personne.nom)])||'';
     p.setAttribute('data-nom',nom); p.setAttribute('data-photo',photo);
     if(etage){ p.setAttribute('data-etage',etage.ref.etage); p.setAttribute('data-compte',etage.compte); }
     var t=texteDe(genre,n,occupe,{nom:nom,photo:photo},null,etage); p.setAttribute('aria-label',t.titre+', '+t.texte);
